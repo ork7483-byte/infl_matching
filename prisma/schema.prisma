@@ -88,6 +88,7 @@ model Influencer {
   campaignInfluencers  CampaignInfluencer[]
   campaignApplications CampaignApplication[]
   payments             Payment[]
+  portfolioItems       PortfolioItem[]
 
   @@index([followersCount])
   @@index([avgEngagementRate])
@@ -377,4 +378,35 @@ enum PaymentStatus {
   PROCESSING
   COMPLETED
   FAILED
+}
+
+// ============================================
+// Portfolio Items (Gallery)
+// ============================================
+
+model PortfolioItem {
+  id              String    @id @default(cuid())
+  influencerId    String
+  igMediaId       String?
+  mediaType       MediaType
+  mediaUrl        String
+  thumbnailUrl    String?
+  caption         String?
+  likeCount       Int       @default(0)
+  commentsCount   Int       @default(0)
+  reach           Int?
+  impressions     Int?
+  engagementRate  Float?
+  campaignName    String?
+  brandName       String?
+  category        String?
+  isFeatured      Boolean   @default(false)
+  postedAt        DateTime?
+  createdAt       DateTime  @default(now())
+
+  influencer      Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([category])
+  @@index([isFeatured])
+  @@index([createdAt])
 }

@@ -123,7 +123,8 @@ export default function Navbar() {
 
   const navLinks = [
     { label: "홈", href: "/" },
-    { label: "인플루언서 검색", href: "/search" },
+    { label: "Search", href: "/search" },
+    { label: "Gallery", href: "/gallery" },
     { label: "요금제", href: "/pricing" },
   ];
 

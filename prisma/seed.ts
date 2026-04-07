@@ -128,6 +128,7 @@ async function main() {
   console.log("🌱 Seeding database...");
 
   // Clean existing data
+  await prisma.portfolioItem.deleteMany();
   await prisma.payment.deleteMany();
   await prisma.postPerformanceSnapshot.deleteMany();
   await prisma.campaignPost.deleteMany();
@@ -640,6 +641,78 @@ async function main() {
     });
   }
   console.log("✅ Created 5 payments");
+
+  // ============================================
+  // Portfolio Items (Gallery, 50 items)
+  // ============================================
+  const portfolioCaptions = [
+    "이번 콜라보 정말 만족스러웠어요! 제품 퀄리티가 대박 💕",
+    "브랜드와 함께한 특별한 캠페인 콘텐츠 📸",
+    "요즘 가장 핫한 아이템 리뷰! 솔직 후기 드려요 ✨",
+    "일상에서 자연스럽게 담아본 브이로그 스타일 🎬",
+    "팔로워분들이 가장 좋아했던 콘텐츠! 반응 폭발 🔥",
+    "새로운 시도! 이번 촬영 컨셉이 너무 좋았어요 📷",
+    "여러분의 성원 덕분에 좋은 기회를 받았어요 감사합니다 🙏",
+    "이거 진짜 써보면 다시 못 돌아감... 강추! 💯",
+  ];
+  const portfolioBrands = [
+    "글로우업 코스메틱", "스타일런 패션", "딜리셔스 푸드",
+    "테크노바", "피트라이프", "네이처블리스", "모던에센스",
+    null, null, null,
+  ];
+  const portfolioCampaigns = [
+    "#글로우업봄신상", "#스타일런룩북", "#딜리셔스맛집",
+    "#테크노바리뷰", "#피트라이프챌린지", "#네이처블리스데일리",
+    null, null, null, null,
+  ];
+  const portfolioMediaTypes = ["IMAGE", "IMAGE", "IMAGE", "IMAGE", "VIDEO", "VIDEO", "REEL", "REEL", "REEL", "CAROUSEL_ALBUM"] as const;
+
+  const categoryDistribution = [
+    ...Array(15).fill("뷰티"),
+    ...Array(12).fill("패션"),
+    ...Array(10).fill("푸드"),
+    ...Array(8).fill("라이프스타일"),
+    ...Array(5).fill("테크"),
+  ];
+
+  let portfolioCount = 0;
+  for (let i = 0; i < 50; i++) {
+    const infIndex = i % 20; // spread across first 20 influencers
+    const inf = influencers[infIndex];
+    const mediaType = portfolioMediaTypes[i % portfolioMediaTypes.length];
+    const isReel = mediaType === "REEL" || mediaType === "VIDEO";
+    const postedAt = new Date(now);
+    postedAt.setDate(postedAt.getDate() - rand(1, 90));
+
+    const likeCount = Math.floor(inf.followersCount * randFloat(0.02, 0.12));
+    const commentsCount = Math.floor(likeCount * randFloat(0.02, 0.1));
+    const reachVal = Math.floor(inf.followersCount * randFloat(0.3, 1.0));
+
+    await prisma.portfolioItem.create({
+      data: {
+        influencerId: inf.id,
+        igMediaId: `portfolio_${inf.username}_${i}`,
+        mediaType,
+        mediaUrl: isReel
+          ? `https://picsum.photos/seed/port${i}/400/710`
+          : `https://picsum.photos/seed/port${i}/400/400`,
+        thumbnailUrl: `https://picsum.photos/seed/port${i}/400/${isReel ? 710 : 400}`,
+        caption: portfolioCaptions[i % portfolioCaptions.length],
+        likeCount,
+        commentsCount,
+        reach: reachVal,
+        impressions: Math.floor(reachVal * randFloat(1.3, 2.0)),
+        engagementRate: randFloat(1.5, 8.0),
+        campaignName: portfolioCampaigns[i % portfolioCampaigns.length],
+        brandName: portfolioBrands[i % portfolioBrands.length],
+        category: categoryDistribution[i % categoryDistribution.length],
+        isFeatured: i < 30,
+        postedAt,
+      },
+    });
+    portfolioCount++;
+  }
+  console.log(`✅ Created ${portfolioCount} portfolio items (Gallery)`);
 
   // ============================================
   // Test accounts summary
