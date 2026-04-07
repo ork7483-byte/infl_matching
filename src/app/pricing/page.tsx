@@ -486,7 +486,7 @@ function PricingInner() {
       {/* ── Section 4: Feature Comparison Table (Brands only) ────────── */}
       {activeTab === "brand" && (
         <section className="max-w-5xl mx-auto mb-20">
-          <h2 className="text-2xl font-bold text-center text-[#111827] mb-8">기능 상세 비교</h2>
+          <h2 className="text-2xl font-bold text-[#111827] mb-8">기능 상세 비교</h2>
 
           <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid #E5E7EB" }}>
             <table className="w-full text-sm">
@@ -571,7 +571,7 @@ function PricingInner() {
 
       {/* ── Section 5: FAQ ────────────────────────────────────────────── */}
       <section className="max-w-3xl mx-auto mb-20">
-        <h2 className="text-2xl font-bold text-center text-[#111827] mb-8">자주 묻는 질문</h2>
+        <h2 className="text-2xl font-bold text-[#111827] mb-8">자주 묻는 질문</h2>
 
         <div className="space-y-3">
           {faqItems.map((item, i) => (
@@ -606,8 +606,8 @@ function PricingInner() {
 
       {/* ── Section 6: Competitor Comparison ────────────────────────── */}
       <section className="max-w-5xl mx-auto mb-20">
-        <h2 className="text-2xl font-bold text-center text-[#111827] mb-3">왜 인플릭스인가요?</h2>
-        <p className="text-center text-[#6B7280] mb-10 text-sm md:text-base">
+        <h2 className="text-2xl font-bold text-[#111827] mb-3">왜 인플릭스인가요?</h2>
+        <p className="text-[#6B7280] mb-10 text-sm md:text-base">
           경쟁사가 월 55만원에 파는 기능을 무료로 제공합니다.
         </p>
 

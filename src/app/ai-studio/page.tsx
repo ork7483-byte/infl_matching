@@ -103,7 +103,7 @@ export default function AIStudioPage() {
         {/* Comparison Table */}
         <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 실제 인플루언서 vs AI 모델
               </h2>
@@ -141,7 +141,7 @@ export default function AIStudioPage() {
         {/* Content Types */}
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 제작 가능한 콘텐츠 유형
               </h2>
@@ -165,7 +165,7 @@ export default function AIStudioPage() {
         {/* Popular AI Models */}
         <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 인기 AI 모델
               </h2>
@@ -211,7 +211,7 @@ export default function AIStudioPage() {
         {/* Use Cases */}
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 어디에 활용하나요?
               </h2>
@@ -235,7 +235,7 @@ export default function AIStudioPage() {
         {/* Pricing */}
         <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 합리적인 요금제
               </h2>

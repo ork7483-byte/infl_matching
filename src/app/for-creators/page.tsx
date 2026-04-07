@@ -110,7 +110,7 @@ export default function ForCreatorsPage() {
       {/* Revenue section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] mb-3">
               인플릭스에서 이렇게 벌어요
             </h2>
@@ -144,7 +144,7 @@ export default function ForCreatorsPage() {
       {/* 3 Steps */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] mb-3">3단계로 시작하세요</h2>
             <p className="text-[#6B7280]">가입부터 수익 창출까지 5분이면 충분합니다</p>
           </div>
@@ -171,7 +171,7 @@ export default function ForCreatorsPage() {
       {/* Testimonials */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] mb-3">크리에이터 후기</h2>
             <p className="text-[#6B7280]">이미 수백 명의 크리에이터가 Inflix로 수익을 높이고 있어요</p>
           </div>
