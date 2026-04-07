@@ -137,7 +137,7 @@ export default function PredictPage() {
       <DashboardLayout role="brand">
         <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
           <p>인플루언서를 찾을 수 없습니다.</p>
-          <Link href="/search" className="mt-4 text-brand-purple hover:underline text-sm">검색으로 돌아가기</Link>
+          <Link href="/" className="mt-4 text-brand-purple hover:underline text-sm">검색으로 돌아가기</Link>
         </div>
       </DashboardLayout>
     );
@@ -147,7 +147,7 @@ export default function PredictPage() {
     <DashboardLayout role="brand">
       <div className="space-y-6 max-w-3xl mx-auto">
         {/* Back */}
-        <Link href="/search" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>

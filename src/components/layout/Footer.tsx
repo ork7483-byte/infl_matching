@@ -39,7 +39,7 @@ const footerLinks = {
       { label: "고객센터", href: "/support" },
       { label: "자주 묻는 질문", href: "/faq" },
       { label: "요금제", href: "/pricing" },
-      { label: "인플루언서 검색", href: "/search" },
+      { label: "인플루언서 검색", href: "/" },
       { label: "문의하기", href: "/contact" },
     ],
   },

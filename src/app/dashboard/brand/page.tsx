@@ -51,7 +51,7 @@ export default function BrandDashboardPage() {
               새 캠페인 만들기
             </Link>
             <Link
-              href="/search"
+              href="/"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border text-foreground text-sm font-medium hover:bg-card-hover transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -87,7 +87,7 @@ export default function SavedInfluencersPage() {
             <p className="text-base font-medium">저장한 인플루언서가 없습니다</p>
             <p className="text-sm mt-1">인플루언서 검색에서 관심 있는 인플루언서를 저장해보세요.</p>
             <Link
-              href="/search"
+              href="/"
               className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-purple text-white text-sm font-medium hover:opacity-90 transition-opacity"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

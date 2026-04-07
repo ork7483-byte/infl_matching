@@ -193,7 +193,7 @@ function NotFound() {
           해당 사용자가 존재하지 않거나 삭제된 계정입니다
         </p>
         <a
-          href="/search"
+          href="/"
           className="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-purple to-brand-pink text-white font-semibold hover:opacity-90 transition-opacity"
         >
           검색으로 돌아가기

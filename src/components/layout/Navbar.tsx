@@ -122,8 +122,7 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { label: "홈", href: "/" },
-    { label: "Search", href: "/search" },
+    { label: "Search", href: "/" },
     { label: "Gallery", href: "/gallery" },
     { label: "요금제", href: "/pricing" },
   ];
