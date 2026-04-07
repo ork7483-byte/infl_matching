@@ -18,7 +18,7 @@ const revenueCards = [
   },
   {
     icon: "🤖",
-    title: "AI Muse 수동 소득",
+    title: "AI Muse 자동 소득",
     description: "내 스타일을 학습한 AI Muse이 24시간 팬과 대화하며 수익을 자동 생성합니다.",
     tiers: [
       { label: "메시지당 수익", price: "₩800 / 사용" },
@@ -28,7 +28,7 @@ const revenueCards = [
   },
   {
     icon: "3️⃣",
-    title: "AI Muse로 수동 소득 극대화",
+    title: "AI Muse로 자동 소득 극대화",
     description: "Instagram 연동만 하면 AI Muse 자동 생성. 브랜드가 쓸 때마다 수익이 자동 적립됩니다.",
     tiers: [
       { label: "Instagram 연동만 하면", price: "AI Muse 자동 생성" },
@@ -51,7 +51,7 @@ const steps = [
   },
   {
     number: "③",
-    title: "AI Muse 자동 생성 → 브랜드 매칭 시작 + 수동 소득 시작",
+    title: "AI Muse 자동 생성 → 브랜드 매칭 시작 + 자동 소득 시작",
     description: "연동 즉시 AI Muse이 자동 생성됩니다. 브랜드가 사용할 때마다 수익이 자동으로 쌓여요.",
   },
 ];

@@ -221,7 +221,9 @@ export default function Navbar() {
         </div>
 
         <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
-          {navLinks.map((link) => (
+          {navLinks
+            .filter((link) => link.href !== "/for-brands" && link.href !== "/for-creators")
+            .map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -235,55 +237,7 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* Tools Mobile */}
-          <div>
-            <button
-              onClick={() =>
-                setMobileDropdown(
-                  mobileDropdown === "tools" ? null : "tools"
-                )
-              }
-              className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-150 min-h-[44px] cursor-pointer"
-            >
-              무료 도구
-              <svg
-                className={`w-4 h-4 transition-transform duration-200 ${mobileDropdown === "tools" ? "rotate-180" : ""}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-            {mobileDropdown === "tools" && (
-              <div className="ml-3 mt-1 space-y-0.5 max-h-[40vh] overflow-y-auto">
-                {toolsDropdown.map((item, i) =>
-                  (item as { group?: boolean }).group ? (
-                    <div key={`group-${i}`} className="px-4 py-1.5 text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider mt-1 first:mt-0">
-                      {item.label.replace("— ", "")}
-                    </div>
-                  ) : (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`block px-4 py-3 rounded-lg text-sm transition-colors duration-150 min-h-[44px] flex items-center cursor-pointer ${
-                        pathname === item.href
-                          ? "text-brand-purple bg-brand-purple/10"
-                          : "text-muted-foreground hover:text-foreground hover:bg-background"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  )
-                )}
-              </div>
-            )}
-          </div>
+          {/* Tools Mobile — removed: tools are now in /dashboard/brand sidebar */}
 
           {/* For Brands Mobile */}
           <div>

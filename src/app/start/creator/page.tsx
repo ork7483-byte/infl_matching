@@ -88,7 +88,7 @@ export default function CreatorLandingPage() {
         </h2>
         <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-6">
           <LandingSolution
-            title="AI Muse 자동 생성 + 수동 소득"
+            title="AI Muse 자동 생성 + 자동 소득"
             description="채널 데이터를 연동하면 AI Muse이 자동으로 생성되어 브랜드가 사용할 때마다 수익이 쌓입니다"
           />
           <LandingSolution

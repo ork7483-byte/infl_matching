@@ -124,7 +124,7 @@ export default async function InviteLandingPage({ params }: Props) {
             지금 바로 시작하세요
           </h2>
           <p className="text-[#6B7280] mb-6">
-            초대를 통해 가입하면 AI Muse를 바로 생성하고 수동 소득을 시작할 수 있어요.
+            초대를 통해 가입하면 AI Muse를 바로 생성하고 자동 소득을 시작할 수 있어요.
           </p>
           <Link
             href={`/signup?ref=${encodeURIComponent(code)}`}
