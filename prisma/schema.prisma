@@ -541,3 +541,88 @@ model Review {
 
   @@index([creatorId])
 }
+
+// ============================================
+// Influencer CRM (Brand → Creator relationship)
+// ============================================
+
+model SavedInfluencer {
+  id              String    @id @default(cuid())
+  brandId         String
+  influencerId    String
+  status          String    @default("discovered")
+  tags            String[]  @default([])
+  notes           String?
+  rating          Float?
+  lastContactedAt DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@unique([brandId, influencerId])
+  @@index([brandId])
+  @@index([status])
+}
+
+// ============================================
+// Outreach Messages
+// ============================================
+
+model OutreachMessage {
+  id            String    @id @default(cuid())
+  brandId       String
+  influencerId  String
+  templateId    String?
+  subject       String
+  body          String
+  status        String    @default("draft")
+  sentAt        DateTime?
+  openedAt      DateTime?
+  repliedAt     DateTime?
+  createdAt     DateTime  @default(now())
+
+  @@index([brandId])
+  @@index([influencerId])
+}
+
+model MessageTemplate {
+  id        String   @id @default(cuid())
+  brandId   String?
+  name      String
+  subject   String
+  body      String
+  category  String
+  createdAt DateTime @default(now())
+}
+
+// ============================================
+// Ambassador Pages
+// ============================================
+
+model AmbassadorPage {
+  id            String   @id @default(cuid())
+  brandId       String
+  slug          String   @unique
+  title         String
+  description   String
+  requirements  String?
+  benefits      String?
+  headerImage   String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+
+  applications  AmbassadorApplication[]
+}
+
+model AmbassadorApplication {
+  id                String   @id @default(cuid())
+  pageId            String
+  creatorId         String?
+  instagramUsername  String
+  name              String
+  email             String
+  message           String?
+  status            String   @default("pending")
+  createdAt         DateTime @default(now())
+
+  page              AmbassadorPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+}

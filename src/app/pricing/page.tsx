@@ -123,7 +123,27 @@ const comparisonTable = [
   },
 ];
 
-// ── Cell render helper ─────────────────────────────────────────────────────
+// ── Cell render helpers ────────────────────────────────────────────────────
+
+function CompetitorCell({ value }: { value: boolean | string }) {
+  if (value === true)
+    return (
+      <span className="inline-flex justify-center">
+        <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+      </span>
+    );
+  if (value === false)
+    return (
+      <span className="inline-flex justify-center">
+        <svg className="w-5 h-5 text-[#D1D5DB] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </span>
+    );
+  return <span className="text-xs font-medium" style={{ color: "#F97316" }}>{value}</span>;
+}
 
 function TableCell({ value }: { value: boolean | string }) {
   if (value === true) return <CheckIcon />;
@@ -576,7 +596,142 @@ function PricingInner() {
         </div>
       </section>
 
-      {/* ── Section 6: Bottom CTA ─────────────────────────────────────── */}
+      {/* ── Section 6: Competitor Comparison ────────────────────────── */}
+      <section className="max-w-5xl mx-auto mb-20">
+        <h2 className="text-2xl font-bold text-center text-[#111827] mb-3">왜 인플릭스인가요?</h2>
+        <p className="text-center text-[#6B7280] mb-10 text-sm md:text-base">
+          경쟁사가 월 55만원에 파는 기능을 무료로 제공합니다.
+        </p>
+
+        {/* Scrollable table wrapper with sticky first column */}
+        <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid #E5E7EB" }}>
+          <table className="w-full text-sm" style={{ minWidth: "560px" }}>
+            <thead>
+              <tr style={{ backgroundColor: "#F9FAFB" }}>
+                <th
+                  className="sticky left-0 text-left px-5 py-4 font-semibold text-[#111827]"
+                  style={{ backgroundColor: "#F9FAFB", minWidth: "180px", zIndex: 10 }}
+                >
+                  기능
+                </th>
+                <th className="px-5 py-4 text-center font-medium text-[#6B7280] min-w-[130px]">
+                  <div>HypeAuditor</div>
+                  <div className="text-xs font-normal mt-0.5">$399/월</div>
+                </th>
+                <th className="px-5 py-4 text-center font-medium text-[#6B7280] min-w-[130px]">
+                  <div>Modash</div>
+                  <div className="text-xs font-normal mt-0.5">$199/월</div>
+                </th>
+                <th
+                  className="px-5 py-4 text-center font-semibold min-w-[140px]"
+                  style={{
+                    backgroundColor: "#F5F3FF",
+                    borderLeft: "3px solid #7c3aed",
+                    color: "#7c3aed",
+                  }}
+                >
+                  <div>Inflix</div>
+                  <div className="text-xs font-bold mt-0.5" style={{ color: "#7c3aed" }}>₩0 무료</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { feature: "인플루언서 검색", hype: true, modash: true, inflix: true },
+                { feature: "고급 필터링", hype: true, modash: true, inflix: true },
+                { feature: "가짜 팔로워 탐지", hype: true, modash: "Pro only", inflix: true },
+                { feature: "오디언스 분석", hype: true, modash: true, inflix: true },
+                { feature: "AQS 오디언스 품질 점수", hype: true, modash: false, inflix: true },
+                { feature: "AI 성과 예측", hype: false, modash: false, inflix: true },
+                { feature: "예상 광고단가", hype: true, modash: "Pro only", inflix: true },
+                { feature: "경쟁사 인플루언서 분석", hype: true, modash: false, inflix: true },
+                { feature: "캠페인 관리", hype: false, modash: true, inflix: true },
+                { feature: "캠페인 트래킹", hype: true, modash: true, inflix: true },
+                { feature: "PDF/Excel 리포트", hype: true, modash: "Pro only", inflix: true },
+                { feature: "미디어킷 자동 생성", hype: false, modash: false, inflix: true },
+                { feature: "앰배서더 페이지", hype: false, modash: false, inflix: true },
+                { feature: "시장 분석 리포트", hype: "Pro only", modash: false, inflix: true },
+                { feature: "크리에이터 마켓플레이스", hype: false, modash: false, inflix: true },
+                { feature: "우선 고객지원", hype: true, modash: "Pro only", inflix: true },
+                { feature: "한국어 지원", hype: false, modash: false, inflix: true },
+              ].map((row, i) => (
+                <tr
+                  key={i}
+                  className="border-t"
+                  style={{ borderColor: "#E5E7EB" }}
+                >
+                  <td
+                    className="sticky left-0 px-5 py-3 text-[#374151]"
+                    style={{ backgroundColor: "#FFFFFF", zIndex: 10 }}
+                  >
+                    {row.feature}
+                  </td>
+                  <td className="px-5 py-3 text-center">
+                    <CompetitorCell value={row.hype} />
+                  </td>
+                  <td className="px-5 py-3 text-center">
+                    <CompetitorCell value={row.modash} />
+                  </td>
+                  <td
+                    className="px-5 py-3 text-center"
+                    style={{ backgroundColor: "#F5F3FF", borderLeft: "3px solid #7c3aed" }}
+                  >
+                    <CompetitorCell value={row.inflix} />
+                  </td>
+                </tr>
+              ))}
+
+              {/* Summary row */}
+              <tr className="border-t" style={{ borderColor: "#E5E7EB", backgroundColor: "#F9FAFB" }}>
+                <td
+                  className="sticky left-0 px-5 py-4 font-semibold text-[#111827]"
+                  style={{ backgroundColor: "#F9FAFB", zIndex: 10 }}
+                >
+                  무료 도구 수
+                </td>
+                <td className="px-5 py-4 text-center font-medium text-[#6B7280]">8</td>
+                <td className="px-5 py-4 text-center font-medium text-[#6B7280]">1</td>
+                <td
+                  className="px-5 py-4 text-center font-bold text-[#7c3aed]"
+                  style={{ backgroundColor: "#F5F3FF", borderLeft: "3px solid #7c3aed" }}
+                >
+                  15
+                </td>
+              </tr>
+              <tr className="border-t" style={{ borderColor: "#E5E7EB" }}>
+                <td
+                  className="sticky left-0 px-5 py-4 font-semibold text-[#111827]"
+                  style={{ backgroundColor: "#FFFFFF", zIndex: 10 }}
+                >
+                  월 가격
+                </td>
+                <td className="px-5 py-4 text-center font-medium text-[#6B7280]">₩550,000</td>
+                <td className="px-5 py-4 text-center font-medium text-[#6B7280]">₩280,000</td>
+                <td
+                  className="px-5 py-4 text-center"
+                  style={{ backgroundColor: "#F5F3FF", borderLeft: "3px solid #7c3aed" }}
+                >
+                  <span className="font-bold text-lg" style={{ color: "#7c3aed" }}>₩0</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* CTA below table */}
+        <div className="text-center mt-8">
+          <a
+            href="/signup"
+            className="inline-block px-10 py-4 rounded-xl text-base font-semibold text-white transition-opacity hover:opacity-90 cursor-pointer"
+            style={{ backgroundImage: "linear-gradient(to right, #7c3aed, #e94560)" }}
+          >
+            지금 무료로 시작하기
+          </a>
+          <p className="text-xs text-[#9CA3AF] mt-3">신용카드 없이 가입 · 언제든 해지 가능</p>
+        </div>
+      </section>
+
+      {/* ── Section 7: Bottom CTA ─────────────────────────────────────── */}
       <section className="text-center max-w-2xl mx-auto">
         <div
           className="rounded-2xl px-8 py-12"

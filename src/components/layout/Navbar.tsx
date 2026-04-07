@@ -6,15 +6,31 @@ import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
 const toolsDropdown = [
+  // 분석 도구
+  { label: "— 분석 도구", href: "", group: true },
   { label: "참여율 계산기", href: "/tools/engagement-rate" },
   { label: "가짜 팔로워 체크", href: "/tools/fake-follower-check" },
-  { label: "예상 단가 계산기", href: "/tools/price-calculator" },
-  { label: "인플루언서 비교", href: "/tools/compare" },
   { label: "프로필 감사 리포트", href: "/tools/instagram-audit" },
-  { label: "ROI 계산기", href: "/tools/roi-calculator" },
+  { label: "팔로워 수 체크", href: "/tools/follower-count" },
+  // 비교/탐색
+  { label: "— 비교/탐색", href: "", group: true },
+  { label: "인플루언서 비교", href: "/tools/compare" },
+  { label: "유사 인플루언서 찾기", href: "/tools/lookalike" },
   { label: "카테고리별 랭킹", href: "/tools/top-influencers" },
   { label: "지역별 인플루언서", href: "/tools/influencers-by-location" },
-  { label: "팔로워 수 체크", href: "/tools/follower-count" },
+  { label: "트렌딩 인플루언서", href: "/tools/trending" },
+  // 비용/성과
+  { label: "— 비용/성과", href: "", group: true },
+  { label: "예상 단가 계산기", href: "/tools/price-calculator" },
+  { label: "ROI 계산기", href: "/tools/roi-calculator" },
+  { label: "미디어 가치(EMV)", href: "/tools/emv-calculator" },
+  // 시장 분석
+  { label: "— 시장 분석", href: "", group: true },
+  { label: "해시태그 분석기", href: "/tools/hashtag-analyzer" },
+  { label: "경쟁사 분석", href: "/tools/competitor-analysis" },
+  { label: "브랜드 멘션 트래커", href: "/tools/brand-mention-tracker" },
+  // 템플릿
+  { label: "— 템플릿", href: "", group: true },
   { label: "캠페인 브리프 템플릿", href: "/tools/campaign-brief-template" },
   { label: "계약서 템플릿", href: "/tools/contract-template" },
 ];
@@ -100,20 +116,26 @@ function DropdownMenu({
             : "opacity-0 -translate-y-2 pointer-events-none"
         }`}
       >
-        <div className="bg-card border border-border rounded-xl shadow-card overflow-hidden py-1">
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`block px-4 py-2.5 text-sm transition-colors duration-150 ${
-                pathname === item.href
-                  ? "text-brand-purple bg-brand-purple/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-card-hover"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="bg-card border border-border rounded-xl shadow-card overflow-hidden py-1 max-h-[70vh] overflow-y-auto">
+          {items.map((item, i) =>
+            (item as { group?: boolean }).group ? (
+              <div key={`group-${i}`} className="px-4 py-1.5 text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider mt-1 first:mt-0">
+                {item.label.replace("— ", "")}
+              </div>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`block px-4 py-2 text-sm transition-colors duration-150 ${
+                  pathname === item.href
+                    ? "text-brand-purple bg-brand-purple/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-card-hover"
+                }`}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </div>
       </div>
     </div>
