@@ -140,26 +140,26 @@ function filtersToParams(f: Filters, page: number): URLSearchParams {
 
 function CardSkeleton() {
   return (
-    <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-5 animate-pulse flex flex-col gap-3">
+    <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-5 animate-pulse flex flex-col gap-3">
       <div className="flex items-center gap-3">
-        <div className="w-16 h-16 rounded-full bg-[#2a2a3e] flex-shrink-0" />
+        <div className="w-16 h-16 rounded-full bg-[#E5E7EB] flex-shrink-0" />
         <div className="flex-1 space-y-2">
-          <div className="h-3 bg-[#2a2a3e] rounded w-28" />
-          <div className="h-3 bg-[#2a2a3e] rounded w-20" />
+          <div className="h-3 bg-[#E5E7EB] rounded w-28" />
+          <div className="h-3 bg-[#E5E7EB] rounded w-20" />
           <div className="flex gap-1">
-            <div className="h-4 bg-[#2a2a3e] rounded-full w-12" />
-            <div className="h-4 bg-[#2a2a3e] rounded-full w-14" />
+            <div className="h-4 bg-[#E5E7EB] rounded-full w-12" />
+            <div className="h-4 bg-[#E5E7EB] rounded-full w-14" />
           </div>
         </div>
       </div>
       <div className="flex justify-between">
-        <div className="h-3 bg-[#2a2a3e] rounded w-20" />
-        <div className="h-3 bg-[#2a2a3e] rounded w-16" />
+        <div className="h-3 bg-[#E5E7EB] rounded w-20" />
+        <div className="h-3 bg-[#E5E7EB] rounded w-16" />
       </div>
-      <div className="h-2 bg-[#2a2a3e] rounded-full" />
+      <div className="h-2 bg-[#E5E7EB] rounded-full" />
       <div className="flex gap-2">
-        <div className="h-10 bg-[#2a2a3e] rounded-lg flex-1" />
-        <div className="h-10 bg-[#2a2a3e] rounded-lg w-12" />
+        <div className="h-10 bg-[#E5E7EB] rounded-lg flex-1" />
+        <div className="h-10 bg-[#E5E7EB] rounded-lg w-12" />
       </div>
     </div>
   );
@@ -167,18 +167,18 @@ function CardSkeleton() {
 
 function ListRowSkeleton() {
   return (
-    <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-xl px-4 py-3 animate-pulse flex items-center gap-4">
-      <div className="w-10 h-10 rounded-full bg-[#2a2a3e] flex-shrink-0" />
+    <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl px-4 py-3 animate-pulse flex items-center gap-4">
+      <div className="w-10 h-10 rounded-full bg-[#E5E7EB] flex-shrink-0" />
       <div className="flex-1 space-y-1.5">
-        <div className="h-3 bg-[#2a2a3e] rounded w-32" />
-        <div className="h-2.5 bg-[#2a2a3e] rounded w-20" />
+        <div className="h-3 bg-[#E5E7EB] rounded w-32" />
+        <div className="h-2.5 bg-[#E5E7EB] rounded w-20" />
       </div>
       <div className="hidden md:flex gap-6">
-        <div className="h-3 bg-[#2a2a3e] rounded w-16" />
-        <div className="h-3 bg-[#2a2a3e] rounded w-16" />
-        <div className="h-3 bg-[#2a2a3e] rounded w-16" />
+        <div className="h-3 bg-[#E5E7EB] rounded w-16" />
+        <div className="h-3 bg-[#E5E7EB] rounded w-16" />
+        <div className="h-3 bg-[#E5E7EB] rounded w-16" />
       </div>
-      <div className="h-8 bg-[#2a2a3e] rounded-lg w-20 flex-shrink-0" />
+      <div className="h-8 bg-[#E5E7EB] rounded-lg w-20 flex-shrink-0" />
     </div>
   );
 }
@@ -192,7 +192,7 @@ function SignupModal({ onClose }: { onClose: () => void }) {
       onClick={onClose}
     >
       <div
-        className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 max-w-sm w-full text-center"
+        className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 max-w-sm w-full text-center"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#7c3aed]/20 flex items-center justify-center">
@@ -200,8 +200,8 @@ function SignupModal({ onClose }: { onClose: () => void }) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
         </div>
-        <h3 className="text-xl font-bold text-[#e4e4e7] mb-2">저장 기능은 회원 전용</h3>
-        <p className="text-sm text-[#a1a1aa] mb-6">무료 회원가입 후 인플루언서를 저장하고<br />비교해 보세요.</p>
+        <h3 className="text-xl font-bold text-[#111827] mb-2">저장 기능은 회원 전용</h3>
+        <p className="text-sm text-[#6B7280] mb-6">무료 회원가입 후 인플루언서를 저장하고<br />비교해 보세요.</p>
         <div className="flex flex-col gap-3">
           <Link
             href="/register"
@@ -209,7 +209,7 @@ function SignupModal({ onClose }: { onClose: () => void }) {
           >
             무료로 시작하기
           </Link>
-          <button onClick={onClose} className="text-sm text-[#a1a1aa] hover:text-[#e4e4e7] transition-colors">
+          <button onClick={onClose} className="text-sm text-[#6B7280] hover:text-[#111827] transition-colors">
             나중에
           </button>
         </div>
@@ -232,7 +232,7 @@ function InfluencerGridCard({
   onSaveClick: () => void;
 }) {
   const cardContent = (
-    <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-5 hover:border-[#7c3aed]/40 hover:shadow-[0_0_20px_rgba(124,58,237,0.15)] transition-all duration-200 flex flex-col h-full">
+    <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-5 hover:border-[#7c3aed]/40 hover:shadow-[0_0_20px_rgba(124,58,237,0.15)] transition-all duration-200 flex flex-col h-full">
       {/* Header */}
       <div className="flex items-start gap-3 mb-4">
         <div className="relative flex-shrink-0">
@@ -240,7 +240,7 @@ function InfluencerGridCard({
             <img
               src={influencer.profilePicUrl}
               alt={influencer.username}
-              className="w-16 h-16 rounded-full object-cover border border-[#2a2a3e]"
+              className="w-16 h-16 rounded-full object-cover border border-[#E5E7EB]"
             />
           ) : (
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#e94560] flex items-center justify-center text-white font-bold text-xl">
@@ -249,7 +249,7 @@ function InfluencerGridCard({
           )}
           {influencer.isOauthConnected && (
             <span
-              className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full border-2 border-[#1a1a2e] flex items-center justify-center text-xs bg-[#22c55e]"
+              className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full border-2 border-[#FFFFFF] flex items-center justify-center text-xs bg-[#22c55e]"
               title="OAuth 인증됨"
             >
               ✓
@@ -258,14 +258,14 @@ function InfluencerGridCard({
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5">
-            <p className="text-sm font-semibold text-[#e4e4e7] truncate">@{influencer.username}</p>
+            <p className="text-sm font-semibold text-[#111827] truncate">@{influencer.username}</p>
             {influencer.isOauthConnected && (
               <svg className="w-3.5 h-3.5 text-[#22c55e] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
               </svg>
             )}
           </div>
-          <p className="text-xs text-[#a1a1aa] truncate">{influencer.fullName}</p>
+          <p className="text-xs text-[#6B7280] truncate">{influencer.fullName}</p>
           {influencer.categories.length > 0 && (
             <div className="flex flex-wrap gap-1 mt-1.5">
               {influencer.categories.slice(0, 3).map((cat) => (
@@ -282,15 +282,15 @@ function InfluencerGridCard({
       {/* Stats row */}
       <div className="flex items-center justify-between mb-3 text-sm">
         <div>
-          <p className="text-xs text-[#a1a1aa] mb-0.5">팔로워</p>
-          <p className="font-bold text-[#e4e4e7]">{formatFollowers(influencer.followersCount)}</p>
+          <p className="text-xs text-[#6B7280] mb-0.5">팔로워</p>
+          <p className="font-bold text-[#111827]">{formatFollowers(influencer.followersCount)}</p>
         </div>
         <div className="text-right">
-          <p className="text-xs text-[#a1a1aa] mb-0.5">참여율</p>
+          <p className="text-xs text-[#6B7280] mb-0.5">참여율</p>
           <MaskedValue
             value={influencer.avgEngagementRate != null ? `${influencer.avgEngagementRate.toFixed(2)}%` : null}
             width="48px"
-            className="font-bold text-[#e4e4e7]"
+            className="font-bold text-[#111827]"
           />
         </div>
       </div>
@@ -299,14 +299,14 @@ function InfluencerGridCard({
       {influencer.aqsScore ? (
         <div className="mb-3">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-[#a1a1aa]">AQS 점수</span>
+            <span className="text-xs text-[#6B7280]">AQS 점수</span>
             <MaskedValue
               value={`${getAqsGrade(influencer.aqsScore.totalScore)} ${influencer.aqsScore.totalScore} (${getAqsLabel(influencer.aqsScore.totalScore)})`}
               width="80px"
               className="text-xs font-semibold"
             />
           </div>
-          <div className="h-1.5 bg-[#2a2a3e] rounded-full overflow-hidden">
+          <div className="h-1.5 bg-[#E5E7EB] rounded-full overflow-hidden">
             <div
               className="h-full rounded-full transition-all"
               style={{
@@ -318,13 +318,13 @@ function InfluencerGridCard({
         </div>
       ) : (
         <div className="mb-3">
-          <p className="text-xs text-[#a1a1aa]">AQS 점수 없음</p>
+          <p className="text-xs text-[#6B7280]">AQS 점수 없음</p>
         </div>
       )}
 
       {/* Estimated price */}
       <div className="mb-4">
-        <p className="text-xs text-[#a1a1aa] mb-0.5">예상 단가</p>
+        <p className="text-xs text-[#6B7280] mb-0.5">예상 단가</p>
         <MaskedValue
           value={
             influencer.estimatedPriceMin != null && influencer.estimatedPriceMax != null
@@ -332,7 +332,7 @@ function InfluencerGridCard({
               : "데이터 없음"
           }
           width="120px"
-          className="text-sm font-semibold text-[#e4e4e7]"
+          className="text-sm font-semibold text-[#111827]"
         />
       </div>
 
@@ -344,7 +344,7 @@ function InfluencerGridCard({
               key={i}
               src={thumb}
               alt=""
-              className="w-12 h-12 rounded-lg object-cover border border-[#2a2a3e]"
+              className="w-12 h-12 rounded-lg object-cover border border-[#E5E7EB]"
             />
           ))}
         </div>
@@ -360,7 +360,7 @@ function InfluencerGridCard({
         </Link>
         <button
           onClick={isAuth ? undefined : onSaveClick}
-          className="w-10 h-10 rounded-lg border border-[#2a2a3e] flex items-center justify-center text-[#a1a1aa] hover:border-[#e94560]/50 hover:text-[#e94560] transition-colors"
+          className="w-10 h-10 rounded-lg border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:border-[#e94560]/50 hover:text-[#e94560] transition-colors"
           title={isAuth ? "저장" : "로그인 후 저장"}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -396,11 +396,11 @@ function InfluencerListRow({
   onSaveClick: () => void;
 }) {
   const rowContent = (
-    <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-xl px-4 py-3 hover:border-[#7c3aed]/40 transition-all duration-200 flex items-center gap-4">
+    <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl px-4 py-3 hover:border-[#7c3aed]/40 transition-all duration-200 flex items-center gap-4">
       {/* Avatar */}
       <div className="relative flex-shrink-0">
         {influencer.profilePicUrl ? (
-          <img src={influencer.profilePicUrl} alt={influencer.username} className="w-10 h-10 rounded-full object-cover border border-[#2a2a3e]" />
+          <img src={influencer.profilePicUrl} alt={influencer.username} className="w-10 h-10 rounded-full object-cover border border-[#E5E7EB]" />
         ) : (
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#e94560] flex items-center justify-center text-white font-bold">
             {influencer.username[0]?.toUpperCase() ?? "?"}
@@ -411,7 +411,7 @@ function InfluencerListRow({
       {/* Name + categories */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5">
-          <p className="text-sm font-semibold text-[#e4e4e7] truncate">@{influencer.username}</p>
+          <p className="text-sm font-semibold text-[#111827] truncate">@{influencer.username}</p>
           {influencer.isOauthConnected && (
             <span className="w-3.5 h-3.5 rounded-full bg-[#22c55e] flex-shrink-0" title="인증됨" />
           )}
@@ -426,31 +426,31 @@ function InfluencerListRow({
       {/* Stats */}
       <div className="hidden sm:flex items-center gap-6 text-sm flex-shrink-0">
         <div className="text-center">
-          <p className="text-xs text-[#a1a1aa]">팔로워</p>
-          <p className="font-semibold text-[#e4e4e7]">{formatFollowers(influencer.followersCount)}</p>
+          <p className="text-xs text-[#6B7280]">팔로워</p>
+          <p className="font-semibold text-[#111827]">{formatFollowers(influencer.followersCount)}</p>
         </div>
         <div className="text-center">
-          <p className="text-xs text-[#a1a1aa]">참여율</p>
+          <p className="text-xs text-[#6B7280]">참여율</p>
           <MaskedValue
             value={influencer.avgEngagementRate != null ? `${influencer.avgEngagementRate.toFixed(2)}%` : null}
             width="40px"
-            className="font-semibold text-[#e4e4e7]"
+            className="font-semibold text-[#111827]"
           />
         </div>
         <div className="text-center">
-          <p className="text-xs text-[#a1a1aa]">AQS</p>
+          <p className="text-xs text-[#6B7280]">AQS</p>
           {influencer.aqsScore ? (
             <MaskedValue
               value={`${getAqsGrade(influencer.aqsScore.totalScore)} ${influencer.aqsScore.totalScore}`}
               width="48px"
-              className="font-semibold text-[#e4e4e7]"
+              className="font-semibold text-[#111827]"
             />
           ) : (
-            <span className="text-[#a1a1aa] text-xs">—</span>
+            <span className="text-[#6B7280] text-xs">—</span>
           )}
         </div>
         <div className="text-center hidden lg:block">
-          <p className="text-xs text-[#a1a1aa]">예상 단가</p>
+          <p className="text-xs text-[#6B7280]">예상 단가</p>
           <MaskedValue
             value={
               influencer.estimatedPriceMin != null && influencer.estimatedPriceMax != null
@@ -458,7 +458,7 @@ function InfluencerListRow({
                 : "—"
             }
             width="72px"
-            className="font-semibold text-[#e4e4e7]"
+            className="font-semibold text-[#111827]"
           />
         </div>
       </div>
@@ -473,7 +473,7 @@ function InfluencerListRow({
         </Link>
         <button
           onClick={isAuth ? undefined : onSaveClick}
-          className="w-8 h-8 rounded-lg border border-[#2a2a3e] flex items-center justify-center text-[#a1a1aa] hover:border-[#e94560]/50 hover:text-[#e94560] transition-colors"
+          className="w-8 h-8 rounded-lg border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:border-[#e94560]/50 hover:text-[#e94560] transition-colors"
         >
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -540,7 +540,7 @@ function FilterSidebar({
     <div className="space-y-6">
       {/* 카테고리 */}
       <div>
-        <h3 className="text-sm font-semibold text-[#e4e4e7] mb-3">카테고리</h3>
+        <h3 className="text-sm font-semibold text-[#111827] mb-3">카테고리</h3>
         <div className="grid grid-cols-2 gap-y-2">
           {CATEGORIES.map((cat) => {
             const checked = filters.categories.includes(cat);
@@ -548,7 +548,7 @@ function FilterSidebar({
               <label key={cat} className="flex items-center gap-2 cursor-pointer group">
                 <div
                   className={`w-4 h-4 rounded border flex items-center justify-center transition-colors flex-shrink-0 ${
-                    checked ? "bg-[#7c3aed] border-[#7c3aed]" : "border-[#2a2a3e] group-hover:border-[#7c3aed]/50"
+                    checked ? "bg-[#7c3aed] border-[#7c3aed]" : "border-[#E5E7EB] group-hover:border-[#7c3aed]/50"
                   }`}
                   onClick={() => toggleCategory(cat)}
                 >
@@ -559,7 +559,7 @@ function FilterSidebar({
                   )}
                 </div>
                 <span
-                  className={`text-sm transition-colors ${checked ? "text-[#e4e4e7]" : "text-[#a1a1aa]"}`}
+                  className={`text-sm transition-colors ${checked ? "text-[#111827]" : "text-[#6B7280]"}`}
                   onClick={() => toggleCategory(cat)}
                 >
                   {cat}
@@ -572,31 +572,31 @@ function FilterSidebar({
 
       {/* 팔로워 수 */}
       <div>
-        <h3 className="text-sm font-semibold text-[#e4e4e7] mb-3">팔로워 수</h3>
+        <h3 className="text-sm font-semibold text-[#111827] mb-3">팔로워 수</h3>
         <div className="grid grid-cols-2 gap-2 mb-2">
           <div>
-            <label className="text-xs text-[#a1a1aa] mb-1 block">최소</label>
+            <label className="text-xs text-[#6B7280] mb-1 block">최소</label>
             <input
               type="number"
               placeholder="예: 1000"
               value={filters.minFollowers}
               onChange={(e) => onChange({ ...filters, minFollowers: e.target.value })}
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] placeholder:text-[#a1a1aa]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
           <div>
-            <label className="text-xs text-[#a1a1aa] mb-1 block">최대</label>
+            <label className="text-xs text-[#6B7280] mb-1 block">최대</label>
             <input
               type="number"
               placeholder="예: 500000"
               value={filters.maxFollowers}
               onChange={(e) => onChange({ ...filters, maxFollowers: e.target.value })}
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] placeholder:text-[#a1a1aa]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
         </div>
         <div className="flex flex-wrap gap-1 mb-1">
-          <span className="text-xs text-[#a1a1aa] w-full mb-0.5">최소 빠른 선택</span>
+          <span className="text-xs text-[#6B7280] w-full mb-0.5">최소 빠른 선택</span>
           {followerQuickMin.map(({ label, val }) => (
             <button
               key={label}
@@ -604,7 +604,7 @@ function FilterSidebar({
               className={`text-xs px-2 py-0.5 rounded-md border transition-colors ${
                 filters.minFollowers === val
                   ? "bg-[#7c3aed] border-[#7c3aed] text-white"
-                  : "bg-[#1a1a2e] border-[#2a2a3e] text-[#a1a1aa] hover:border-[#7c3aed]/50 hover:text-[#e4e4e7]"
+                  : "bg-[#FFFFFF] border-[#E5E7EB] text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827]"
               }`}
             >
               {label}
@@ -612,7 +612,7 @@ function FilterSidebar({
           ))}
         </div>
         <div className="flex flex-wrap gap-1">
-          <span className="text-xs text-[#a1a1aa] w-full mb-0.5">최대 빠른 선택</span>
+          <span className="text-xs text-[#6B7280] w-full mb-0.5">최대 빠른 선택</span>
           {followerQuickMax.map(({ label, val }) => (
             <button
               key={label}
@@ -620,7 +620,7 @@ function FilterSidebar({
               className={`text-xs px-2 py-0.5 rounded-md border transition-colors ${
                 filters.maxFollowers === val
                   ? "bg-[#7c3aed] border-[#7c3aed] text-white"
-                  : "bg-[#1a1a2e] border-[#2a2a3e] text-[#a1a1aa] hover:border-[#7c3aed]/50 hover:text-[#e4e4e7]"
+                  : "bg-[#FFFFFF] border-[#E5E7EB] text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827]"
               }`}
             >
               {label}
@@ -631,10 +631,10 @@ function FilterSidebar({
 
       {/* 참여율 (ER) */}
       <div>
-        <h3 className="text-sm font-semibold text-[#e4e4e7] mb-3">참여율 (ER)</h3>
+        <h3 className="text-sm font-semibold text-[#111827] mb-3">참여율 (ER)</h3>
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="text-xs text-[#a1a1aa] mb-1 block">최소 (%)</label>
+            <label className="text-xs text-[#6B7280] mb-1 block">최소 (%)</label>
             <input
               type="number"
               step="0.5"
@@ -642,11 +642,11 @@ function FilterSidebar({
               placeholder="예: 0.5"
               value={filters.minEngagementRate}
               onChange={(e) => onChange({ ...filters, minEngagementRate: e.target.value })}
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] placeholder:text-[#a1a1aa]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
           <div>
-            <label className="text-xs text-[#a1a1aa] mb-1 block">최대 (%)</label>
+            <label className="text-xs text-[#6B7280] mb-1 block">최대 (%)</label>
             <input
               type="number"
               step="0.5"
@@ -654,7 +654,7 @@ function FilterSidebar({
               placeholder="예: 10"
               value={filters.maxEngagementRate}
               onChange={(e) => onChange({ ...filters, maxEngagementRate: e.target.value })}
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] placeholder:text-[#a1a1aa]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
         </div>
@@ -662,8 +662,8 @@ function FilterSidebar({
 
       {/* AQS 점수 */}
       <div>
-        <h3 className="text-sm font-semibold text-[#e4e4e7] mb-2">AQS 점수</h3>
-        <div className="flex items-center gap-2 mb-2 text-xs text-[#a1a1aa]">
+        <h3 className="text-sm font-semibold text-[#111827] mb-2">AQS 점수</h3>
+        <div className="flex items-center gap-2 mb-2 text-xs text-[#6B7280]">
           <span>🔴 0~49</span>
           <span>🟠 50~69</span>
           <span>🟡 70~89</span>
@@ -671,7 +671,7 @@ function FilterSidebar({
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="text-xs text-[#a1a1aa] mb-1 block">최소 (0-100)</label>
+            <label className="text-xs text-[#6B7280] mb-1 block">최소 (0-100)</label>
             <input
               type="number"
               min="0"
@@ -679,11 +679,11 @@ function FilterSidebar({
               placeholder="예: 70"
               value={filters.minAqs}
               onChange={(e) => onChange({ ...filters, minAqs: e.target.value })}
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] placeholder:text-[#a1a1aa]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
           <div>
-            <label className="text-xs text-[#a1a1aa] mb-1 block">최대 (0-100)</label>
+            <label className="text-xs text-[#6B7280] mb-1 block">최대 (0-100)</label>
             <input
               type="number"
               min="0"
@@ -691,7 +691,7 @@ function FilterSidebar({
               placeholder="예: 100"
               value={filters.maxAqs}
               onChange={(e) => onChange({ ...filters, maxAqs: e.target.value })}
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] placeholder:text-[#a1a1aa]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
         </div>
@@ -699,7 +699,7 @@ function FilterSidebar({
 
       {/* 플랫폼 */}
       <div>
-        <h3 className="text-sm font-semibold text-[#e4e4e7] mb-3">플랫폼</h3>
+        <h3 className="text-sm font-semibold text-[#111827] mb-3">플랫폼</h3>
         <div className="space-y-2">
           {[
             { value: "instagram", label: "Instagram", available: true },
@@ -714,7 +714,7 @@ function FilterSidebar({
                 className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
                   filters.platform === value
                     ? "border-[#7c3aed]"
-                    : "border-[#2a2a3e]"
+                    : "border-[#E5E7EB]"
                 }`}
                 onClick={() => available && onChange({ ...filters, platform: value as Filters["platform"] })}
               >
@@ -722,9 +722,9 @@ function FilterSidebar({
                   <div className="w-2 h-2 rounded-full bg-[#7c3aed]" />
                 )}
               </div>
-              <span className="text-sm text-[#a1a1aa]">{label}</span>
+              <span className="text-sm text-[#6B7280]">{label}</span>
               {!available && (
-                <span className="text-xs px-1.5 py-0.5 rounded-full bg-[#2a2a3e] text-[#a1a1aa]">준비중</span>
+                <span className="text-xs px-1.5 py-0.5 rounded-full bg-[#E5E7EB] text-[#6B7280]">준비중</span>
               )}
             </label>
           ))}
@@ -733,7 +733,7 @@ function FilterSidebar({
 
       {/* 콘텐츠 타입 */}
       <div>
-        <h3 className="text-sm font-semibold text-[#e4e4e7] mb-3">콘텐츠 타입</h3>
+        <h3 className="text-sm font-semibold text-[#111827] mb-3">콘텐츠 타입</h3>
         <div className="flex flex-wrap gap-2">
           {CONTENT_TYPES.map((type) => {
             const checked = filters.contentTypes.includes(type);
@@ -744,7 +744,7 @@ function FilterSidebar({
                 className={`px-3 py-1 rounded-full text-sm border transition-colors ${
                   checked
                     ? "bg-[#7c3aed] border-[#7c3aed] text-white"
-                    : "bg-transparent border-[#2a2a3e] text-[#a1a1aa] hover:border-[#7c3aed]/50 hover:text-[#e4e4e7]"
+                    : "bg-transparent border-[#E5E7EB] text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827]"
                 }`}
               >
                 {type}
@@ -764,7 +764,7 @@ function FilterSidebar({
         </button>
         <button
           onClick={onReset}
-          className="w-full py-2 text-sm text-[#a1a1aa] hover:text-[#e4e4e7] transition-colors"
+          className="w-full py-2 text-sm text-[#6B7280] hover:text-[#111827] transition-colors"
         >
           필터 초기화
         </button>
@@ -842,25 +842,25 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
   return (
     <section className="mt-16 mb-8">
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-[#e4e4e7] mb-2">
+        <h2 className="text-2xl font-bold text-[#111827] mb-2">
           무료{" "}
           <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
             분석 도구
           </span>
         </h2>
-        <p className="text-[#a1a1aa] text-sm">회원가입 없이 바로 사용할 수 있는 인플루언서 분석 툴</p>
+        <p className="text-[#6B7280] text-sm">회원가입 없이 바로 사용할 수 있는 인플루언서 분석 툴</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Tool 1: ER Calculator */}
-        <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-6">
+        <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-6">
           <div className="w-10 h-10 rounded-xl bg-[#7c3aed]/20 flex items-center justify-center mb-4">
             <svg className="w-5 h-5 text-[#7c3aed]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
-          <h3 className="text-base font-bold text-[#e4e4e7] mb-1">참여율 계산기</h3>
-          <p className="text-xs text-[#a1a1aa] mb-4">인스타그램 아이디로 참여율을 즉시 계산</p>
+          <h3 className="text-base font-bold text-[#111827] mb-1">참여율 계산기</h3>
+          <p className="text-xs text-[#6B7280] mb-4">인스타그램 아이디로 참여율을 즉시 계산</p>
           <div className="flex gap-2 mb-3">
             <input
               type="text"
@@ -868,7 +868,7 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
               value={erUsername}
               onChange={(e) => setErUsername(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && calcER()}
-              className="flex-1 bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] placeholder:text-[#a1a1aa]/50 focus:outline-none focus:border-[#7c3aed]/60"
+              className="flex-1 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60"
             />
             <button
               onClick={calcER}
@@ -879,13 +879,13 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
             </button>
           </div>
           {erResult && (
-            <div className="bg-[#0a0a0f] border border-[#2a2a3e] rounded-xl p-3">
+            <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl p-3">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-[#a1a1aa]">참여율</span>
-                <span className="text-lg font-bold text-[#e4e4e7]">{erResult.rate}%</span>
+                <span className="text-sm text-[#6B7280]">참여율</span>
+                <span className="text-lg font-bold text-[#111827]">{erResult.rate}%</span>
               </div>
               {!isAuth && (
-                <p className="text-xs text-[#a1a1aa] mt-2 border-t border-[#2a2a3e] pt-2">
+                <p className="text-xs text-[#6B7280] mt-2 border-t border-[#E5E7EB] pt-2">
                   상세 분석은{" "}
                   <Link href="/register" className="text-[#7c3aed] hover:underline">
                     회원가입
@@ -898,14 +898,14 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
         </div>
 
         {/* Tool 2: Fake Follower Check */}
-        <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-6">
+        <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-6">
           <div className="w-10 h-10 rounded-xl bg-[#e94560]/20 flex items-center justify-center mb-4">
             <svg className="w-5 h-5 text-[#e94560]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
-          <h3 className="text-base font-bold text-[#e4e4e7] mb-1">가짜 팔로워 체크</h3>
-          <p className="text-xs text-[#a1a1aa] mb-4">AI가 가짜 팔로워 비율을 분석합니다</p>
+          <h3 className="text-base font-bold text-[#111827] mb-1">가짜 팔로워 체크</h3>
+          <p className="text-xs text-[#6B7280] mb-4">AI가 가짜 팔로워 비율을 분석합니다</p>
           <div className="flex gap-2 mb-3">
             <input
               type="text"
@@ -913,7 +913,7 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
               value={ffUsername}
               onChange={(e) => setFfUsername(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && checkFF()}
-              className="flex-1 bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] placeholder:text-[#a1a1aa]/50 focus:outline-none focus:border-[#e94560]/60"
+              className="flex-1 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#e94560]/60"
             />
             <button
               onClick={checkFF}
@@ -924,36 +924,36 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
             </button>
           </div>
           {ffResult && (
-            <div className="bg-[#0a0a0f] border border-[#2a2a3e] rounded-xl p-3">
+            <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl p-3">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{ffResult.grade}</span>
-                <span className="text-sm text-[#e4e4e7]">{ffResult.summary}</span>
+                <span className="text-sm text-[#111827]">{ffResult.summary}</span>
               </div>
             </div>
           )}
         </div>
 
         {/* Tool 3: Price Estimator */}
-        <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-6">
+        <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-6">
           <div className="w-10 h-10 rounded-xl bg-[#22c55e]/20 flex items-center justify-center mb-4">
             <svg className="w-5 h-5 text-[#22c55e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h3 className="text-base font-bold text-[#e4e4e7] mb-1">예상 단가 계산기</h3>
-          <p className="text-xs text-[#a1a1aa] mb-4">팔로워 수와 카테고리로 협업 단가 예측</p>
+          <h3 className="text-base font-bold text-[#111827] mb-1">예상 단가 계산기</h3>
+          <p className="text-xs text-[#6B7280] mb-4">팔로워 수와 카테고리로 협업 단가 예측</p>
           <div className="space-y-2 mb-3">
             <input
               type="number"
               placeholder="팔로워 수 (예: 50000)"
               value={priceFollowers}
               onChange={(e) => setPriceFollowers(e.target.value)}
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] placeholder:text-[#a1a1aa]/50 focus:outline-none focus:border-[#22c55e]/60"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#22c55e]/60"
             />
             <select
               value={priceCategory}
               onChange={(e) => setPriceCategory(e.target.value)}
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] focus:outline-none focus:border-[#22c55e]/60 appearance-none cursor-pointer"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] focus:outline-none focus:border-[#22c55e]/60 appearance-none cursor-pointer"
             >
               {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
@@ -965,12 +965,12 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
             </button>
           </div>
           {priceResult && (
-            <div className="bg-[#0a0a0f] border border-[#2a2a3e] rounded-xl p-3">
-              <p className="text-xs text-[#a1a1aa] mb-1">예상 협업 단가 (피드 기준)</p>
-              <p className="text-lg font-bold text-[#e4e4e7]">
+            <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl p-3">
+              <p className="text-xs text-[#6B7280] mb-1">예상 협업 단가 (피드 기준)</p>
+              <p className="text-lg font-bold text-[#111827]">
                 ₩{formatPrice(priceResult.min)} ~ ₩{formatPrice(priceResult.max)}
               </p>
-              <p className="text-xs text-[#a1a1aa] mt-1">* 실제 단가는 컨텐츠 품질에 따라 다를 수 있습니다</p>
+              <p className="text-xs text-[#6B7280] mt-1">* 실제 단가는 컨텐츠 품질에 따라 다를 수 있습니다</p>
             </div>
           )}
         </div>
@@ -1131,14 +1131,14 @@ function HomePage() {
   const hiddenCount = Math.max(0, total - 5);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex flex-col">
+    <div className="min-h-screen bg-[#FFFFFF] flex flex-col">
       <Navbar />
 
       <main className="flex-1">
         {/* ─── Section 1: Hero Search Bar ─────────────────────────────── */}
-        <section className={`bg-gradient-to-b from-[#1a1a2e] to-[#0a0a0f] border-b border-[#2a2a3e] px-4 transition-all duration-500 ${hasSearched ? "py-6" : "py-12"}`}>
+        <section className={`bg-gradient-to-b from-[#F9FAFB] to-white border-b border-[#E5E7EB] px-4 transition-all duration-500 ${hasSearched ? "py-6" : "py-12"}`}>
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold text-[#e4e4e7] mb-2 leading-tight">
+            <h1 className="text-3xl sm:text-4xl font-bold text-[#111827] mb-2 leading-tight">
               데이터로 검증된{" "}
               <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
                 인플루언서
@@ -1148,13 +1148,13 @@ function HomePage() {
               지금 바로 찾아보세요
             </h1>
             {!hasSearched && (
-              <p className="text-[#a1a1aa] text-lg mb-2 transition-all duration-300">
+              <p className="text-[#6B7280] text-lg mb-2 transition-all duration-300">
                 브랜드와 크리에이터를 연결하는 AI 기반 인플루언서 마케팅 플랫폼
               </p>
             )}
-            <p className="text-[#a1a1aa] mb-6">
+            <p className="text-[#6B7280] mb-6">
               총{" "}
-              <span className="text-[#e4e4e7] font-semibold">
+              <span className="text-[#111827] font-semibold">
                 {totalCount.toLocaleString()}+
               </span>
               명의 크리에이터가 등록되어 있습니다
@@ -1164,7 +1164,7 @@ function HomePage() {
             <div className="flex gap-3 mb-6">
               <div className="flex-1 relative">
                 <svg
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#a1a1aa] pointer-events-none"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B7280] pointer-events-none"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1183,7 +1183,7 @@ function HomePage() {
                       fetchResults(1, newFilters);
                     }
                   }}
-                  className="w-full bg-[#1a1a2e] border border-[#2a2a3e] rounded-xl pl-12 pr-4 py-4 text-[#e4e4e7] placeholder:text-[#a1a1aa]/60 focus:outline-none focus:border-[#7c3aed]/60 focus:ring-2 focus:ring-[#7c3aed]/20 text-base transition-all"
+                  className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl pl-12 pr-4 py-4 text-[#111827] placeholder:text-[#6B7280]/60 focus:outline-none focus:border-[#7c3aed]/60 focus:ring-2 focus:ring-[#7c3aed]/20 text-base transition-all"
                 />
               </div>
               <button
@@ -1209,7 +1209,7 @@ function HomePage() {
                     className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${
                       active
                         ? "bg-[#7c3aed] border-[#7c3aed] text-white shadow-[0_0_12px_rgba(124,58,237,0.4)]"
-                        : "bg-transparent border-[#2a2a3e] text-[#a1a1aa] hover:border-[#7c3aed]/50 hover:text-[#e4e4e7]"
+                        : "bg-transparent border-[#E5E7EB] text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827]"
                     }`}
                   >
                     {cat}
@@ -1230,7 +1230,7 @@ function HomePage() {
                     <p className="text-xl font-bold bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
                       {stat.value}
                     </p>
-                    <p className="text-xs text-[#a1a1aa]">{stat.label}</p>
+                    <p className="text-xs text-[#6B7280]">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -1243,8 +1243,8 @@ function HomePage() {
           <div className="flex gap-6">
             {/* Desktop Sidebar */}
             <aside className="hidden lg:block w-72 flex-shrink-0">
-              <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-5 sticky top-24">
-                <h2 className="text-base font-semibold text-[#e4e4e7] mb-5 flex items-center gap-2">
+              <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-5 sticky top-24">
+                <h2 className="text-base font-semibold text-[#111827] mb-5 flex items-center gap-2">
                   <svg className="w-4 h-4 text-[#7c3aed]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
                   </svg>
@@ -1263,16 +1263,16 @@ function HomePage() {
             <div className="flex-1 min-w-0">
               {/* Mobile filter + results bar */}
               <div className="flex items-center justify-between mb-4 gap-3">
-                <p className="text-sm text-[#a1a1aa]">
+                <p className="text-sm text-[#6B7280]">
                   총{" "}
-                  <span className="text-[#e4e4e7] font-semibold">{total.toLocaleString()}</span>
+                  <span className="text-[#111827] font-semibold">{total.toLocaleString()}</span>
                   명 검색됨
                 </p>
                 <div className="flex items-center gap-2">
                   {/* Mobile filter button */}
                   <button
                     onClick={() => setMobileFilterOpen(true)}
-                    className="lg:hidden flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#2a2a3e] text-sm text-[#a1a1aa] hover:border-[#7c3aed]/50 hover:text-[#e4e4e7] transition-colors"
+                    className="lg:hidden flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827] transition-colors"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
@@ -1287,7 +1287,7 @@ function HomePage() {
                   <select
                     value={filters.sortBy}
                     onChange={(e) => handleSort(e.target.value as Filters["sortBy"])}
-                    className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-lg px-3 py-2 text-sm text-[#e4e4e7] focus:outline-none focus:border-[#7c3aed]/60 appearance-none cursor-pointer"
+                    className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] focus:outline-none focus:border-[#7c3aed]/60 appearance-none cursor-pointer"
                   >
                     <option value="followers">팔로워순</option>
                     <option value="engagement">참여율순</option>
@@ -1295,10 +1295,10 @@ function HomePage() {
                   </select>
 
                   {/* View toggle */}
-                  <div className="flex border border-[#2a2a3e] rounded-lg overflow-hidden">
+                  <div className="flex border border-[#E5E7EB] rounded-lg overflow-hidden">
                     <button
                       onClick={() => setViewMode("grid")}
-                      className={`px-3 py-2 transition-colors ${viewMode === "grid" ? "bg-[#7c3aed] text-white" : "text-[#a1a1aa] hover:text-[#e4e4e7]"}`}
+                      className={`px-3 py-2 transition-colors ${viewMode === "grid" ? "bg-[#7c3aed] text-white" : "text-[#6B7280] hover:text-[#111827]"}`}
                       title="그리드 보기"
                     >
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -1307,7 +1307,7 @@ function HomePage() {
                     </button>
                     <button
                       onClick={() => setViewMode("list")}
-                      className={`px-3 py-2 transition-colors border-l border-[#2a2a3e] ${viewMode === "list" ? "bg-[#7c3aed] text-white" : "text-[#a1a1aa] hover:text-[#e4e4e7]"}`}
+                      className={`px-3 py-2 transition-colors border-l border-[#E5E7EB] ${viewMode === "list" ? "bg-[#7c3aed] text-white" : "text-[#6B7280] hover:text-[#111827]"}`}
                       title="리스트 보기"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1331,16 +1331,16 @@ function HomePage() {
                 )
               ) : results.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-24 text-center">
-                  <div className="w-16 h-16 rounded-full bg-[#1a1a2e] border border-[#2a2a3e] flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-[#a1a1aa]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 rounded-full bg-[#FFFFFF] border border-[#E5E7EB] flex items-center justify-center mb-4">
+                    <svg className="w-8 h-8 text-[#6B7280]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                   </div>
-                  <p className="text-[#e4e4e7] font-semibold mb-1">검색 결과가 없습니다</p>
-                  <p className="text-sm text-[#a1a1aa] mb-4">필터를 조정하거나 다른 키워드로 검색해보세요</p>
+                  <p className="text-[#111827] font-semibold mb-1">검색 결과가 없습니다</p>
+                  <p className="text-sm text-[#6B7280] mb-4">필터를 조정하거나 다른 키워드로 검색해보세요</p>
                   <button
                     onClick={handleReset}
-                    className="px-4 py-2 rounded-lg border border-[#2a2a3e] text-sm text-[#a1a1aa] hover:border-[#7c3aed]/50 hover:text-[#e4e4e7] transition-colors"
+                    className="px-4 py-2 rounded-lg border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827] transition-colors"
                   >
                     필터 초기화
                   </button>
@@ -1362,12 +1362,12 @@ function HomePage() {
                   {/* CTA Banner between card 5 and 6 */}
                   {!isAuth && results.length > 5 && (
                     <div className="bg-gradient-to-r from-[#7c3aed]/20 to-[#e94560]/20 border border-[#7c3aed]/30 rounded-2xl p-6 text-center">
-                      <p className="text-[#e4e4e7] font-semibold mb-2">
+                      <p className="text-[#111827] font-semibold mb-2">
                         나머지{" "}
                         <span className="text-[#7c3aed]">{hiddenCount.toLocaleString()}명</span>
                         의 인플루언서를 확인하세요
                       </p>
-                      <p className="text-sm text-[#a1a1aa] mb-4">무료 회원가입으로 모든 데이터에 접근하세요</p>
+                      <p className="text-sm text-[#6B7280] mb-4">무료 회원가입으로 모든 데이터에 접근하세요</p>
                       <Link
                         href="/register"
                         className="inline-block px-8 py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.4)]"
@@ -1405,7 +1405,7 @@ function HomePage() {
 
                   {!isAuth && results.length > 5 && (
                     <div className="bg-gradient-to-r from-[#7c3aed]/20 to-[#e94560]/20 border border-[#7c3aed]/30 rounded-xl p-5 text-center">
-                      <p className="text-[#e4e4e7] font-semibold mb-2">
+                      <p className="text-[#111827] font-semibold mb-2">
                         나머지{" "}
                         <span className="text-[#7c3aed]">{hiddenCount.toLocaleString()}명</span>
                         의 인플루언서를 확인하세요
@@ -1441,7 +1441,7 @@ function HomePage() {
                   <button
                     disabled={page <= 1}
                     onClick={() => fetchResults(page - 1, filters)}
-                    className="px-4 py-2 rounded-lg border border-[#2a2a3e] text-sm text-[#a1a1aa] hover:border-[#7c3aed]/50 hover:text-[#e4e4e7] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="px-4 py-2 rounded-lg border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     이전
                   </button>
@@ -1458,7 +1458,7 @@ function HomePage() {
                           className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
                             p === page
                               ? "bg-[#7c3aed] text-white shadow-[0_0_12px_rgba(124,58,237,0.4)]"
-                              : "border border-[#2a2a3e] text-[#a1a1aa] hover:border-[#7c3aed]/50 hover:text-[#e4e4e7]"
+                              : "border border-[#E5E7EB] text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827]"
                           }`}
                         >
                           {p}
@@ -1469,7 +1469,7 @@ function HomePage() {
                   <button
                     disabled={page >= totalPages}
                     onClick={() => fetchResults(page + 1, filters)}
-                    className="px-4 py-2 rounded-lg border border-[#2a2a3e] text-sm text-[#a1a1aa] hover:border-[#7c3aed]/50 hover:text-[#e4e4e7] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="px-4 py-2 rounded-lg border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     다음
                   </button>
@@ -1478,7 +1478,7 @@ function HomePage() {
 
               {/* Non-auth footer note */}
               {!isAuth && results.length > 0 && (
-                <p className="text-center text-xs text-[#a1a1aa] mt-4">
+                <p className="text-center text-xs text-[#6B7280] mt-4">
                   <Link href="/register" className="text-[#7c3aed] hover:underline">
                     무료 회원가입
                   </Link>
@@ -1493,19 +1493,19 @@ function HomePage() {
         </div>
 
         {/* ─── Section 4: 양쪽 분기 CTA ───────────────────────────────── */}
-        <section className="py-20 px-4 bg-[#1a1a2e]/50">
+        <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-4xl mx-auto text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#e4e4e7]">어떤 목적으로 방문하셨나요?</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#111827]">어떤 목적으로 방문하셨나요?</h2>
           </div>
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Brand card */}
-            <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 hover:border-[#7c3aed]/30 transition-colors flex flex-col">
+            <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 hover:border-[#7c3aed]/30 transition-colors flex flex-col">
               <div className="w-12 h-12 rounded-xl bg-[#7c3aed]/10 flex items-center justify-center mb-5">
                 <span className="text-2xl">📊</span>
               </div>
-              <h3 className="text-xl font-bold text-[#e4e4e7] mb-3">브랜드 담당자</h3>
-              <p className="text-[#a1a1aa] text-sm mb-5">검증된 인플루언서를 찾고 캠페인 성과를 추적하세요</p>
-              <ul className="space-y-2 text-sm text-[#a1a1aa] mb-7">
+              <h3 className="text-xl font-bold text-[#111827] mb-3">브랜드 담당자</h3>
+              <p className="text-[#6B7280] text-sm mb-5">검증된 인플루언서를 찾고 캠페인 성과를 추적하세요</p>
+              <ul className="space-y-2 text-sm text-[#6B7280] mb-7">
                 {["AI 인플루언서 검증", "캠페인 성과 트래킹", "리포트 자동 생성", "예상 광고단가 산출"].map((feat) => (
                   <li key={feat} className="flex items-center gap-2">
                     <span className="text-[#7c3aed]">✓</span>
@@ -1522,13 +1522,13 @@ function HomePage() {
             </div>
 
             {/* Creator card */}
-            <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 hover:border-[#e94560]/30 transition-colors flex flex-col">
+            <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 hover:border-[#e94560]/30 transition-colors flex flex-col">
               <div className="w-12 h-12 rounded-xl bg-[#e94560]/10 flex items-center justify-center mb-5">
                 <span className="text-2xl">✨</span>
               </div>
-              <h3 className="text-xl font-bold text-[#e4e4e7] mb-3">크리에이터</h3>
-              <p className="text-[#a1a1aa] text-sm mb-5">당신의 영향력을 데이터로 증명하고 브랜드와 연결되세요</p>
-              <ul className="space-y-2 text-sm text-[#a1a1aa] mb-7">
+              <h3 className="text-xl font-bold text-[#111827] mb-3">크리에이터</h3>
+              <p className="text-[#6B7280] text-sm mb-5">당신의 영향력을 데이터로 증명하고 브랜드와 연결되세요</p>
+              <ul className="space-y-2 text-sm text-[#6B7280] mb-7">
                 {["미디어킷 자동 생성", "캠페인 마켓플레이스", "성장 트래커", "수익/정산 관리"].map((feat) => (
                   <li key={feat} className="flex items-center gap-2">
                     <span className="text-[#e94560]">✓</span>
@@ -1549,7 +1549,7 @@ function HomePage() {
         {/* ─── Section 5: FAQ ──────────────────────────────────────────── */}
         <section className="py-20 px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#e4e4e7] text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] text-center mb-10">
               자주 묻는 질문
             </h2>
             {[
@@ -1576,12 +1576,12 @@ function HomePage() {
             ].map((faq, i) => (
               <details
                 key={i}
-                className="group bg-[#1a1a2e] border border-[#2a2a3e] rounded-xl mb-3"
+                className="group bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl mb-3"
               >
-                <summary className="flex justify-between items-center cursor-pointer p-5 font-semibold text-[#e4e4e7]">
+                <summary className="flex justify-between items-center cursor-pointer p-5 font-semibold text-[#111827]">
                   {faq.q}
                   <svg
-                    className="w-5 h-5 text-[#a1a1aa] flex-shrink-0 ml-4 transition-transform group-open:rotate-180"
+                    className="w-5 h-5 text-[#6B7280] flex-shrink-0 ml-4 transition-transform group-open:rotate-180"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1589,7 +1589,7 @@ function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="px-5 pb-5 text-sm text-[#a1a1aa]">{faq.a}</p>
+                <p className="px-5 pb-5 text-sm text-[#6B7280]">{faq.a}</p>
               </details>
             ))}
           </div>
@@ -1604,17 +1604,17 @@ function HomePage() {
         />
       )}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-50 bg-[#1a1a2e] border-t border-[#2a2a3e] rounded-t-2xl p-5 max-h-[88vh] overflow-y-auto transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed bottom-0 left-0 right-0 z-50 bg-[#FFFFFF] border-t border-[#E5E7EB] rounded-t-2xl p-5 max-h-[88vh] overflow-y-auto transform transition-transform duration-300 ease-in-out lg:hidden ${
           mobileFilterOpen ? "translate-y-0" : "translate-y-full"
         }`}
       >
         {/* Handle */}
-        <div className="w-10 h-1 bg-[#2a2a3e] rounded-full mx-auto mb-4" />
+        <div className="w-10 h-1 bg-[#E5E7EB] rounded-full mx-auto mb-4" />
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-base font-semibold text-[#e4e4e7]">필터</h2>
+          <h2 className="text-base font-semibold text-[#111827]">필터</h2>
           <button
             onClick={() => setMobileFilterOpen(false)}
-            className="p-1.5 rounded-lg text-[#a1a1aa] hover:text-[#e4e4e7] hover:bg-[#0a0a0f] transition-colors"
+            className="p-1.5 rounded-lg text-[#6B7280] hover:text-[#111827] hover:bg-[#FFFFFF] transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

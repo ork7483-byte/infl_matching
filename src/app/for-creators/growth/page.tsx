@@ -38,7 +38,7 @@ const maxValue = Math.max(...mockChartData.map((d) => d.value));
 
 export default function GrowthPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#0a0a0f", color: "#e4e4e7" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF", color: "#111827" }}>
       <Navbar />
 
       {/* Hero */}
@@ -55,7 +55,7 @@ export default function GrowthPage() {
             <br />
             <span style={{ color: "#e94560" }}>한눈에</span>
           </h1>
-          <p className="text-lg md:text-xl mb-10" style={{ color: "#a1a1aa" }}>
+          <p className="text-lg md:text-xl mb-10" style={{ color: "#6B7280" }}>
             팔로워 추이, 참여율 변화, 월별 성과를 실시간으로 추적하고<br className="hidden md:block" />
             데이터 기반의 콘텐츠 전략을 세우세요.
           </p>
@@ -77,11 +77,11 @@ export default function GrowthPage() {
               <div
                 key={feature.title}
                 className="rounded-2xl p-8 flex flex-col gap-4"
-                style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+                style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
               >
                 <div className="text-3xl">{feature.icon}</div>
                 <h3 className="text-lg font-semibold">{feature.title}</h3>
-                <p style={{ color: "#a1a1aa" }} className="text-sm leading-relaxed">
+                <p style={{ color: "#6B7280" }} className="text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -95,19 +95,19 @@ export default function GrowthPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-3">팔로워 성장 트래커 미리보기</h2>
-            <p style={{ color: "#a1a1aa" }}>
+            <p style={{ color: "#6B7280" }}>
               가입 후 실제 내 채널 데이터로 성장 추이를 확인하세요.
             </p>
           </div>
 
           <div
             className="rounded-3xl p-8"
-            style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+            style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
           >
             {/* Chart header */}
             <div className="flex items-center justify-between mb-6">
               <div>
-                <div className="text-sm font-medium mb-1" style={{ color: "#a1a1aa" }}>총 팔로워</div>
+                <div className="text-sm font-medium mb-1" style={{ color: "#6B7280" }}>총 팔로워</div>
                 <div className="text-3xl font-bold" style={{ color: "#e94560" }}>128K</div>
                 <div className="text-sm font-medium mt-1" style={{ color: "#22c55e" }}>
                   ▲ 23K (+22%) 최근 6개월
@@ -120,8 +120,8 @@ export default function GrowthPage() {
                     className="px-3 py-1 rounded-lg text-xs font-medium"
                     style={{
                       backgroundColor: i === 2 ? "#e9456020" : "transparent",
-                      color: i === 2 ? "#e94560" : "#a1a1aa",
-                      border: `1px solid ${i === 2 ? "#e9456040" : "#2a2a3e"}`,
+                      color: i === 2 ? "#e94560" : "#6B7280",
+                      border: `1px solid ${i === 2 ? "#e9456040" : "#E5E7EB"}`,
                     }}
                   >
                     {label}
@@ -137,7 +137,7 @@ export default function GrowthPage() {
                 const isLast = bar.month === "3월";
                 return (
                   <div key={bar.month} className="flex-1 flex flex-col items-center gap-2">
-                    <div className="text-xs font-semibold" style={{ color: isLast ? "#e94560" : "#a1a1aa" }}>
+                    <div className="text-xs font-semibold" style={{ color: isLast ? "#e94560" : "#6B7280" }}>
                       {bar.value}K
                     </div>
                     <div className="w-full flex items-end" style={{ height: "120px" }}>
@@ -147,7 +147,7 @@ export default function GrowthPage() {
                           height: `${heightPercent}%`,
                           background: isLast
                             ? "linear-gradient(to top, #e94560, #e9456080)"
-                            : "linear-gradient(to top, #2a2a3e, #3a2a4e)",
+                            : "linear-gradient(to top, #E5E7EB, #3a2a4e)",
                         }}
                       />
                     </div>
@@ -162,7 +162,7 @@ export default function GrowthPage() {
                 <div
                   key={bar.month}
                   className="flex-1 text-center text-xs"
-                  style={{ color: "#a1a1aa" }}
+                  style={{ color: "#6B7280" }}
                 >
                   {bar.month}
                 </div>
@@ -172,7 +172,7 @@ export default function GrowthPage() {
             {/* Engagement stats row */}
             <div
               className="grid grid-cols-3 gap-4 mt-8 pt-6"
-              style={{ borderTop: "1px solid #2a2a3e" }}
+              style={{ borderTop: "1px solid #E5E7EB" }}
             >
               {[
                 { label: "평균 참여율", value: "4.8%", change: "+0.3%", up: true },
@@ -181,7 +181,7 @@ export default function GrowthPage() {
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-xl font-bold mb-1">{stat.value}</div>
-                  <div className="text-xs mb-1" style={{ color: "#a1a1aa" }}>{stat.label}</div>
+                  <div className="text-xs mb-1" style={{ color: "#6B7280" }}>{stat.label}</div>
                   <div className="text-xs font-medium" style={{ color: "#22c55e" }}>
                     ▲ {stat.change}
                   </div>
@@ -196,12 +196,12 @@ export default function GrowthPage() {
       <section className="py-24 px-4 text-center">
         <div
           className="max-w-3xl mx-auto rounded-3xl p-12"
-          style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+          style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             내 채널 성장을 지금 바로 추적하세요
           </h2>
-          <p className="mb-8" style={{ color: "#a1a1aa" }}>
+          <p className="mb-8" style={{ color: "#6B7280" }}>
             무료로 가입하고 성장 트래커를 활성화하세요.
           </p>
           <Link

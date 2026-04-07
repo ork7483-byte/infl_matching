@@ -18,16 +18,16 @@ export default function AqsRadarChart({ data }: AqsRadarChartProps) {
     <div style={{ minHeight: 300, width: "100%" }}>
       <ResponsiveContainer width="100%" height={300}>
         <RadarChart cx="50%" cy="50%" outerRadius="75%" data={data}>
-          <PolarGrid stroke="#2a2a3e" />
+          <PolarGrid stroke="#E5E7EB" />
           <PolarAngleAxis
             dataKey="subject"
-            tick={{ fill: "#a1a1aa", fontSize: 12 }}
+            tick={{ fill: "#6B7280", fontSize: 12 }}
           />
           <PolarRadiusAxis
             angle={30}
             domain={[0, 100]}
-            tick={{ fill: "#a1a1aa", fontSize: 10 }}
-            stroke="#2a2a3e"
+            tick={{ fill: "#6B7280", fontSize: 10 }}
+            stroke="#E5E7EB"
           />
           <Radar
             name="AQS"

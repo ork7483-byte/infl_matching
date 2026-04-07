@@ -41,7 +41,7 @@ export default function InstagramConnectPage() {
       <header className="border-b border-border bg-card/50">
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="text-lg font-bold bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text text-transparent">
-            InfluSync
+            Inflix
           </Link>
           {session?.user && (
             <Link
@@ -149,7 +149,7 @@ export default function InstagramConnectPage() {
                 <p className="text-center text-xs text-muted-foreground">
                   Instagram Basic Display API를 통해 안전하게 연동됩니다.{" "}
                   <br />
-                  InfluSync는 게시물을 수정하거나 삭제하지 않습니다.
+                  Inflix는 게시물을 수정하거나 삭제하지 않습니다.
                 </p>
               </div>
 

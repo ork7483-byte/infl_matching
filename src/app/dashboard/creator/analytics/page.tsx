@@ -53,7 +53,7 @@ const AUDIENCE_AGE_DATA = [
 const AUDIENCE_GENDER_DATA = [
   { name: "여성", value: 62, color: "#e94560" },
   { name: "남성", value: 35, color: "#7c3aed" },
-  { name: "기타", value: 3, color: "#a1a1aa" },
+  { name: "기타", value: 3, color: "#6B7280" },
 ];
 
 const POSTING_FREQ_DATA = [

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const footerLinks = {
   company: {
-    title: "InfluSync",
+    title: "Inflix",
     description:
       "AI 기반 인플루언서 마케팅 플랫폼. 브랜드와 크리에이터를 스마트하게 연결합니다.",
     links: [
@@ -88,18 +88,18 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="border-t border-[#1f2937] bg-[#111827]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         {/* Main grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Company */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block mb-3">
-              <span className="text-xl font-bold bg-gradient-brand bg-clip-text text-transparent">
-                InfluSync
+              <span className="text-xl font-bold text-white">
+                Inflix
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+            <p className="text-sm text-gray-400 leading-relaxed mb-5">
               {footerLinks.company.description}
             </p>
             <ul className="space-y-2">
@@ -107,7 +107,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150"
                   >
                     {link.label}
                   </Link>
@@ -118,7 +118,7 @@ export default function Footer() {
 
           {/* For Brands */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">
+            <h3 className="text-sm font-semibold text-white mb-4">
               {footerLinks.brands.title}
             </h3>
             <ul className="space-y-2">
@@ -126,7 +126,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150"
                   >
                     {link.label}
                   </Link>
@@ -137,7 +137,7 @@ export default function Footer() {
 
           {/* For Creators */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">
+            <h3 className="text-sm font-semibold text-white mb-4">
               {footerLinks.creators.title}
             </h3>
             <ul className="space-y-2">
@@ -145,7 +145,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150"
                   >
                     {link.label}
                   </Link>
@@ -156,7 +156,7 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">
+            <h3 className="text-sm font-semibold text-white mb-4">
               {footerLinks.support.title}
             </h3>
             <ul className="space-y-2">
@@ -164,7 +164,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150"
                   >
                     {link.label}
                   </Link>
@@ -175,9 +175,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border">
-          <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} InfluSync. All rights reserved.
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-[#1f2937]">
+          <p className="text-sm text-gray-500">
+            &copy; {currentYear} Inflix. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
@@ -187,7 +187,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="text-muted hover:text-muted-foreground transition-colors duration-200"
+                className="text-gray-500 hover:text-gray-300 transition-colors duration-200"
               >
                 {social.icon}
               </a>

@@ -72,14 +72,14 @@ export default function AIPredictionPage() {
               AI 성과 예측
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-[#e4e4e7]">AI가 예측하는</span>
+              <span className="text-[#111827]">AI가 예측하는</span>
               <br />
               <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
                 캠페인 성과
               </span>
             </h1>
-            <p className="text-[#a1a1aa] text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-              광고비를 집행하기 전에 결과를 먼저 확인하세요. InfluSync AI는 수백만 개의
+            <p className="text-[#6B7280] text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+              광고비를 집행하기 전에 결과를 먼저 확인하세요. Inflix AI는 수백만 개의
               캠페인 데이터를 학습하여 예상 성과를 정확하게 예측합니다.
             </p>
             <Link
@@ -92,13 +92,13 @@ export default function AIPredictionPage() {
         </section>
 
         {/* Sub-features */}
-        <section className="py-20 px-4 bg-[#1a1a2e]/50">
+        <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 4가지 핵심 예측 지표
               </h2>
-              <p className="text-[#a1a1aa] text-lg">
+              <p className="text-[#6B7280] text-lg">
                 캠페인 집행 전에 모든 핵심 지표를 미리 파악하세요.
               </p>
             </div>
@@ -106,11 +106,11 @@ export default function AIPredictionPage() {
               {features.map((feature) => (
                 <div
                   key={feature.title}
-                  className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors"
+                  className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors"
                 >
                   <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-[#e4e4e7] text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-[#a1a1aa] leading-relaxed">{feature.description}</p>
+                  <h3 className="text-[#111827] text-xl font-semibold mb-3">{feature.title}</h3>
+                  <p className="text-[#6B7280] leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -121,16 +121,16 @@ export default function AIPredictionPage() {
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 예측 결과 미리보기
               </h2>
-              <p className="text-[#a1a1aa] text-lg">
+              <p className="text-[#6B7280] text-lg">
                 이런 형태로 캠페인 집행 전 예측 데이터를 받아보실 수 있습니다.
               </p>
             </div>
 
-            <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 relative">
-              <div className="absolute top-4 right-4 bg-[#0a0a0f]/80 border border-[#2a2a3e] rounded-lg px-3 py-1.5 text-[#a1a1aa] text-xs">
+            <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 relative">
+              <div className="absolute top-4 right-4 bg-[#FFFFFF]/80 border border-[#E5E7EB] rounded-lg px-3 py-1.5 text-[#6B7280] text-xs">
                 AI 예측 결과 미리보기
               </div>
 
@@ -139,8 +139,8 @@ export default function AIPredictionPage() {
                   AI
                 </div>
                 <div>
-                  <div className="text-[#e4e4e7] font-semibold">캠페인 성과 예측</div>
-                  <div className="text-[#a1a1aa] text-sm">@influencer_example · 팔로워 120만</div>
+                  <div className="text-[#111827] font-semibold">캠페인 성과 예측</div>
+                  <div className="text-[#6B7280] text-sm">@influencer_example · 팔로워 120만</div>
                 </div>
                 <div className="ml-auto bg-green-500/20 border border-green-500/30 text-green-400 text-xs px-3 py-1 rounded-full">
                   신뢰도 94%
@@ -151,13 +151,13 @@ export default function AIPredictionPage() {
                 {predictionCards.map((card) => (
                   <div
                     key={card.label}
-                    className="bg-[#0a0a0f] rounded-xl p-5 border border-[#2a2a3e] text-center"
+                    className="bg-[#FFFFFF] rounded-xl p-5 border border-[#E5E7EB] text-center"
                   >
                     <div className="text-2xl mb-2">{card.icon}</div>
-                    <div className="text-[#a1a1aa] text-xs mb-2">{card.label}</div>
-                    <div className="text-[#e4e4e7] font-bold text-xl">
+                    <div className="text-[#6B7280] text-xs mb-2">{card.label}</div>
+                    <div className="text-[#111827] font-bold text-xl">
                       {card.value}
-                      <span className="text-sm font-normal text-[#a1a1aa]">{card.unit}</span>
+                      <span className="text-sm font-normal text-[#6B7280]">{card.unit}</span>
                     </div>
                     <div className="text-[#7c3aed] text-xs mt-1">{card.trend}</div>
                   </div>
@@ -166,8 +166,8 @@ export default function AIPredictionPage() {
 
               <div className="mt-6 p-4 bg-[#7c3aed]/10 border border-[#7c3aed]/30 rounded-xl">
                 <div className="text-[#a78bfa] text-sm font-medium mb-1">AI 추천</div>
-                <div className="text-[#a1a1aa] text-sm">
-                  이 인플루언서와의 협업 시 <span className="text-[#e4e4e7] font-semibold">예산 대비 최상위 10%</span>의 성과가
+                <div className="text-[#6B7280] text-sm">
+                  이 인플루언서와의 협업 시 <span className="text-[#111827] font-semibold">예산 대비 최상위 10%</span>의 성과가
                   예상됩니다. 릴스 형식의 콘텐츠가 정적 이미지보다 2.4배 높은 참여율을 기록할 것으로 예측됩니다.
                 </div>
               </div>
@@ -176,13 +176,13 @@ export default function AIPredictionPage() {
         </section>
 
         {/* How it works */}
-        <section className="py-20 px-4 bg-[#1a1a2e]/50">
+        <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 어떻게 예측하나요?
               </h2>
-              <p className="text-[#a1a1aa] text-lg">
+              <p className="text-[#6B7280] text-lg">
                 3단계 AI 파이프라인으로 정확한 예측을 제공합니다.
               </p>
             </div>
@@ -193,13 +193,13 @@ export default function AIPredictionPage() {
 
               {steps.map((step, i) => (
                 <div key={step.step} className="relative">
-                  <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors text-center">
+                  <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors text-center">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#e94560] flex items-center justify-center text-white font-bold mx-auto mb-4">
                       {step.step}
                     </div>
                     <div className="text-3xl mb-4">{step.icon}</div>
-                    <h3 className="text-[#e4e4e7] text-xl font-semibold mb-3">{step.title}</h3>
-                    <p className="text-[#a1a1aa] leading-relaxed text-sm">{step.description}</p>
+                    <h3 className="text-[#111827] text-xl font-semibold mb-3">{step.title}</h3>
+                    <p className="text-[#6B7280] leading-relaxed text-sm">{step.description}</p>
                   </div>
                   {/* Arrow between steps */}
                   {i < steps.length - 1 && (
@@ -214,10 +214,10 @@ export default function AIPredictionPage() {
         {/* Bottom CTA */}
         <section className="py-24 px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-6">
               집행 전 성과를 먼저 확인하세요
             </h2>
-            <p className="text-[#a1a1aa] text-lg mb-10">
+            <p className="text-[#6B7280] text-lg mb-10">
               AI 예측으로 광고비 낭비 없이 최적의 캠페인을 기획하세요.
             </p>
             <Link

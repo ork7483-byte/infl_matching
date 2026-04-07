@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata: Metadata = {
-  title: "InfluSync - 인플루언서 마케팅 플랫폼",
+  title: "인플릭스 (Inflix) — AI 기반 인플루언서 마케팅 플랫폼",
   description:
-    "InfluSync는 브랜드와 크리에이터를 연결하는 AI 기반 인플루언서 마케팅 플랫폼입니다. 캠페인 관리, 성과 분석, AI 성과 예측까지 한 곳에서.",
+    "데이터로 검증된 인플루언서를 찾고, 캠페인 성과를 추적하세요. AI 기반 인플루언서 분석·매칭·캠페인 관리 플랫폼.",
 };
 
 export default function RootLayout({
@@ -14,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="dark">
+    <html lang="ko">
       <head>
         <link
           rel="stylesheet"
@@ -22,12 +25,8 @@ export default function RootLayout({
           crossOrigin="anonymous"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap"
-          rel="stylesheet"
-        />
       </head>
-      <body className="bg-background text-foreground antialiased">
+      <body className={`${inter.className} bg-white text-[#111827] antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

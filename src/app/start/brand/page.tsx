@@ -81,7 +81,7 @@ export default function BrandLandingPage() {
       {/* Solutions */}
       <section className="max-w-lg mx-auto px-4 py-16">
         <h2 className="text-2xl font-bold text-center mb-8">
-          InfluSync이 해결합니다
+          Inflix이 해결합니다
         </h2>
         <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-6">
           <LandingSolution

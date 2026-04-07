@@ -51,7 +51,7 @@ const mockCampaigns = [
 
 export default function MarketplacePage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#0a0a0f", color: "#e4e4e7" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF", color: "#111827" }}>
       <Navbar />
 
       {/* Hero */}
@@ -68,7 +68,7 @@ export default function MarketplacePage() {
             <br />
             <span style={{ color: "#e94560" }}>찾아오는 마켓플레이스</span>
           </h1>
-          <p className="text-lg md:text-xl mb-10" style={{ color: "#a1a1aa" }}>
+          <p className="text-lg md:text-xl mb-10" style={{ color: "#6B7280" }}>
             수백 개의 브랜드 캠페인이 매일 업데이트됩니다.<br className="hidden md:block" />
             내 채널에 맞는 협업을 골라 지원하고 수익을 창출하세요.
           </p>
@@ -90,11 +90,11 @@ export default function MarketplacePage() {
               <div
                 key={feature.title}
                 className="rounded-2xl p-8 flex flex-col gap-4"
-                style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+                style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
               >
                 <div className="text-3xl">{feature.icon}</div>
                 <h3 className="text-lg font-semibold">{feature.title}</h3>
-                <p style={{ color: "#a1a1aa" }} className="text-sm leading-relaxed">
+                <p style={{ color: "#6B7280" }} className="text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -108,7 +108,7 @@ export default function MarketplacePage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-3">지금 모집 중인 캠페인</h2>
-            <p style={{ color: "#a1a1aa" }}>
+            <p style={{ color: "#6B7280" }}>
               가입 후 수익 정보 및 상세 요건을 확인할 수 있습니다.
             </p>
           </div>
@@ -117,12 +117,12 @@ export default function MarketplacePage() {
               <div
                 key={campaign.id}
                 className="rounded-2xl overflow-hidden"
-                style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+                style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
               >
                 {/* Card header */}
                 <div
                   className="h-24 flex items-center justify-center text-2xl font-bold"
-                  style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #2a1a3e 100%)" }}
+                  style={{ background: "linear-gradient(135deg, #FFFFFF 0%, #2a1a3e 100%)" }}
                 >
                   <div
                     className="w-12 h-12 rounded-full flex items-center justify-center"
@@ -143,7 +143,7 @@ export default function MarketplacePage() {
                     </span>
                   </div>
 
-                  <div className="flex flex-col gap-2 mb-4 text-sm" style={{ color: "#a1a1aa" }}>
+                  <div className="flex flex-col gap-2 mb-4 text-sm" style={{ color: "#6B7280" }}>
                     <div className="flex items-center gap-2">
                       <span>📱</span> {campaign.platform}
                     </div>
@@ -155,9 +155,9 @@ export default function MarketplacePage() {
                   {/* Blurred reward section */}
                   <div
                     className="rounded-xl p-3 mb-4"
-                    style={{ backgroundColor: "#0a0a0f" }}
+                    style={{ backgroundColor: "#FFFFFF" }}
                   >
-                    <div className="text-xs mb-2" style={{ color: "#a1a1aa" }}>캠페인 보상</div>
+                    <div className="text-xs mb-2" style={{ color: "#6B7280" }}>캠페인 보상</div>
                     <div
                       className="text-lg font-bold select-none rounded"
                       style={{ filter: "blur(8px)", color: "#e94560" }}
@@ -177,7 +177,7 @@ export default function MarketplacePage() {
               </div>
             ))}
           </div>
-          <p className="text-center mt-6 text-sm" style={{ color: "#a1a1aa" }}>
+          <p className="text-center mt-6 text-sm" style={{ color: "#6B7280" }}>
             + 300개 이상의 캠페인이 더 있습니다
           </p>
         </div>
@@ -187,12 +187,12 @@ export default function MarketplacePage() {
       <section className="py-24 px-4 text-center">
         <div
           className="max-w-3xl mx-auto rounded-3xl p-12"
-          style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+          style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             지금 바로 캠페인을 찾아보세요
           </h2>
-          <p className="mb-8" style={{ color: "#a1a1aa" }}>
+          <p className="mb-8" style={{ color: "#6B7280" }}>
             무료로 가입하고 브랜드 캠페인에 지원해보세요.
           </p>
           <Link

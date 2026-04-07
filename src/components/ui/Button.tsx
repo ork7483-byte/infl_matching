@@ -28,13 +28,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants = {
       primary:
-        "bg-gradient-to-r from-brand-purple to-brand-pink text-white hover:opacity-90 focus:ring-brand-purple shadow-glow",
+        "bg-[#7c3aed] text-white hover:bg-[#6d28d9] focus:ring-brand-purple",
       secondary:
-        "bg-card text-foreground border border-border hover:bg-card-hover focus:ring-brand-purple",
+        "bg-white border border-[#E5E7EB] text-[#374151] hover:bg-[#F9FAFB] focus:ring-brand-purple",
       outline:
-        "border border-brand-purple text-brand-purple hover:bg-brand-purple/10 focus:ring-brand-purple",
+        "border border-[#7c3aed] text-[#7c3aed] hover:bg-[#7c3aed]/5 focus:ring-brand-purple",
       ghost:
-        "text-muted-foreground hover:text-foreground hover:bg-card focus:ring-brand-purple",
+        "text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] focus:ring-brand-purple",
       danger:
         "bg-danger text-white hover:bg-red-600 focus:ring-danger",
     };

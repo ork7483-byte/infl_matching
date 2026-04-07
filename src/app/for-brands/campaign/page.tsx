@@ -7,7 +7,7 @@ const features = [
     icon: "✏️",
     title: "캠페인 생성",
     description:
-      "목표, 예산, 타겟 오디언스를 설정하면 InfluSync가 최적의 캠페인 구조를 자동으로 제안합니다.",
+      "목표, 예산, 타겟 오디언스를 설정하면 Inflix가 최적의 캠페인 구조를 자동으로 제안합니다.",
   },
   {
     icon: "🎯",
@@ -41,13 +41,13 @@ export default function CampaignPage() {
               캠페인 관리
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-[#e4e4e7]">캠페인 관리를</span>
+              <span className="text-[#111827]">캠페인 관리를</span>
               <br />
               <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
                 한 곳에서
               </span>
             </h1>
-            <p className="text-[#a1a1aa] text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[#6B7280] text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
               기획, 매칭, 트래킹, 리포트까지 인플루언서 캠페인의 전 과정을 하나의 플랫폼에서
               완결하세요. 더 이상 여러 툴을 오갈 필요가 없습니다.
             </p>
@@ -61,13 +61,13 @@ export default function CampaignPage() {
         </section>
 
         {/* Sub-features */}
-        <section className="py-20 px-4 bg-[#1a1a2e]/50">
+        <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 캠페인의 모든 단계를 지원합니다
               </h2>
-              <p className="text-[#a1a1aa] text-lg">
+              <p className="text-[#6B7280] text-lg">
                 처음 기획부터 최종 결과 보고까지, 모든 단계가 연결되어 있습니다.
               </p>
             </div>
@@ -75,11 +75,11 @@ export default function CampaignPage() {
               {features.map((feature) => (
                 <div
                   key={feature.title}
-                  className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors"
+                  className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors"
                 >
                   <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-[#e4e4e7] text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-[#a1a1aa] leading-relaxed">{feature.description}</p>
+                  <h3 className="text-[#111827] text-xl font-semibold mb-3">{feature.title}</h3>
+                  <p className="text-[#6B7280] leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -90,35 +90,35 @@ export default function CampaignPage() {
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 직관적인 캠페인 대시보드
               </h2>
-              <p className="text-[#a1a1aa] text-lg">
+              <p className="text-[#6B7280] text-lg">
                 한눈에 캠페인 현황을 파악하고 즉시 의사결정하세요.
               </p>
             </div>
 
             {/* Mock screenshot with blur effect */}
-            <div className="relative rounded-2xl overflow-hidden border border-[#2a2a3e] bg-[#1a1a2e]">
+            <div className="relative rounded-2xl overflow-hidden border border-[#E5E7EB] bg-[#FFFFFF]">
               {/* Visible top 30% */}
               <div className="px-8 pt-8 pb-4">
                 {/* Mock dashboard header */}
                 <div className="flex items-center justify-between mb-6">
                   <div>
-                    <div className="h-4 w-32 bg-[#2a2a3e] rounded mb-2" />
-                    <div className="h-3 w-48 bg-[#2a2a3e]/60 rounded" />
+                    <div className="h-4 w-32 bg-[#E5E7EB] rounded mb-2" />
+                    <div className="h-3 w-48 bg-[#E5E7EB]/60 rounded" />
                   </div>
                   <div className="flex gap-3">
                     <div className="h-9 w-24 bg-[#7c3aed]/30 rounded-lg" />
-                    <div className="h-9 w-24 bg-[#2a2a3e] rounded-lg" />
+                    <div className="h-9 w-24 bg-[#E5E7EB] rounded-lg" />
                   </div>
                 </div>
                 {/* Mock stat cards */}
                 <div className="grid grid-cols-4 gap-4 mb-6">
                   {["총 도달 수", "총 참여수", "클릭 수", "전환율"].map((label) => (
-                    <div key={label} className="bg-[#0a0a0f] rounded-xl p-4 border border-[#2a2a3e]">
-                      <div className="text-[#a1a1aa] text-xs mb-2">{label}</div>
-                      <div className="h-5 w-20 bg-[#2a2a3e] rounded" />
+                    <div key={label} className="bg-[#FFFFFF] rounded-xl p-4 border border-[#E5E7EB]">
+                      <div className="text-[#6B7280] text-xs mb-2">{label}</div>
+                      <div className="h-5 w-20 bg-[#E5E7EB] rounded" />
                     </div>
                   ))}
                 </div>
@@ -128,8 +128,8 @@ export default function CampaignPage() {
               <div className="relative">
                 <div className="px-8 pb-8 opacity-40">
                   {/* Mock chart area */}
-                  <div className="bg-[#0a0a0f] rounded-xl p-6 border border-[#2a2a3e] mb-4">
-                    <div className="h-4 w-40 bg-[#2a2a3e] rounded mb-4" />
+                  <div className="bg-[#FFFFFF] rounded-xl p-6 border border-[#E5E7EB] mb-4">
+                    <div className="h-4 w-40 bg-[#E5E7EB] rounded mb-4" />
                     <div className="flex items-end gap-2 h-24">
                       {[60, 80, 45, 90, 70, 85, 55, 95, 65, 75].map((h, i) => (
                         <div
@@ -142,16 +142,16 @@ export default function CampaignPage() {
                   </div>
                   <div className="grid grid-cols-3 gap-4">
                     {[1, 2, 3].map((i) => (
-                      <div key={i} className="bg-[#0a0a0f] rounded-xl p-4 border border-[#2a2a3e]">
-                        <div className="h-3 w-24 bg-[#2a2a3e] rounded mb-3" />
-                        <div className="h-3 w-32 bg-[#2a2a3e]/60 rounded mb-2" />
-                        <div className="h-3 w-20 bg-[#2a2a3e]/40 rounded" />
+                      <div key={i} className="bg-[#FFFFFF] rounded-xl p-4 border border-[#E5E7EB]">
+                        <div className="h-3 w-24 bg-[#E5E7EB] rounded mb-3" />
+                        <div className="h-3 w-32 bg-[#E5E7EB]/60 rounded mb-2" />
+                        <div className="h-3 w-20 bg-[#E5E7EB]/40 rounded" />
                       </div>
                     ))}
                   </div>
                 </div>
                 {/* Blur overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a0f]/60 to-[#0a0a0f]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FFFFFF]/60 to-[#FFFFFF]" />
                 {/* CTA overlay */}
                 <div className="absolute bottom-4 inset-x-0 flex justify-center">
                   <Link
@@ -164,7 +164,7 @@ export default function CampaignPage() {
               </div>
 
               {/* Watermark label */}
-              <div className="absolute top-4 right-4 bg-[#0a0a0f]/80 border border-[#2a2a3e] rounded-lg px-3 py-1.5 text-[#a1a1aa] text-xs">
+              <div className="absolute top-4 right-4 bg-[#FFFFFF]/80 border border-[#E5E7EB] rounded-lg px-3 py-1.5 text-[#6B7280] text-xs">
                 캠페인 대시보드 미리보기
               </div>
             </div>
@@ -172,12 +172,12 @@ export default function CampaignPage() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="py-24 px-4 text-center bg-[#1a1a2e]/50">
+        <section className="py-24 px-4 text-center bg-[#F9FAFB]">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-6">
               캠페인 관리, 이제 쉽게 시작하세요
             </h2>
-            <p className="text-[#a1a1aa] text-lg mb-10">
+            <p className="text-[#6B7280] text-lg mb-10">
               무료 플랜으로 지금 바로 첫 번째 캠페인을 만들어보세요.
             </p>
             <Link

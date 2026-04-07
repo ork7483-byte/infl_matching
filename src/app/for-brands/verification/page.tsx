@@ -80,14 +80,14 @@ export default function VerificationPage() {
               인플루언서 검증
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-[#e4e4e7]">진짜 인플루언서를</span>
+              <span className="text-[#111827]">진짜 인플루언서를</span>
               <br />
               <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
                 찾아드립니다
               </span>
             </h1>
-            <p className="text-[#a1a1aa] text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-              팔로워 숫자에 속지 마세요. InfluSync의 AQS(Audience Quality Score)는 AI가
+            <p className="text-[#6B7280] text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+              팔로워 숫자에 속지 마세요. Inflix의 AQS(Audience Quality Score)는 AI가
               5가지 축으로 인플루언서의 진짜 영향력을 수치화합니다.
             </p>
             <Link
@@ -100,13 +100,13 @@ export default function VerificationPage() {
         </section>
 
         {/* Sub-features */}
-        <section className="py-20 px-4 bg-[#1a1a2e]/50">
+        <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 4가지 검증 레이어
               </h2>
-              <p className="text-[#a1a1aa] text-lg">
+              <p className="text-[#6B7280] text-lg">
                 단순 지표 하나가 아닌, 다차원 분석으로 인플루언서를 완전히 파악합니다.
               </p>
             </div>
@@ -114,11 +114,11 @@ export default function VerificationPage() {
               {features.map((feature) => (
                 <div
                   key={feature.title}
-                  className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors"
+                  className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors"
                 >
                   <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-[#e4e4e7] text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-[#a1a1aa] leading-relaxed">{feature.description}</p>
+                  <h3 className="text-[#111827] text-xl font-semibold mb-3">{feature.title}</h3>
+                  <p className="text-[#6B7280] leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -129,10 +129,10 @@ export default function VerificationPage() {
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 AQS 등급 기준
               </h2>
-              <p className="text-[#a1a1aa] text-lg">
+              <p className="text-[#6B7280] text-lg">
                 0~100점 사이의 AQS 점수로 인플루언서 건전성을 한눈에 확인하세요.
               </p>
             </div>
@@ -161,19 +161,19 @@ export default function VerificationPage() {
                         {grade.range}점
                       </span>
                     </div>
-                    <p className="text-[#a1a1aa] leading-relaxed">{grade.description}</p>
+                    <p className="text-[#6B7280] leading-relaxed">{grade.description}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Mock AQS radar chart placeholder */}
-            <div className="mt-12 bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 text-center relative">
-              <div className="absolute top-4 right-4 bg-[#0a0a0f]/80 border border-[#2a2a3e] rounded-lg px-3 py-1.5 text-[#a1a1aa] text-xs">
+            <div className="mt-12 bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 text-center relative">
+              <div className="absolute top-4 right-4 bg-[#FFFFFF]/80 border border-[#E5E7EB] rounded-lg px-3 py-1.5 text-[#6B7280] text-xs">
                 AQS 레이더 차트 미리보기
               </div>
-              <div className="text-[#e4e4e7] font-semibold mb-2">AQS 5축 레이더 차트</div>
-              <div className="text-[#a1a1aa] text-sm mb-8">참여율 · 팔로워 품질 · 콘텐츠 일관성 · 오디언스 다양성 · 성장 건전성</div>
+              <div className="text-[#111827] font-semibold mb-2">AQS 5축 레이더 차트</div>
+              <div className="text-[#6B7280] text-sm mb-8">참여율 · 팔로워 품질 · 콘텐츠 일관성 · 오디언스 다양성 · 성장 건전성</div>
 
               {/* SVG mock radar */}
               <div className="flex justify-center">
@@ -188,7 +188,7 @@ export default function VerificationPage() {
                         return `${120 + r * Math.cos(rad)},${120 + r * Math.sin(rad)}`;
                       }).join(" ")}
                       fill="none"
-                      stroke="#2a2a3e"
+                      stroke="#E5E7EB"
                       strokeWidth="1"
                     />
                   ))}
@@ -202,7 +202,7 @@ export default function VerificationPage() {
                         y1="120"
                         x2={120 + 90 * Math.cos(rad)}
                         y2={120 + 90 * Math.sin(rad)}
-                        stroke="#2a2a3e"
+                        stroke="#E5E7EB"
                         strokeWidth="1"
                       />
                     );
@@ -241,7 +241,7 @@ export default function VerificationPage() {
                         y={120 + r * Math.sin(rad)}
                         textAnchor="middle"
                         dominantBaseline="middle"
-                        fill="#a1a1aa"
+                        fill="#6B7280"
                         fontSize="9"
                       >
                         {label as string}
@@ -255,12 +255,12 @@ export default function VerificationPage() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="py-24 px-4 text-center bg-[#1a1a2e]/50">
+        <section className="py-24 px-4 text-center bg-[#F9FAFB]">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-6">
               검증된 인플루언서로만 캠페인하세요
             </h2>
-            <p className="text-[#a1a1aa] text-lg mb-10">
+            <p className="text-[#6B7280] text-lg mb-10">
               가짜 팔로워에 광고비를 낭비하지 마세요. 지금 무료로 검증을 시작하세요.
             </p>
             <Link

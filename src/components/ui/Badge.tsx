@@ -12,9 +12,9 @@ export default function Badge({
   className = "",
 }: BadgeProps) {
   const variants = {
-    default: "bg-card border-border text-muted-foreground",
-    purple: "bg-brand-purple/10 border-brand-purple/20 text-brand-purple-light",
-    pink: "bg-brand-pink/10 border-brand-pink/20 text-brand-pink-light",
+    default: "bg-[#F9FAFB] border-[#E5E7EB] text-[#6B7280]",
+    purple: "bg-[#7c3aed]/10 border-[#7c3aed]/20 text-[#7c3aed]",
+    pink: "bg-[#e94560]/10 border-[#e94560]/20 text-[#e94560]",
     success: "bg-success/10 border-success/20 text-success",
     warning: "bg-warning/10 border-warning/20 text-warning",
     danger: "bg-danger/10 border-danger/20 text-danger",

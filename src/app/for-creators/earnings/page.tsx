@@ -54,7 +54,7 @@ const mockEarnings = [
 
 export default function EarningsPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#0a0a0f", color: "#e4e4e7" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF", color: "#111827" }}>
       <Navbar />
 
       {/* Hero */}
@@ -71,7 +71,7 @@ export default function EarningsPage() {
             <br />
             <span style={{ color: "#e94560" }}>한 곳에서 관리하세요</span>
           </h1>
-          <p className="text-lg md:text-xl mb-10" style={{ color: "#a1a1aa" }}>
+          <p className="text-lg md:text-xl mb-10" style={{ color: "#6B7280" }}>
             여러 브랜드와의 수익을 자동으로 집계하고<br className="hidden md:block" />
             정산 상태를 실시간으로 추적하세요.
           </p>
@@ -93,11 +93,11 @@ export default function EarningsPage() {
               <div
                 key={feature.title}
                 className="rounded-2xl p-8 flex flex-col gap-4"
-                style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+                style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
               >
                 <div className="text-3xl">{feature.icon}</div>
                 <h3 className="text-lg font-semibold">{feature.title}</h3>
-                <p style={{ color: "#a1a1aa" }} className="text-sm leading-relaxed">
+                <p style={{ color: "#6B7280" }} className="text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -111,14 +111,14 @@ export default function EarningsPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-3">수익 대시보드 미리보기</h2>
-            <p style={{ color: "#a1a1aa" }}>
+            <p style={{ color: "#6B7280" }}>
               가입 후 실제 수익 현황을 이 화면에서 관리하세요.
             </p>
           </div>
 
           <div
             className="rounded-3xl p-8"
-            style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+            style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
           >
             {/* Summary row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -130,18 +130,18 @@ export default function EarningsPage() {
                 <div
                   key={item.label}
                   className="rounded-2xl p-5 text-center"
-                  style={{ backgroundColor: "#0a0a0f" }}
+                  style={{ backgroundColor: "#FFFFFF" }}
                 >
-                  <div className="text-xs mb-2" style={{ color: "#a1a1aa" }}>{item.label}</div>
+                  <div className="text-xs mb-2" style={{ color: "#6B7280" }}>{item.label}</div>
                   <div className="text-xl font-bold mb-1" style={{ color: "#e94560" }}>{item.value}</div>
-                  <div className="text-xs" style={{ color: "#a1a1aa" }}>{item.sub}</div>
+                  <div className="text-xs" style={{ color: "#6B7280" }}>{item.sub}</div>
                 </div>
               ))}
             </div>
 
             {/* Campaign earnings list */}
             <div>
-              <h3 className="text-sm font-semibold mb-4" style={{ color: "#a1a1aa" }}>
+              <h3 className="text-sm font-semibold mb-4" style={{ color: "#6B7280" }}>
                 최근 캠페인 수익 현황
               </h3>
               <div className="flex flex-col gap-3">
@@ -149,7 +149,7 @@ export default function EarningsPage() {
                   <div
                     key={item.campaign}
                     className="flex items-center justify-between p-4 rounded-xl"
-                    style={{ backgroundColor: "#0a0a0f" }}
+                    style={{ backgroundColor: "#FFFFFF" }}
                   >
                     <div className="flex items-center gap-4">
                       <div
@@ -160,7 +160,7 @@ export default function EarningsPage() {
                       </div>
                       <div>
                         <div className="font-medium text-sm">{item.campaign}</div>
-                        <div className="text-xs mt-0.5" style={{ color: "#a1a1aa" }}>
+                        <div className="text-xs mt-0.5" style={{ color: "#6B7280" }}>
                           {item.brand} · {item.date}
                         </div>
                       </div>
@@ -169,7 +169,7 @@ export default function EarningsPage() {
                       {/* Blurred amount */}
                       <div
                         className="text-sm font-semibold select-none"
-                        style={{ filter: "blur(6px)", color: "#e4e4e7" }}
+                        style={{ filter: "blur(6px)", color: "#111827" }}
                       >
                         ₩000,000
                       </div>
@@ -188,9 +188,9 @@ export default function EarningsPage() {
             {/* CTA inside dashboard */}
             <div
               className="mt-6 pt-6 flex items-center justify-between"
-              style={{ borderTop: "1px solid #2a2a3e" }}
+              style={{ borderTop: "1px solid #E5E7EB" }}
             >
-              <p className="text-sm" style={{ color: "#a1a1aa" }}>
+              <p className="text-sm" style={{ color: "#6B7280" }}>
                 실제 수익 금액은 가입 후 확인 가능합니다.
               </p>
               <Link
@@ -209,12 +209,12 @@ export default function EarningsPage() {
       <section className="py-24 px-4 text-center">
         <div
           className="max-w-3xl mx-auto rounded-3xl p-12"
-          style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+          style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             수익 관리를 지금 시작하세요
           </h2>
-          <p className="mb-8" style={{ color: "#a1a1aa" }}>
+          <p className="mb-8" style={{ color: "#6B7280" }}>
             무료로 가입하고 모든 수익과 정산을 한 곳에서 관리하세요.
           </p>
           <Link

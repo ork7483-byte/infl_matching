@@ -56,7 +56,7 @@ const solutions = [
 
 export default function ForCreatorsPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#0a0a0f", color: "#e4e4e7" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF", color: "#111827" }}>
       <Navbar />
 
       {/* Hero */}
@@ -73,9 +73,9 @@ export default function ForCreatorsPage() {
             <br />
             <span style={{ color: "#e94560" }}>정확한 숫자로</span> 보여주세요
           </h1>
-          <p className="text-lg md:text-xl mb-10" style={{ color: "#a1a1aa" }}>
+          <p className="text-lg md:text-xl mb-10" style={{ color: "#6B7280" }}>
             미디어킷 자동 생성부터 브랜드 캠페인 매칭, 수익 정산까지 —<br className="hidden md:block" />
-            크리에이터의 모든 비즈니스를 InfluSync 하나로 관리하세요.
+            크리에이터의 모든 비즈니스를 Inflix 하나로 관리하세요.
           </p>
           <Link
             href="/signup?role=creator"
@@ -92,8 +92,8 @@ export default function ForCreatorsPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">이런 불편함 있으셨죠?</h2>
-            <p style={{ color: "#a1a1aa" }}>
-              크리에이터라면 누구나 겪어봤을 비효율을 InfluSync가 해결합니다.
+            <p style={{ color: "#6B7280" }}>
+              크리에이터라면 누구나 겪어봤을 비효율을 Inflix가 해결합니다.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -101,11 +101,11 @@ export default function ForCreatorsPage() {
               <div
                 key={point.title}
                 className="rounded-2xl p-8 flex flex-col gap-4"
-                style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+                style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
               >
                 <div className="text-4xl">{point.icon}</div>
                 <h3 className="text-lg font-semibold">{point.title}</h3>
-                <p style={{ color: "#a1a1aa" }} className="text-sm leading-relaxed">
+                <p style={{ color: "#6B7280" }} className="text-sm leading-relaxed">
                   {point.description}
                 </p>
               </div>
@@ -119,9 +119,9 @@ export default function ForCreatorsPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              InfluSync가 제공하는 <span style={{ color: "#e94560" }}>4가지 솔루션</span>
+              Inflix가 제공하는 <span style={{ color: "#e94560" }}>4가지 솔루션</span>
             </h2>
-            <p style={{ color: "#a1a1aa" }}>
+            <p style={{ color: "#6B7280" }}>
               크리에이터 활동의 모든 단계를 스마트하게 지원합니다.
             </p>
           </div>
@@ -131,13 +131,13 @@ export default function ForCreatorsPage() {
                 key={solution.title}
                 href={solution.href}
                 className="rounded-2xl p-8 flex flex-col gap-4 transition-all hover:border-pink-500 hover:-translate-y-1 group"
-                style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+                style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
               >
                 <div className="text-4xl">{solution.icon}</div>
                 <h3 className="text-xl font-semibold group-hover:text-pink-400 transition-colors">
                   {solution.title}
                 </h3>
-                <p style={{ color: "#a1a1aa" }} className="text-sm leading-relaxed">
+                <p style={{ color: "#6B7280" }} className="text-sm leading-relaxed">
                   {solution.description}
                 </p>
                 <span className="text-sm font-medium mt-2" style={{ color: "#e94560" }}>
@@ -153,12 +153,12 @@ export default function ForCreatorsPage() {
       <section className="py-24 px-4 text-center">
         <div
           className="max-w-3xl mx-auto rounded-3xl p-12"
-          style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+          style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             지금 바로 시작하세요
           </h2>
-          <p className="mb-8" style={{ color: "#a1a1aa" }}>
+          <p className="mb-8" style={{ color: "#6B7280" }}>
             무료로 가입하고 크리에이터 대시보드를 체험해보세요.
             <br />
             신용카드 없이 즉시 시작 가능합니다.

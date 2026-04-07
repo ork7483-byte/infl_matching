@@ -35,7 +35,7 @@ export default function GalleryCard({ item, onClick }: GalleryCardProps) {
       className="break-inside-avoid mb-4 cursor-pointer group"
       onClick={onClick}
     >
-      <div className="bg-card border border-border rounded-2xl overflow-hidden hover:border-brand-purple/40 hover:shadow-glow transition-all duration-200">
+      <div className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200">
         {/* Image / Thumbnail */}
         <div className="relative overflow-hidden">
           {/* Aspect ratio wrapper: reels are 9:16, feed is 4:5 */}

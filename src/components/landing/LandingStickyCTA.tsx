@@ -42,11 +42,11 @@ export default function LandingStickyCTA({
           visible ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <div className="bg-background/95 backdrop-blur-md border-t border-border px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom,12px))]">
+        <div className="bg-white border-t border-[#E5E7EB] shadow-lg px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom,12px))]">
           <div className="max-w-lg mx-auto">
             <Link
               href={link}
-              className="flex items-center justify-center w-full h-12 px-8 rounded-xl bg-gradient-to-r from-brand-purple to-brand-pink text-white font-semibold text-base transition-opacity hover:opacity-90"
+              className="flex items-center justify-center w-full h-12 px-8 rounded-xl bg-[#7c3aed] text-white font-semibold text-base hover:bg-[#6d28d9] transition-colors"
             >
               {text}
             </Link>

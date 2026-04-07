@@ -24,7 +24,7 @@ function CheckIcon() {
 function XIcon() {
   return (
     <svg
-      className="w-5 h-5 text-[#a1a1aa] flex-shrink-0"
+      className="w-5 h-5 text-[#6B7280] flex-shrink-0"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -128,7 +128,7 @@ const comparisonTable = [
 function TableCell({ value }: { value: boolean | string }) {
   if (value === true) return <CheckIcon />;
   if (value === false) return <XIcon />;
-  return <span className="text-sm text-[#e4e4e7]">{value}</span>;
+  return <span className="text-sm text-[#111827]">{value}</span>;
 }
 
 // ── Inner page (needs useSearchParams) ────────────────────────────────────
@@ -160,10 +160,10 @@ function PricingInner() {
   const faqItems = activeTab === "brand" ? brandFaqItems : creatorFaqItems;
 
   return (
-    <main className="min-h-screen pt-24 pb-20 px-4" style={{ backgroundColor: "#0a0a0f" }}>
+    <main className="min-h-screen pt-24 pb-20 px-4" style={{ backgroundColor: "#FFFFFF" }}>
       {/* ── Section 1: Hero ───────────────────────────────────────────── */}
       <section className="text-center mb-12 max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#e4e4e7]">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#111827]">
           심플한 요금제,{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -187,13 +187,13 @@ function PricingInner() {
         </div>
 
         {/* Billing toggle */}
-        <div className="inline-flex rounded-lg p-1 gap-1" style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}>
+        <div className="inline-flex rounded-lg p-1 gap-1" style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}>
           <button
             onClick={() => setBillingCycle("monthly")}
             className={`px-5 py-2 rounded-md text-sm font-medium transition-all ${
               billingCycle === "monthly"
                 ? "bg-[#7c3aed] text-white shadow"
-                : "text-[#a1a1aa] hover:text-[#e4e4e7]"
+                : "text-[#6B7280] hover:text-[#111827]"
             }`}
           >
             월간
@@ -203,7 +203,7 @@ function PricingInner() {
             className={`px-5 py-2 rounded-md text-sm font-medium transition-all ${
               billingCycle === "annual"
                 ? "bg-[#7c3aed] text-white shadow"
-                : "text-[#a1a1aa] hover:text-[#e4e4e7]"
+                : "text-[#6B7280] hover:text-[#111827]"
             }`}
           >
             연간 — 20% 할인
@@ -213,15 +213,15 @@ function PricingInner() {
 
       {/* ── Section 2: Tab Switch ─────────────────────────────────────── */}
       <section className="max-w-5xl mx-auto mb-10">
-        <div className="flex border-b" style={{ borderColor: "#2a2a3e" }}>
+        <div className="flex border-b" style={{ borderColor: "#E5E7EB" }}>
           {(["brand", "creator"] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => switchTab(tab)}
               className={`px-6 py-3 text-sm font-medium transition-all ${
                 activeTab === tab
-                  ? "text-white border-b-2 border-[#7c3aed]"
-                  : "text-[#a1a1aa] hover:text-[#e4e4e7] border-b-2 border-transparent"
+                  ? "text-[#7c3aed] border-b-2 border-[#7c3aed]"
+                  : "text-[#6B7280] hover:text-[#111827] border-b-2 border-transparent"
               }`}
             >
               {tab === "brand" ? "For Brands" : "For Creators"}
@@ -238,15 +238,15 @@ function PricingInner() {
             {/* Free Card */}
             <div
               className="rounded-2xl p-8 flex flex-col"
-              style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+              style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
             >
               <div className="mb-6">
-                <p className="text-[#a1a1aa] text-sm mb-2">Free</p>
+                <p className="text-[#6B7280] text-sm mb-2">Free</p>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-[#e4e4e7]">₩0</span>
+                  <span className="text-4xl font-bold text-[#111827]">₩0</span>
                 </div>
-                <p className="text-[#a1a1aa] text-sm mt-1">영구 무료</p>
-                <p className="text-[#e4e4e7] text-sm mt-3">시작하기에 충분한 기능</p>
+                <p className="text-[#6B7280] text-sm mt-1">영구 무료</p>
+                <p className="text-[#111827] text-sm mt-3">시작하기에 충분한 기능</p>
               </div>
 
               <ul className="space-y-3 mb-8 flex-1">
@@ -262,7 +262,7 @@ function PricingInner() {
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3">
                     {item.ok ? <CheckIcon /> : <XIcon />}
-                    <span className={`text-sm ${item.ok ? "text-[#e4e4e7]" : "text-[#a1a1aa]"}`}>
+                    <span className={`text-sm ${item.ok ? "text-[#111827]" : "text-[#6B7280]"}`}>
                       {item.label}
                     </span>
                   </li>
@@ -271,8 +271,8 @@ function PricingInner() {
 
               <Link
                 href="/signup?role=brand&plan=free"
-                className="block w-full text-center px-6 py-3 rounded-lg text-sm font-semibold text-[#e4e4e7] transition-opacity hover:opacity-80"
-                style={{ border: "1px solid #2a2a3e" }}
+                className="block w-full text-center px-6 py-3 rounded-lg text-sm font-semibold text-[#111827] transition-opacity hover:opacity-80"
+                style={{ border: "1px solid #E5E7EB" }}
               >
                 무료로 시작
               </Link>
@@ -281,7 +281,7 @@ function PricingInner() {
             {/* Pro Card (highlighted) */}
             <div
               className="rounded-2xl p-8 flex flex-col relative overflow-hidden md:scale-105 md:z-10"
-              style={{ backgroundColor: "#1a1a2e", border: "2px solid #7c3aed" }}
+              style={{ backgroundColor: "#FFFFFF", border: "2px solid #7c3aed" }}
             >
               {/* Purple glow */}
               <div
@@ -302,21 +302,21 @@ function PricingInner() {
               </span>
 
               <div className="mb-6 relative z-10">
-                <p className="text-[#a1a1aa] text-sm mb-2">Pro</p>
+                <p className="text-[#6B7280] text-sm mb-2">Pro</p>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold text-[#e4e4e7]">현재 무료 🎉</span>
+                  <span className="text-3xl font-bold text-[#111827]">현재 무료 🎉</span>
                 </div>
                 {billingCycle === "monthly" ? (
-                  <p className="text-[#a1a1aa] text-sm mt-1">
+                  <p className="text-[#6B7280] text-sm mt-1">
                     <span className="line-through">₩190,000/월</span>
                   </p>
                 ) : (
-                  <p className="text-[#a1a1aa] text-sm mt-1">
+                  <p className="text-[#6B7280] text-sm mt-1">
                     ₩150,000/월{" "}
                     <span className="line-through text-xs">₩190,000</span>
                   </p>
                 )}
-                <p className="text-[#e4e4e7] text-sm mt-3">
+                <p className="text-[#111827] text-sm mt-3">
                   본격적인 인플루언서 마케팅을 위한 올인원
                 </p>
               </div>
@@ -335,7 +335,7 @@ function PricingInner() {
                 ].map((label, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <CheckIcon />
-                    <span className="text-sm text-[#e4e4e7]">{label}</span>
+                    <span className="text-sm text-[#111827]">{label}</span>
                   </li>
                 ))}
               </ul>
@@ -348,21 +348,21 @@ function PricingInner() {
                 >
                   무료로 시작하기 🎉
                 </Link>
-                <p className="text-center text-xs text-[#a1a1aa] mt-2">얼리 액세스 진행중</p>
+                <p className="text-center text-xs text-[#6B7280] mt-2">얼리 액세스 진행중</p>
               </div>
             </div>
 
             {/* Enterprise Card */}
             <div
               className="rounded-2xl p-8 flex flex-col"
-              style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+              style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
             >
               <div className="mb-6">
-                <p className="text-[#a1a1aa] text-sm mb-2">Enterprise</p>
+                <p className="text-[#6B7280] text-sm mb-2">Enterprise</p>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-[#e4e4e7]">맞춤 견적</span>
+                  <span className="text-4xl font-bold text-[#111827]">맞춤 견적</span>
                 </div>
-                <p className="text-[#e4e4e7] text-sm mt-3">대규모 팀을 위한 맞춤형 솔루션</p>
+                <p className="text-[#111827] text-sm mt-3">대규모 팀을 위한 맞춤형 솔루션</p>
               </div>
 
               <ul className="space-y-3 mb-8 flex-1">
@@ -378,15 +378,15 @@ function PricingInner() {
                 ].map((label, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <CheckIcon />
-                    <span className="text-sm text-[#e4e4e7]">{label}</span>
+                    <span className="text-sm text-[#111827]">{label}</span>
                   </li>
                 ))}
               </ul>
 
               <Link
                 href="/contact?plan=enterprise"
-                className="block w-full text-center px-6 py-3 rounded-lg text-sm font-semibold text-[#e4e4e7] transition-opacity hover:opacity-80"
-                style={{ border: "1px solid #2a2a3e" }}
+                className="block w-full text-center px-6 py-3 rounded-lg text-sm font-semibold text-[#111827] transition-opacity hover:opacity-80"
+                style={{ border: "1px solid #E5E7EB" }}
               >
                 문의하기
               </Link>
@@ -397,7 +397,7 @@ function PricingInner() {
           <div className="max-w-2xl mx-auto">
             <div
               className="rounded-2xl p-10 relative overflow-hidden"
-              style={{ backgroundColor: "#1a1a2e", border: "2px solid #7c3aed" }}
+              style={{ backgroundColor: "#FFFFFF", border: "2px solid #7c3aed" }}
             >
               <div
                 className="absolute -top-20 -right-20 w-56 h-56 rounded-full blur-3xl pointer-events-none"
@@ -405,10 +405,10 @@ function PricingInner() {
               />
 
               <div className="relative z-10 text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#e4e4e7] mb-3">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#111827] mb-3">
                   크리에이터는 영구 무료입니다 🎉
                 </h2>
-                <p className="text-3xl font-bold text-[#e4e4e7]">₩0 / 영구 무료</p>
+                <p className="text-3xl font-bold text-[#111827]">₩0 / 영구 무료</p>
               </div>
 
               <ul className="space-y-3 mb-8 relative z-10">
@@ -425,7 +425,7 @@ function PricingInner() {
                 ].map((label, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <CheckIcon />
-                    <span className="text-sm text-[#e4e4e7]">{label}</span>
+                    <span className="text-sm text-[#111827]">{label}</span>
                   </li>
                 ))}
               </ul>
@@ -444,10 +444,10 @@ function PricingInner() {
             {/* Why free explanation */}
             <div
               className="mt-8 rounded-xl p-6"
-              style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+              style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
             >
-              <h3 className="font-semibold text-[#e4e4e7] mb-2">왜 크리에이터는 무료인가요?</h3>
-              <p className="text-sm text-[#a1a1aa] leading-relaxed">
+              <h3 className="font-semibold text-[#111827] mb-2">왜 크리에이터는 무료인가요?</h3>
+              <p className="text-sm text-[#6B7280] leading-relaxed">
                 저희 플랫폼의 수익은 브랜드 파트너로부터 발생합니다. 크리에이터 여러분이 많이 참여하고 성장할수록, 브랜드 파트너에게 더 많은 가치를 제공할 수 있습니다. 크리에이터 생태계를 키우는 것이 곧 저희의 성장이기에, 크리에이터 플랜은 영구 무료로 유지됩니다.
               </p>
             </div>
@@ -458,28 +458,28 @@ function PricingInner() {
       {/* ── Section 4: Feature Comparison Table (Brands only) ────────── */}
       {activeTab === "brand" && (
         <section className="max-w-5xl mx-auto mb-20">
-          <h2 className="text-2xl font-bold text-center text-[#e4e4e7] mb-8">기능 상세 비교</h2>
+          <h2 className="text-2xl font-bold text-center text-[#111827] mb-8">기능 상세 비교</h2>
 
-          <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid #2a2a3e" }}>
+          <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid #E5E7EB" }}>
             <table className="w-full text-sm">
               <thead>
-                <tr style={{ backgroundColor: "#1a1a2e" }}>
+                <tr style={{ backgroundColor: "#FFFFFF" }}>
                   <th
-                    className="sticky left-0 text-left px-6 py-4 font-semibold text-[#e4e4e7]"
-                    style={{ backgroundColor: "#1a1a2e", minWidth: "200px" }}
+                    className="sticky left-0 text-left px-6 py-4 font-semibold text-[#111827]"
+                    style={{ backgroundColor: "#FFFFFF", minWidth: "200px" }}
                   >
                     기능
                   </th>
-                  <th className="px-6 py-4 text-center font-semibold text-[#e4e4e7] min-w-[120px]">
+                  <th className="px-6 py-4 text-center font-semibold text-[#111827] min-w-[120px]">
                     Free
                   </th>
                   <th
-                    className="px-6 py-4 text-center font-semibold text-[#e4e4e7] min-w-[120px]"
+                    className="px-6 py-4 text-center font-semibold text-[#111827] min-w-[120px]"
                     style={{ backgroundColor: "rgba(124,58,237,0.1)" }}
                   >
                     Pro ⭐
                   </th>
-                  <th className="px-6 py-4 text-center font-semibold text-[#e4e4e7] min-w-[120px]">
+                  <th className="px-6 py-4 text-center font-semibold text-[#111827] min-w-[120px]">
                     Enterprise
                   </th>
                 </tr>
@@ -490,12 +490,12 @@ function PricingInner() {
                     {/* Category row */}
                     <tr
                       key={`cat-${section.category}`}
-                      style={{ backgroundColor: "rgba(42,42,62,0.6)" }}
+                      style={{ backgroundColor: "#F9FAFB" }}
                     >
                       <td
                         colSpan={4}
-                        className="sticky left-0 px-6 py-3 font-bold text-[#e4e4e7] text-xs uppercase tracking-wider"
-                        style={{ backgroundColor: "rgba(42,42,62,0.6)" }}
+                        className="sticky left-0 px-6 py-3 font-bold text-[#111827] text-xs uppercase tracking-wider"
+                        style={{ backgroundColor: "#F9FAFB" }}
                       >
                         {section.category}
                       </td>
@@ -505,11 +505,11 @@ function PricingInner() {
                       <tr
                         key={`${section.category}-${ri}`}
                         className="border-t"
-                        style={{ borderColor: "#2a2a3e" }}
+                        style={{ borderColor: "#E5E7EB" }}
                       >
                         <td
-                          className="sticky left-0 px-6 py-3 text-[#a1a1aa]"
-                          style={{ backgroundColor: "#0a0a0f" }}
+                          className="sticky left-0 px-6 py-3 text-[#6B7280]"
+                          style={{ backgroundColor: "#FFFFFF" }}
                         >
                           {row.feature}
                         </td>
@@ -543,17 +543,17 @@ function PricingInner() {
 
       {/* ── Section 5: FAQ ────────────────────────────────────────────── */}
       <section className="max-w-3xl mx-auto mb-20">
-        <h2 className="text-2xl font-bold text-center text-[#e4e4e7] mb-8">자주 묻는 질문</h2>
+        <h2 className="text-2xl font-bold text-center text-[#111827] mb-8">자주 묻는 질문</h2>
 
         <div className="space-y-3">
           {faqItems.map((item, i) => (
             <div
               key={i}
               className="rounded-xl overflow-hidden"
-              style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+              style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
             >
               <button
-                className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 text-[#e4e4e7] font-medium hover:text-white transition-colors"
+                className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 text-[#111827] font-medium hover:text-[#7c3aed] transition-colors"
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
               >
                 <span>{item.q}</span>
@@ -567,7 +567,7 @@ function PricingInner() {
                 </svg>
               </button>
               {openFaq === i && (
-                <div className="px-6 pb-4 text-sm text-[#a1a1aa] leading-relaxed border-t" style={{ borderColor: "#2a2a3e" }}>
+                <div className="px-6 pb-4 text-sm text-[#6B7280] leading-relaxed border-t" style={{ borderColor: "#E5E7EB" }}>
                   <p className="pt-3">{item.a}</p>
                 </div>
               )}
@@ -580,12 +580,12 @@ function PricingInner() {
       <section className="text-center max-w-2xl mx-auto">
         <div
           className="rounded-2xl px-8 py-12"
-          style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+          style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-[#e4e4e7] mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#111827] mb-3">
             아직 고민 중이신가요?
           </h2>
-          <p className="text-[#a1a1aa] mb-8">지금은 무료입니다. 부담 없이 시작하세요.</p>
+          <p className="text-[#6B7280] mb-8">지금은 무료입니다. 부담 없이 시작하세요.</p>
           <Link
             href="/signup"
             className="inline-block px-10 py-4 rounded-xl text-base font-semibold text-white transition-opacity hover:opacity-90"
@@ -593,7 +593,7 @@ function PricingInner() {
           >
             무료로 시작하기
           </Link>
-          <p className="text-xs text-[#a1a1aa] mt-4">결제 정보 없이 가입 · 언제든 해지 가능</p>
+          <p className="text-xs text-[#6B7280] mt-4">결제 정보 없이 가입 · 언제든 해지 가능</p>
         </div>
       </section>
     </main>
@@ -606,7 +606,7 @@ export default function PricingPage() {
   return (
     <>
       <Navbar />
-      <Suspense fallback={<div className="min-h-screen" style={{ backgroundColor: "#0a0a0f" }} />}>
+      <Suspense fallback={<div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }} />}>
         <PricingInner />
       </Suspense>
       <Footer />

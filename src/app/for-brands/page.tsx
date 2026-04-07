@@ -85,14 +85,14 @@ export default function ForBrandsPage() {
               브랜드 솔루션
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-[#e4e4e7]">데이터로 검증된</span>
+              <span className="text-[#111827]">데이터로 검증된</span>
               <br />
               <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
                 인플루언서 마케팅
               </span>
             </h1>
-            <p className="text-[#a1a1aa] text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-              감이 아닌 데이터로. InfluSync는 AI 검증, 실시간 성과 분석, 자동 리포트로
+            <p className="text-[#6B7280] text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+              감이 아닌 데이터로. Inflix는 AI 검증, 실시간 성과 분석, 자동 리포트로
               브랜드의 인플루언서 마케팅을 완전히 바꿉니다.
             </p>
             <Link
@@ -105,13 +105,13 @@ export default function ForBrandsPage() {
         </section>
 
         {/* Pain Points */}
-        <section className="py-20 px-4 bg-[#1a1a2e]/50">
+        <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 이런 고민 있으신가요?
               </h2>
-              <p className="text-[#a1a1aa] text-lg">
+              <p className="text-[#6B7280] text-lg">
                 많은 브랜드 마케터들이 매일 겪고 있는 문제들입니다.
               </p>
             </div>
@@ -119,11 +119,11 @@ export default function ForBrandsPage() {
               {painPoints.map((point) => (
                 <div
                   key={point.title}
-                  className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors"
+                  className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 hover:border-[#7c3aed]/50 transition-colors"
                 >
                   <div className="text-4xl mb-4">{point.icon}</div>
-                  <h3 className="text-[#e4e4e7] text-xl font-semibold mb-3">{point.title}</h3>
-                  <p className="text-[#a1a1aa] leading-relaxed">{point.description}</p>
+                  <h3 className="text-[#111827] text-xl font-semibold mb-3">{point.title}</h3>
+                  <p className="text-[#6B7280] leading-relaxed">{point.description}</p>
                 </div>
               ))}
             </div>
@@ -134,10 +134,10 @@ export default function ForBrandsPage() {
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
-                InfluSync가 해결해 드립니다
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+                Inflix가 해결해 드립니다
               </h2>
-              <p className="text-[#a1a1aa] text-lg">
+              <p className="text-[#6B7280] text-lg">
                 검증된 기능으로 모든 고민을 한 번에 해소하세요.
               </p>
             </div>
@@ -146,13 +146,13 @@ export default function ForBrandsPage() {
                 <Link
                   key={sol.title}
                   href={sol.href}
-                  className="group bg-[#1a1a2e] border border-[#2a2a3e] rounded-2xl p-8 hover:border-[#7c3aed]/60 hover:bg-[#1a1a2e]/80 transition-all"
+                  className="group bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-8 hover:border-[#7c3aed]/60 hover:bg-[#FFFFFF]/80 transition-all"
                 >
                   <div className="text-4xl mb-4">{sol.icon}</div>
-                  <h3 className="text-[#e4e4e7] text-xl font-semibold mb-3 group-hover:text-[#a78bfa] transition-colors">
+                  <h3 className="text-[#111827] text-xl font-semibold mb-3 group-hover:text-[#a78bfa] transition-colors">
                     {sol.title}
                   </h3>
-                  <p className="text-[#a1a1aa] leading-relaxed mb-4">{sol.description}</p>
+                  <p className="text-[#6B7280] leading-relaxed mb-4">{sol.description}</p>
                   <span className="text-[#7c3aed] text-sm font-medium">자세히 보기 →</span>
                 </Link>
               ))}
@@ -161,37 +161,37 @@ export default function ForBrandsPage() {
         </section>
 
         {/* Comparison Table */}
-        <section className="py-20 px-4 bg-[#1a1a2e]/50">
+        <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-4">
-                기존 방식 vs InfluSync
+              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+                기존 방식 vs Inflix
               </h2>
-              <p className="text-[#a1a1aa] text-lg">무엇이 다른지 직접 비교해보세요.</p>
+              <p className="text-[#6B7280] text-lg">무엇이 다른지 직접 비교해보세요.</p>
             </div>
-            <div className="overflow-hidden rounded-2xl border border-[#2a2a3e]">
+            <div className="overflow-hidden rounded-2xl border border-[#E5E7EB]">
               {/* Table Header */}
-              <div className="grid grid-cols-3 bg-[#1a1a2e] border-b border-[#2a2a3e]">
-                <div className="px-6 py-4 text-[#a1a1aa] font-medium text-sm">항목</div>
-                <div className="px-6 py-4 text-center font-semibold text-[#e4e4e7] border-l border-[#2a2a3e]">
+              <div className="grid grid-cols-3 bg-[#FFFFFF] border-b border-[#E5E7EB]">
+                <div className="px-6 py-4 text-[#6B7280] font-medium text-sm">항목</div>
+                <div className="px-6 py-4 text-center font-semibold text-[#111827] border-l border-[#E5E7EB]">
                   기존 방식
                 </div>
-                <div className="px-6 py-4 text-center font-semibold bg-gradient-to-r from-[#7c3aed]/20 to-[#e94560]/20 text-[#a78bfa] border-l border-[#2a2a3e]">
-                  InfluSync
+                <div className="px-6 py-4 text-center font-semibold bg-gradient-to-r from-[#7c3aed]/20 to-[#e94560]/20 text-[#a78bfa] border-l border-[#E5E7EB]">
+                  Inflix
                 </div>
               </div>
               {comparisonRows.map((row, i) => (
                 <div
                   key={row.category}
-                  className={`grid grid-cols-3 border-b border-[#2a2a3e] last:border-b-0 ${
-                    i % 2 === 0 ? "bg-[#0a0a0f]" : "bg-[#1a1a2e]/30"
+                  className={`grid grid-cols-3 border-b border-[#E5E7EB] last:border-b-0 ${
+                    i % 2 === 0 ? "bg-[#FFFFFF]" : "bg-[#F9FAFB]"
                   }`}
                 >
-                  <div className="px-6 py-5 text-[#e4e4e7] font-medium">{row.category}</div>
-                  <div className="px-6 py-5 text-center text-[#a1a1aa] border-l border-[#2a2a3e]">
+                  <div className="px-6 py-5 text-[#111827] font-medium">{row.category}</div>
+                  <div className="px-6 py-5 text-center text-[#6B7280] border-l border-[#E5E7EB]">
                     {row.before}
                   </div>
-                  <div className="px-6 py-5 text-center text-[#a78bfa] font-medium border-l border-[#2a2a3e]">
+                  <div className="px-6 py-5 text-center text-[#a78bfa] font-medium border-l border-[#E5E7EB]">
                     ✓ {row.after}
                   </div>
                 </div>
@@ -203,10 +203,10 @@ export default function ForBrandsPage() {
         {/* Bottom CTA */}
         <section className="py-24 px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#e4e4e7] mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-6">
               지금 바로 데이터 기반 마케팅을 시작하세요
             </h2>
-            <p className="text-[#a1a1aa] text-lg mb-10">
+            <p className="text-[#6B7280] text-lg mb-10">
               무료 플랜으로 시작하여 인플루언서 마케팅의 ROI를 직접 경험해보세요.
               신용카드가 필요 없습니다.
             </p>

@@ -30,14 +30,14 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
   return (
     <div
       style={{
-        background: "#1a1a2e",
-        border: "1px solid #2a2a3e",
+        background: "#FFFFFF",
+        border: "1px solid #E5E7EB",
         borderRadius: 8,
         padding: "8px 12px",
       }}
     >
-      <p style={{ color: "#a1a1aa", margin: 0, fontSize: 12 }}>{label}</p>
-      <p style={{ color: "#e4e4e7", margin: "2px 0 0", fontSize: 13, fontWeight: 600 }}>
+      <p style={{ color: "#6B7280", margin: 0, fontSize: 12 }}>{label}</p>
+      <p style={{ color: "#111827", margin: "2px 0 0", fontSize: 13, fontWeight: 600 }}>
         {payload[0].value}
       </p>
     </div>
@@ -45,8 +45,8 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
 }
 
 const sharedAxisProps = {
-  tick: { fill: "#a1a1aa", fontSize: 12 },
-  axisLine: { stroke: "#2a2a3e" },
+  tick: { fill: "#6B7280", fontSize: 12 },
+  axisLine: { stroke: "#E5E7EB" },
   tickLine: false as const,
 };
 
@@ -62,7 +62,7 @@ export default function LineChartComponent({
     return (
       <div style={{ minHeight: 250, width: "100%" }}>
         {label && (
-          <p style={{ color: "#a1a1aa", fontSize: 12, marginBottom: 4 }}>{label}</p>
+          <p style={{ color: "#6B7280", fontSize: 12, marginBottom: 4 }}>{label}</p>
         )}
         <ResponsiveContainer width="100%" height={250}>
           <AreaChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
@@ -72,10 +72,10 @@ export default function LineChartComponent({
                 <stop offset="100%" stopColor={color} stopOpacity={0.02} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#2a2a3e" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
             <XAxis dataKey="date" {...sharedAxisProps} />
             <YAxis {...sharedAxisProps} />
-            <Tooltip content={<CustomTooltip />} cursor={{ stroke: "#2a2a3e" }} />
+            <Tooltip content={<CustomTooltip />} cursor={{ stroke: "#E5E7EB" }} />
             <Area
               type="monotone"
               dataKey="value"
@@ -83,7 +83,7 @@ export default function LineChartComponent({
               strokeWidth={2}
               fill={`url(#${gradientId})`}
               dot={false}
-              activeDot={{ r: 4, fill: color, stroke: "#1a1a2e", strokeWidth: 2 }}
+              activeDot={{ r: 4, fill: color, stroke: "#FFFFFF", strokeWidth: 2 }}
             />
           </AreaChart>
         </ResponsiveContainer>
@@ -94,21 +94,21 @@ export default function LineChartComponent({
   return (
     <div style={{ minHeight: 250, width: "100%" }}>
       {label && (
-        <p style={{ color: "#a1a1aa", fontSize: 12, marginBottom: 4 }}>{label}</p>
+        <p style={{ color: "#6B7280", fontSize: 12, marginBottom: 4 }}>{label}</p>
       )}
       <ResponsiveContainer width="100%" height={250}>
         <LineChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#2a2a3e" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
           <XAxis dataKey="date" {...sharedAxisProps} />
           <YAxis {...sharedAxisProps} />
-          <Tooltip content={<CustomTooltip />} cursor={{ stroke: "#2a2a3e" }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ stroke: "#E5E7EB" }} />
           <Line
             type="monotone"
             dataKey="value"
             stroke={color}
             strokeWidth={2}
             dot={false}
-            activeDot={{ r: 4, fill: color, stroke: "#1a1a2e", strokeWidth: 2 }}
+            activeDot={{ r: 4, fill: color, stroke: "#FFFFFF", strokeWidth: 2 }}
           />
         </LineChart>
       </ResponsiveContainer>

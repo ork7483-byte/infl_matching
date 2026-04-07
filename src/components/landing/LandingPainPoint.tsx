@@ -10,7 +10,7 @@ export default function LandingPainPoint({
   description,
 }: LandingPainPointProps) {
   return (
-    <div className="flex items-start gap-4 bg-card border border-border rounded-xl p-5">
+    <div className="flex items-start gap-4 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl p-5">
       <span className="text-2xl flex-shrink-0">{emoji}</span>
       <div>
         <p className="font-semibold text-foreground">{title}</p>

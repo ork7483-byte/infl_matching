@@ -50,7 +50,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4"
-      style={{ background: "#0a0a0f" }}>
+      style={{ background: "#FFFFFF" }}>
       {/* Background glow effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -88,10 +88,10 @@ export default function LoginPage() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              InfluSync
+              Inflix
             </span>
           </div>
-          <p style={{ color: "#a1a1aa" }} className="text-sm mt-1">
+          <p style={{ color: "#6B7280" }} className="text-sm mt-1">
             인플루언서 마케팅 플랫폼
           </p>
         </div>
@@ -100,14 +100,14 @@ export default function LoginPage() {
         <div
           className="rounded-2xl p-8"
           style={{
-            background: "#1a1a2e",
-            border: "1px solid #2a2a3e",
-            boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
+            background: "#FFFFFF",
+            border: "1px solid #E5E7EB",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
           }}
         >
           <h1
             className="text-xl font-semibold mb-6"
-            style={{ color: "#e4e4e7" }}
+            style={{ color: "#111827" }}
           >
             로그인
           </h1>
@@ -118,7 +118,7 @@ export default function LoginPage() {
               <label
                 htmlFor="email"
                 className="block text-sm font-medium mb-1.5"
-                style={{ color: "#a1a1aa" }}
+                style={{ color: "#6B7280" }}
               >
                 이메일
               </label>
@@ -132,16 +132,16 @@ export default function LoginPage() {
                 placeholder="name@company.com"
                 className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all"
                 style={{
-                  background: "#0a0a0f",
-                  border: "1px solid #2a2a3e",
-                  color: "#e4e4e7",
+                  background: "#FFFFFF",
+                  border: "1px solid #E5E7EB",
+                  color: "#111827",
                 }}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = "#7c3aed";
                   e.currentTarget.style.boxShadow = "0 0 0 1px #7c3aed";
                 }}
                 onBlur={(e) => {
-                  e.currentTarget.style.borderColor = "#2a2a3e";
+                  e.currentTarget.style.borderColor = "#E5E7EB";
                   e.currentTarget.style.boxShadow = "none";
                 }}
               />
@@ -152,7 +152,7 @@ export default function LoginPage() {
               <label
                 htmlFor="password"
                 className="block text-sm font-medium mb-1.5"
-                style={{ color: "#a1a1aa" }}
+                style={{ color: "#6B7280" }}
               >
                 비밀번호
               </label>
@@ -166,16 +166,16 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all"
                 style={{
-                  background: "#0a0a0f",
-                  border: "1px solid #2a2a3e",
-                  color: "#e4e4e7",
+                  background: "#FFFFFF",
+                  border: "1px solid #E5E7EB",
+                  color: "#111827",
                 }}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = "#7c3aed";
                   e.currentTarget.style.boxShadow = "0 0 0 1px #7c3aed";
                 }}
                 onBlur={(e) => {
-                  e.currentTarget.style.borderColor = "#2a2a3e";
+                  e.currentTarget.style.borderColor = "#E5E7EB";
                   e.currentTarget.style.boxShadow = "none";
                 }}
               />
@@ -202,7 +202,7 @@ export default function LoginPage() {
               className="w-full py-3 rounded-lg text-sm font-semibold text-white transition-all mt-2 relative overflow-hidden"
               style={{
                 background: loading
-                  ? "#2a2a3e"
+                  ? "#E5E7EB"
                   : "linear-gradient(135deg, #7c3aed, #e94560)",
                 cursor: loading ? "not-allowed" : "pointer",
                 opacity: loading ? 0.7 : 1,
@@ -241,7 +241,7 @@ export default function LoginPage() {
         {/* Sign up link */}
         <p
           className="text-center text-sm mt-6"
-          style={{ color: "#a1a1aa" }}
+          style={{ color: "#6B7280" }}
         >
           계정이 없으신가요?{" "}
           <Link

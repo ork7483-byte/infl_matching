@@ -103,7 +103,7 @@ export default function StartPage() {
       {/* Value props */}
       <section className="max-w-lg mx-auto px-4 py-16">
         <h2 className="text-2xl font-bold text-center mb-8">
-          왜 InfluSync인가요?
+          왜 Inflix인가요?
         </h2>
         <div className="flex flex-col gap-4">
           {[

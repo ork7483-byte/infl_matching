@@ -27,7 +27,7 @@ const subFeatures = [
 
 export default function MediaKitPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#0a0a0f", color: "#e4e4e7" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF", color: "#111827" }}>
       <Navbar />
 
       {/* Hero */}
@@ -44,7 +44,7 @@ export default function MediaKitPage() {
             <br />
             <span style={{ color: "#e94560" }}>프로페셔널 미디어킷</span>
           </h1>
-          <p className="text-lg md:text-xl mb-10" style={{ color: "#a1a1aa" }}>
+          <p className="text-lg md:text-xl mb-10" style={{ color: "#6B7280" }}>
             SNS 채널을 연동하면 팔로워 수, 참여율, 콘텐츠 성과가 담긴<br className="hidden md:block" />
             세련된 미디어킷이 자동으로 완성됩니다.
           </p>
@@ -66,11 +66,11 @@ export default function MediaKitPage() {
               <div
                 key={feature.title}
                 className="rounded-2xl p-8 flex flex-col gap-4"
-                style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+                style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
               >
                 <div className="text-3xl">{feature.icon}</div>
                 <h3 className="text-lg font-semibold">{feature.title}</h3>
-                <p style={{ color: "#a1a1aa" }} className="text-sm leading-relaxed">
+                <p style={{ color: "#6B7280" }} className="text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -84,13 +84,13 @@ export default function MediaKitPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-3">이런 미디어킷이 완성됩니다</h2>
-            <p style={{ color: "#a1a1aa" }}>가입 후 내 계정으로 생성된 실제 미디어킷을 확인하세요.</p>
+            <p style={{ color: "#6B7280" }}>가입 후 내 계정으로 생성된 실제 미디어킷을 확인하세요.</p>
           </div>
 
           {/* Preview card with blur effect on bottom */}
           <div
             className="rounded-3xl overflow-hidden relative"
-            style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+            style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
           >
             {/* Top 60% — visible content */}
             <div className="p-8 pb-4">
@@ -104,7 +104,7 @@ export default function MediaKitPage() {
                 </div>
                 <div>
                   <div className="font-bold text-lg">@jina_creates</div>
-                  <div className="text-sm" style={{ color: "#a1a1aa" }}>라이프스타일 · 뷰티 크리에이터</div>
+                  <div className="text-sm" style={{ color: "#6B7280" }}>라이프스타일 · 뷰티 크리에이터</div>
                 </div>
                 <div className="ml-auto">
                   <span
@@ -126,19 +126,19 @@ export default function MediaKitPage() {
                   <div
                     key={stat.label}
                     className="rounded-xl p-4 text-center"
-                    style={{ backgroundColor: "#0a0a0f" }}
+                    style={{ backgroundColor: "#FFFFFF" }}
                   >
                     <div className="text-2xl font-bold mb-1" style={{ color: "#e94560" }}>
                       {stat.value}
                     </div>
-                    <div className="text-xs" style={{ color: "#a1a1aa" }}>{stat.label}</div>
+                    <div className="text-xs" style={{ color: "#6B7280" }}>{stat.label}</div>
                   </div>
                 ))}
               </div>
 
               {/* Channel breakdown */}
               <div>
-                <h4 className="text-sm font-semibold mb-3" style={{ color: "#a1a1aa" }}>채널별 현황</h4>
+                <h4 className="text-sm font-semibold mb-3" style={{ color: "#6B7280" }}>채널별 현황</h4>
                 <div className="flex flex-col gap-2">
                   {[
                     { channel: "Instagram", followers: "85K", bar: 70 },
@@ -147,13 +147,13 @@ export default function MediaKitPage() {
                   ].map((ch) => (
                     <div key={ch.channel} className="flex items-center gap-3">
                       <div className="w-20 text-sm">{ch.channel}</div>
-                      <div className="flex-1 rounded-full h-2" style={{ backgroundColor: "#2a2a3e" }}>
+                      <div className="flex-1 rounded-full h-2" style={{ backgroundColor: "#E5E7EB" }}>
                         <div
                           className="h-2 rounded-full"
                           style={{ width: `${ch.bar}%`, backgroundColor: "#e94560" }}
                         />
                       </div>
-                      <div className="text-sm w-12 text-right" style={{ color: "#a1a1aa" }}>{ch.followers}</div>
+                      <div className="text-sm w-12 text-right" style={{ color: "#6B7280" }}>{ch.followers}</div>
                     </div>
                   ))}
                 </div>
@@ -169,13 +169,13 @@ export default function MediaKitPage() {
                 filter: "blur(4px)",
               }}
             >
-              <h4 className="text-sm font-semibold mb-4" style={{ color: "#a1a1aa" }}>최근 협업 캠페인</h4>
+              <h4 className="text-sm font-semibold mb-4" style={{ color: "#6B7280" }}>최근 협업 캠페인</h4>
               <div className="grid grid-cols-2 gap-3">
                 {["뷰티 브랜드 A", "패션 브랜드 B", "식품 브랜드 C", "테크 브랜드 D"].map((brand) => (
                   <div
                     key={brand}
                     className="rounded-xl p-3 text-sm"
-                    style={{ backgroundColor: "#0a0a0f" }}
+                    style={{ backgroundColor: "#FFFFFF" }}
                   >
                     {brand}
                   </div>
@@ -187,7 +187,7 @@ export default function MediaKitPage() {
             <div
               className="absolute bottom-0 left-0 right-0 flex items-end justify-center pb-8"
               style={{
-                background: "linear-gradient(to top, #0a0a0f 40%, transparent 100%)",
+                background: "linear-gradient(to top, #FFFFFF 40%, transparent 100%)",
                 height: "120px",
               }}
             >
@@ -207,12 +207,12 @@ export default function MediaKitPage() {
       <section className="py-24 px-4 text-center">
         <div
           className="max-w-3xl mx-auto rounded-3xl p-12"
-          style={{ backgroundColor: "#1a1a2e", border: "1px solid #2a2a3e" }}
+          style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             지금 바로 나만의 미디어킷을 만들어보세요
           </h2>
-          <p className="mb-8" style={{ color: "#a1a1aa" }}>
+          <p className="mb-8" style={{ color: "#6B7280" }}>
             5분 안에 프로페셔널 미디어킷을 완성할 수 있습니다.
           </p>
           <Link

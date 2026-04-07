@@ -71,7 +71,7 @@ export default function ContentDetailModal({
       />
 
       {/* Modal container */}
-      <div className="relative z-10 w-full h-full sm:h-auto sm:max-w-4xl sm:max-h-[90vh] bg-card border-0 sm:border border-border sm:rounded-2xl overflow-hidden flex flex-col sm:flex-row shadow-2xl">
+      <div className="relative z-10 w-full h-full sm:h-auto sm:max-w-4xl sm:max-h-[90vh] bg-white border-0 sm:border border-[#E5E7EB] sm:rounded-2xl overflow-hidden flex flex-col sm:flex-row shadow-2xl">
 
         {/* Close button */}
         <button
@@ -156,7 +156,7 @@ export default function ContentDetailModal({
                 </p>
                 <div className="flex items-center gap-2 mt-1 flex-wrap">
                   <Badge variant="purple" size="sm">{item.category}</Badge>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-card-hover border border-border text-muted-foreground">
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-[#F3F4F6] border border-[#E5E7EB] text-[#6B7280]">
                     {item.type === "reel" ? "릴스" : item.type === "story" ? "스토리" : "피드"}
                   </span>
                 </div>
@@ -165,7 +165,7 @@ export default function ContentDetailModal({
 
             {/* Campaign info */}
             {(item.campaignName || item.brandName) && (
-              <div className="bg-background rounded-xl p-3 border border-border">
+              <div className="bg-[#F9FAFB] rounded-xl p-3 border border-[#E5E7EB]">
                 {item.campaignName && (
                   <p className="text-sm font-semibold text-foreground">
                     {item.campaignName}
@@ -251,13 +251,13 @@ export default function ContentDetailModal({
                 크리에이터 프로필 보기
               </Link>
               {session ? (
-                <button className="w-full px-4 py-2.5 rounded-xl bg-gradient-brand text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-glow">
+                <button className="w-full px-4 py-2.5 rounded-xl bg-[#7c3aed] text-white text-sm font-semibold hover:bg-[#6d28d9] transition-colors">
                   캠페인 제안하기
                 </button>
               ) : (
                 <Link
                   href="/register"
-                  className="block w-full text-center px-4 py-2.5 rounded-xl bg-gradient-brand text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-glow"
+                  className="block w-full text-center px-4 py-2.5 rounded-xl bg-[#7c3aed] text-white text-sm font-semibold hover:bg-[#6d28d9] transition-colors"
                 >
                   회원가입 후 캠페인 제안하기
                 </Link>
@@ -303,7 +303,7 @@ function MetricCell({
   value: React.ReactNode;
 }) {
   return (
-    <div className="bg-background rounded-xl p-3 border border-border">
+    <div className="bg-[#F9FAFB] rounded-xl p-3 border border-[#E5E7EB]">
       <div className="flex items-center gap-1.5 mb-1">
         <span className="text-sm">{icon}</span>
         <span className="text-xs text-muted-foreground">{label}</span>

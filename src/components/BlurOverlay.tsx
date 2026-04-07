@@ -36,8 +36,8 @@ export default function BlurOverlay({
         {children}
       </div>
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <div className="bg-[rgba(10,10,15,0.85)] backdrop-blur-sm border border-brand-purple/30 rounded-2xl p-8 text-center max-w-sm mx-4">
-          <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-brand-purple/20 flex items-center justify-center">
+        <div className="bg-[rgba(255,255,255,0.92)] border border-[#E5E7EB] rounded-2xl p-8 text-center max-w-sm mx-4 shadow-lg">
+          <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[#7c3aed]/10 flex items-center justify-center">
             <svg
               className="w-6 h-6 text-brand-purple"
               fill="none"
@@ -52,10 +52,10 @@ export default function BlurOverlay({
               />
             </svg>
           </div>
-          <h3 className="text-lg font-bold text-foreground mb-2">
+          <h3 className="text-lg font-bold text-[#111827] mb-2">
             무료 회원가입
           </h3>
-          <p className="text-sm text-muted-foreground mb-4">
+          <p className="text-sm text-[#6B7280] mb-4">
             가입하면 모든 데이터를 무료로 확인할 수 있어요
           </p>
           <Link

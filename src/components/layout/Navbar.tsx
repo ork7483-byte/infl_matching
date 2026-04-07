@@ -129,13 +129,13 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-[#E5E7EB]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center flex-shrink-0">
-              <span className="text-xl font-bold bg-gradient-brand bg-clip-text text-transparent">
-                InfluSync
+              <span className="text-xl font-bold">
+                <span className="text-[#111827]">Infl</span><span className="text-[#7c3aed]">ix</span>
               </span>
             </Link>
 
@@ -189,7 +189,7 @@ export default function Navbar() {
                   </span>
                   <Link
                     href="/dashboard"
-                    className="px-4 py-2 text-sm font-medium rounded-lg bg-gradient-brand text-white hover:opacity-90 transition-opacity duration-200"
+                    className="px-4 py-2 text-sm font-medium rounded-lg bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"
                   >
                     대시보드
                   </Link>
@@ -210,7 +210,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/register"
-                    className="px-4 py-2 text-sm font-medium rounded-lg bg-gradient-brand text-white hover:opacity-90 transition-opacity duration-200 shadow-glow"
+                    className="px-4 py-2 text-sm font-medium rounded-lg bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"
                   >
                     무료 시작하기
                   </Link>
@@ -261,13 +261,13 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-72 bg-card border-l border-border shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 z-50 h-full w-72 bg-white border-l border-[#E5E7EB] shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between p-4 border-b border-border">
-          <span className="text-lg font-bold bg-gradient-brand bg-clip-text text-transparent">
-            InfluSync
+        <div className="flex items-center justify-between p-4 border-b border-[#E5E7EB]">
+          <span className="text-lg font-bold">
+            <span className="text-[#111827]">Infl</span><span className="text-[#7c3aed]">ix</span>
           </span>
           <button
             onClick={() => setMobileOpen(false)}
@@ -401,7 +401,7 @@ export default function Navbar() {
                 </p>
                 <Link
                   href="/dashboard"
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-center bg-gradient-brand text-white hover:opacity-90 transition-opacity duration-200"
+                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-center bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"
                 >
                   대시보드
                 </Link>
@@ -422,7 +422,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   href="/register"
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-center bg-gradient-brand text-white hover:opacity-90 transition-opacity duration-200"
+                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-center bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"
                 >
                   무료 시작하기
                 </Link>

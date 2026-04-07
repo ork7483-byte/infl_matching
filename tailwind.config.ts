@@ -10,14 +10,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0a0a0f",
-        foreground: "#e4e4e7",
-        card: "#1a1a2e",
-        "card-hover": "#252542",
-        border: "#2a2a3e",
-        "border-light": "#3a3a4e",
-        muted: "#71717a",
-        "muted-foreground": "#a1a1aa",
+        background: "#FFFFFF",
+        foreground: "#111827",
+        card: "#FFFFFF",
+        "card-hover": "#F9FAFB",
+        border: "#E5E7EB",
+        "border-light": "#D1D5DB",
+        muted: "#9CA3AF",
+        "muted-foreground": "#6B7280",
         brand: {
           purple: "#7c3aed",
           "purple-light": "#8b5cf6",
@@ -32,18 +32,18 @@ const config: Config = {
         info: "#3b82f6",
       },
       fontFamily: {
-        sans: ["Pretendard", "Satoshi", "system-ui", "sans-serif"],
-        display: ["Satoshi", "Pretendard", "system-ui", "sans-serif"],
+        sans: ["Inter", "Pretendard", "system-ui", "sans-serif"],
+        display: ["Inter", "Pretendard", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "gradient-brand": "linear-gradient(135deg, #7c3aed, #e94560)",
         "gradient-purple": "linear-gradient(135deg, #7c3aed, #8b5cf6)",
-        "gradient-card": "linear-gradient(135deg, #1a1a2e, #252542)",
+        "gradient-card": "linear-gradient(135deg, #FFFFFF, #F9FAFB)",
       },
       boxShadow: {
-        glow: "0 0 20px rgba(124, 58, 237, 0.15)",
-        "glow-pink": "0 0 20px rgba(233, 69, 96, 0.15)",
-        card: "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2)",
+        glow: "0 0 20px rgba(124, 58, 237, 0.1)",
+        "glow-pink": "0 0 20px rgba(233, 69, 96, 0.1)",
+        card: "0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)",
       },
       borderRadius: {
         xl: "12px",

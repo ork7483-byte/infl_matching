@@ -124,8 +124,8 @@ export default function DashboardLayout({ role, children }: DashboardLayoutProps
       {/* Logo */}
       <div className="flex items-center h-16 px-6 border-b border-border flex-shrink-0">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-lg font-bold bg-gradient-brand bg-clip-text text-transparent">
-            InfluSync
+          <span className="text-lg font-bold">
+            <span className="text-[#111827]">Infl</span><span className="text-[#7c3aed]">ix</span>
           </span>
         </Link>
       </div>
@@ -158,8 +158,8 @@ export default function DashboardLayout({ role, children }: DashboardLayoutProps
               onClick={() => setSidebarOpen(false)}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 group ${
                 isActive
-                  ? "bg-brand-purple/15 text-brand-purple"
-                  : "text-muted-foreground hover:text-foreground hover:bg-card-hover"
+                  ? "bg-[#7c3aed]/10 text-[#7c3aed]"
+                  : "text-[#6B7280] hover:text-[#111827] hover:bg-[#F3F4F6]"
               }`}
             >
               <span
@@ -211,9 +211,9 @@ export default function DashboardLayout({ role, children }: DashboardLayoutProps
   );
 
   return (
-    <div className="flex h-screen bg-background overflow-hidden">
+    <div className="flex h-screen bg-[#F9FAFB] overflow-hidden">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:flex-col w-64 bg-card border-r border-border flex-shrink-0">
+      <aside className="hidden lg:flex lg:flex-col w-64 bg-[#F9FAFB] border-r border-[#E5E7EB] flex-shrink-0">
         <SidebarContent />
       </aside>
 
@@ -227,7 +227,7 @@ export default function DashboardLayout({ role, children }: DashboardLayoutProps
 
       {/* Mobile Sidebar Drawer */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-card border-r border-border transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#F9FAFB] border-r border-[#E5E7EB] transform transition-transform duration-300 ease-in-out lg:hidden ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -237,7 +237,7 @@ export default function DashboardLayout({ role, children }: DashboardLayoutProps
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Mobile top bar */}
-        <header className="lg:hidden flex items-center justify-between h-16 px-4 bg-card border-b border-border flex-shrink-0">
+        <header className="lg:hidden flex items-center justify-between h-16 px-4 bg-white border-b border-[#E5E7EB] flex-shrink-0">
           <button
             onClick={() => setSidebarOpen(true)}
             className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-200"
@@ -247,8 +247,8 @@ export default function DashboardLayout({ role, children }: DashboardLayoutProps
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <span className="text-base font-bold bg-gradient-brand bg-clip-text text-transparent">
-            InfluSync
+          <span className="text-base font-bold">
+            <span className="text-[#111827]">Infl</span><span className="text-[#7c3aed]">ix</span>
           </span>
           <div className="w-8 h-8 rounded-full bg-gradient-brand flex items-center justify-center text-white text-xs font-bold">
             {session?.user?.name?.[0]?.toUpperCase() ??

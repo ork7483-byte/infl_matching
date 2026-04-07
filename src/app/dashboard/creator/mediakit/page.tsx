@@ -11,7 +11,7 @@ const THEMES: { id: Theme; label: string; description: string; accent: string }[
     id: "minimal",
     label: "미니멀",
     description: "깔끔하고 심플한 흑백 레이아웃",
-    accent: "#a1a1aa",
+    accent: "#6B7280",
   },
   {
     id: "modern",
@@ -47,15 +47,15 @@ const THEME_STYLES: Record<Theme, { bg: string; border: string; accent: string; 
   },
   modern: {
     bg: "bg-[#0f0f1a]",
-    border: "border-[#2a2a3e]",
+    border: "border-[#E5E7EB]",
     accent: "text-[#7c3aed]",
-    headerBg: "bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1a]",
+    headerBg: "bg-gradient-to-br from-[#FFFFFF] to-[#0f0f1a]",
   },
   bold: {
-    bg: "bg-[#0a0a0f]",
+    bg: "bg-[#FFFFFF]",
     border: "border-[#e94560]/30",
     accent: "text-[#e94560]",
-    headerBg: "bg-gradient-to-br from-[#e94560]/10 to-[#0a0a0f]",
+    headerBg: "bg-gradient-to-br from-[#e94560]/10 to-[#FFFFFF]",
   },
 };
 
@@ -209,7 +209,7 @@ export default function MediaKitPage() {
                     <div
                       key={n}
                       className={`aspect-square rounded-md ${
-                        selectedTheme === "minimal" ? "bg-gray-100" : "bg-[#1a1a2e]"
+                        selectedTheme === "minimal" ? "bg-gray-100" : "bg-[#FFFFFF]"
                       } flex items-center justify-center`}
                     >
                       <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -234,7 +234,7 @@ export default function MediaKitPage() {
                             : "rgba(124,58,237,0.15)",
                         color:
                           selectedTheme === "minimal"
-                            ? "#374151"
+                            ? "#E5E7EB"
                             : "#a78bfa",
                       }}
                     >

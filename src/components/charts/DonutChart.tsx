@@ -30,8 +30,8 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
   return (
     <div
       style={{
-        background: "#1a1a2e",
-        border: "1px solid #2a2a3e",
+        background: "#FFFFFF",
+        border: "1px solid #E5E7EB",
         borderRadius: 8,
         padding: "8px 12px",
       }}
@@ -39,7 +39,7 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
       <p style={{ color: item.payload.color, margin: 0, fontSize: 13, fontWeight: 600 }}>
         {item.name}
       </p>
-      <p style={{ color: "#e4e4e7", margin: "2px 0 0", fontSize: 13 }}>
+      <p style={{ color: "#111827", margin: "2px 0 0", fontSize: 13 }}>
         {item.value}
       </p>
     </div>
@@ -69,7 +69,7 @@ export default function DonutChart({ data }: DonutChartProps) {
             verticalAlign="bottom"
             height={36}
             formatter={(value) => (
-              <span style={{ color: "#a1a1aa", fontSize: 12 }}>{value}</span>
+              <span style={{ color: "#6B7280", fontSize: 12 }}>{value}</span>
             )}
           />
         </PieChart>

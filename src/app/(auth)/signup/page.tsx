@@ -31,10 +31,10 @@ function getPasswordStrength(pw: string): { score: number; label: string; color:
 }
 
 const inputStyle = (focused: boolean): React.CSSProperties => ({
-  background: "#0a0a0f",
-  border: `1px solid ${focused ? "#7c3aed" : "#2a2a3e"}`,
+  background: "#FFFFFF",
+  border: `1px solid ${focused ? "#7c3aed" : "#E5E7EB"}`,
   boxShadow: focused ? "0 0 0 1px #7c3aed" : "none",
-  color: "#e4e4e7",
+  color: "#111827",
   transition: "border-color 0.15s, box-shadow 0.15s",
 });
 
@@ -61,7 +61,7 @@ function InputField({
       <label
         htmlFor={id}
         className="block text-sm font-medium mb-1.5"
-        style={{ color: "#a1a1aa" }}
+        style={{ color: "#6B7280" }}
       >
         {label}
         {required && <span style={{ color: "#e94560" }} className="ml-0.5">*</span>}
@@ -104,7 +104,7 @@ function SelectField({
       <label
         htmlFor={id}
         className="block text-sm font-medium mb-1.5"
-        style={{ color: "#a1a1aa" }}
+        style={{ color: "#6B7280" }}
       >
         {label}
       </label>
@@ -117,11 +117,11 @@ function SelectField({
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
       >
-        <option value="" style={{ background: "#1a1a2e" }}>
+        <option value="" style={{ background: "#FFFFFF" }}>
           {placeholder}
         </option>
         {options.map((opt) => (
-          <option key={opt.value} value={opt.value} style={{ background: "#1a1a2e" }}>
+          <option key={opt.value} value={opt.value} style={{ background: "#FFFFFF" }}>
             {opt.label}
           </option>
         ))}
@@ -240,7 +240,7 @@ function SignupForm() {
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 py-12"
-      style={{ background: "#0a0a0f" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Background glows */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -279,10 +279,10 @@ function SignupForm() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              InfluSync
+              Inflix
             </span>
           </div>
-          <p style={{ color: "#a1a1aa" }} className="text-sm mt-1">
+          <p style={{ color: "#6B7280" }} className="text-sm mt-1">
             {step === "role" ? "시작하는 방법을 선택하세요" : "계정 정보를 입력하세요"}
           </p>
         </div>
@@ -303,18 +303,18 @@ function SignupForm() {
               onClick={() => handleRoleSelect("BRAND")}
               className="w-full rounded-2xl p-6 text-left group transition-all duration-200"
               style={{
-                background: "#1a1a2e",
-                border: "1px solid #2a2a3e",
+                background: "#FFFFFF",
+                border: "1px solid #E5E7EB",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "#7c3aed";
                 e.currentTarget.style.boxShadow = "0 0 24px rgba(124,58,237,0.15)";
-                e.currentTarget.style.background = "#1e1e35";
+                e.currentTarget.style.background = "#F5F3FF";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#2a2a3e";
+                e.currentTarget.style.borderColor = "#E5E7EB";
                 e.currentTarget.style.boxShadow = "none";
-                e.currentTarget.style.background = "#1a1a2e";
+                e.currentTarget.style.background = "#FFFFFF";
               }}
             >
               <div className="flex items-start gap-4">
@@ -331,14 +331,14 @@ function SignupForm() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-base" style={{ color: "#e4e4e7" }}>
+                    <h3 className="font-semibold text-base" style={{ color: "#111827" }}>
                       브랜드
                     </h3>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </div>
-                  <p className="text-sm mt-1" style={{ color: "#a1a1aa" }}>
+                  <p className="text-sm mt-1" style={{ color: "#6B7280" }}>
                     인플루언서를 찾고 캠페인을 관리하는 브랜드 또는 마케터
                   </p>
                   <span
@@ -357,18 +357,18 @@ function SignupForm() {
               onClick={() => handleRoleSelect("CREATOR")}
               className="w-full rounded-2xl p-6 text-left transition-all duration-200"
               style={{
-                background: "#1a1a2e",
-                border: "1px solid #2a2a3e",
+                background: "#FFFFFF",
+                border: "1px solid #E5E7EB",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "#e94560";
                 e.currentTarget.style.boxShadow = "0 0 24px rgba(233,69,96,0.15)";
-                e.currentTarget.style.background = "#1e1a2a";
+                e.currentTarget.style.background = "#FFF1F2";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#2a2a3e";
+                e.currentTarget.style.borderColor = "#E5E7EB";
                 e.currentTarget.style.boxShadow = "none";
-                e.currentTarget.style.background = "#1a1a2e";
+                e.currentTarget.style.background = "#FFFFFF";
               }}
             >
               <div className="flex items-start gap-4">
@@ -384,14 +384,14 @@ function SignupForm() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-base" style={{ color: "#e4e4e7" }}>
+                    <h3 className="font-semibold text-base" style={{ color: "#111827" }}>
                       크리에이터
                     </h3>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e94560" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </div>
-                  <p className="text-sm mt-1" style={{ color: "#a1a1aa" }}>
+                  <p className="text-sm mt-1" style={{ color: "#6B7280" }}>
                     브랜드와 협업하고 수익을 창출하는 인플루언서 또는 크리에이터
                   </p>
                   <span
@@ -404,7 +404,7 @@ function SignupForm() {
               </div>
             </button>
 
-            <p className="text-center text-sm mt-6" style={{ color: "#a1a1aa" }}>
+            <p className="text-center text-sm mt-6" style={{ color: "#6B7280" }}>
               이미 계정이 있으신가요?{" "}
               <Link
                 href="/login"
@@ -440,9 +440,9 @@ function SignupForm() {
                   }, 200);
                 }}
                 className="flex items-center gap-1.5 text-sm transition-colors"
-                style={{ color: "#a1a1aa" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#e4e4e7")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#a1a1aa")}
+                style={{ color: "#6B7280" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#111827")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#6B7280")}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M19 12H5M12 5l-7 7 7 7" />
@@ -464,12 +464,12 @@ function SignupForm() {
             <div
               className="rounded-2xl p-8"
               style={{
-                background: "#1a1a2e",
-                border: "1px solid #2a2a3e",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
+                background: "#FFFFFF",
+                border: "1px solid #E5E7EB",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
               }}
             >
-              <h1 className="text-xl font-semibold mb-6" style={{ color: "#e4e4e7" }}>
+              <h1 className="text-xl font-semibold mb-6" style={{ color: "#111827" }}>
                 회원가입
               </h1>
 
@@ -490,7 +490,7 @@ function SignupForm() {
                   <label
                     htmlFor="password"
                     className="block text-sm font-medium mb-1.5"
-                    style={{ color: "#a1a1aa" }}
+                    style={{ color: "#6B7280" }}
                   >
                     비밀번호<span style={{ color: "#e94560" }} className="ml-0.5">*</span>
                   </label>
@@ -512,7 +512,7 @@ function SignupForm() {
                               background:
                                 passwordStrength.score >= seg
                                   ? passwordStrength.color
-                                  : "#2a2a3e",
+                                  : "#E5E7EB",
                             }}
                           />
                         ))}
@@ -558,11 +558,11 @@ function SignupForm() {
 
                 {/* Divider */}
                 <div className="flex items-center gap-3 py-1">
-                  <div className="flex-1 h-px" style={{ background: "#2a2a3e" }} />
-                  <span className="text-xs" style={{ color: "#a1a1aa" }}>
+                  <div className="flex-1 h-px" style={{ background: "#E5E7EB" }} />
+                  <span className="text-xs" style={{ color: "#6B7280" }}>
                     {selectedRole === "BRAND" ? "브랜드 정보" : "크리에이터 정보"}
                   </span>
-                  <div className="flex-1 h-px" style={{ background: "#2a2a3e" }} />
+                  <div className="flex-1 h-px" style={{ background: "#E5E7EB" }} />
                 </div>
 
                 {/* Role-specific fields */}
@@ -627,7 +627,7 @@ function SignupForm() {
                   className="w-full py-3 rounded-lg text-sm font-semibold text-white transition-all mt-2"
                   style={{
                     background: loading
-                      ? "#2a2a3e"
+                      ? "#E5E7EB"
                       : "linear-gradient(135deg, #7c3aed, #e94560)",
                     cursor: loading ? "not-allowed" : "pointer",
                     opacity: loading ? 0.7 : 1,
@@ -648,7 +648,7 @@ function SignupForm() {
               </form>
             </div>
 
-            <p className="text-center text-sm mt-6" style={{ color: "#a1a1aa" }}>
+            <p className="text-center text-sm mt-6" style={{ color: "#6B7280" }}>
               이미 계정이 있으신가요?{" "}
               <Link
                 href="/login"
@@ -701,9 +701,9 @@ function PasswordInput({
         type="button"
         onClick={() => setShow((s) => !s)}
         className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
-        style={{ color: "#a1a1aa" }}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "#e4e4e7")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "#a1a1aa")}
+        style={{ color: "#6B7280" }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "#111827")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "#6B7280")}
         tabIndex={-1}
       >
         {show ? (
@@ -728,7 +728,7 @@ export default function SignupPage() {
       fallback={
         <div
           className="min-h-screen flex items-center justify-center"
-          style={{ background: "#0a0a0f" }}
+          style={{ background: "#FFFFFF" }}
         >
           <div
             className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"

@@ -56,7 +56,7 @@ export default function GaugeChart({
             paddingAngle={2}
           >
             <Cell fill={`url(#${gradientId})`} />
-            <Cell fill="#2a2a3e" />
+            <Cell fill="#E5E7EB" />
           </Pie>
         </PieChart>
       </ResponsiveContainer>
@@ -74,7 +74,7 @@ export default function GaugeChart({
       >
         <p
           style={{
-            color: "#e4e4e7",
+            color: "#111827",
             fontSize: 28,
             fontWeight: 700,
             margin: 0,
@@ -83,13 +83,13 @@ export default function GaugeChart({
         >
           {displayValue}
           {unit && (
-            <span style={{ fontSize: 14, color: "#a1a1aa", marginLeft: 2 }}>
+            <span style={{ fontSize: 14, color: "#6B7280", marginLeft: 2 }}>
               {unit}
             </span>
           )}
         </p>
         {label && (
-          <p style={{ color: "#a1a1aa", fontSize: 12, margin: "4px 0 0" }}>
+          <p style={{ color: "#6B7280", fontSize: 12, margin: "4px 0 0" }}>
             {label}
           </p>
         )}

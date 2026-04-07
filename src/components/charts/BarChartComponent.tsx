@@ -29,14 +29,14 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
   return (
     <div
       style={{
-        background: "#1a1a2e",
-        border: "1px solid #2a2a3e",
+        background: "#FFFFFF",
+        border: "1px solid #E5E7EB",
         borderRadius: 8,
         padding: "8px 12px",
       }}
     >
-      <p style={{ color: "#a1a1aa", margin: 0, fontSize: 12 }}>{label}</p>
-      <p style={{ color: "#e4e4e7", margin: "2px 0 0", fontSize: 13, fontWeight: 600 }}>
+      <p style={{ color: "#6B7280", margin: 0, fontSize: 12 }}>{label}</p>
+      <p style={{ color: "#111827", margin: "2px 0 0", fontSize: 13, fontWeight: 600 }}>
         {payload[0].value}
       </p>
     </div>
@@ -60,15 +60,15 @@ export default function BarChartComponent({
               <stop offset="100%" stopColor={gradientTo} stopOpacity={0.8} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#2a2a3e" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
           <XAxis
             dataKey="name"
-            tick={{ fill: "#a1a1aa", fontSize: 12 }}
-            axisLine={{ stroke: "#2a2a3e" }}
+            tick={{ fill: "#6B7280", fontSize: 12 }}
+            axisLine={{ stroke: "#E5E7EB" }}
             tickLine={false}
           />
           <YAxis
-            tick={{ fill: "#a1a1aa", fontSize: 12 }}
+            tick={{ fill: "#6B7280", fontSize: 12 }}
             axisLine={false}
             tickLine={false}
           />
