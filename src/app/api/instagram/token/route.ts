@@ -17,8 +17,8 @@ const GRAPH_API = "https://graph.facebook.com/v25.0";
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session || (session.user as { role: string }).role !== "ADMIN") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     const body = await request.json().catch(() => ({}));
@@ -70,7 +70,6 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({
           ok: true,
           action: "exchange",
-          access_token: data.access_token,
           expires_in: data.expires_in,
           expires_at: expiresAt.toISOString(),
           saved_to_db: true,
@@ -123,7 +122,6 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({
           ok: true,
           action: "refresh",
-          access_token: data.access_token,
           expires_in: data.expires_in,
           expires_at: expiresAt.toISOString(),
           saved_to_db: true,

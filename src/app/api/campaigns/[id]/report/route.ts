@@ -44,6 +44,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
           include: {
             performanceSnapshots: {
               orderBy: { snapshotAt: "desc" },
+              take: 1,
             },
           },
         },

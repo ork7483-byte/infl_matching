@@ -56,12 +56,12 @@ function buildEnvVars(): EnvVar[] {
   return ENV_KEYS.map((key) => {
     // In a real implementation these would come from /api/admin/system/status
     const mockValues: Record<string, string | null> = {
-      DATABASE_URL: "postgresql://user:pass@localhost:5432/inflix",
-      NEXTAUTH_SECRET: "abc123xyzSECRET",
-      META_APP_ID: "123456789",
-      META_APP_SECRET: "abcdef123456",
-      INSTAGRAM_ACCESS_TOKEN: "EAABwzLixnjYBO...",
-      INSTAGRAM_USER_ID: "17841400000",
+      DATABASE_URL: "***masked***",
+      NEXTAUTH_SECRET: "***masked***",
+      META_APP_ID: "***masked***",
+      META_APP_SECRET: "***masked***",
+      INSTAGRAM_ACCESS_TOKEN: "***masked***",
+      INSTAGRAM_USER_ID: "***masked***",
     };
     const value = mockValues[key] ?? null;
     return { key, value, set: value !== null };

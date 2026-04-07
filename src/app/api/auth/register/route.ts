@@ -26,6 +26,31 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Runtime role validation (TypeScript types are NOT runtime checks)
+    if (role !== "BRAND" && role !== "CREATOR") {
+      return NextResponse.json(
+        { error: "role must be BRAND or CREATOR" },
+        { status: 400 }
+      );
+    }
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email format" },
+        { status: 400 }
+      );
+    }
+
+    // Password strength validation
+    if (password.length < 6 || password.length > 128) {
+      return NextResponse.json(
+        { error: "Password must be between 6 and 128 characters" },
+        { status: 400 }
+      );
+    }
+
     if (role === "BRAND" && !companyName) {
       return NextResponse.json(
         { error: "companyName is required for BRAND role" },

@@ -258,7 +258,6 @@ export interface CollectionRunResult {
  */
 export async function runCollection(limit = 10): Promise<CollectionRunResult> {
   const startTime = Date.now();
-  const startApiCount = 0; // approximation — Instagram module tracks internally
 
   const seeds = await prisma.collectionSeed.findMany({
     where: { status: "pending" },
@@ -310,6 +309,4 @@ export async function runCollection(limit = 10): Promise<CollectionRunResult> {
     newDiscovered: totalNewDiscovered,
     durationMs,
   };
-
-  void startApiCount; // suppress unused variable
 }

@@ -19,7 +19,10 @@ interface IGConfig {
 let cachedDbToken: { token: string; expiresAt: number } | null = null;
 
 async function getConfig(): Promise<IGConfig> {
-  const igUserId = process.env.INSTAGRAM_USER_ID || "17841410385539405";
+  const igUserId = process.env.INSTAGRAM_USER_ID;
+  if (!igUserId) {
+    throw new Error("INSTAGRAM_USER_ID environment variable is required");
+  }
 
   // 1. DB 캐시에서 토큰 확인
   if (cachedDbToken && cachedDbToken.expiresAt > Date.now()) {

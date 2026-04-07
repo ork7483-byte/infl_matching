@@ -21,17 +21,8 @@ export const authOptions: NextAuthOptions = {
           include: { brand: true, influencer: true },
         });
 
-        if (!user) {
-          throw new Error("등록되지 않은 이메일입니다.");
-        }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
-
-        if (!isPasswordValid) {
-          throw new Error("비밀번호가 올바르지 않습니다.");
+        if (!user || !(await bcrypt.compare(credentials.password, user.password))) {
+          throw new Error("이메일 또는 비밀번호가 올바르지 않습니다.");
         }
 
         return {
