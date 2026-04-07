@@ -209,7 +209,7 @@ export default function Navbar() {
                     로그인
                   </Link>
                   <Link
-                    href="/register"
+                    href="/signup"
                     className="px-4 py-2 text-sm font-medium rounded-lg bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"
                   >
                     무료 시작하기
@@ -421,7 +421,7 @@ export default function Navbar() {
                   로그인
                 </Link>
                 <Link
-                  href="/register"
+                  href="/signup"
                   className="block px-3 py-2.5 rounded-lg text-sm font-medium text-center bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"
                 >
                   무료 시작하기

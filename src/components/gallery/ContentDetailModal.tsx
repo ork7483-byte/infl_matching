@@ -256,7 +256,7 @@ export default function ContentDetailModal({
                 </button>
               ) : (
                 <Link
-                  href="/register"
+                  href="/signup"
                   className="block w-full text-center px-4 py-2.5 rounded-xl bg-[#7c3aed] text-white text-sm font-semibold hover:bg-[#6d28d9] transition-colors"
                 >
                   회원가입 후 캠페인 제안하기

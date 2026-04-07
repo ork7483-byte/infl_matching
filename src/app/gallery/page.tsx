@@ -12,10 +12,11 @@ import ContentDetailModal from "@/components/gallery/ContentDetailModal";
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface GalleryResponse {
-  items: GalleryItem[];
+  results: GalleryItem[];
+  items?: GalleryItem[];
   total: number;
   page: number;
-  limit: number;
+  limit?: number;
 }
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -127,7 +128,7 @@ function CTABanner() {
           성과 데이터와 함께 콘텐츠를 분석하세요
         </p>
         <Link
-          href="/register"
+          href="/signup"
           className="inline-block mt-3 px-5 py-2.5 rounded-xl bg-gradient-brand text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-glow"
         >
           무료 회원가입으로 전체 데이터 보기
@@ -209,21 +210,20 @@ function GalleryPage() {
           // Fallback to mock data
           const mockItems = generateMockItems(nextPage, category, contentType);
           data = {
-            items: mockItems,
+            results: mockItems,
             total: 1200,
             page: nextPage,
-            limit: LIMIT,
           };
         }
 
         if (reset) {
-          setItems(data.items);
+          setItems(( data.results || data.items || [] ));
         } else {
-          setItems((prev) => [...prev, ...data.items]);
+          setItems((prev) => [...prev, ...( data.results || data.items || [] )]);
         }
         setTotal(data.total);
         setPage(nextPage);
-        setHasMore(data.items.length === LIMIT);
+        setHasMore(( data.results || data.items || [] ).length === LIMIT);
       } catch (err) {
         console.error(err);
       } finally {

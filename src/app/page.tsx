@@ -204,7 +204,7 @@ function SignupModal({ onClose }: { onClose: () => void }) {
         <p className="text-sm text-[#6B7280] mb-6">무료 회원가입 후 인플루언서를 저장하고<br />비교해 보세요.</p>
         <div className="flex flex-col gap-3">
           <Link
-            href="/register"
+            href="/signup"
             className="w-full py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity"
           >
             무료로 시작하기
@@ -887,7 +887,7 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
               {!isAuth && (
                 <p className="text-xs text-[#6B7280] mt-2 border-t border-[#E5E7EB] pt-2">
                   상세 분석은{" "}
-                  <Link href="/register" className="text-[#7c3aed] hover:underline">
+                  <Link href="/signup" className="text-[#7c3aed] hover:underline">
                     회원가입
                   </Link>{" "}
                   후 확인
@@ -1369,7 +1369,7 @@ function HomePage() {
                       </p>
                       <p className="text-sm text-[#6B7280] mb-4">무료 회원가입으로 모든 데이터에 접근하세요</p>
                       <Link
-                        href="/register"
+                        href="/signup"
                         className="inline-block px-8 py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.4)]"
                       >
                         무료로 시작하기 →
@@ -1411,7 +1411,7 @@ function HomePage() {
                         의 인플루언서를 확인하세요
                       </p>
                       <Link
-                        href="/register"
+                        href="/signup"
                         className="inline-block mt-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity"
                       >
                         무료로 시작하기 →
@@ -1479,7 +1479,7 @@ function HomePage() {
               {/* Non-auth footer note */}
               {!isAuth && results.length > 0 && (
                 <p className="text-center text-xs text-[#6B7280] mt-4">
-                  <Link href="/register" className="text-[#7c3aed] hover:underline">
+                  <Link href="/signup" className="text-[#7c3aed] hover:underline">
                     무료 회원가입
                   </Link>
                   하면 모든 인플루언서의 상세 데이터를 확인할 수 있어요
