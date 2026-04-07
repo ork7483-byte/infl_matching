@@ -125,10 +125,11 @@ export default function AdminUsers() {
             padding: "8px 14px",
             border: "1px solid #E5E7EB",
             borderRadius: 8,
-            fontSize: 13,
+            fontSize: 16,
             color: "#111827",
             background: "#fff",
             minWidth: 220,
+            minHeight: 44,
           }}
         />
         <div style={{ display: "flex", gap: 4 }}>
@@ -175,6 +176,7 @@ export default function AdminUsers() {
           borderRadius: 12,
           overflow: "hidden",
           marginBottom: 24,
+          overflowX: "auto",
         }}
       >
         {loading ? (
@@ -184,7 +186,7 @@ export default function AdminUsers() {
             ))}
           </div>
         ) : (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 600 }}>
             <thead style={{ background: "#F9FAFB" }}>
               <tr>
                 {["이름", "이메일", "역할", "플랜", "얼리액세스", "가입일", ""].map((h) => (
@@ -307,7 +309,7 @@ export default function AdminUsers() {
       </div>
 
       {/* Charts Row */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div style={{ background: "#fff", border: "1px solid #E5E7EB", borderRadius: 12, padding: 20 }}>
           <h2 style={{ fontSize: 15, fontWeight: 600, color: "#111827", marginTop: 0, marginBottom: 16 }}>역할 분포</h2>
           <DonutChart data={ROLE_DONUT} />

@@ -96,7 +96,7 @@ export default function LineChartComponent({
       {label && (
         <p style={{ color: "#6B7280", fontSize: 12, marginBottom: 4 }}>{label}</p>
       )}
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width="100%" height="100%" minHeight={220}>
         <LineChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
           <XAxis dataKey="date" {...sharedAxisProps} />

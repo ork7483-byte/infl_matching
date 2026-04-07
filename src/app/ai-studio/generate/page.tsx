@@ -96,7 +96,7 @@ function GeneratePageInner() {
                     onClick={() => n < step && setStep(n)}
                   >
                     <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
+                      className={`w-8 h-8 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-sm font-bold transition-colors flex-shrink-0 ${
                         n === step
                           ? "bg-[#7c3aed] text-white"
                           : n < step
@@ -264,7 +264,7 @@ function GeneratePageInner() {
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="예: 봄 신상 원피스를 입고 따뜻한 햇살 아래 카페 테라스에서 커피를 들고 있는 자연스러운 모습..."
                   rows={5}
-                  className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-[#374151] placeholder-[#9CA3AF] resize-none focus:outline-none focus:border-[#7c3aed] transition-colors text-sm"
+                  className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-[#374151] placeholder-[#9CA3AF] resize-none focus:outline-none focus:border-[#7c3aed] transition-colors text-base"
                 />
               </div>
             )}

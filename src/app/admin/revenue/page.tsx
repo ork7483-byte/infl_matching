@@ -65,7 +65,7 @@ export default function AdminRevenue() {
       </h1>
 
       {/* Stat Cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16, marginBottom: 24 }}>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {[
           { label: "총 매출", value: `₩${totalRevenue.toLocaleString()}`, icon: "💰", sub: "누적 기준" },
           { label: "이번달 매출", value: `₩${thisMonth.toLocaleString()}`, icon: "📅", sub: "2026년 4월" },
@@ -174,6 +174,7 @@ export default function AdminRevenue() {
           border: "1px solid #E5E7EB",
           borderRadius: 12,
           overflow: "hidden",
+          overflowX: "auto",
         }}
       >
         <div style={{ padding: "16px 20px", borderBottom: "1px solid #E5E7EB" }}>
@@ -186,7 +187,7 @@ export default function AdminRevenue() {
             ))}
           </div>
         ) : (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 500 }}>
             <thead style={{ background: "#F9FAFB" }}>
               <tr>
                 {["인플루언서", "캠페인", "금액", "상태", "처리"].map((h) => (

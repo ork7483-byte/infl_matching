@@ -181,14 +181,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Row 2: Charts */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 16,
-          marginBottom: 24,
-        }}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div
           style={{
             background: "#fff",
@@ -226,7 +219,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Row 3: Tables */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Recent Users */}
         <div
           style={{
@@ -244,7 +237,8 @@ export default function AdminDashboard() {
               {Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} h={32} />)}
             </div>
           ) : (
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 360 }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid #E5E7EB" }}>
                   {["이름", "이메일", "역할", "가입일"].map((h) => (
@@ -288,6 +282,7 @@ export default function AdminDashboard() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
         </div>
 
@@ -308,7 +303,8 @@ export default function AdminDashboard() {
               {Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} h={32} />)}
             </div>
           ) : (
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 360 }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid #E5E7EB" }}>
                   {["캠페인명", "브랜드", "상태", "예산"].map((h) => (
@@ -354,6 +350,7 @@ export default function AdminDashboard() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
         </div>
       </div>

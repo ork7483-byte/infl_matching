@@ -35,8 +35,11 @@ export default function GalleryCard({ item, onClick }: GalleryCardProps) {
 
   return (
     <div
-      className="break-inside-avoid mb-4 cursor-pointer group"
+      className="break-inside-avoid mb-4 cursor-pointer group active:scale-[0.99] transition-transform duration-150"
       onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onClick(); }}
     >
       <div className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200">
         {/* Image / Thumbnail */}

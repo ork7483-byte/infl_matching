@@ -86,13 +86,13 @@ export default function AIStudioPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/ai-studio/generate"
-                className="bg-[#7c3aed] text-white font-semibold px-8 py-4 rounded-xl text-lg hover:bg-[#6d28d9] transition-colors"
+                className="block w-full sm:inline-block sm:w-auto text-center bg-[#7c3aed] text-white font-semibold px-8 py-4 rounded-xl text-lg hover:bg-[#6d28d9] transition-colors cursor-pointer"
               >
                 ✨ 지금 바로 제작하기
               </Link>
               <Link
                 href="/ai-studio/models"
-                className="bg-white text-[#7c3aed] border-2 border-[#7c3aed] font-semibold px-8 py-4 rounded-xl text-lg hover:bg-[#7c3aed]/5 transition-colors"
+                className="block w-full sm:inline-block sm:w-auto text-center bg-white text-[#7c3aed] border-2 border-[#7c3aed] font-semibold px-8 py-4 rounded-xl text-lg hover:bg-[#7c3aed]/5 transition-colors cursor-pointer"
               >
                 AI 모델 둘러보기
               </Link>
@@ -109,29 +109,31 @@ export default function AIStudioPage() {
               </h2>
               <p className="text-[#6B7280] text-lg">왜 AI 모델인가? 숫자로 확인하세요.</p>
             </div>
-            <div className="bg-white rounded-2xl border border-[#E5E7EB] overflow-hidden shadow-sm">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-[#E5E7EB]">
-                    <th className="text-left px-6 py-4 text-[#6B7280] font-medium">항목</th>
-                    <th className="text-center px-6 py-4 text-[#6B7280] font-medium">실제 인플루언서</th>
-                    <th className="text-center px-6 py-4 text-[#7c3aed] font-semibold bg-[#7c3aed]/5">
-                      AI 모델 ✨
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonRows.map((row, i) => (
-                    <tr key={row.label} className={i < comparisonRows.length - 1 ? "border-b border-[#E5E7EB]" : ""}>
-                      <td className="px-6 py-4 text-[#374151] font-medium">{row.label}</td>
-                      <td className="px-6 py-4 text-center text-[#6B7280]">{row.influencer}</td>
-                      <td className="px-6 py-4 text-center text-[#7c3aed] font-semibold bg-[#7c3aed]/5">
-                        {row.ai}
-                      </td>
+            <div className="overflow-x-auto -mx-4 px-4">
+              <div className="bg-white rounded-2xl border border-[#E5E7EB] overflow-hidden shadow-sm min-w-[400px]">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-[#E5E7EB]">
+                      <th className="text-left px-4 sm:px-6 py-4 text-[#6B7280] font-medium text-sm">항목</th>
+                      <th className="text-center px-4 sm:px-6 py-4 text-[#6B7280] font-medium text-sm">실제 인플루언서</th>
+                      <th className="text-center px-4 sm:px-6 py-4 text-[#7c3aed] font-semibold bg-[#7c3aed]/5 text-sm">
+                        AI 모델 ✨
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {comparisonRows.map((row, i) => (
+                      <tr key={row.label} className={i < comparisonRows.length - 1 ? "border-b border-[#E5E7EB]" : ""}>
+                        <td className="px-4 sm:px-6 py-4 text-[#374151] font-medium text-sm">{row.label}</td>
+                        <td className="px-4 sm:px-6 py-4 text-center text-[#6B7280] text-sm">{row.influencer}</td>
+                        <td className="px-4 sm:px-6 py-4 text-center text-[#7c3aed] font-semibold bg-[#7c3aed]/5 text-sm">
+                          {row.ai}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </section>

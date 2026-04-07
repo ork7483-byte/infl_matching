@@ -153,7 +153,7 @@ function ComposeModal({ onClose, templates, initialTemplate }: { onClose: () => 
               value={recipient}
               onChange={(e) => setRecipient(e.target.value)}
               placeholder="@username"
-              className="w-full px-3 py-2 text-sm border border-[#E5E7EB] rounded-lg bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
+              className="w-full px-3 py-2 text-base border border-[#E5E7EB] rounded-lg bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
             />
           </div>
 
@@ -180,7 +180,7 @@ function ComposeModal({ onClose, templates, initialTemplate }: { onClose: () => 
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder="메시지 제목"
-              className="w-full px-3 py-2 text-sm border border-[#E5E7EB] rounded-lg bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
+              className="w-full px-3 py-2 text-base border border-[#E5E7EB] rounded-lg bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
             />
           </div>
 
@@ -209,7 +209,7 @@ function ComposeModal({ onClose, templates, initialTemplate }: { onClose: () => 
               onChange={(e) => setBody(e.target.value)}
               rows={8}
               placeholder="메시지 본문을 입력하세요..."
-              className="w-full px-3 py-2 text-sm border border-[#E5E7EB] rounded-lg bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed] resize-none"
+              className="w-full px-3 py-2 text-base border border-[#E5E7EB] rounded-lg bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed] resize-none"
             />
           </div>
         </div>

@@ -71,7 +71,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                       key={sub.href}
                       href={sub.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`block px-3 py-2 rounded-md text-xs transition-colors cursor-pointer ${
+                      className={`block px-3 py-2 rounded-md text-xs transition-colors cursor-pointer min-h-[36px] flex items-center ${
                         pathname === sub.href
                           ? "text-[#7c3aed] bg-[#7c3aed]/5 font-medium"
                           : "text-[#9CA3AF] hover:text-[#6B7280] hover:bg-[#F3F4F6]"
@@ -121,7 +121,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </span>
           <button
             onClick={() => signOut({ callbackUrl: "/" })}
-            className="text-sm text-[#6B7280] hover:text-[#111827] cursor-pointer"
+            className="text-sm text-[#6B7280] hover:text-[#111827] cursor-pointer min-h-[44px] px-2 flex items-center"
           >
             로그아웃
           </button>

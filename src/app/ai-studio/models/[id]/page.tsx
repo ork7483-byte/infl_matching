@@ -85,7 +85,7 @@ export default function ModelDetailPage() {
                 </div>
                 <Link
                   href={`/ai-studio/generate?model=${id}`}
-                  className="inline-block bg-[#7c3aed] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#6d28d9] transition-colors"
+                  className="block w-full sm:inline-block sm:w-auto text-center bg-[#7c3aed] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#6d28d9] transition-colors cursor-pointer"
                 >
                   ✨ 이 모델로 제작하기
                 </Link>
@@ -116,7 +116,7 @@ export default function ModelDetailPage() {
         {/* Portfolio Grid */}
         <section className="py-10 px-4">
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {portfolioSeeds.map((seed, i) => (
                 <div
                   key={i}

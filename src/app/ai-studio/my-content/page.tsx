@@ -74,7 +74,7 @@ export default function MyContentPage() {
               <h1 className="text-2xl font-bold text-[#111827]">내 콘텐츠</h1>
               <p className="text-[#6B7280] text-sm mt-1">AI Studio에서 생성한 콘텐츠를 관리하세요.</p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <div className="bg-white border border-[#E5E7EB] rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
                 <span className="text-[#7c3aed]">⚡</span>
                 <div>
@@ -91,7 +91,7 @@ export default function MyContentPage() {
               </div>
               <Link
                 href="/ai-studio/generate"
-                className="bg-[#7c3aed] text-white font-semibold px-4 py-3 rounded-xl hover:bg-[#6d28d9] transition-colors text-sm flex items-center gap-1"
+                className="bg-[#7c3aed] text-white font-semibold px-4 py-3 rounded-xl hover:bg-[#6d28d9] transition-colors text-sm flex items-center gap-1 cursor-pointer"
               >
                 ✨ 새 콘텐츠 생성
               </Link>
@@ -178,11 +178,11 @@ export default function MyContentPage() {
           </div>
 
           {/* Bulk Actions */}
-          <div className="bg-white border border-[#E5E7EB] rounded-2xl p-4 flex flex-wrap gap-3 items-center mb-12 shadow-sm">
+          <div className="bg-white border border-[#E5E7EB] rounded-2xl p-4 flex flex-col sm:flex-row flex-wrap gap-3 items-start sm:items-center mb-12 shadow-sm">
             <span className="text-sm text-[#6B7280]">
               {selectedIds.length > 0 ? `${selectedIds.length}개 선택됨` : "콘텐츠를 선택하세요"}
             </span>
-            <div className="flex gap-3 ml-auto">
+            <div className="flex flex-wrap gap-3 sm:ml-auto w-full sm:w-auto">
               <button
                 disabled={selectedIds.length === 0}
                 className="text-sm border border-[#7c3aed] text-[#7c3aed] font-semibold px-4 py-2 rounded-lg hover:bg-[#7c3aed]/5 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
@@ -204,8 +204,8 @@ export default function MyContentPage() {
           {/* Credit History */}
           <div>
             <h2 className="text-xl font-bold text-[#111827] mb-4">크레딧 사용 내역</h2>
-            <div className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden shadow-sm">
-              <table className="w-full">
+            <div className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden shadow-sm overflow-x-auto">
+              <table className="w-full min-w-[400px]">
                 <thead>
                   <tr className="bg-[#F9FAFB] border-b border-[#E5E7EB]">
                     <th className="text-left px-5 py-3 text-sm font-semibold text-[#374151]">날짜</th>

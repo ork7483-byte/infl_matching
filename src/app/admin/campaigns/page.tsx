@@ -75,7 +75,7 @@ export default function AdminCampaigns() {
       </h1>
 
       {/* Stat Cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         {[
           { label: "총 캠페인", value: totalCampaigns.toString(), icon: "📢" },
           { label: "총 예산", value: `₩${totalBudget.toLocaleString()}`, icon: "💰" },
@@ -130,6 +130,7 @@ export default function AdminCampaigns() {
           border: "1px solid #E5E7EB",
           borderRadius: 12,
           overflow: "hidden",
+          overflowX: "auto",
           marginBottom: 24,
         }}
       >
@@ -140,7 +141,7 @@ export default function AdminCampaigns() {
             ))}
           </div>
         ) : (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 600 }}>
             <thead style={{ background: "#F9FAFB" }}>
               <tr>
                 {["캠페인명", "브랜드", "인플루언서", "상태", "예산", "기간", ""].map((h) => (
@@ -204,7 +205,7 @@ export default function AdminCampaigns() {
       </div>
 
       {/* Charts */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div style={{ background: "#fff", border: "1px solid #E5E7EB", borderRadius: 12, padding: 20 }}>
           <h2 style={{ fontSize: 15, fontWeight: 600, color: "#111827", marginTop: 0, marginBottom: 16 }}>
             월별 캠페인 생성
