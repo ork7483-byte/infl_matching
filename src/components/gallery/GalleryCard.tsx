@@ -7,6 +7,7 @@ export interface GalleryItem {
   id: string;
   type: "feed" | "reel" | "story";
   imageUrl: string;
+  mediaUrl?: string;
   thumbnailUrl?: string;
   isVideo: boolean;
   username: string;
@@ -14,12 +15,14 @@ export interface GalleryItem {
   category: string;
   campaignName?: string;
   brandName?: string;
-  likesCount: number;
+  likesCount?: number;
+  likeCount?: number;
   commentsCount: number;
   reach: number | null;
   engagementRate: number | null;
   caption?: string;
   postedAt?: string;
+  influencer?: { username: string; fullName: string; profilePicUrl: string | null; followersCount: number };
 }
 
 interface GalleryCardProps {
@@ -45,7 +48,7 @@ export default function GalleryCard({ item, onClick }: GalleryCardProps) {
             }`}
           >
             <img
-              src={item.imageUrl}
+              src={item.imageUrl || item.mediaUrl || item.thumbnailUrl || ""}
               alt={`${item.username}의 콘텐츠`}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
               loading="lazy"
@@ -55,7 +58,7 @@ export default function GalleryCard({ item, onClick }: GalleryCardProps) {
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100">
               <span className="flex items-center gap-1 text-white font-semibold text-sm drop-shadow">
                 <span>❤️</span>
-                {item.likesCount.toLocaleString()}
+                {(item.likesCount ?? item.likeCount ?? 0).toLocaleString()}
               </span>
               <span className="flex items-center gap-1 text-white font-semibold text-sm drop-shadow">
                 <span>💬</span>

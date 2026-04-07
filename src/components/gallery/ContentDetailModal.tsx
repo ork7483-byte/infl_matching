@@ -185,7 +185,7 @@ export default function ContentDetailModal({
                 성과 지표
               </h4>
               <div className="grid grid-cols-2 gap-2">
-                <MetricCell icon="❤️" label="좋아요" value={item.likesCount.toLocaleString()} />
+                <MetricCell icon="❤️" label="좋아요" value={(item.likesCount ?? item.likeCount ?? 0).toLocaleString()} />
                 <MetricCell icon="💬" label="댓글" value={item.commentsCount.toLocaleString()} />
                 <MetricCell
                   icon="👁"

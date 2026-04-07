@@ -216,14 +216,28 @@ function GalleryPage() {
           };
         }
 
+        // Normalize API results to match GalleryItem interface
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const rawItems = (data.results || data.items || []).map((item: any) => ({
+          ...item,
+          imageUrl: item.imageUrl || item.mediaUrl || item.thumbnailUrl || "",
+          username: item.username || item.influencer?.username || "",
+          profilePicUrl: item.profilePicUrl ?? item.influencer?.profilePicUrl ?? null,
+          likesCount: item.likesCount ?? item.likeCount ?? 0,
+          commentsCount: item.commentsCount ?? 0,
+          type: item.type || (item.mediaType === "REEL" ? "reel" : item.mediaType === "STORY" ? "story" : "feed"),
+          isVideo: item.isVideo ?? (item.mediaType === "VIDEO" || item.mediaType === "REEL"),
+          category: item.category || "",
+        })) as GalleryItem[];
+
         if (reset) {
-          setItems(( data.results || data.items || [] ));
+          setItems(rawItems);
         } else {
-          setItems((prev) => [...prev, ...( data.results || data.items || [] )]);
+          setItems((prev) => [...prev, ...rawItems]);
         }
-        setTotal(data.total);
+        setTotal(data.total ?? 0);
         setPage(nextPage);
-        setHasMore(( data.results || data.items || [] ).length === LIMIT);
+        setHasMore(rawItems.length === LIMIT);
       } catch (err) {
         console.error(err);
       } finally {
@@ -405,7 +419,7 @@ function GalleryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Result count */}
           <p className="text-sm text-muted-foreground mb-6">
-            총 <span className="text-foreground font-semibold">{total.toLocaleString()}</span>개의 콘텐츠
+            총 <span className="text-foreground font-semibold">{(total || 0).toLocaleString()}</span>개의 콘텐츠
           </p>
 
           {/* Masonry columns via CSS column-count */}
