@@ -18,10 +18,19 @@ const BENEFITS = [
   "수익·정산 현황 한눈에 확인",
 ];
 
+const AI_CLONE_BENEFITS = [
+  { icon: "💰", text: "촬영 없이 자동으로 광고 수익 발생" },
+  { icon: "📸", text: "내 스타일 그대로 AI가 콘텐츠 생성" },
+  { icon: "🔒", text: "모든 콘텐츠는 승인 후 공개 — 완전 통제 가능" },
+];
+
+const MOCK_PHOTOS = Array.from({ length: 12 }, (_, i) => `https://picsum.photos/seed/ig${i + 1}/120/120`);
+
 export default function OnboardingPage() {
   const [step, setStep] = useState(1);
   const [completedLoadingSteps, setCompletedLoadingSteps] = useState<number[]>([]);
   const [copied, setCopied] = useState(false);
+  const [cloneCreating, setCloneCreating] = useState(false);
 
   // Step 2: animate loading checklist then advance to step 3
   useEffect(() => {
@@ -45,6 +54,13 @@ export default function OnboardingPage() {
     return () => timers.forEach(clearTimeout);
   }, [step]);
 
+  const handleCreateClone = async () => {
+    setCloneCreating(true);
+    await new Promise((r) => setTimeout(r, 1500));
+    setCloneCreating(false);
+    setStep(4);
+  };
+
   const handleCopyLink = () => {
     navigator.clipboard.writeText("https://inflix.io/mediakit/kim_influencer").then(() => {
       setCopied(true);
@@ -57,7 +73,7 @@ export default function OnboardingPage() {
       <div className="max-w-lg mx-auto py-8">
         {/* Step indicator */}
         <div className="flex items-center justify-center gap-2 mb-8">
-          {[1, 2, 3].map((s) => (
+          {[1, 2, 3, 4].map((s) => (
             <div key={s} className="flex items-center gap-2">
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
@@ -76,9 +92,9 @@ export default function OnboardingPage() {
                   s
                 )}
               </div>
-              {s < 3 && (
+              {s < 4 && (
                 <div
-                  className={`w-12 h-0.5 rounded-full transition-all duration-500 ${
+                  className={`w-10 h-0.5 rounded-full transition-all duration-500 ${
                     s < step ? "bg-[#7c3aed]" : "bg-[#E5E7EB]"
                   }`}
                 />
@@ -184,8 +200,79 @@ export default function OnboardingPage() {
           </div>
         )}
 
-        {/* Step 3: Done */}
+        {/* Step 3: AI Clone */}
         {step === 3 && (
+          <div className="bg-white rounded-2xl border border-[#E5E7EB] p-8 shadow-sm">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 rounded-full bg-[#7c3aed]/10 flex items-center justify-center mx-auto mb-4 text-3xl">
+                🤖
+              </div>
+              <h1 className="text-2xl font-bold text-[#111827] mb-2">AI 분신 생성</h1>
+              <p className="text-[#6B7280] leading-relaxed text-sm">
+                내 사진을 학습한 AI 모델이 자동으로 광고를 촬영해요.
+                <br />
+                수익의 60%가 나에게 돌아와요.
+              </p>
+            </div>
+
+            <div className="space-y-2 mb-5">
+              {AI_CLONE_BENEFITS.map((b) => (
+                <div key={b.text} className="flex items-center gap-3 bg-[#F9FAFB] rounded-xl px-4 py-3">
+                  <span className="text-xl flex-shrink-0">{b.icon}</span>
+                  <span className="text-sm text-[#374151]">{b.text}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Auto-selected photos preview */}
+            <div className="mb-6">
+              <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-wide mb-2">AI가 선택한 최적 사진 12장</p>
+              <div className="grid grid-cols-6 gap-1.5">
+                {MOCK_PHOTOS.map((src, i) => (
+                  <div key={i} className="aspect-square rounded-lg overflow-hidden bg-[#E5E7EB]">
+                    <img
+                      src={src}
+                      alt=""
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = `https://picsum.photos/seed/p${i}/120/120`;
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <button
+                onClick={handleCreateClone}
+                disabled={cloneCreating}
+                className="w-full py-4 rounded-xl bg-[#7c3aed] text-white font-semibold text-base hover:bg-[#6d28d9] transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {cloneCreating ? (
+                  <>
+                    <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    </svg>
+                    AI 분신 만들기 중...
+                  </>
+                ) : (
+                  "AI 분신 만들기"
+                )}
+              </button>
+              <button
+                onClick={() => setStep(4)}
+                className="block w-full text-center text-sm text-[#9CA3AF] hover:text-[#6B7280] transition-colors py-2"
+              >
+                나중에 할게요
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 4: Done — Share */}
+        {step === 4 && (
           <div className="space-y-4">
             <div className="bg-white rounded-2xl border border-[#E5E7EB] p-8 text-center shadow-sm">
               <div className="text-5xl mb-4">🎉</div>

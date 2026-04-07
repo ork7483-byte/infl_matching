@@ -46,6 +46,7 @@ interface Influencer {
   reviewCount?: number;
   isTopCreator?: boolean;
   isUgc?: boolean;
+  hasAiClone?: boolean;
   biography?: string;
 }
 
@@ -336,8 +337,8 @@ function InfluencerGridCard({
         />
 
         {/* Badge overlay — top-left */}
-        {(influencer.isTopCreator || influencer.isUgc) && (
-          <div className="absolute top-2 left-2 flex gap-1">
+        {(influencer.isTopCreator || influencer.isUgc || influencer.hasAiClone) && (
+          <div className="absolute top-2 left-2 flex gap-1 flex-wrap">
             {influencer.isTopCreator && (
               <span className="bg-white/90 text-[#16a34a] text-[10px] font-semibold px-2 py-0.5 rounded-full leading-tight">
                 🟢 Top
@@ -347,6 +348,9 @@ function InfluencerGridCard({
               <span className="bg-white/90 text-[#7c3aed] text-[10px] font-semibold px-2 py-0.5 rounded-full leading-tight">
                 ⚡ UGC
               </span>
+            )}
+            {influencer.hasAiClone && (
+              <span className="px-2 py-1 bg-purple-500/90 text-white text-xs rounded-full">🤖 AI 분신</span>
             )}
           </div>
         )}
@@ -512,6 +516,14 @@ function InfluencerGridCard({
             </svg>
           </button>
         </div>
+        {influencer.hasAiClone && isAuth && (
+          <Link
+            href={`/ai-studio/generate?clone=${influencer.id}`}
+            className="mt-1.5 block text-center text-xs text-[#7c3aed] hover:underline cursor-pointer"
+          >
+            AI로 시안 만들기 →
+          </Link>
+        )}
       </div>
     </div>
   );

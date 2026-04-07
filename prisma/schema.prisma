@@ -114,6 +114,7 @@ model Influencer {
   audienceDemographics AudienceDemographic[]
   aqsScores            AqsScore[]
   igrScores            IgrScore[]
+  aiClone              AIClone?
   pricePredictions     PricePrediction[]
   campaignInfluencers  CampaignInfluencer[]
   campaignApplications CampaignApplication[]
@@ -796,4 +797,63 @@ model MatchRequest {
   @@index([brandId])
   @@index([influencerId])
   @@index([status])
+}
+
+// ============================================
+// AI Clone (AI 분신)
+// ============================================
+
+model AIClone {
+  id              String   @id @default(cuid())
+  influencerId    String   @unique
+  influencer      Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  status          String   @default("generating") // generating, ready, approved, active, disabled
+  sourcePhotos    String[] // Instagram 게시물에서 선별된 사진 URLs
+  portfolioImages String[] // 생성된 AI 포트폴리오
+  styles          String[] // 자동 추출된 스타일 태그
+  approvedAt      DateTime?
+  totalEarnings   Float    @default(0)
+  totalUsageCount Int      @default(0)
+  isPublic        Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  revenues        CloneRevenue[]
+  usageLogs       CloneUsageLog[]
+
+  @@index([status])
+  @@index([isPublic])
+}
+
+model CloneRevenue {
+  id            String   @id @default(cuid())
+  cloneId       String
+  influencerId  String
+  brandUserId   String
+  generationId  String?  // AI 생성 ID
+  totalAmount   Float    // 총 금액
+  creatorShare  Float    // 인플루언서 몫 (60%)
+  platformShare Float    // 플랫폼 몫 (40%)
+  status        String   @default("pending") // pending, processing, completed
+  createdAt     DateTime @default(now())
+
+  clone         AIClone  @relation(fields: [cloneId], references: [id], onDelete: Cascade)
+
+  @@index([cloneId])
+  @@index([influencerId])
+  @@index([status])
+}
+
+model CloneUsageLog {
+  id          String   @id @default(cuid())
+  cloneId     String
+  brandUserId String
+  contentType String   // product, lifestyle, fashion, beauty
+  creditsUsed Int      @default(1)
+  createdAt   DateTime @default(now())
+
+  clone       AIClone  @relation(fields: [cloneId], references: [id], onDelete: Cascade)
+
+  @@index([cloneId])
+  @@index([brandUserId])
 }
