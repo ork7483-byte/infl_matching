@@ -1334,7 +1334,7 @@ function AIModelTab() {
       {/* Filter bar */}
       <div className="flex flex-wrap gap-2 mb-6">
         {["전체", "여성", "남성"].map(g => (
-          <button key={g} className="px-4 py-2 rounded-lg border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed] hover:text-[#7c3aed] cursor-pointer">
+          <button key={g} className="px-4 py-2 min-h-[44px] rounded-lg border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed] hover:text-[#7c3aed] cursor-pointer">
             {g}
           </button>
         ))}
@@ -1545,7 +1545,7 @@ function HomePage() {
   const hiddenCount = Math.max(0, total - 5);
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] flex flex-col">
+    <div className="min-h-screen bg-[#FFFFFF] flex flex-col overflow-x-hidden">
       <Navbar />
 
       <main className="flex-1">
@@ -1575,7 +1575,7 @@ function HomePage() {
             </p>
 
             {/* Search input */}
-            <div className="flex gap-3 mb-6">
+            <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <div className="flex-1 relative">
                 <svg
                   className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B7280] pointer-events-none"
@@ -1606,7 +1606,7 @@ function HomePage() {
                   setFilters(newFilters);
                   fetchResults(1, newFilters);
                 }}
-                className="px-6 py-4 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.4)] whitespace-nowrap cursor-pointer min-h-[44px]"
+                className="w-full sm:w-auto px-6 py-4 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.4)] whitespace-nowrap cursor-pointer min-h-[44px]"
               >
                 검색하기
               </button>
@@ -1620,7 +1620,7 @@ function HomePage() {
                   <button
                     key={cat}
                     onClick={() => handleCategoryChip(cat)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-all min-h-[36px] cursor-pointer ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-all min-h-[44px] cursor-pointer ${
                       active
                         ? "bg-[#7c3aed] border-[#7c3aed] text-white shadow-[0_0_12px_rgba(124,58,237,0.4)]"
                         : "bg-transparent border-[#E5E7EB] text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827]"
@@ -1657,7 +1657,7 @@ function HomePage() {
           <div className="flex border-b border-[#E5E7EB]">
             <button
               onClick={() => { setSearchTab("real"); router.replace("/?tab=real", { scroll: false }); }}
-              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`flex-1 sm:flex-none px-6 py-3 min-h-[44px] text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                 searchTab === "real"
                   ? "border-[#7c3aed] text-[#7c3aed]"
                   : "border-transparent text-[#6B7280] hover:text-[#111827]"
@@ -1667,7 +1667,7 @@ function HomePage() {
             </button>
             <button
               onClick={() => { setSearchTab("ai"); router.replace("/?tab=ai", { scroll: false }); }}
-              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`flex-1 sm:flex-none px-6 py-3 min-h-[44px] text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                 searchTab === "ai"
                   ? "border-[#7c3aed] text-[#7c3aed]"
                   : "border-transparent text-[#6B7280] hover:text-[#111827]"

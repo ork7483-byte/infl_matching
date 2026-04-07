@@ -196,7 +196,9 @@ export default function AdminDashboard() {
           {loading ? (
             <Skeleton h={220} />
           ) : (
-            <LineChartComponent data={signups} showArea color="#7c3aed" />
+            <div className="max-w-full overflow-x-auto">
+              <LineChartComponent data={signups} showArea color="#7c3aed" />
+            </div>
           )}
         </div>
         <div
@@ -213,7 +215,9 @@ export default function AdminDashboard() {
           {loading ? (
             <Skeleton h={220} />
           ) : (
-            <DonutChart data={roles} />
+            <div className="max-w-full overflow-x-auto">
+              <DonutChart data={roles} />
+            </div>
           )}
         </div>
       </div>

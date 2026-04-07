@@ -372,7 +372,7 @@ function GalleryPage() {
           <div className="flex border-b border-[#E5E7EB]">
             <button
               onClick={() => { setGalleryTab("real"); router.replace("/gallery?tab=real", { scroll: false }); }}
-              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer min-h-[44px] ${
                 galleryTab === "real"
                   ? "border-[#7c3aed] text-[#7c3aed]"
                   : "border-transparent text-[#6B7280] hover:text-[#111827]"
@@ -382,7 +382,7 @@ function GalleryPage() {
             </button>
             <button
               onClick={() => { setGalleryTab("ai"); router.replace("/gallery?tab=ai", { scroll: false }); }}
-              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer min-h-[44px] ${
                 galleryTab === "ai"
                   ? "border-[#7c3aed] text-[#7c3aed]"
                   : "border-transparent text-[#6B7280] hover:text-[#111827]"
@@ -456,8 +456,7 @@ function GalleryPage() {
 
           {/* Masonry columns via CSS column-count */}
           <div
-            className="columns-2 sm:columns-3 lg:columns-4 gap-4"
-            style={{ columnGap: "16px" }}
+            className="columns-2 sm:columns-3 lg:columns-4 gap-2 sm:gap-4"
           >
             {loading && items.length === 0
               ? Array.from({ length: LIMIT }).map((_, i) => (
@@ -508,14 +507,14 @@ function GalleryPage() {
         </>) : (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Filter */}
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex gap-2 mb-6 overflow-x-auto no-scrollbar whitespace-nowrap pb-1">
             {["전체", "제품촬영", "라이프스타일", "패션", "뷰티", "푸드"].map(cat => (
-              <button key={cat} className="px-4 py-2 rounded-full border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed] cursor-pointer">{cat}</button>
+              <button key={cat} className="flex-shrink-0 px-4 py-2 rounded-full border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed] cursor-pointer min-h-[44px]">{cat}</button>
             ))}
           </div>
 
           {/* AI Content Masonry */}
-          <div className="columns-2 sm:columns-3 lg:columns-4 gap-4">
+          <div className="columns-2 sm:columns-3 lg:columns-4 gap-2 sm:gap-4">
             {Array.from({length: 16}, (_, i) => {
               const models = ["수아","하은","지유","서연","미나","예진","지호","민준","현우","태윤","준서","도윤"];
               const types = ["제품촬영","라이프스타일","패션","뷰티","SNS","스포츠"];

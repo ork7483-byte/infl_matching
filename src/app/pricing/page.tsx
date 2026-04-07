@@ -730,7 +730,7 @@ function PricingInner() {
         <div className="text-center mt-8">
           <a
             href="/signup"
-            className="inline-block px-10 py-4 rounded-xl text-base font-semibold text-white transition-opacity hover:opacity-90 cursor-pointer"
+            className="block w-full sm:w-auto sm:inline-block px-10 py-4 rounded-xl text-base font-semibold text-white transition-opacity hover:opacity-90 cursor-pointer min-h-[44px]"
             style={{ backgroundImage: "linear-gradient(to right, #7c3aed, #e94560)" }}
           >
             지금 무료로 시작하기

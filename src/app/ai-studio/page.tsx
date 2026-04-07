@@ -147,14 +147,14 @@ export default function AIStudioPage() {
               </h2>
               <p className="text-[#6B7280] text-lg">어떤 스타일이든 즉시 생성합니다.</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex flex-wrap gap-3 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
               {contentTypes.map((ct) => (
                 <div
                   key={ct.title}
-                  className="bg-white border border-[#E5E7EB] rounded-2xl p-6 text-center hover:border-[#7c3aed]/50 hover:shadow-md transition-all"
+                  className="flex-none sm:flex-initial bg-white border border-[#E5E7EB] rounded-2xl p-4 sm:p-6 text-center hover:border-[#7c3aed]/50 hover:shadow-md transition-all min-w-[calc(50%-6px)] sm:min-w-0"
                 >
-                  <div className="text-4xl mb-4">{ct.icon}</div>
-                  <h3 className="text-[#111827] font-semibold text-lg mb-2">{ct.title}</h3>
+                  <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{ct.icon}</div>
+                  <h3 className="text-[#111827] font-semibold text-base sm:text-lg mb-1 sm:mb-2">{ct.title}</h3>
                   <p className="text-[#6B7280] text-sm">{ct.desc}</p>
                 </div>
               ))}
@@ -171,7 +171,7 @@ export default function AIStudioPage() {
               </h2>
               <p className="text-[#6B7280] text-lg">브랜드 분위기에 맞는 모델을 선택하세요.</p>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
               {aiModels.map((model) => (
                 <Link
                   key={model.id}
@@ -217,7 +217,7 @@ export default function AIStudioPage() {
               </h2>
               <p className="text-[#6B7280] text-lg">다양한 마케팅 채널에 즉시 활용하세요.</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
               {useCases.map((uc) => (
                 <div
                   key={uc.title}
@@ -277,7 +277,7 @@ export default function AIStudioPage() {
                   </ul>
                   <Link
                     href={plan.href}
-                    className={`block text-center font-semibold py-3 rounded-xl transition-colors ${
+                    className={`block text-center font-semibold py-3 min-h-[44px] flex items-center justify-center rounded-xl transition-colors ${
                       plan.highlight
                         ? "bg-white text-[#7c3aed] hover:bg-white/90"
                         : "bg-[#7c3aed] text-white hover:bg-[#6d28d9]"

@@ -128,8 +128,8 @@ export default function ForCreatorsPage() {
                 <div className="mt-auto space-y-2 pt-4 border-t border-[#F3F4F6]">
                   {card.tiers.map((tier) => (
                     <div key={tier.label} className="flex justify-between items-center">
-                      <span className="text-xs text-[#9CA3AF]">{tier.label}</span>
-                      <span className="text-xs font-semibold" style={{ color: "#e94560" }}>
+                      <span className="text-xs sm:text-sm text-[#9CA3AF]">{tier.label}</span>
+                      <span className="text-xs sm:text-sm font-semibold" style={{ color: "#e94560" }}>
                         {tier.price}
                       </span>
                     </div>
@@ -175,11 +175,11 @@ export default function ForCreatorsPage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] mb-3">크리에이터 후기</h2>
             <p className="text-[#6B7280]">이미 수백 명의 크리에이터가 Inflix로 수익을 높이고 있어요</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex flex-nowrap gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-3 md:gap-6 md:overflow-x-visible md:pb-0 no-scrollbar">
             {testimonials.map((t) => (
               <div
                 key={t.handle}
-                className="bg-white border border-[#E5E7EB] rounded-2xl p-6 flex flex-col gap-4"
+                className="bg-white border border-[#E5E7EB] rounded-2xl p-6 flex flex-col gap-4 flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-auto"
               >
                 <div className="flex items-center gap-1">
                   {Array.from({ length: t.rating }).map((_, i) => (
