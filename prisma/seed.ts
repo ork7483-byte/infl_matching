@@ -151,7 +151,7 @@ async function main() {
   await prisma.session.deleteMany();
   await prisma.user.deleteMany();
 
-  const hashedPassword = await bcrypt.hash("password123", 12);
+  const hashedPassword = await bcrypt.hash("1111", 12);
 
   // ============================================
   // Create Admin User
@@ -884,10 +884,10 @@ async function main() {
   // Test accounts summary
   // ============================================
   console.log("\n📋 Test Accounts:");
-  console.log("Brand: brand1@test.com / password123");
-  console.log("Brand: brand2@test.com / password123");
-  console.log("Creator: creator1@test.com / password123");
-  console.log("Creator: creator2@test.com / password123");
+  console.log("Brand: brand1@test.com / 1111");
+  console.log("Brand: brand2@test.com / 1111");
+  console.log("Creator: creator1@test.com / 1111");
+  console.log("Creator: creator2@test.com / 1111");
   console.log("\n🎉 Seeding complete!");
 }
 
