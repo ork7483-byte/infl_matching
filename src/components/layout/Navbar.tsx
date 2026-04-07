@@ -9,6 +9,12 @@ const toolsDropdown = [
   { label: "참여율 계산기", href: "/tools/engagement-rate" },
   { label: "가짜 팔로워 체크", href: "/tools/fake-follower-check" },
   { label: "예상 단가 계산기", href: "/tools/price-calculator" },
+  { label: "인플루언서 비교", href: "/tools/compare" },
+  { label: "프로필 감사 리포트", href: "/tools/instagram-audit" },
+  { label: "ROI 계산기", href: "/tools/roi-calculator" },
+  { label: "카테고리별 랭킹", href: "/tools/top-influencers" },
+  { label: "지역별 인플루언서", href: "/tools/influencers-by-location" },
+  { label: "팔로워 수 체크", href: "/tools/follower-count" },
   { label: "캠페인 브리프 템플릿", href: "/tools/campaign-brief-template" },
   { label: "계약서 템플릿", href: "/tools/contract-template" },
 ];
