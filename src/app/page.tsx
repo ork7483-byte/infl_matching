@@ -581,7 +581,7 @@ function FilterSidebar({
               placeholder="예: 1000"
               value={filters.minFollowers}
               onChange={(e) => onChange({ ...filters, minFollowers: e.target.value })}
-              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
           <div>
@@ -591,7 +591,7 @@ function FilterSidebar({
               placeholder="예: 500000"
               value={filters.maxFollowers}
               onChange={(e) => onChange({ ...filters, maxFollowers: e.target.value })}
-              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
         </div>
@@ -642,7 +642,7 @@ function FilterSidebar({
               placeholder="예: 0.5"
               value={filters.minEngagementRate}
               onChange={(e) => onChange({ ...filters, minEngagementRate: e.target.value })}
-              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
           <div>
@@ -654,7 +654,7 @@ function FilterSidebar({
               placeholder="예: 10"
               value={filters.maxEngagementRate}
               onChange={(e) => onChange({ ...filters, maxEngagementRate: e.target.value })}
-              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
         </div>
@@ -679,7 +679,7 @@ function FilterSidebar({
               placeholder="예: 70"
               value={filters.minAqs}
               onChange={(e) => onChange({ ...filters, minAqs: e.target.value })}
-              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
           <div>
@@ -691,7 +691,7 @@ function FilterSidebar({
               placeholder="예: 100"
               value={filters.maxAqs}
               onChange={(e) => onChange({ ...filters, maxAqs: e.target.value })}
-              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
         </div>
@@ -758,13 +758,13 @@ function FilterSidebar({
       <div className="space-y-2 pt-1">
         <button
           onClick={onSearch}
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.3)] min-h-[44px] cursor-pointer"
         >
           검색하기
         </button>
         <button
           onClick={onReset}
-          className="w-full py-2 text-sm text-[#6B7280] hover:text-[#111827] transition-colors"
+          className="w-full py-3 text-sm text-[#6B7280] hover:text-[#111827] transition-colors min-h-[44px] cursor-pointer"
         >
           필터 초기화
         </button>
@@ -868,7 +868,7 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
               value={erUsername}
               onChange={(e) => setErUsername(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && calcER()}
-              className="flex-1 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60"
+              className="flex-1 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60"
             />
             <button
               onClick={calcER}
@@ -913,7 +913,7 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
               value={ffUsername}
               onChange={(e) => setFfUsername(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && checkFF()}
-              className="flex-1 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#e94560]/60"
+              className="flex-1 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#e94560]/60"
             />
             <button
               onClick={checkFF}
@@ -948,7 +948,7 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
               placeholder="팔로워 수 (예: 50000)"
               value={priceFollowers}
               onChange={(e) => setPriceFollowers(e.target.value)}
-              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-sm text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#22c55e]/60"
+              className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#22c55e]/60"
             />
             <select
               value={priceCategory}
@@ -1138,7 +1138,7 @@ function HomePage() {
         {/* ─── Section 1: Hero Search Bar ─────────────────────────────── */}
         <section className={`bg-gradient-to-b from-[#F9FAFB] to-white border-b border-[#E5E7EB] px-4 transition-all duration-500 ${hasSearched ? "py-6" : "py-12"}`}>
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold text-[#111827] mb-2 leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-2 leading-tight">
               데이터로 검증된{" "}
               <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
                 인플루언서
@@ -1183,7 +1183,7 @@ function HomePage() {
                       fetchResults(1, newFilters);
                     }
                   }}
-                  className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl pl-12 pr-4 py-4 text-[#111827] placeholder:text-[#6B7280]/60 focus:outline-none focus:border-[#7c3aed]/60 focus:ring-2 focus:ring-[#7c3aed]/20 text-base transition-all"
+                  className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl pl-12 pr-4 py-4 text-[#111827] placeholder:text-[#6B7280]/60 focus:outline-none focus:border-[#7c3aed]/60 focus:ring-2 focus:ring-[#7c3aed]/20 text-base transition-all cursor-text"
                 />
               </div>
               <button
@@ -1192,7 +1192,7 @@ function HomePage() {
                   setFilters(newFilters);
                   fetchResults(1, newFilters);
                 }}
-                className="px-6 py-4 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.4)] whitespace-nowrap"
+                className="px-6 py-4 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.4)] whitespace-nowrap cursor-pointer min-h-[44px]"
               >
                 검색하기
               </button>
@@ -1206,7 +1206,7 @@ function HomePage() {
                   <button
                     key={cat}
                     onClick={() => handleCategoryChip(cat)}
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-all min-h-[36px] cursor-pointer ${
                       active
                         ? "bg-[#7c3aed] border-[#7c3aed] text-white shadow-[0_0_12px_rgba(124,58,237,0.4)]"
                         : "bg-transparent border-[#E5E7EB] text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827]"
@@ -1272,7 +1272,7 @@ function HomePage() {
                   {/* Mobile filter button */}
                   <button
                     onClick={() => setMobileFilterOpen(true)}
-                    className="lg:hidden flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827] transition-colors"
+                    className="lg:hidden flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827] transition-colors min-h-[44px] cursor-pointer"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
@@ -1515,7 +1515,7 @@ function HomePage() {
               </ul>
               <Link
                 href="/for-brands"
-                className="mt-auto block text-center py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity"
+                className="mt-auto block text-center py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity min-h-[44px] flex items-center justify-center cursor-pointer"
               >
                 브랜드로 시작하기 →
               </Link>
@@ -1538,7 +1538,7 @@ function HomePage() {
               </ul>
               <Link
                 href="/for-creators"
-                className="mt-auto block text-center py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity"
+                className="mt-auto block text-center py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity min-h-[44px] flex items-center justify-center cursor-pointer"
               >
                 크리에이터로 시작하기 →
               </Link>
@@ -1578,7 +1578,7 @@ function HomePage() {
                 key={i}
                 className="group bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl mb-3"
               >
-                <summary className="flex justify-between items-center cursor-pointer p-5 font-semibold text-[#111827]">
+                <summary className="flex justify-between items-center cursor-pointer px-5 py-4 min-h-[44px] font-semibold text-[#111827]">
                   {faq.q}
                   <svg
                     className="w-5 h-5 text-[#6B7280] flex-shrink-0 ml-4 transition-transform group-open:rotate-180"
@@ -1614,7 +1614,7 @@ function HomePage() {
           <h2 className="text-base font-semibold text-[#111827]">필터</h2>
           <button
             onClick={() => setMobileFilterOpen(false)}
-            className="p-1.5 rounded-lg text-[#6B7280] hover:text-[#111827] hover:bg-[#FFFFFF] transition-colors"
+            className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-[#6B7280] hover:text-[#111827] hover:bg-[#FFFFFF] transition-colors cursor-pointer"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

@@ -74,7 +74,7 @@ function InputField({
         placeholder={placeholder}
         required={required}
         autoComplete={type === "password" ? "new-password" : type === "email" ? "email" : "off"}
-        className="w-full rounded-lg px-4 py-3 text-sm outline-none"
+        className="w-full rounded-lg px-4 py-3 text-base outline-none"
         style={inputStyle(focused)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
@@ -112,7 +112,7 @@ function SelectField({
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg px-4 py-3 text-sm outline-none appearance-none"
+        className="w-full rounded-lg px-4 py-3 text-base outline-none appearance-none"
         style={inputStyle(focused)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
@@ -301,7 +301,7 @@ function SignupForm() {
             <button
               type="button"
               onClick={() => handleRoleSelect("BRAND")}
-              className="w-full rounded-2xl p-6 text-left group transition-all duration-200"
+              className="w-full rounded-2xl p-6 text-left group transition-all duration-200 min-h-[80px] cursor-pointer"
               style={{
                 background: "#FFFFFF",
                 border: "1px solid #E5E7EB",
@@ -355,7 +355,7 @@ function SignupForm() {
             <button
               type="button"
               onClick={() => handleRoleSelect("CREATOR")}
-              className="w-full rounded-2xl p-6 text-left transition-all duration-200"
+              className="w-full rounded-2xl p-6 text-left transition-all duration-200 min-h-[80px] cursor-pointer"
               style={{
                 background: "#FFFFFF",
                 border: "1px solid #E5E7EB",
@@ -462,7 +462,7 @@ function SignupForm() {
             </div>
 
             <div
-              className="rounded-2xl p-8"
+              className="rounded-2xl p-6 sm:p-8"
               style={{
                 background: "#FFFFFF",
                 border: "1px solid #E5E7EB",
@@ -624,7 +624,7 @@ function SignupForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 rounded-lg text-sm font-semibold text-white transition-all mt-2"
+                  className="w-full py-3 rounded-lg text-sm font-semibold text-white transition-all mt-2 min-h-[48px]"
                   style={{
                     background: loading
                       ? "#E5E7EB"
@@ -692,7 +692,7 @@ function PasswordInput({
         placeholder={placeholder}
         required
         autoComplete="new-password"
-        className="w-full rounded-lg px-4 py-3 pr-11 text-sm outline-none"
+        className="w-full rounded-lg px-4 py-3 pr-11 text-base outline-none"
         style={inputStyle(focused)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}

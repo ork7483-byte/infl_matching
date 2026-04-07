@@ -490,7 +490,7 @@ export default function InfluencerProfilePage() {
 
             {/* Recent Posts */}
             <Section title="최근 게시물">
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {profile.mediaSnapshots.map((post, idx) => {
                   const postCard = (
                     <a

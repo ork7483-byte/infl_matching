@@ -156,7 +156,7 @@ export default function DashboardLayout({ role, children }: DashboardLayoutProps
               key={item.href}
               href={item.href}
               onClick={() => setSidebarOpen(false)}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 group ${
+              className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-150 group min-h-[44px] cursor-pointer ${
                 isActive
                   ? "bg-[#7c3aed]/10 text-[#7c3aed]"
                   : "text-[#6B7280] hover:text-[#111827] hover:bg-[#F3F4F6]"
@@ -199,7 +199,7 @@ export default function DashboardLayout({ role, children }: DashboardLayoutProps
         </div>
         <button
           onClick={() => signOut({ callbackUrl: "/" })}
-          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-card-hover transition-colors duration-150"
+          className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-card-hover transition-colors duration-150 min-h-[44px] cursor-pointer"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -240,7 +240,7 @@ export default function DashboardLayout({ role, children }: DashboardLayoutProps
         <header className="lg:hidden flex items-center justify-between h-16 px-4 bg-white border-b border-[#E5E7EB] flex-shrink-0">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-200"
+            className="min-w-[44px] min-h-[44px] p-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-200 cursor-pointer flex items-center justify-center"
             aria-label="사이드바 열기"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

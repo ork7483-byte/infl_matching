@@ -34,8 +34,8 @@ export default function GaugeChart({
   const displayValue = Math.round(clamped);
 
   return (
-    <div style={{ minHeight: 200, width: "100%", position: "relative" }}>
-      <ResponsiveContainer width="100%" height={200}>
+    <div style={{ minHeight: 180, width: "100%", position: "relative" }}>
+      <ResponsiveContainer width="100%" height="100%" minHeight={180}>
         <PieChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="0">

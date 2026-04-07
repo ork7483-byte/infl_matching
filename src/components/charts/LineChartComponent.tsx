@@ -60,11 +60,11 @@ export default function LineChartComponent({
 
   if (showArea) {
     return (
-      <div style={{ minHeight: 250, width: "100%" }}>
+      <div style={{ minHeight: 220, width: "100%" }}>
         {label && (
           <p style={{ color: "#6B7280", fontSize: 12, marginBottom: 4 }}>{label}</p>
         )}
-        <ResponsiveContainer width="100%" height={250}>
+        <ResponsiveContainer width="100%" height="100%" minHeight={220}>
           <AreaChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
             <defs>
               <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
@@ -92,7 +92,7 @@ export default function LineChartComponent({
   }
 
   return (
-    <div style={{ minHeight: 250, width: "100%" }}>
+    <div style={{ minHeight: 220, width: "100%" }}>
       {label && (
         <p style={{ color: "#6B7280", fontSize: 12, marginBottom: 4 }}>{label}</p>
       )}

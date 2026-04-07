@@ -15,8 +15,8 @@ interface AqsRadarChartProps {
 
 export default function AqsRadarChart({ data }: AqsRadarChartProps) {
   return (
-    <div style={{ minHeight: 300, width: "100%" }}>
-      <ResponsiveContainer width="100%" height={300}>
+    <div style={{ minHeight: 240, width: "100%" }}>
+      <ResponsiveContainer width="100%" height="100%" minHeight={240}>
         <RadarChart cx="50%" cy="50%" outerRadius="75%" data={data}>
           <PolarGrid stroke="#E5E7EB" />
           <PolarAngleAxis

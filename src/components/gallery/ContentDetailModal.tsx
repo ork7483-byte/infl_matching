@@ -76,7 +76,7 @@ export default function ContentDetailModal({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+          className="absolute top-3 right-3 z-20 w-11 h-11 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors cursor-pointer"
           aria-label="닫기"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -234,7 +234,7 @@ export default function ContentDetailModal({
                 {item.caption.length > 120 && (
                   <button
                     onClick={() => setCaptionExpanded(!captionExpanded)}
-                    className="text-xs text-brand-purple-light hover:underline mt-1"
+                    className="text-xs text-brand-purple-light hover:underline mt-1 min-h-[44px] flex items-center cursor-pointer"
                   >
                     {captionExpanded ? "접기" : "더 보기"}
                   </button>
@@ -246,18 +246,18 @@ export default function ContentDetailModal({
             <div className="space-y-2">
               <Link
                 href={`/influencer/${item.username}`}
-                className="block w-full text-center px-4 py-2.5 rounded-xl border border-brand-purple/40 text-brand-purple-light text-sm font-semibold hover:bg-brand-purple/10 transition-colors"
+                className="flex items-center justify-center w-full text-center px-4 py-3 rounded-xl border border-brand-purple/40 text-brand-purple-light text-sm font-semibold hover:bg-brand-purple/10 transition-colors min-h-[44px] cursor-pointer"
               >
                 크리에이터 프로필 보기
               </Link>
               {session ? (
-                <button className="w-full px-4 py-2.5 rounded-xl bg-[#7c3aed] text-white text-sm font-semibold hover:bg-[#6d28d9] transition-colors">
+                <button className="w-full flex items-center justify-center px-4 py-3 rounded-xl bg-[#7c3aed] text-white text-sm font-semibold hover:bg-[#6d28d9] transition-colors min-h-[44px] cursor-pointer">
                   캠페인 제안하기
                 </button>
               ) : (
                 <Link
                   href="/signup"
-                  className="block w-full text-center px-4 py-2.5 rounded-xl bg-[#7c3aed] text-white text-sm font-semibold hover:bg-[#6d28d9] transition-colors"
+                  className="flex items-center justify-center w-full text-center px-4 py-3 rounded-xl bg-[#7c3aed] text-white text-sm font-semibold hover:bg-[#6d28d9] transition-colors min-h-[44px] cursor-pointer"
                 >
                   회원가입 후 캠페인 제안하기
                 </Link>

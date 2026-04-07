@@ -98,7 +98,7 @@ export default function LoginPage() {
 
         {/* Card */}
         <div
-          className="rounded-2xl p-8"
+          className="rounded-2xl p-6 sm:p-8"
           style={{
             background: "#FFFFFF",
             border: "1px solid #E5E7EB",
@@ -130,7 +130,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@company.com"
-                className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all"
+                className="w-full rounded-lg px-4 py-3 text-base outline-none transition-all"
                 style={{
                   background: "#FFFFFF",
                   border: "1px solid #E5E7EB",
@@ -164,7 +164,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all"
+                className="w-full rounded-lg px-4 py-3 text-base outline-none transition-all"
                 style={{
                   background: "#FFFFFF",
                   border: "1px solid #E5E7EB",
@@ -199,7 +199,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-lg text-sm font-semibold text-white transition-all mt-2 relative overflow-hidden"
+              className="w-full py-3 rounded-lg text-sm font-semibold text-white transition-all mt-2 relative overflow-hidden min-h-[48px]"
               style={{
                 background: loading
                   ? "#E5E7EB"

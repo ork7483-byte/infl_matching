@@ -84,7 +84,7 @@ export default function ForBrandsPage() {
             <div className="inline-block bg-[#7c3aed]/20 text-[#a78bfa] text-sm font-medium px-4 py-2 rounded-full mb-6 border border-[#7c3aed]/30">
               브랜드 솔루션
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="text-[#111827]">데이터로 검증된</span>
               <br />
               <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
@@ -97,7 +97,7 @@ export default function ForBrandsPage() {
             </p>
             <Link
               href="/signup?role=brand"
-              className="inline-block bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-8 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity"
+              className="inline-block bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-8 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity w-full sm:w-auto text-center cursor-pointer min-h-[48px]"
             >
               무료로 시작하기 — 브랜드 가입
             </Link>
@@ -108,7 +108,7 @@ export default function ForBrandsPage() {
         <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 이런 고민 있으신가요?
               </h2>
               <p className="text-[#6B7280] text-lg">
@@ -134,7 +134,7 @@ export default function ForBrandsPage() {
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 Inflix가 해결해 드립니다
               </h2>
               <p className="text-[#6B7280] text-lg">
@@ -164,14 +164,14 @@ export default function ForBrandsPage() {
         <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 기존 방식 vs Inflix
               </h2>
               <p className="text-[#6B7280] text-lg">무엇이 다른지 직접 비교해보세요.</p>
             </div>
-            <div className="overflow-hidden rounded-2xl border border-[#E5E7EB]">
+            <div className="overflow-x-auto rounded-2xl border border-[#E5E7EB]">
               {/* Table Header */}
-              <div className="grid grid-cols-3 bg-[#FFFFFF] border-b border-[#E5E7EB]">
+              <div className="grid grid-cols-3 bg-[#FFFFFF] border-b border-[#E5E7EB] min-w-[500px]">
                 <div className="px-6 py-4 text-[#6B7280] font-medium text-sm">항목</div>
                 <div className="px-6 py-4 text-center font-semibold text-[#111827] border-l border-[#E5E7EB]">
                   기존 방식
@@ -183,7 +183,7 @@ export default function ForBrandsPage() {
               {comparisonRows.map((row, i) => (
                 <div
                   key={row.category}
-                  className={`grid grid-cols-3 border-b border-[#E5E7EB] last:border-b-0 ${
+                  className={`grid grid-cols-3 border-b border-[#E5E7EB] last:border-b-0 min-w-[500px] ${
                     i % 2 === 0 ? "bg-[#FFFFFF]" : "bg-[#F9FAFB]"
                   }`}
                 >
@@ -203,7 +203,7 @@ export default function ForBrandsPage() {
         {/* Bottom CTA */}
         <section className="py-24 px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-6">
               지금 바로 데이터 기반 마케팅을 시작하세요
             </h2>
             <p className="text-[#6B7280] text-lg mb-10">
@@ -212,7 +212,7 @@ export default function ForBrandsPage() {
             </p>
             <Link
               href="/signup?role=brand"
-              className="inline-block bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-10 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity"
+              className="inline-block bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-10 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity w-full sm:w-auto text-center cursor-pointer min-h-[48px]"
             >
               무료로 시작하기
             </Link>

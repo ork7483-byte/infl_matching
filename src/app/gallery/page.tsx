@@ -350,7 +350,7 @@ function GalleryPage() {
               1,200+개의 검증된 캠페인 콘텐츠
             </div>
 
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
               실제 캠페인에서 탄생한{" "}
               <span className="bg-gradient-brand bg-clip-text text-transparent">
                 콘텐츠
@@ -371,7 +371,7 @@ function GalleryPage() {
                 <button
                   key={cat}
                   onClick={() => handleFilterChange(cat, contentType, sort)}
-                  className={`flex-shrink-0 px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-150 ${
+                  className={`flex-shrink-0 px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-150 min-h-[44px] cursor-pointer ${
                     category === cat
                       ? "border-brand-purple text-brand-purple-light"
                       : "border-transparent text-muted-foreground hover:text-foreground"
@@ -389,7 +389,7 @@ function GalleryPage() {
                   <button
                     key={ct.value}
                     onClick={() => handleFilterChange(category, ct.value, sort)}
-                    className={`flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium border transition-colors duration-150 ${
+                    className={`flex-shrink-0 px-3 py-2 rounded-full text-xs font-medium border transition-colors duration-150 min-h-[36px] cursor-pointer ${
                       contentType === ct.value
                         ? "bg-brand-purple/20 border-brand-purple/40 text-brand-purple-light"
                         : "bg-card border-border text-muted-foreground hover:border-border-light hover:text-foreground"
@@ -403,7 +403,7 @@ function GalleryPage() {
               <select
                 value={sort}
                 onChange={(e) => handleFilterChange(category, contentType, e.target.value)}
-                className="flex-shrink-0 bg-card border border-border rounded-lg px-3 py-1.5 text-xs text-foreground focus:outline-none focus:border-brand-purple/60 transition-colors cursor-pointer appearance-none"
+                className="flex-shrink-0 bg-card border border-border rounded-lg px-3 py-2 text-base text-foreground focus:outline-none focus:border-brand-purple/60 transition-colors cursor-pointer appearance-none min-h-[40px]"
               >
                 {SORT_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -424,7 +424,7 @@ function GalleryPage() {
 
           {/* Masonry columns via CSS column-count */}
           <div
-            className="columns-2 md:columns-3 xl:columns-4 gap-4"
+            className="columns-2 sm:columns-3 lg:columns-4 gap-4"
             style={{ columnGap: "16px" }}
           >
             {loading && items.length === 0

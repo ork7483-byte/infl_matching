@@ -163,7 +163,7 @@ function PricingInner() {
     <main className="min-h-screen pt-24 pb-20 px-4" style={{ backgroundColor: "#FFFFFF" }}>
       {/* ── Section 1: Hero ───────────────────────────────────────────── */}
       <section className="text-center mb-12 max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#111827]">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-[#111827]">
           심플한 요금제,{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -190,7 +190,7 @@ function PricingInner() {
         <div className="inline-flex rounded-lg p-1 gap-1" style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}>
           <button
             onClick={() => setBillingCycle("monthly")}
-            className={`px-5 py-2 rounded-md text-sm font-medium transition-all ${
+            className={`px-5 py-2.5 rounded-md text-sm font-medium transition-all min-h-[44px] cursor-pointer ${
               billingCycle === "monthly"
                 ? "bg-[#7c3aed] text-white shadow"
                 : "text-[#6B7280] hover:text-[#111827]"
@@ -200,7 +200,7 @@ function PricingInner() {
           </button>
           <button
             onClick={() => setBillingCycle("annual")}
-            className={`px-5 py-2 rounded-md text-sm font-medium transition-all ${
+            className={`px-5 py-2.5 rounded-md text-sm font-medium transition-all min-h-[44px] cursor-pointer ${
               billingCycle === "annual"
                 ? "bg-[#7c3aed] text-white shadow"
                 : "text-[#6B7280] hover:text-[#111827]"
@@ -218,7 +218,7 @@ function PricingInner() {
             <button
               key={tab}
               onClick={() => switchTab(tab)}
-              className={`px-6 py-3 text-sm font-medium transition-all ${
+              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium transition-all min-h-[44px] cursor-pointer ${
                 activeTab === tab
                   ? "text-[#7c3aed] border-b-2 border-[#7c3aed]"
                   : "text-[#6B7280] hover:text-[#111827] border-b-2 border-transparent"
@@ -280,7 +280,7 @@ function PricingInner() {
 
             {/* Pro Card (highlighted) */}
             <div
-              className="rounded-2xl p-8 flex flex-col relative overflow-hidden md:scale-105 md:z-10"
+              className="rounded-2xl p-8 flex flex-col relative overflow-hidden md:scale-105 md:z-10 max-w-full"
               style={{ backgroundColor: "#FFFFFF", border: "2px solid #7c3aed" }}
             >
               {/* Purple glow */}
@@ -553,7 +553,7 @@ function PricingInner() {
               style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
             >
               <button
-                className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 text-[#111827] font-medium hover:text-[#7c3aed] transition-colors"
+                className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 text-[#111827] font-medium hover:text-[#7c3aed] transition-colors min-h-[56px] cursor-pointer"
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
               >
                 <span>{item.q}</span>
@@ -588,7 +588,7 @@ function PricingInner() {
           <p className="text-[#6B7280] mb-8">지금은 무료입니다. 부담 없이 시작하세요.</p>
           <Link
             href="/signup"
-            className="inline-block px-10 py-4 rounded-xl text-base font-semibold text-white transition-opacity hover:opacity-90"
+            className="block w-full sm:inline-block sm:w-auto px-10 py-4 rounded-xl text-base font-semibold text-white transition-opacity hover:opacity-90 text-center min-h-[48px] cursor-pointer"
             style={{ backgroundImage: "linear-gradient(to right, #7c3aed, #e94560)" }}
           >
             무료로 시작하기

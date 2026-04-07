@@ -68,7 +68,7 @@ export default function ForCreatorsPage() {
           >
             ✨ For Creators
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight">
             당신의 영향력을
             <br />
             <span style={{ color: "#e94560" }}>정확한 숫자로</span> 보여주세요
@@ -79,7 +79,7 @@ export default function ForCreatorsPage() {
           </p>
           <Link
             href="/signup?role=creator"
-            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 hover:scale-105"
+            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 hover:scale-105 w-full sm:w-auto text-center cursor-pointer min-h-[48px]"
             style={{ backgroundColor: "#e94560" }}
           >
             무료로 시작하기 — 크리에이터 가입
@@ -91,7 +91,7 @@ export default function ForCreatorsPage() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">이런 불편함 있으셨죠?</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">이런 불편함 있으셨죠?</h2>
             <p style={{ color: "#6B7280" }}>
               크리에이터라면 누구나 겪어봤을 비효율을 Inflix가 해결합니다.
             </p>
@@ -118,7 +118,7 @@ export default function ForCreatorsPage() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Inflix가 제공하는 <span style={{ color: "#e94560" }}>4가지 솔루션</span>
             </h2>
             <p style={{ color: "#6B7280" }}>
@@ -155,7 +155,7 @@ export default function ForCreatorsPage() {
           className="max-w-3xl mx-auto rounded-3xl p-12"
           style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             지금 바로 시작하세요
           </h2>
           <p className="mb-8" style={{ color: "#6B7280" }}>
@@ -165,7 +165,7 @@ export default function ForCreatorsPage() {
           </p>
           <Link
             href="/signup?role=creator"
-            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90"
+            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 w-full sm:w-auto text-center cursor-pointer min-h-[48px]"
             style={{ backgroundColor: "#e94560" }}
           >
             무료로 시작하기

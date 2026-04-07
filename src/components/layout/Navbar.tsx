@@ -221,7 +221,7 @@ export default function Navbar() {
             {/* Mobile Hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-card transition-colors duration-200"
+              className="md:hidden min-w-[44px] min-h-[44px] p-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-card transition-colors duration-200 cursor-pointer flex items-center justify-center"
               aria-label="메뉴 열기"
             >
               <svg
@@ -261,7 +261,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-72 bg-white border-l border-[#E5E7EB] shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 z-50 h-full w-[min(288px,85vw)] bg-white border-l border-[#E5E7EB] shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -271,7 +271,7 @@ export default function Navbar() {
           </span>
           <button
             onClick={() => setMobileOpen(false)}
-            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-200"
+            className="min-w-[44px] min-h-[44px] p-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-200 cursor-pointer flex items-center justify-center"
           >
             <svg
               className="w-5 h-5"
@@ -294,7 +294,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
+              className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-150 min-h-[44px] flex items-center cursor-pointer ${
                 pathname === link.href
                   ? "text-foreground bg-brand-purple/10"
                   : "text-muted-foreground hover:text-foreground hover:bg-background"
@@ -312,7 +312,7 @@ export default function Navbar() {
                   mobileDropdown === "brands" ? null : "brands"
                 )
               }
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-150"
+              className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-150 min-h-[44px] cursor-pointer"
             >
               For Brands
               <svg
@@ -335,7 +335,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`block px-3 py-2 rounded-lg text-sm transition-colors duration-150 ${
+                    className={`block px-4 py-3 rounded-lg text-sm transition-colors duration-150 min-h-[44px] flex items-center cursor-pointer ${
                       pathname === item.href
                         ? "text-brand-purple bg-brand-purple/10"
                         : "text-muted-foreground hover:text-foreground hover:bg-background"
@@ -356,7 +356,7 @@ export default function Navbar() {
                   mobileDropdown === "creators" ? null : "creators"
                 )
               }
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-150"
+              className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-background transition-colors duration-150 min-h-[44px] cursor-pointer"
             >
               For Creators
               <svg
@@ -379,7 +379,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`block px-3 py-2 rounded-lg text-sm transition-colors duration-150 ${
+                    className={`block px-4 py-3 rounded-lg text-sm transition-colors duration-150 min-h-[44px] flex items-center cursor-pointer ${
                       pathname === item.href
                         ? "text-brand-purple bg-brand-purple/10"
                         : "text-muted-foreground hover:text-foreground hover:bg-background"
@@ -401,13 +401,13 @@ export default function Navbar() {
                 </p>
                 <Link
                   href="/dashboard"
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-center bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"
+                  className="block px-4 py-3 rounded-lg text-sm font-medium text-center bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200 min-h-[44px] flex items-center justify-center cursor-pointer"
                 >
                   대시보드
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="w-full px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground border border-border hover:border-border-light transition-colors duration-200"
+                  className="w-full px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground border border-border hover:border-border-light transition-colors duration-200 min-h-[44px] cursor-pointer"
                 >
                   로그아웃
                 </button>
@@ -416,13 +416,13 @@ export default function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-center text-muted-foreground hover:text-foreground border border-border hover:border-border-light transition-colors duration-200"
+                  className="block px-4 py-3 rounded-lg text-sm font-medium text-center text-muted-foreground hover:text-foreground border border-border hover:border-border-light transition-colors duration-200 min-h-[44px] flex items-center justify-center cursor-pointer"
                 >
                   로그인
                 </Link>
                 <Link
                   href="/signup"
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-center bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"
+                  className="block px-4 py-3 rounded-lg text-sm font-medium text-center bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200 min-h-[44px] flex items-center justify-center cursor-pointer"
                 >
                   무료 시작하기
                 </Link>

@@ -13,7 +13,7 @@ export default function LandingSolution({
         <span className="text-xl flex-shrink-0">✅</span>
         <p className="font-bold text-foreground">{title}</p>
       </div>
-      <p className="text-muted-foreground text-sm pl-8">{description}</p>
+      <p className="text-muted-foreground text-sm pl-8 leading-relaxed">{description}</p>
     </div>
   );
 }

@@ -51,7 +51,7 @@ export default function ContactPage() {
                     required
                     value={form.companyName}
                     onChange={(e) => setForm({ ...form, companyName: e.target.value })}
-                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed]"
+                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-base text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed]"
                     placeholder="예: 글로우업 코스메틱"
                   />
                 </div>
@@ -64,7 +64,7 @@ export default function ContactPage() {
                     required
                     value={form.contactName}
                     onChange={(e) => setForm({ ...form, contactName: e.target.value })}
-                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed]"
+                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-base text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed]"
                     placeholder="홍길동"
                   />
                 </div>
@@ -78,7 +78,7 @@ export default function ContactPage() {
                     type="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed]"
+                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-base text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed]"
                     placeholder="email@company.com"
                   />
                 </div>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                   <input
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed]"
+                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-base text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed]"
                     placeholder="010-0000-0000"
                   />
                 </div>
@@ -102,7 +102,7 @@ export default function ContactPage() {
                   <select
                     value={form.teamSize}
                     onChange={(e) => setForm({ ...form, teamSize: e.target.value })}
-                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed] appearance-none"
+                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-base text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed] appearance-none cursor-pointer"
                   >
                     <option>5명 이하</option>
                     <option>6~20명</option>
@@ -120,7 +120,7 @@ export default function ContactPage() {
                     rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed] resize-none"
+                    className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-4 py-3 text-base text-[#111827] focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed] resize-none"
                     placeholder="궁금한 점이나 요청 사항을 알려주세요"
                   />
                 </div>
@@ -128,7 +128,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
+                  className="w-full py-4 bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 min-h-[48px] cursor-pointer"
                 >
                   {loading ? "전송 중..." : "문의 보내기"}
                 </button>

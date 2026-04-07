@@ -107,7 +107,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150"
+                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150 py-2 inline-block cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -126,7 +126,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150"
+                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150 py-2 inline-block cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -145,7 +145,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150"
+                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150 py-2 inline-block cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -164,7 +164,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150"
+                    className="text-sm text-gray-400 hover:text-white transition-colors duration-150 py-2 inline-block cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -187,7 +187,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="text-gray-500 hover:text-gray-300 transition-colors duration-200"
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-500 hover:text-gray-300 transition-colors duration-200 cursor-pointer"
               >
                 {social.icon}
               </a>

@@ -48,8 +48,8 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
 
 export default function DonutChart({ data }: DonutChartProps) {
   return (
-    <div style={{ minHeight: 250, width: "100%" }}>
-      <ResponsiveContainer width="100%" height={250}>
+    <div style={{ minHeight: 220, width: "100%" }}>
+      <ResponsiveContainer width="100%" height="100%" minHeight={220}>
         <PieChart>
           <Pie
             data={data}

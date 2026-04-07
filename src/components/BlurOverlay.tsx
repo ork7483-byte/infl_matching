@@ -36,7 +36,7 @@ export default function BlurOverlay({
         {children}
       </div>
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <div className="bg-[rgba(255,255,255,0.92)] border border-[#E5E7EB] rounded-2xl p-8 text-center max-w-sm mx-4 shadow-lg">
+        <div className="bg-[rgba(255,255,255,0.92)] border border-[#E5E7EB] rounded-2xl px-4 py-6 sm:p-8 text-center max-w-sm mx-4 shadow-lg">
           <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[#7c3aed]/10 flex items-center justify-center">
             <svg
               className="w-6 h-6 text-brand-purple"
@@ -60,7 +60,7 @@ export default function BlurOverlay({
           </p>
           <Link
             href={ctaLink}
-            className="inline-block w-full px-6 py-3 bg-gradient-to-r from-brand-purple to-brand-pink text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+            className="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-brand-purple to-brand-pink text-white font-semibold rounded-lg hover:opacity-90 transition-opacity min-h-[44px] text-base cursor-pointer"
           >
             {ctaText}
           </Link>

@@ -46,7 +46,7 @@ export default function LandingStickyCTA({
           <div className="max-w-lg mx-auto">
             <Link
               href={link}
-              className="flex items-center justify-center w-full h-12 px-8 rounded-xl bg-[#7c3aed] text-white font-semibold text-base hover:bg-[#6d28d9] transition-colors"
+              className="flex items-center justify-center w-full h-12 px-8 rounded-xl bg-[#7c3aed] text-white font-semibold text-base hover:bg-[#6d28d9] transition-colors cursor-pointer"
             >
               {text}
             </Link>

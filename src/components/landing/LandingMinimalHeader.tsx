@@ -17,7 +17,7 @@ export default function LandingMinimalHeader({
         </Link>
         <Link
           href={ctaLink}
-          className="inline-flex items-center px-4 py-2 rounded-lg bg-[#7c3aed] text-white text-sm font-semibold hover:bg-[#6d28d9] transition-colors"
+          className="inline-flex items-center px-4 py-2.5 rounded-lg bg-[#7c3aed] text-white text-sm font-semibold hover:bg-[#6d28d9] transition-colors min-h-[44px] cursor-pointer"
         >
           {ctaText}
         </Link>
