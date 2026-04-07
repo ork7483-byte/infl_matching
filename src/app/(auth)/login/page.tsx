@@ -34,12 +34,14 @@ export default function LoginPage() {
       const session = await sessionRes.json();
       const role = session?.user?.role;
 
-      if (role === "BRAND") {
+      if (role === "ADMIN") {
+        router.push("/admin");
+      } else if (role === "BRAND") {
         router.push("/dashboard/brand");
       } else if (role === "CREATOR") {
         router.push("/dashboard/creator");
       } else {
-        router.push("/dashboard");
+        router.push("/");
       }
     } catch {
       setError("로그인 중 오류가 발생했습니다. 다시 시도해주세요.");

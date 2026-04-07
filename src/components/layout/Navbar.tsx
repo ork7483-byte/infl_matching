@@ -207,7 +207,7 @@ export default function Navbar() {
                     </Link>
                   )}
                   <Link
-                    href="/dashboard"
+                    href={(session?.user as { role?: string })?.role === "ADMIN" ? "/admin" : (session?.user as { role?: string })?.role === "BRAND" ? "/dashboard/brand" : "/dashboard/creator"}
                     className="px-4 py-2 text-sm font-medium rounded-lg bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"
                   >
                     대시보드
@@ -419,7 +419,7 @@ export default function Navbar() {
                   {session.user?.name ?? session.user?.email}
                 </p>
                 <Link
-                  href="/dashboard"
+                  href={(session?.user as { role?: string })?.role === "ADMIN" ? "/admin" : (session?.user as { role?: string })?.role === "BRAND" ? "/dashboard/brand" : "/dashboard/creator"}
                   className="block px-4 py-3 rounded-lg text-sm font-medium text-center bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200 min-h-[44px] flex items-center justify-center cursor-pointer"
                 >
                   대시보드
