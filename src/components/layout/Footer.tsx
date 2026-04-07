@@ -88,7 +88,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[#1f2937] bg-[#111827]">
+    <footer className="border-t border-[#374151] bg-[#1F2937]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         {/* Main grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -175,7 +175,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-[#1f2937]">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-[#374151]">
           <p className="text-sm text-gray-500">
             &copy; {currentYear} Inflix. All rights reserved.
           </p>
