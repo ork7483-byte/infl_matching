@@ -452,3 +452,25 @@ model PageVisit {
   @@index([utmSource])
   @@index([visitedAt])
 }
+
+// ============================================
+// Event Log (Marketing Funnel Tracking)
+// ============================================
+
+model EventLog {
+  id          String   @id @default(cuid())
+  eventType   String   // page_view, signup_start, signup_complete, login, feature_use, search, profile_view, campaign_create
+  userId      String?
+  sessionId   String?
+  path        String?
+  metadata    Json?
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  createdAt   DateTime @default(now())
+
+  @@index([eventType])
+  @@index([userId])
+  @@index([createdAt])
+  @@index([utmSource])
+}

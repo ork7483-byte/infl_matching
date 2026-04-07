@@ -1,7 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import LineChartComponent from "@/components/charts/LineChartComponent";
+
+// ── Funnel summary data ──────────────────────────────────────────────────────
+const FUNNEL_STAGES = [
+  { label: "방문", count: 12_840, rate: "100%" },
+  { label: "가입시작", count: 2_710, rate: "21.1%" },
+  { label: "가입완료", count: 872, rate: "6.8%" },
+  { label: "첫사용", count: 431, rate: "3.4%" },
+  { label: "재방문", count: 218, rate: "1.7%" },
+];
+
+const SUB_PAGES = [
+  { href: "/admin/marketing/funnel",      label: "퍼널 대시보드",  desc: "단계별 전환율 및 트렌드 분석",         icon: "🔽" },
+  { href: "/admin/marketing/acquisition", label: "유입 분석",      desc: "채널별 방문·가입 성과",                icon: "📡" },
+  { href: "/admin/marketing/conversion",  label: "전환 분석",      desc: "가입 퍼널 단계별 드롭오프 분석",       icon: "🔄" },
+  { href: "/admin/marketing/retention",   label: "유지 분석",      desc: "코호트 리텐션 및 DAU/WAU/MAU",         icon: "📈" },
+  { href: "/admin/marketing/lab",         label: "실험실",          desc: "A/B 테스트 및 푸시 알림 발송",         icon: "🧪" },
+];
 
 const LANDING_PAGES = [
   { category: "범용", label: "메인 랜딩", url: "https://inflix.kr/" },
@@ -75,6 +93,105 @@ function CopyButton({ text }: { text: string }) {
 const PERIOD_TABS = ["7일", "30일", "전체"];
 
 export default function AdminMarketing() {
+  // ── Funnel Summary ─────────────────────────────────────────────────────────
+  const FunnelSummary = () => (
+    <section
+      style={{
+        background: "#fff",
+        border: "1px solid #E5E7EB",
+        borderRadius: 12,
+        padding: 24,
+        marginBottom: 24,
+      }}
+    >
+      <h2 style={{ fontSize: 16, fontWeight: 600, color: "#111827", marginTop: 0, marginBottom: 20 }}>
+        전환 퍼널 요약
+      </h2>
+      <div style={{ display: "flex", alignItems: "center", gap: 0, overflowX: "auto", paddingBottom: 4 }}>
+        {FUNNEL_STAGES.map((stage, idx) => (
+          <div key={stage.label} style={{ display: "flex", alignItems: "center", flex: 1, minWidth: 120 }}>
+            <div
+              style={{
+                flex: 1,
+                background: "#F9FAFB",
+                border: "1px solid #E5E7EB",
+                borderRadius: 10,
+                padding: "16px 14px",
+                textAlign: "center",
+              }}
+            >
+              <div style={{ fontSize: 11, color: "#6b7280", marginBottom: 6, fontWeight: 500 }}>
+                {stage.label}
+              </div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: "#111827", marginBottom: 4 }}>
+                {stage.count.toLocaleString()}
+              </div>
+              <div
+                style={{
+                  display: "inline-block",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  color: idx === 0 ? "#7c3aed" : "#10b981",
+                  background: idx === 0 ? "#7c3aed18" : "#10b98118",
+                  borderRadius: 4,
+                  padding: "2px 8px",
+                }}
+              >
+                {stage.rate}
+              </div>
+            </div>
+            {idx < FUNNEL_STAGES.length - 1 && (
+              <div style={{ padding: "0 6px", color: "#9ca3af", fontSize: 18, flexShrink: 0 }}>›</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+
+  // ── Sub-page Navigation Cards ─────────────────────────────────────────────
+  const SubPageNav = () => (
+    <section
+      style={{
+        background: "#fff",
+        border: "1px solid #E5E7EB",
+        borderRadius: 12,
+        padding: 24,
+        marginBottom: 24,
+      }}
+    >
+      <h2 style={{ fontSize: 16, fontWeight: 600, color: "#111827", marginTop: 0, marginBottom: 16 }}>
+        마케팅 분석 메뉴
+      </h2>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 12 }}>
+        {SUB_PAGES.map((page) => (
+          <Link
+            key={page.href}
+            href={page.href}
+            style={{
+              display: "block",
+              background: "#F9FAFB",
+              border: "1px solid #E5E7EB",
+              borderRadius: 10,
+              padding: "18px 16px",
+              textDecoration: "none",
+              transition: "border-color 0.15s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#7c3aed")}
+            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#E5E7EB")}
+          >
+            <div style={{ fontSize: 24, marginBottom: 8 }}>{page.icon}</div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#111827", marginBottom: 4 }}>
+              {page.label}
+            </div>
+            <div style={{ fontSize: 12, color: "#6b7280" }}>{page.desc}</div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+
+
   const [loading, setLoading] = useState(true);
   const [period, setPeriod] = useState("30일");
   const [utmPage, setUtmPage] = useState("/");
@@ -96,6 +213,9 @@ export default function AdminMarketing() {
       <h1 style={{ fontSize: 24, fontWeight: 700, color: "#111827", marginBottom: 28, marginTop: 0 }}>
         마케팅 관리
       </h1>
+
+      <FunnelSummary />
+      <SubPageNav />
 
       {/* Section 1: Landing Pages */}
       <section
