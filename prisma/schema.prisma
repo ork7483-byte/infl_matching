@@ -419,3 +419,17 @@ model PortfolioItem {
   @@index([isFeatured])
   @@index([createdAt])
 }
+
+// ============================================
+// Token Management
+// ============================================
+
+model ApiToken {
+  id          String   @id @default(cuid())
+  provider    String   @unique // "instagram", "facebook"
+  accessToken String
+  tokenType   String   @default("bearer")
+  expiresAt   DateTime
+  refreshedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+}

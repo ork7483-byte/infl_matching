@@ -15,10 +15,36 @@ interface IGConfig {
   igUserId: string;
 }
 
-function getConfig(): IGConfig {
-  const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
+// DB 토큰 캐시 (서버리스에서 cold start 시 DB 조회 최소화)
+let cachedDbToken: { token: string; expiresAt: number } | null = null;
+
+async function getConfig(): Promise<IGConfig> {
   const igUserId = process.env.INSTAGRAM_USER_ID || "17841410385539405";
 
+  // 1. DB 캐시에서 토큰 확인
+  if (cachedDbToken && cachedDbToken.expiresAt > Date.now()) {
+    return { accessToken: cachedDbToken.token, igUserId };
+  }
+
+  // 2. DB에서 토큰 조회 (동적 import로 순환 참조 방지)
+  try {
+    const { prisma } = await import("./prisma");
+    const dbToken = await prisma.apiToken.findUnique({
+      where: { provider: "instagram" },
+    });
+    if (dbToken && dbToken.expiresAt > new Date()) {
+      cachedDbToken = {
+        token: dbToken.accessToken,
+        expiresAt: dbToken.expiresAt.getTime(),
+      };
+      return { accessToken: dbToken.accessToken, igUserId };
+    }
+  } catch {
+    // DB 접근 실패 시 환경변수 fallback
+  }
+
+  // 3. 환경변수 fallback
+  const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
   if (!accessToken) {
     throw new Error("INSTAGRAM_ACCESS_TOKEN is not configured");
   }
@@ -135,7 +161,7 @@ export interface IGMedia {
  */
 export async function getBusinessDiscovery(username: string): Promise<IGUserProfile | null> {
   try {
-    const { accessToken, igUserId } = getConfig();
+    const { accessToken, igUserId } = await getConfig();
     const fields = "username,name,biography,followers_count,follows_count,media_count,profile_picture_url,website";
     const url = `${GRAPH_API_BASE}/${igUserId}?fields=business_discovery.fields(${fields}){username=${username}}&access_token=${accessToken}`;
 
@@ -158,7 +184,7 @@ export async function getBusinessDiscoveryMedia(
   limit = 25
 ): Promise<IGMedia[]> {
   try {
-    const { accessToken, igUserId } = getConfig();
+    const { accessToken, igUserId } = await getConfig();
     const mediaFields = "id,media_type,media_url,thumbnail_url,permalink,caption,timestamp,like_count,comments_count";
     const url = `${GRAPH_API_BASE}/${igUserId}?fields=business_discovery.fields(media.limit(${limit}){${mediaFields}}){username=${username}}&access_token=${accessToken}`;
 
@@ -180,7 +206,7 @@ export async function getFullBusinessDiscovery(
   mediaLimit = 25
 ): Promise<{ profile: IGUserProfile; media: IGMedia[] } | null> {
   try {
-    const { accessToken, igUserId } = getConfig();
+    const { accessToken, igUserId } = await getConfig();
     const profileFields = "username,name,biography,followers_count,follows_count,media_count,profile_picture_url";
     const mediaFields = "id,media_type,media_url,thumbnail_url,permalink,caption,timestamp,like_count,comments_count";
     const url = `${GRAPH_API_BASE}/${igUserId}?fields=business_discovery.fields(${profileFields},media.limit(${mediaLimit}){${mediaFields}}){username=${username}}&access_token=${accessToken}`;
@@ -304,7 +330,7 @@ export async function getAudienceDemographics(
  */
 export async function getHashtagId(hashtag: string): Promise<string | null> {
   try {
-    const { accessToken, igUserId } = getConfig();
+    const { accessToken, igUserId } = await getConfig();
     const url = `${GRAPH_API_BASE}/ig_hashtag_search?q=${encodeURIComponent(hashtag)}&user_id=${igUserId}&access_token=${accessToken}`;
 
     const res = await rateLimitedFetch(url);
@@ -324,7 +350,7 @@ export async function getHashtagRecentMedia(
   limit = 50
 ): Promise<IGMedia[]> {
   try {
-    const { accessToken, igUserId } = getConfig();
+    const { accessToken, igUserId } = await getConfig();
     const fields = "id,media_type,permalink,caption,timestamp,like_count,comments_count";
     const url = `${GRAPH_API_BASE}/${hashtagId}/recent_media?user_id=${igUserId}&fields=${fields}&limit=${limit}&access_token=${accessToken}`;
 
