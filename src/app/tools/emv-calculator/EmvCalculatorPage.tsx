@@ -174,7 +174,7 @@ export default function EmvCalculatorPage() {
                           value={username}
                           onChange={(e) => setUsername(e.target.value)}
                           onKeyDown={(e) => e.key === "Enter" && handleUsernameLookup()}
-                          className="flex-1 outline-none text-sm bg-transparent"
+                          className="flex-1 outline-none text-base bg-transparent"
                           placeholder="username"
                         />
                       </div>
@@ -222,7 +222,7 @@ export default function EmvCalculatorPage() {
                           min={0}
                           value={value}
                           onChange={(e) => setter(e.target.value)}
-                          className="flex-1 outline-none text-sm bg-transparent"
+                          className="flex-1 outline-none text-base bg-transparent"
                           placeholder={placeholder}
                         />
                         {suffix && <span className="text-[#9CA3AF] ml-2 text-sm">{suffix}</span>}
@@ -238,7 +238,7 @@ export default function EmvCalculatorPage() {
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#7c3aed] focus:ring-2 focus:ring-[#7c3aed]/20 transition-all bg-white"
+                  className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-base outline-none focus:border-[#7c3aed] focus:ring-2 focus:ring-[#7c3aed]/20 transition-all bg-white"
                 >
                   {CATEGORIES.map((cat) => (
                     <option key={cat} value={cat}>

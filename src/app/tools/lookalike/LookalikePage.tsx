@@ -164,7 +164,7 @@ export default function LookalikePage() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                   placeholder="사용자명 입력"
-                  className="flex-1 py-3 outline-none text-sm bg-transparent"
+                  className="flex-1 py-3 outline-none text-base bg-transparent"
                 />
               </div>
               <button

@@ -127,7 +127,7 @@ export default function CampaignBriefTemplatePage() {
                       setForm((p) => ({ ...p, brandName: e.target.value }))
                     }
                     placeholder="예: 글로우업 코스메틱"
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
 
@@ -143,7 +143,7 @@ export default function CampaignBriefTemplatePage() {
                       setForm((p) => ({ ...p, campaignName: e.target.value }))
                     }
                     placeholder="예: 2024 봄 신상 립스틱 홍보 캠페인"
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
 
@@ -157,7 +157,7 @@ export default function CampaignBriefTemplatePage() {
                     onChange={(e) =>
                       setForm((p) => ({ ...p, goal: e.target.value }))
                     }
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white"
                   >
                     <option value="">선택하세요</option>
                     {GOAL_OPTIONS.map((g) => (
@@ -180,7 +180,7 @@ export default function CampaignBriefTemplatePage() {
                     }
                     placeholder="예: 20-30대 여성, 뷰티에 관심 있는 직장인"
                     rows={3}
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                   />
                 </div>
 
@@ -222,7 +222,7 @@ export default function CampaignBriefTemplatePage() {
                     }
                     placeholder="예: 제품을 자연스럽게 사용하는 모습, 색상 표현 강조, 광고 표시 필수"
                     rows={3}
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                   />
                 </div>
 
@@ -242,7 +242,7 @@ export default function CampaignBriefTemplatePage() {
                         onChange={(e) =>
                           setForm((p) => ({ ...p, startDate: e.target.value }))
                         }
-                        className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                       />
                     </div>
                     <div>
@@ -255,7 +255,7 @@ export default function CampaignBriefTemplatePage() {
                         onChange={(e) =>
                           setForm((p) => ({ ...p, endDate: e.target.value }))
                         }
-                        className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                       />
                     </div>
                   </div>
@@ -271,7 +271,7 @@ export default function CampaignBriefTemplatePage() {
                     onChange={(e) =>
                       setForm((p) => ({ ...p, rewardType: e.target.value }))
                     }
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white"
                   >
                     <option value="">선택하세요</option>
                     {REWARD_TYPE_OPTIONS.map((r) => (
@@ -294,7 +294,7 @@ export default function CampaignBriefTemplatePage() {
                       setForm((p) => ({ ...p, rewardDetail: e.target.value }))
                     }
                     placeholder="예: 건당 50만원 / 제품 2종 + 10만원"
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
 
@@ -310,7 +310,7 @@ export default function CampaignBriefTemplatePage() {
                       setForm((p) => ({ ...p, hashtag: e.target.value }))
                     }
                     placeholder="예: #글로우업 #봄메이크업"
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
 
@@ -329,7 +329,7 @@ export default function CampaignBriefTemplatePage() {
                     }
                     placeholder="예: 경쟁사 제품 노출 금지, 촬영 전 컨셉 공유 필요"
                     rows={3}
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                   />
                 </div>
               </div>

@@ -155,7 +155,7 @@ export default function FollowerCountPage() {
                   onChange={(e) => setUsername(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleCheck()}
                   placeholder="username"
-                  className="flex-1 outline-none text-sm bg-transparent"
+                  className="flex-1 outline-none text-base bg-transparent"
                 />
               </div>
               <button

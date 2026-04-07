@@ -185,7 +185,7 @@ export default function ComparePage() {
                       onChange={(e) => updateField(i, e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleCompare()}
                       placeholder={`사용자명 ${i + 1}`}
-                      className="flex-1 outline-none text-sm bg-transparent"
+                      className="flex-1 outline-none text-base bg-transparent"
                     />
                   </div>
                   {i >= 2 && (

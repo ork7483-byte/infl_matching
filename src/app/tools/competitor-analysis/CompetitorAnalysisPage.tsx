@@ -145,7 +145,7 @@ export default function CompetitorAnalysisPage() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleAnalyze()}
-                  className="flex-1 outline-none text-sm bg-transparent"
+                  className="flex-1 outline-none text-base bg-transparent"
                   placeholder="경쟁사 인스타그램 계정명"
                 />
               </div>

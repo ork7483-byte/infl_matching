@@ -109,7 +109,7 @@ export default function PriceCalculatorPage() {
                   setCalculated(false);
                 }}
                 placeholder="예: 50000"
-                className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#7c3aed] focus:ring-2 focus:ring-[#7c3aed]/20 transition-all"
+                className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-base outline-none focus:border-[#7c3aed] focus:ring-2 focus:ring-[#7c3aed]/20 transition-all"
               />
               {followers && followerNum < 1000 && (
                 <p className="mt-1 text-xs text-red-500">최소 1,000명 이상을 입력해주세요.</p>
@@ -126,7 +126,7 @@ export default function PriceCalculatorPage() {
                   setCategory(e.target.value);
                   setCalculated(false);
                 }}
-                className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#7c3aed] focus:ring-2 focus:ring-[#7c3aed]/20 transition-all bg-white"
+                className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-base outline-none focus:border-[#7c3aed] focus:ring-2 focus:ring-[#7c3aed]/20 transition-all bg-white"
               >
                 {CATEGORIES.map((cat) => (
                   <option key={cat.value} value={cat.value}>

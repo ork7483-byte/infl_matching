@@ -113,7 +113,7 @@ export default function EngagementRateToolPage() {
                   onChange={(e) => setUsername(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleAnalyze()}
                   placeholder="username"
-                  className="flex-1 outline-none text-sm bg-transparent"
+                  className="flex-1 outline-none text-base bg-transparent"
                 />
               </div>
               <button

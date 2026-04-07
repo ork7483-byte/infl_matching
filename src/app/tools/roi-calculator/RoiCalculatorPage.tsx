@@ -114,7 +114,7 @@ export default function RoiCalculatorPage() {
                     min={0}
                     value={budget}
                     onChange={(e) => setBudget(e.target.value)}
-                    className="flex-1 outline-none text-sm bg-transparent"
+                    className="flex-1 outline-none text-base bg-transparent"
                     placeholder="5000000"
                   />
                 </div>
@@ -134,7 +134,7 @@ export default function RoiCalculatorPage() {
                     min={1}
                     value={influencerCount}
                     onChange={(e) => setInfluencerCount(e.target.value)}
-                    className="flex-1 outline-none text-sm bg-transparent"
+                    className="flex-1 outline-none text-base bg-transparent"
                     placeholder="3"
                   />
                   <span className="text-[#9CA3AF] ml-2 text-sm">명</span>
@@ -152,7 +152,7 @@ export default function RoiCalculatorPage() {
                     min={0}
                     value={avgFollowers}
                     onChange={(e) => setAvgFollowers(e.target.value)}
-                    className="flex-1 outline-none text-sm bg-transparent"
+                    className="flex-1 outline-none text-base bg-transparent"
                     placeholder="50000"
                   />
                   <span className="text-[#9CA3AF] ml-2 text-sm">명</span>
@@ -172,7 +172,7 @@ export default function RoiCalculatorPage() {
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#7c3aed] focus:ring-2 focus:ring-[#7c3aed]/20 transition-all bg-white"
+                  className="w-full border border-[#E5E7EB] rounded-xl px-4 py-3 text-base outline-none focus:border-[#7c3aed] focus:ring-2 focus:ring-[#7c3aed]/20 transition-all bg-white"
                 >
                   {CATEGORIES.map((c) => (
                     <option key={c.value} value={c.value}>
