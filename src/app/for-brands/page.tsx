@@ -106,10 +106,10 @@ export default function ForBrandsPage() {
         </section>
 
         {/* More tools */}
-        <section className="py-16 px-4">
+        <section className="py-16 px-4 overflow-x-hidden">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-xl sm:text-2xl font-bold text-[#111827] mb-8">더 많은 분석 도구</h2>
-            <div className="flex gap-6 items-start">
+            <div className="flex gap-6 items-start overflow-x-hidden">
               {/* Sidebar */}
               <aside className="hidden lg:block w-60 flex-shrink-0 sticky top-24">
                 <nav className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden">
