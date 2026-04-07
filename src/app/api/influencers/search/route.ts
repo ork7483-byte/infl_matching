@@ -4,6 +4,10 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
+// Search operates entirely from the DB. Influencer records are populated
+// (and kept fresh) by the sync layer in /api/influencers/[username]/route.ts
+// and the manual sync endpoint at /api/instagram/sync. No direct IG API
+// calls are made here to avoid per-request rate-limit pressure.
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);

@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+// NOTE: Audience demographics require the influencer's own OAuth token
+// (instagram_manage_insights permission). The getAudienceDemographics()
+// function in src/lib/instagram.ts can be called once a creator connects
+// their account. Until then, this route returns whatever is stored in DB.
 
 export async function GET(
   _request: NextRequest,
@@ -42,7 +46,12 @@ export async function GET(
       });
     }
 
-    return NextResponse.json({ data: grouped });
+    return NextResponse.json({
+      data: grouped,
+      source: "database",
+      // For fresh audience data, connect the creator's Instagram account
+      // so their OAuth token can be used with getAudienceDemographics().
+    });
   } catch (error) {
     console.error("[GET /api/influencers/[username]/audience]", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

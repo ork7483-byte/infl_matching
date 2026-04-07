@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import {
+  getFullBusinessDiscovery,
+  calculateEngagementRate,
+  isInstagramConfigured,
+} from "@/lib/instagram";
 
 export async function GET(request: NextRequest) {
   try {
@@ -27,6 +32,26 @@ export async function GET(request: NextRequest) {
     });
 
     if (!influencer) {
+      // Fallback: try fetching directly from Instagram API
+      if (isInstagramConfigured()) {
+        try {
+          const igData = await getFullBusinessDiscovery(username);
+          if (igData) {
+            const er = calculateEngagementRate(igData.profile.followers_count, igData.media);
+            const grade = er > 5 ? "높음" : er >= 2 ? "보통" : "낮음";
+            return NextResponse.json({
+              username,
+              engagementRate: er,
+              grade,
+              followersCount: igData.profile.followers_count,
+              postsAnalyzed: igData.media.length,
+              source: "instagram_api",
+            });
+          }
+        } catch (igErr) {
+          console.error("[engagement-rate] Instagram fallback failed:", igErr);
+        }
+      }
       return NextResponse.json({ error: "Influencer not found" }, { status: 404 });
     }
 
@@ -56,6 +81,7 @@ export async function GET(request: NextRequest) {
       grade,
       followersCount,
       postsAnalyzed: snapshots.length,
+      source: "database",
     });
   } catch (error) {
     console.error("[GET /api/tools/engagement-rate]", error);

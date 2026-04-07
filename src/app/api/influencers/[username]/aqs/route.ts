@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { calculateAqs } from "@/lib/aqs";
+import { isInstagramConfigured } from "@/lib/instagram";
+
+const AQS_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 function getAqsGradeColor(score: number): string {
   if (score >= 75) return "green";
@@ -27,10 +31,68 @@ export async function GET(
       return NextResponse.json({ error: "Influencer not found" }, { status: 404 });
     }
 
-    const latestAqs = await prisma.aqsScore.findFirst({
+    let latestAqs = await prisma.aqsScore.findFirst({
       where: { influencerId: influencer.id },
       orderBy: { calculatedAt: "desc" },
     });
+
+    // Recalculate AQS when stale or absent, provided sufficient data exists
+    const aqsIsStale =
+      !latestAqs ||
+      Date.now() - latestAqs.calculatedAt.getTime() > AQS_TTL_MS;
+
+    if (aqsIsStale && isInstagramConfigured()) {
+      try {
+        const [influencerData, followerHistory, mediaSnapshots] = await Promise.all([
+          prisma.influencer.findUnique({
+            where: { id: influencer.id },
+            select: {
+              followersCount: true,
+              followingCount: true,
+              avgEngagementRate: true,
+            },
+          }),
+          prisma.followerHistory.findMany({
+            where: { influencerId: influencer.id },
+            orderBy: { recordedDate: "asc" },
+            select: { followersCount: true, recordedDate: true },
+          }),
+          prisma.mediaSnapshot.findMany({
+            where: { influencerId: influencer.id },
+            orderBy: { postedAt: "desc" },
+            take: 24,
+            select: { likeCount: true, commentsCount: true, caption: true },
+          }),
+        ]);
+
+        if (influencerData && mediaSnapshots.length > 0) {
+          const result = calculateAqs({
+            followersCount: influencerData.followersCount,
+            followingCount: influencerData.followingCount,
+            avgEngagementRate: influencerData.avgEngagementRate ?? 0,
+            followerHistory,
+            mediaSnapshots,
+          });
+
+          latestAqs = await prisma.aqsScore.create({
+            data: {
+              influencerId: influencer.id,
+              totalScore: result.totalScore,
+              engagementQuality: result.engagementQuality,
+              growthPattern: result.growthPattern,
+              ratioAnalysis: result.ratioAnalysis,
+              contentConsistency: result.contentConsistency,
+              commentAuthenticity: result.commentAuthenticity,
+              signals: result.signals,
+              modelVersion: "rule-v1",
+            },
+          });
+        }
+      } catch (calcErr) {
+        console.error("[aqs] Recalculation failed:", calcErr);
+        // latestAqs remains as-is (possibly null); fall through gracefully
+      }
+    }
 
     if (!latestAqs) {
       return NextResponse.json({ data: null });
