@@ -63,7 +63,7 @@ export default function MarketplacePage() {
           >
             🛒 캠페인 마켓플레이스
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight">
             브랜드가 먼저
             <br />
             <span style={{ color: "#e94560" }}>찾아오는 마켓플레이스</span>
@@ -74,7 +74,7 @@ export default function MarketplacePage() {
           </p>
           <Link
             href="/signup?role=creator"
-            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 hover:scale-105"
+            className="block w-full sm:inline-block sm:w-auto text-center px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 hover:scale-105 min-h-[48px] cursor-pointer"
             style={{ backgroundColor: "#e94560" }}
           >
             무료로 시작하기
@@ -189,7 +189,7 @@ export default function MarketplacePage() {
           className="max-w-3xl mx-auto rounded-3xl p-12"
           style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             지금 바로 캠페인을 찾아보세요
           </h2>
           <p className="mb-8" style={{ color: "#6B7280" }}>
@@ -197,7 +197,7 @@ export default function MarketplacePage() {
           </p>
           <Link
             href="/signup?role=creator"
-            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90"
+            className="block w-full sm:inline-block sm:w-auto text-center px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 min-h-[48px] cursor-pointer"
             style={{ backgroundColor: "#e94560" }}
           >
             무료로 시작하기

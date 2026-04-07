@@ -46,7 +46,7 @@ export default function AnalyticsPage() {
             <div className="inline-block bg-[#7c3aed]/20 text-[#a78bfa] text-sm font-medium px-4 py-2 rounded-full mb-6 border border-[#7c3aed]/30">
               성과 분석 & 리포트
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="text-[#111827]">실시간 성과 분석 &</span>
               <br />
               <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
@@ -59,7 +59,7 @@ export default function AnalyticsPage() {
             </p>
             <Link
               href="/signup?role=brand"
-              className="inline-block bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-8 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity"
+              className="block w-full sm:inline-block sm:w-auto text-center bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-8 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity min-h-[48px] cursor-pointer"
             >
               무료로 시작하기
             </Link>
@@ -90,7 +90,7 @@ export default function AnalyticsPage() {
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 분석의 모든 것을 담았습니다
               </h2>
               <p className="text-[#6B7280] text-lg">
@@ -116,7 +116,7 @@ export default function AnalyticsPage() {
         <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 한눈에 보이는 성과 차트
               </h2>
               <p className="text-[#6B7280] text-lg">
@@ -181,7 +181,7 @@ export default function AnalyticsPage() {
               </div>
 
               {/* Summary row */}
-              <div className="grid grid-cols-3 gap-4 mt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
                 {[
                   { label: "총 도달 수", value: "1,240,000", change: "+18.4%" },
                   { label: "총 참여수", value: "87,300", change: "+24.1%" },
@@ -204,7 +204,7 @@ export default function AnalyticsPage() {
         {/* Bottom CTA */}
         <section className="py-24 px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-6">
               데이터로 증명하는 마케팅을 시작하세요
             </h2>
             <p className="text-[#6B7280] text-lg mb-10">
@@ -212,7 +212,7 @@ export default function AnalyticsPage() {
             </p>
             <Link
               href="/signup?role=brand"
-              className="inline-block bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-10 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity"
+              className="block w-full sm:inline-block sm:w-auto text-center bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-10 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity min-h-[48px] cursor-pointer"
             >
               무료로 시작하기
             </Link>

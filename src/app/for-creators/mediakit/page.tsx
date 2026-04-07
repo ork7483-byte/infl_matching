@@ -39,7 +39,7 @@ export default function MediaKitPage() {
           >
             📋 미디어킷 자동 생성
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight">
             원클릭으로 만드는
             <br />
             <span style={{ color: "#e94560" }}>프로페셔널 미디어킷</span>
@@ -50,7 +50,7 @@ export default function MediaKitPage() {
           </p>
           <Link
             href="/signup?role=creator"
-            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 hover:scale-105"
+            className="block w-full sm:inline-block sm:w-auto text-center px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 hover:scale-105 min-h-[48px] cursor-pointer"
             style={{ backgroundColor: "#e94560" }}
           >
             무료로 시작하기
@@ -117,7 +117,7 @@ export default function MediaKitPage() {
               </div>
 
               {/* Stats row */}
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 {[
                   { label: "팔로워", value: "128K" },
                   { label: "평균 참여율", value: "4.8%" },
@@ -209,7 +209,7 @@ export default function MediaKitPage() {
           className="max-w-3xl mx-auto rounded-3xl p-12"
           style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             지금 바로 나만의 미디어킷을 만들어보세요
           </h2>
           <p className="mb-8" style={{ color: "#6B7280" }}>
@@ -217,7 +217,7 @@ export default function MediaKitPage() {
           </p>
           <Link
             href="/signup?role=creator"
-            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90"
+            className="block w-full sm:inline-block sm:w-auto text-center px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 min-h-[48px] cursor-pointer"
             style={{ backgroundColor: "#e94560" }}
           >
             무료로 시작하기

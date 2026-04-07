@@ -23,6 +23,7 @@ const creatorsDropdown = [
 
 interface DropdownMenuProps {
   label: string;
+  href: string;
   items: { label: string; href: string }[];
   isOpen: boolean;
   onMouseEnter: () => void;
@@ -32,6 +33,7 @@ interface DropdownMenuProps {
 
 function DropdownMenu({
   label,
+  href,
   items,
   isOpen,
   onMouseEnter,
@@ -46,10 +48,17 @@ function DropdownMenu({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <button
-        onClick={onToggle}
-        className={`flex items-center gap-1 px-1 py-2 text-sm font-medium transition-colors duration-200 ${
-          items.some((item) => pathname.startsWith(item.href))
+      <Link
+        href={href}
+        onClick={(e) => {
+          // On mobile (no hover), toggle dropdown instead of navigating
+          if (window.innerWidth < 768) {
+            e.preventDefault();
+            onToggle();
+          }
+        }}
+        className={`flex items-center gap-1 px-1 py-2 text-sm font-medium transition-colors duration-200 cursor-pointer ${
+          pathname.startsWith(href)
             ? "text-brand-purple"
             : "text-muted-foreground hover:text-foreground"
         }`}
@@ -68,7 +77,7 @@ function DropdownMenu({
             d="M19 9l-7 7-7-7"
           />
         </svg>
-      </button>
+      </Link>
 
       <div
         className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-52 transition-all duration-200 ${
@@ -157,6 +166,7 @@ export default function Navbar() {
 
               <DropdownMenu
                 label="For Brands"
+                href="/for-brands"
                 items={brandsDropdown}
                 isOpen={openDropdown === "brands"}
                 onMouseEnter={() => handleMouseEnter("brands")}
@@ -168,6 +178,7 @@ export default function Navbar() {
 
               <DropdownMenu
                 label="For Creators"
+                href="/for-creators"
                 items={creatorsDropdown}
                 isOpen={openDropdown === "creators"}
                 onMouseEnter={() => handleMouseEnter("creators")}

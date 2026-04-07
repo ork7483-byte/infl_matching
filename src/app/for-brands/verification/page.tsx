@@ -79,7 +79,7 @@ export default function VerificationPage() {
             <div className="inline-block bg-[#7c3aed]/20 text-[#a78bfa] text-sm font-medium px-4 py-2 rounded-full mb-6 border border-[#7c3aed]/30">
               인플루언서 검증
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="text-[#111827]">진짜 인플루언서를</span>
               <br />
               <span className="bg-gradient-to-r from-[#7c3aed] to-[#e94560] bg-clip-text text-transparent">
@@ -92,7 +92,7 @@ export default function VerificationPage() {
             </p>
             <Link
               href="/signup?role=brand"
-              className="inline-block bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-8 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity"
+              className="block w-full sm:inline-block sm:w-auto text-center bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-8 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity min-h-[48px] cursor-pointer"
             >
               무료로 시작하기
             </Link>
@@ -103,7 +103,7 @@ export default function VerificationPage() {
         <section className="py-20 px-4 bg-[#F9FAFB]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 4가지 검증 레이어
               </h2>
               <p className="text-[#6B7280] text-lg">
@@ -129,7 +129,7 @@ export default function VerificationPage() {
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-4">
                 AQS 등급 기준
               </h2>
               <p className="text-[#6B7280] text-lg">
@@ -257,7 +257,7 @@ export default function VerificationPage() {
         {/* Bottom CTA */}
         <section className="py-24 px-4 text-center bg-[#F9FAFB]">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111827] mb-6">
               검증된 인플루언서로만 캠페인하세요
             </h2>
             <p className="text-[#6B7280] text-lg mb-10">
@@ -265,7 +265,7 @@ export default function VerificationPage() {
             </p>
             <Link
               href="/signup?role=brand"
-              className="inline-block bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-10 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity"
+              className="block w-full sm:inline-block sm:w-auto text-center bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-10 py-4 rounded-xl text-lg hover:opacity-90 transition-opacity min-h-[48px] cursor-pointer"
             >
               무료로 시작하기
             </Link>
