@@ -128,6 +128,10 @@ async function main() {
   console.log("🌱 Seeding database...");
 
   // Clean existing data
+  await prisma.creditPurchase.deleteMany();
+  await prisma.creditBalance.deleteMany();
+  await prisma.aIGeneration.deleteMany();
+  await prisma.aIModel.deleteMany();
   await prisma.review.deleteMany();
   await prisma.portfolioItem.deleteMany();
   await prisma.payment.deleteMany();
@@ -799,6 +803,77 @@ async function main() {
     });
   }
   console.log("✅ Created 15 reviews");
+
+  // ============================================
+  // AI Models (12 models)
+  // ============================================
+  const aiModels = [
+    { name: "수아", nameEn: "Sua", gender: "female", ageGroup: "20s", styles: ["casual", "lifestyle", "beauty"], bodyType: "slim", ethnicity: "asian" },
+    { name: "하은", nameEn: "Haeun", gender: "female", ageGroup: "20s", styles: ["sporty", "fitness"], bodyType: "regular", ethnicity: "asian" },
+    { name: "지유", nameEn: "Jiyu", gender: "female", ageGroup: "20s", styles: ["luxury", "fashion"], bodyType: "slim", ethnicity: "asian" },
+    { name: "서연", nameEn: "Seoyeon", gender: "female", ageGroup: "30s", styles: ["natural", "beauty"], bodyType: "regular", ethnicity: "asian" },
+    { name: "미나", nameEn: "Mina", gender: "female", ageGroup: "20s", styles: ["street", "hip"], bodyType: "slim", ethnicity: "mixed" },
+    { name: "예진", nameEn: "Yejin", gender: "female", ageGroup: "30s", styles: ["formal", "business"], bodyType: "regular", ethnicity: "asian" },
+    { name: "지호", nameEn: "Jiho", gender: "male", ageGroup: "30s", styles: ["business", "formal"], bodyType: "regular", ethnicity: "asian" },
+    { name: "민준", nameEn: "Minjun", gender: "male", ageGroup: "20s", styles: ["street", "casual"], bodyType: "slim", ethnicity: "asian" },
+    { name: "현우", nameEn: "Hyunwoo", gender: "male", ageGroup: "20s", styles: ["sporty", "fitness"], bodyType: "regular", ethnicity: "asian" },
+    { name: "태윤", nameEn: "Taeyun", gender: "male", ageGroup: "30s", styles: ["luxury", "fashion"], bodyType: "slim", ethnicity: "asian" },
+    { name: "준서", nameEn: "Junseo", gender: "male", ageGroup: "20s", styles: ["natural", "casual"], bodyType: "regular", ethnicity: "asian" },
+    { name: "도윤", nameEn: "Doyun", gender: "male", ageGroup: "30s", styles: ["outdoor", "lifestyle"], bodyType: "regular", ethnicity: "asian" },
+  ];
+
+  const createdAiModels = [];
+  for (let i = 0; i < aiModels.length; i++) {
+    const m = aiModels[i];
+    const model = await prisma.aIModel.create({
+      data: {
+        ...m,
+        profileImage: `https://picsum.photos/seed/ai-${m.nameEn}/400/500`,
+        portfolioImages: Array.from({ length: 12 }, (_, j) => `https://picsum.photos/seed/ai-${m.nameEn}-${j}/400/500`),
+        description: `${m.name} (${m.nameEn})는 ${m.ageGroup} ${m.gender === "female" ? "여성" : "남성"} AI 모델입니다.`,
+        supportImage: true,
+        supportVideo: i < 4,
+        sortOrder: i,
+      },
+    });
+    createdAiModels.push(model);
+  }
+  console.log(`✅ Created ${createdAiModels.length} AI models`);
+
+  // ============================================
+  // Sample AIGeneration records (Gallery AI tab)
+  // ============================================
+  const contentTypes = ["fashion", "beauty", "lifestyle", "fitness"];
+  const sampleSettings = [
+    { background: "studio", lighting: "soft" },
+    { background: "outdoor", lighting: "natural" },
+    { background: "urban", lighting: "golden_hour" },
+    { background: "minimal", lighting: "dramatic" },
+  ];
+
+  // Use a placeholder system userId for samples (no real user needed)
+  const SAMPLE_USER_ID = "sample-gallery-user";
+
+  for (let i = 0; i < 8; i++) {
+    const modelIndex = i % createdAiModels.length;
+    const model = createdAiModels[modelIndex];
+    await prisma.aIGeneration.create({
+      data: {
+        userId: SAMPLE_USER_ID,
+        modelId: model.id,
+        contentType: contentTypes[i % contentTypes.length],
+        settings: sampleSettings[i % sampleSettings.length],
+        resultImages: Array.from(
+          { length: 4 },
+          (_, j) => `https://picsum.photos/seed/sample-${model.nameEn}-${i}-${j}/400/500`
+        ),
+        creditsUsed: 0,
+        status: "completed",
+        isSample: true,
+      },
+    });
+  }
+  console.log("✅ Created 8 sample AIGeneration records (Gallery AI tab)");
 
   // ============================================
   // Test accounts summary

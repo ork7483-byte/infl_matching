@@ -169,6 +169,7 @@ export default function Navbar() {
   const navLinks = [
     { label: "Search", href: "/" },
     { label: "Gallery", href: "/gallery" },
+    { label: "AI Studio ✨", href: "/ai-studio" },
     { label: "요금제", href: "/pricing" },
   ];
 

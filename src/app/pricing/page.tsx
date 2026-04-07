@@ -104,6 +104,14 @@ const comparisonTable = [
     ],
   },
   {
+    category: "AI 스튜디오",
+    rows: [
+      { feature: "AI 콘텐츠 생성", free: "월 3건", pro: "월 50건", enterprise: "무제한" },
+      { feature: "AI 모델 선택", free: true, pro: true, enterprise: true },
+      { feature: "커스텀 AI 모델 제작", free: false, pro: false, enterprise: true },
+    ],
+  },
+  {
     category: "리포트",
     rows: [
       { feature: "PDF/Excel 리포트 다운로드", free: false, pro: true, enterprise: true },

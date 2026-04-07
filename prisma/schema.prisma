@@ -626,3 +626,78 @@ model AmbassadorApplication {
 
   page              AmbassadorPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
 }
+
+// ============================================
+// AI Studio
+// ============================================
+
+model AIModel {
+  id              String   @id @default(cuid())
+  name            String
+  nameEn          String
+  gender          String
+  ageGroup        String
+  styles          String[]
+  bodyType        String?
+  ethnicity       String?
+  profileImage    String
+  portfolioImages String[]
+  description     String?
+  supportImage    Boolean  @default(true)
+  supportVideo    Boolean  @default(false)
+  isActive        Boolean  @default(true)
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+
+  generations     AIGeneration[]
+
+  @@index([gender])
+  @@index([ageGroup])
+  @@index([isActive])
+}
+
+model AIGeneration {
+  id               String   @id @default(cuid())
+  userId           String
+  modelId          String
+  contentType      String
+  productImage     String?
+  settings         Json
+  additionalPrompt String?
+  resultImages     String[]
+  creditsUsed      Int      @default(1)
+  status           String   @default("pending")
+  isSample         Boolean  @default(false)
+  createdAt        DateTime @default(now())
+
+  model            AIModel  @relation(fields: [modelId], references: [id])
+
+  @@index([userId])
+  @@index([modelId])
+  @@index([status])
+  @@index([isSample])
+}
+
+model CreditBalance {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  monthlyCredits  Int      @default(3)
+  bonusCredits    Int      @default(0)
+  usedThisMonth   Int      @default(0)
+  resetDate       DateTime
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model CreditPurchase {
+  id          String   @id @default(cuid())
+  userId      String
+  amount      Int
+  price       Int
+  paymentId   String?
+  status      String   @default("completed")
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+}
