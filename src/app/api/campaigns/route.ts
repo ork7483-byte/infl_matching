@@ -14,6 +14,9 @@ export async function GET(request: NextRequest) {
     const userId = (session.user as { id: string }).id;
     const { searchParams } = request.nextUrl;
     const statusParam = searchParams.get("status");
+    const page = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10));
+    const limit = Math.min(100, Math.max(1, parseInt(searchParams.get("limit") ?? "20", 10)));
+    const skip = (page - 1) * limit;
 
     const brand = await prisma.brand.findUnique({ where: { userId } });
     if (!brand) {
@@ -34,9 +37,11 @@ export async function GET(request: NextRequest) {
         _count: { select: { campaignInfluencers: true } },
       },
       orderBy: { createdAt: "desc" },
+      skip,
+      take: limit,
     });
 
-    return NextResponse.json({ campaigns });
+    return NextResponse.json({ campaigns, page, limit });
   } catch (error) {
     console.error("[GET /api/campaigns]", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

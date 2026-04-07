@@ -90,30 +90,32 @@ export async function addNewSeeds(
 ): Promise<number> {
   if (usernames.length === 0) return 0;
 
-  let added = 0;
+  const normalized = Array.from(
+    new Set(usernames.map((u) => u.toLowerCase().trim()).filter(Boolean))
+  );
+  if (normalized.length === 0) return 0;
 
-  for (const username of usernames) {
-    const normalized = username.toLowerCase().trim();
-    if (!normalized) continue;
+  // Find which usernames already exist to avoid counting them as added
+  const existing = await prisma.collectionSeed.findMany({
+    where: { username: { in: normalized } },
+    select: { username: true },
+  });
+  const existingSet = new Set(existing.map((e) => e.username));
+  const newUsernames = normalized.filter((u) => !existingSet.has(u));
 
-    try {
-      await prisma.collectionSeed.upsert({
-        where: { username: normalized },
-        create: {
-          username: normalized,
-          source,
-          discoveredFrom: discoveredFrom ?? null,
-          status: "pending",
-        },
-        update: {}, // Don't overwrite existing seeds
-      });
-      added++;
-    } catch {
-      // Unique constraint or other error — skip
-    }
-  }
+  if (newUsernames.length === 0) return 0;
 
-  return added;
+  const result = await prisma.collectionSeed.createMany({
+    data: newUsernames.map((username) => ({
+      username,
+      source,
+      discoveredFrom: discoveredFrom ?? null,
+      status: "pending",
+    })),
+    skipDuplicates: true,
+  });
+
+  return result.count;
 }
 
 // ============================================

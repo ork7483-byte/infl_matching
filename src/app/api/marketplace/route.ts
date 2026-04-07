@@ -15,6 +15,9 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get("category");
     const rewardTypeParam = searchParams.get("rewardType");
     const sortBy = searchParams.get("sortBy") ?? "newest";
+    const page = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10));
+    const limit = Math.min(100, Math.max(1, parseInt(searchParams.get("limit") ?? "20", 10)));
+    const skip = (page - 1) * limit;
 
     const rewardTypeFilter =
       rewardTypeParam &&
@@ -52,9 +55,11 @@ export async function GET(request: NextRequest) {
         },
       },
       orderBy,
+      skip,
+      take: limit,
     });
 
-    return NextResponse.json({ campaigns });
+    return NextResponse.json({ campaigns, page, limit });
   } catch (error) {
     console.error("[GET /api/marketplace]", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

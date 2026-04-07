@@ -389,6 +389,7 @@ model CampaignPost {
   performanceSnapshots  PostPerformanceSnapshot[]
 
   @@index([campaignId])
+  @@index([influencerId])
 }
 
 // ============================================
@@ -465,6 +466,7 @@ model PortfolioItem {
 
   influencer      Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
 
+  @@index([influencerId])
   @@index([category])
   @@index([isFeatured])
   @@index([createdAt])
