@@ -38,6 +38,14 @@ interface Influencer {
   recentMediaThumbnails?: string[];
   estimatedPriceMin?: number;
   estimatedPriceMax?: number;
+  bestPostThumbnail?: string;
+  location?: string;
+  gender?: string;
+  avgRating?: number;
+  reviewCount?: number;
+  isTopCreator?: boolean;
+  isUgc?: boolean;
+  biography?: string;
 }
 
 interface SearchResponse {
@@ -59,6 +67,11 @@ interface Filters {
   platform: "instagram" | "youtube" | "tiktok";
   contentTypes: string[];
   sortBy: "followers" | "engagement" | "aqs";
+  minPrice: string;
+  maxPrice: string;
+  gender: string;
+  locations: string[];
+  languages: string[];
 }
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -123,6 +136,7 @@ const CATEGORY_AVG: Record<string, { er: number; aqs: number }> = {
   "육아": { er: 3.6, aqs: 61 },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getCategoryAvg(categories: string[]) {
   const cat = categories[0];
   return CATEGORY_AVG[cat] || { er: 3.2, aqs: 62 };
@@ -166,6 +180,11 @@ function defaultFilters(): Filters {
     platform: "instagram",
     contentTypes: [],
     sortBy: "followers",
+    minPrice: "",
+    maxPrice: "",
+    gender: "전체",
+    locations: [],
+    languages: [],
   };
 }
 
@@ -182,6 +201,11 @@ function filtersToParams(f: Filters, page: number): URLSearchParams {
   if (f.platform !== "instagram") p.set("platform", f.platform);
   if (f.contentTypes.length) p.set("contentTypes", f.contentTypes.join(","));
   p.set("sortBy", f.sortBy);
+  if (f.minPrice) p.set("minPrice", f.minPrice);
+  if (f.maxPrice) p.set("maxPrice", f.maxPrice);
+  if (f.gender && f.gender !== "전체") p.set("gender", f.gender);
+  if (f.locations.length) p.set("locations", f.locations.join(","));
+  if (f.languages.length) p.set("languages", f.languages.join(","));
   p.set("page", String(page));
   p.set("limit", String(LIMIT));
   return p;
@@ -282,33 +306,87 @@ function InfluencerGridCard({
   isAuth: boolean;
   onSaveClick: () => void;
 }) {
+  const mainImage =
+    influencer.bestPostThumbnail ||
+    influencer.profilePicUrl ||
+    `https://picsum.photos/seed/${influencer.username}/400/500`;
+
+  const estimatedPrice = Math.floor((influencer.followersCount / 1000) * 10000 * 0.7);
+
+  const bioFirstLine = influencer.biography
+    ? influencer.biography.split("\n")[0]?.slice(0, 40) +
+      (influencer.biography.split("\n")[0]?.length > 40 ? "..." : "")
+    : null;
+
   const cardContent = (
-    <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl p-5 hover:border-[#7c3aed]/40 hover:shadow-[0_0_20px_rgba(124,58,237,0.15)] transition-all duration-200 flex flex-col h-full">
-      {/* Header */}
-      <div className="flex items-start gap-3 mb-4">
-        <div className="relative flex-shrink-0">
-          {influencer.profilePicUrl ? (
-            <img
-              src={influencer.profilePicUrl}
-              alt={influencer.username}
-              className="w-16 h-16 rounded-full object-cover border border-[#E5E7EB]"
-            />
-          ) : (
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#e94560] flex items-center justify-center text-white font-bold text-xl">
-              {influencer.username[0]?.toUpperCase() ?? "?"}
-            </div>
-          )}
-          {influencer.isOauthConnected && (
-            <span
-              className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full border-2 border-[#FFFFFF] flex items-center justify-center text-xs bg-[#22c55e]"
-              title="OAuth 인증됨"
-            >
-              ✓
-            </span>
-          )}
+    <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl overflow-hidden hover:border-[#7c3aed]/40 hover:shadow-[0_0_20px_rgba(124,58,237,0.15)] transition-all duration-200 flex flex-col h-full">
+
+      {/* ── Main image section ── */}
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#F3F4F6]">
+        <img
+          src={mainImage}
+          alt={influencer.username}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${influencer.username}/400/500`;
+          }}
+        />
+
+        {/* Badge overlay — top-left */}
+        {(influencer.isTopCreator || influencer.isUgc) && (
+          <div className="absolute top-2 left-2 flex gap-1">
+            {influencer.isTopCreator && (
+              <span className="bg-white/90 text-[#16a34a] text-[10px] font-semibold px-2 py-0.5 rounded-full leading-tight">
+                🟢 Top
+              </span>
+            )}
+            {influencer.isUgc && (
+              <span className="bg-white/90 text-[#7c3aed] text-[10px] font-semibold px-2 py-0.5 rounded-full leading-tight">
+                ⚡ UGC
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Bottom-left: profile pic + IG icon + followers */}
+        <div className="absolute bottom-2 left-2 flex items-center gap-1.5">
+          <div className="relative">
+            {influencer.profilePicUrl ? (
+              <img
+                src={influencer.profilePicUrl}
+                alt=""
+                className="w-8 h-8 rounded-full object-cover border-2 border-white shadow"
+              />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#e94560] flex items-center justify-center text-white font-bold text-xs border-2 border-white shadow">
+                {influencer.username[0]?.toUpperCase() ?? "?"}
+              </div>
+            )}
+          </div>
+          <span className="bg-white/90 text-[#111827] text-[10px] font-semibold px-1.5 py-0.5 rounded-full shadow flex items-center gap-0.5">
+            <svg className="w-2.5 h-2.5 text-[#E1306C]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            {formatFollowers(influencer.followersCount)}
+          </span>
         </div>
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1.5">
+
+        {/* Bottom-right: estimated price */}
+        <div className="absolute bottom-2 right-2">
+          <MaskedValue
+            value={`₩${formatPrice(estimatedPrice)}~`}
+            width="64px"
+            className="bg-white/90 text-[#111827] text-[10px] font-semibold px-1.5 py-0.5 rounded-full shadow"
+          />
+        </div>
+      </div>
+
+      {/* ── Card body ── */}
+      <div className="p-4 flex flex-col flex-1">
+
+        {/* Username + star rating */}
+        <div className="flex items-center justify-between mb-1">
+          <div className="flex items-center gap-1.5 min-w-0">
             <p className="text-sm font-semibold text-[#111827] truncate">@{influencer.username}</p>
             {influencer.isOauthConnected && (
               <svg className="w-3.5 h-3.5 text-[#22c55e] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -316,138 +394,101 @@ function InfluencerGridCard({
               </svg>
             )}
           </div>
-          <p className="text-xs text-[#6B7280] truncate">{influencer.fullName}</p>
-          {influencer.categories.length > 0 && (
-            <div className="flex flex-wrap gap-1 mt-1.5">
-              {influencer.categories.slice(0, 3).map((cat) => (
-                <Badge key={cat} variant="purple" size="sm">{cat}</Badge>
-              ))}
-              {influencer.categories.length > 3 && (
-                <Badge variant="default" size="sm">+{influencer.categories.length - 3}</Badge>
-              )}
-            </div>
+          {(influencer.reviewCount ?? 0) > 0 && (
+            <span className="text-xs text-[#F59E0B] font-semibold flex-shrink-0">
+              ★ {influencer.avgRating?.toFixed(1)}
+            </span>
           )}
         </div>
-      </div>
 
-      {/* Stats row */}
-      <div className="flex items-center justify-between mb-3 text-sm">
-        <div>
-          <p className="text-xs text-[#6B7280] mb-0.5">팔로워</p>
-          <p className="font-bold text-[#111827]">{formatFollowers(influencer.followersCount)}</p>
-        </div>
-        <div className="text-right">
-          <p className="text-xs text-[#6B7280] mb-0.5 flex items-center justify-end">참여율<InfoTooltip text="게시물에 반응(좋아요+댓글)한 비율이에요. 숫자가 높을수록 팔로워와 소통이 활발해요." /></p>
-          {influencer.avgEngagementRate != null ? (
-            <div>
-              <MaskedValue
-                value={`${influencer.avgEngagementRate.toFixed(2)}% ${getErGrade(influencer.avgEngagementRate).emoji} ${getErGrade(influencer.avgEngagementRate).label}`}
-                width="100px"
-                className="font-bold text-[#111827] text-xs"
-              />
-              {isAuth && (
-                <p className="text-[10px] text-[#9CA3AF] mt-0.5">
-                  카테고리 평균 {getCategoryAvg(influencer.categories).er}% 대비 {(influencer.avgEngagementRate / getCategoryAvg(influencer.categories).er).toFixed(1)}배
-                </p>
-              )}
-            </div>
-          ) : (
-            <MaskedValue value={null} width="48px" className="font-bold text-[#111827]" />
-          )}
-        </div>
-      </div>
-
-      {/* AQS bar */}
-      {influencer.aqsScore ? (
-        <div className="mb-3">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-[#6B7280] flex items-center">AQS 점수<InfoTooltip text="팔로워가 진짜인지 평가한 점수예요. 100에 가까울수록 가짜 팔로워가 적어요." /></span>
-            <MaskedValue
-              value={`${getAqsGrade(influencer.aqsScore.totalScore)} ${influencer.aqsScore.totalScore} (${getAqsLabel(influencer.aqsScore.totalScore)})`}
-              width="80px"
-              className="text-xs font-semibold"
-            />
-          </div>
-          <div className="h-1.5 bg-[#E5E7EB] rounded-full overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all"
-              style={{
-                width: `${influencer.aqsScore.totalScore}%`,
-                backgroundColor: getAqsColor(influencer.aqsScore.totalScore),
-              }}
-            />
-          </div>
-          {isAuth && (
-            <p className="text-[10px] text-[#9CA3AF] mt-1">
-              카테고리 평균 {getCategoryAvg(influencer.categories).aqs}점 대비 {influencer.aqsScore.totalScore >= getCategoryAvg(influencer.categories).aqs ? "높음" : "낮음"}
-            </p>
-          )}
-        </div>
-      ) : (
-        <div className="mb-3">
-          <p className="text-xs text-[#6B7280]">AQS 점수 없음</p>
-        </div>
-      )}
-
-      {/* One-liner summary */}
-      <div className="mb-3 px-2 py-1.5 bg-[#F9FAFB] rounded-lg">
-        <p className="text-[11px] text-[#6B7280] leading-relaxed">
-          💡 {getOneLinerSummary(influencer.avgEngagementRate, influencer.aqsScore?.totalScore ?? null)}
-        </p>
-      </div>
-
-      {/* Estimated price — 업계 기준 */}
-      <div className="mb-4">
-        <p className="text-xs text-[#6B7280] mb-0.5 flex items-center">예상 단가 (피드)<InfoTooltip text="이 금액은 업계 평균 기준의 추정치입니다. 실제 광고비는 카테고리, 콘텐츠 유형, 독점권, 캠페인 조건에 따라 달라질 수 있습니다." /></p>
-        <MaskedValue
-          value={(() => {
-            const f = influencer.followersCount;
-            const base = (f / 1000) * 10000;
-            const min = Math.floor(base * 0.7);
-            const max = Math.floor(base * 1.5);
-            return `₩${formatPrice(min)} ~ ₩${formatPrice(max)}`;
-          })()}
-          width="120px"
-          className="text-sm font-semibold text-[#111827]"
-        />
-        {isAuth && (
-          <p className="text-[10px] text-[#9CA3AF] mt-0.5">
-            {influencer.followersCount < 10000 ? "나노" : influencer.followersCount < 100000 ? "마이크로" : influencer.followersCount < 500000 ? "미드티어" : "매크로"} 등급 기준
-          </p>
+        {/* Bio first line */}
+        {bioFirstLine && (
+          <p className="text-[11px] text-[#6B7280] mb-2 leading-relaxed">{bioFirstLine}</p>
         )}
-      </div>
 
-      {/* Recent thumbnails */}
-      {influencer.recentMediaThumbnails && influencer.recentMediaThumbnails.length > 0 && (
-        <div className="flex gap-1.5 mb-4">
-          {influencer.recentMediaThumbnails.slice(0, 3).map((thumb, i) => (
-            <img
-              key={i}
-              src={thumb}
-              alt=""
-              className="w-12 h-12 rounded-lg object-cover border border-[#E5E7EB]"
+        {/* Category badges */}
+        {influencer.categories.length > 0 && (
+          <div className="flex flex-wrap gap-1 mb-2">
+            {influencer.categories.slice(0, 3).map((cat) => (
+              <Badge key={cat} variant="purple" size="sm">{cat}</Badge>
+            ))}
+            {influencer.categories.length > 3 && (
+              <Badge variant="default" size="sm">+{influencer.categories.length - 3}</Badge>
+            )}
+          </div>
+        )}
+
+        {/* ER */}
+        <div className="flex items-center justify-between mb-1 text-xs">
+          <span className="text-[#6B7280] flex items-center">참여율<InfoTooltip text="게시물에 반응(좋아요+댓글)한 비율이에요." /></span>
+          {influencer.avgEngagementRate != null ? (
+            <MaskedValue
+              value={`${influencer.avgEngagementRate.toFixed(2)}% ${getErGrade(influencer.avgEngagementRate).emoji}`}
+              width="72px"
+              className="font-semibold text-[#111827]"
             />
-          ))}
+          ) : (
+            <MaskedValue value={null} width="48px" className="font-semibold text-[#111827]" />
+          )}
         </div>
-      )}
 
-      {/* Action buttons */}
-      <div className="mt-auto flex gap-2">
-        <Link
-          href={`/influencer/${influencer.username}`}
-          className="flex-1 text-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
-        >
-          상세 보기
-        </Link>
-        <button
-          onClick={isAuth ? undefined : onSaveClick}
-          className="w-10 h-10 rounded-lg border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:border-[#e94560]/50 hover:text-[#e94560] transition-colors"
-          title={isAuth ? "저장" : "로그인 후 저장"}
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-          </svg>
-        </button>
+        {/* AQS bar */}
+        {influencer.aqsScore ? (
+          <div className="mb-2">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-xs text-[#6B7280] flex items-center">AQS<InfoTooltip text="팔로워가 진짜인지 평가한 점수예요." /></span>
+              <MaskedValue
+                value={`${getAqsGrade(influencer.aqsScore.totalScore)} ${influencer.aqsScore.totalScore} (${getAqsLabel(influencer.aqsScore.totalScore)})`}
+                width="80px"
+                className="text-xs font-semibold"
+              />
+            </div>
+            <div className="h-1.5 bg-[#E5E7EB] rounded-full overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all"
+                style={{
+                  width: `${influencer.aqsScore.totalScore}%`,
+                  backgroundColor: getAqsColor(influencer.aqsScore.totalScore),
+                }}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="mb-2">
+            <p className="text-xs text-[#6B7280]">AQS 점수 없음</p>
+          </div>
+        )}
+
+        {/* One-liner summary */}
+        <div className="mb-2 px-2 py-1.5 bg-[#F9FAFB] rounded-lg">
+          <p className="text-[11px] text-[#6B7280] leading-relaxed">
+            💡 {getOneLinerSummary(influencer.avgEngagementRate, influencer.aqsScore?.totalScore ?? null)}
+          </p>
+        </div>
+
+        {/* Location */}
+        {influencer.location && (
+          <p className="text-[11px] text-[#9CA3AF] mb-2">📍 {influencer.location}</p>
+        )}
+
+        {/* Action buttons */}
+        <div className="mt-auto flex gap-2 pt-1">
+          <Link
+            href={`/influencer/${influencer.username}`}
+            className="flex-1 text-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+          >
+            상세보기
+          </Link>
+          <button
+            onClick={isAuth ? undefined : onSaveClick}
+            className="w-10 h-10 rounded-lg border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:border-[#e94560]/50 hover:text-[#e94560] transition-colors"
+            title={isAuth ? "저장" : "로그인 후 저장"}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -476,8 +517,37 @@ function InfluencerListRow({
   isAuth: boolean;
   onSaveClick: () => void;
 }) {
+  const listEstimatedPrice = Math.floor((influencer.followersCount / 1000) * 10000 * 0.7);
+  const listThumb =
+    influencer.bestPostThumbnail ||
+    influencer.profilePicUrl ||
+    `https://picsum.photos/seed/${influencer.username}/80/80`;
+
   const rowContent = (
     <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl px-4 py-3 hover:border-[#7c3aed]/40 transition-all duration-200 flex items-center gap-4">
+      {/* Thumbnail */}
+      <div className="relative flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border border-[#E5E7EB]">
+        <img
+          src={listThumb}
+          alt=""
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${influencer.username}/80/80`;
+          }}
+        />
+        {/* Badges overlay */}
+        {(influencer.isTopCreator || influencer.isUgc) && (
+          <div className="absolute top-0.5 left-0.5 flex gap-0.5">
+            {influencer.isTopCreator && (
+              <span className="bg-white/90 text-[#16a34a] text-[8px] font-bold px-1 py-px rounded-full">Top</span>
+            )}
+            {influencer.isUgc && (
+              <span className="bg-white/90 text-[#7c3aed] text-[8px] font-bold px-1 py-px rounded-full">UGC</span>
+            )}
+          </div>
+        )}
+      </div>
+
       {/* Avatar */}
       <div className="relative flex-shrink-0">
         {influencer.profilePicUrl ? (
@@ -496,12 +566,18 @@ function InfluencerListRow({
           {influencer.isOauthConnected && (
             <span className="w-3.5 h-3.5 rounded-full bg-[#22c55e] flex-shrink-0" title="인증됨" />
           )}
+          {(influencer.reviewCount ?? 0) > 0 && (
+            <span className="text-[11px] text-[#F59E0B] font-semibold flex-shrink-0">★ {influencer.avgRating?.toFixed(1)}</span>
+          )}
         </div>
         <div className="flex gap-1 mt-0.5 flex-wrap">
           {influencer.categories.slice(0, 2).map((cat) => (
             <Badge key={cat} variant="purple" size="sm">{cat}</Badge>
           ))}
         </div>
+        {influencer.location && (
+          <p className="text-[10px] text-[#9CA3AF] mt-0.5">📍 {influencer.location}</p>
+        )}
       </div>
 
       {/* Stats */}
@@ -533,11 +609,7 @@ function InfluencerListRow({
         <div className="text-center hidden lg:block">
           <p className="text-xs text-[#6B7280]">예상 단가</p>
           <MaskedValue
-            value={
-              influencer.estimatedPriceMin != null && influencer.estimatedPriceMax != null
-                ? `₩${formatPrice(influencer.estimatedPriceMin)}~`
-                : "—"
-            }
+            value={`₩${formatPrice(listEstimatedPrice)}~`}
             width="72px"
             className="font-semibold text-[#111827]"
           />
@@ -601,6 +673,27 @@ function FilterSidebar({
       : [...filters.contentTypes, type];
     onChange({ ...filters, contentTypes: next });
   };
+
+  const toggleLocation = (loc: string) => {
+    const next = filters.locations.includes(loc)
+      ? filters.locations.filter((l) => l !== loc)
+      : [...filters.locations, loc];
+    onChange({ ...filters, locations: next });
+  };
+
+  const toggleLanguage = (lang: string) => {
+    const next = filters.languages.includes(lang)
+      ? filters.languages.filter((l) => l !== lang)
+      : [...filters.languages, lang];
+    onChange({ ...filters, languages: next });
+  };
+
+  const PRICE_QUICK = [
+    { label: "10만 이하", min: "", max: "10" },
+    { label: "10~50만", min: "10", max: "50" },
+    { label: "50~100만", min: "50", max: "100" },
+    { label: "100만+", min: "100", max: "" },
+  ];
 
   const followerQuickMin = [
     { label: "1K", val: "1000" },
@@ -775,6 +868,129 @@ function FilterSidebar({
               className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
             />
           </div>
+        </div>
+      </div>
+
+      {/* 예상 단가 */}
+      <div>
+        <h3 className="text-sm font-semibold text-[#111827] mb-3">예상 단가 (피드)</h3>
+        <div className="flex gap-1.5 flex-wrap mb-2">
+          {PRICE_QUICK.map(({ label, min, max }) => {
+            const active = filters.minPrice === min && filters.maxPrice === max;
+            return (
+              <button
+                key={label}
+                onClick={() => onChange({ ...filters, minPrice: min, maxPrice: max })}
+                className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
+                  active
+                    ? "bg-[#7c3aed] border-[#7c3aed] text-white"
+                    : "bg-transparent border-[#E5E7EB] text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827]"
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <input
+            type="number"
+            placeholder="최소 (만원)"
+            value={filters.minPrice}
+            onChange={(e) => onChange({ ...filters, minPrice: e.target.value })}
+            className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+          />
+          <input
+            type="number"
+            placeholder="최대 (만원)"
+            value={filters.maxPrice}
+            onChange={(e) => onChange({ ...filters, maxPrice: e.target.value })}
+            className="w-full bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg px-3 py-2 text-base text-[#111827] placeholder:text-[#6B7280]/50 focus:outline-none focus:border-[#7c3aed]/60 transition-colors"
+          />
+        </div>
+      </div>
+
+      {/* 성별 */}
+      <div>
+        <h3 className="text-sm font-semibold text-[#111827] mb-3">성별</h3>
+        <div className="flex gap-2 flex-wrap">
+          {["전체", "남성", "여성", "기타"].map((g) => (
+            <button
+              key={g}
+              onClick={() => onChange({ ...filters, gender: g })}
+              className={`px-3 py-1 rounded-full text-sm border transition-colors ${
+                filters.gender === g
+                  ? "bg-[#7c3aed] border-[#7c3aed] text-white"
+                  : "bg-transparent border-[#E5E7EB] text-[#6B7280] hover:border-[#7c3aed]/50 hover:text-[#111827]"
+              }`}
+            >
+              {g}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 지역 */}
+      <div>
+        <h3 className="text-sm font-semibold text-[#111827] mb-3">지역</h3>
+        <div className="grid grid-cols-2 gap-y-1.5 gap-x-2">
+          {["서울", "부산", "대구", "인천", "대전", "광주", "기타", "해외"].map((loc) => {
+            const checked = filters.locations.includes(loc);
+            return (
+              <label key={loc} className="flex items-center gap-2 cursor-pointer group">
+                <div
+                  className={`w-4 h-4 rounded border flex items-center justify-center transition-colors flex-shrink-0 ${
+                    checked ? "bg-[#7c3aed] border-[#7c3aed]" : "border-[#E5E7EB] group-hover:border-[#7c3aed]/50"
+                  }`}
+                  onClick={() => toggleLocation(loc)}
+                >
+                  {checked && (
+                    <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                </div>
+                <span
+                  className={`text-sm transition-colors ${checked ? "text-[#111827]" : "text-[#6B7280]"}`}
+                  onClick={() => toggleLocation(loc)}
+                >
+                  {loc}
+                </span>
+              </label>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 언어 */}
+      <div>
+        <h3 className="text-sm font-semibold text-[#111827] mb-3">언어</h3>
+        <div className="grid grid-cols-2 gap-y-1.5 gap-x-2">
+          {["한국어", "영어", "일본어", "중국어", "기타"].map((lang) => {
+            const checked = filters.languages.includes(lang);
+            return (
+              <label key={lang} className="flex items-center gap-2 cursor-pointer group">
+                <div
+                  className={`w-4 h-4 rounded border flex items-center justify-center transition-colors flex-shrink-0 ${
+                    checked ? "bg-[#7c3aed] border-[#7c3aed]" : "border-[#E5E7EB] group-hover:border-[#7c3aed]/50"
+                  }`}
+                  onClick={() => toggleLanguage(lang)}
+                >
+                  {checked && (
+                    <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                </div>
+                <span
+                  className={`text-sm transition-colors ${checked ? "text-[#111827]" : "text-[#6B7280]"}`}
+                  onClick={() => toggleLanguage(lang)}
+                >
+                  {lang}
+                </span>
+              </label>
+            );
+          })}
         </div>
       </div>
 
@@ -1100,6 +1316,11 @@ function HomePage() {
       platform: "instagram",
       contentTypes: [],
       sortBy,
+      minPrice: searchParams.get("minPrice") ?? "",
+      maxPrice: searchParams.get("maxPrice") ?? "",
+      gender: searchParams.get("gender") ?? "전체",
+      locations: searchParams.get("locations")?.split(",").filter(Boolean) ?? [],
+      languages: searchParams.get("languages")?.split(",").filter(Boolean) ?? [],
     };
   };
 

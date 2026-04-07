@@ -128,6 +128,7 @@ async function main() {
   console.log("🌱 Seeding database...");
 
   // Clean existing data
+  await prisma.review.deleteMany();
   await prisma.portfolioItem.deleteMany();
   await prisma.payment.deleteMany();
   await prisma.postPerformanceSnapshot.deleteMany();
@@ -728,6 +729,76 @@ async function main() {
     portfolioCount++;
   }
   console.log(`✅ Created ${portfolioCount} portfolio items (Gallery)`);
+
+  // ============================================
+  // Update Influencers with extended fields
+  // ============================================
+  const locations = [
+    "서울",
+    "부산",
+    "인천",
+    "대구",
+    "대전",
+    "광주",
+    "서울",
+    "서울",
+    "부산",
+    "서울",
+  ];
+  const genders = [
+    "female",
+    "female",
+    "male",
+    "female",
+    "male",
+    "male",
+    "female",
+    "male",
+    "female",
+    "female",
+  ];
+
+  for (let i = 0; i < 30; i++) {
+    await prisma.influencer.update({
+      where: { id: influencers[i].id },
+      data: {
+        location: locations[i % locations.length],
+        gender: genders[i % genders.length],
+        bestPostThumbnail: `https://picsum.photos/seed/best${influencers[i].username}/400/500`,
+        isTopCreator: i < 8,
+        isUgc: i % 4 === 0,
+        avgRating:
+          i < 20
+            ? parseFloat((3.5 + Math.random() * 1.5).toFixed(1))
+            : null,
+        reviewCount: i < 20 ? Math.floor(Math.random() * 15) + 1 : 0,
+      },
+    });
+  }
+  console.log("✅ Updated 30 influencers with extended fields");
+
+  // ============================================
+  // Reviews (15 records)
+  // ============================================
+  const reviewComments = [
+    "훌륭한 콘텐츠였어요",
+    "재협업 원합니다",
+    "소통이 원활했어요",
+    "기대 이상이었어요",
+    "프로페셔널해요",
+  ];
+  for (let i = 0; i < 15; i++) {
+    await prisma.review.create({
+      data: {
+        rating: parseFloat((3.5 + Math.random() * 1.5).toFixed(1)),
+        comment: reviewComments[i % reviewComments.length],
+        campaignId: campaigns[i % campaigns.length].id,
+        brandId: brands[i % brands.length].id,
+        creatorId: influencers[i % 20].id,
+      },
+    });
+  }
+  console.log("✅ Created 15 reviews");
 
   // ============================================
   // Test accounts summary
