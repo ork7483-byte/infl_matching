@@ -221,7 +221,7 @@ export default function AIStudioPage() {
               {useCases.map((uc) => (
                 <div
                   key={uc.title}
-                  className="bg-gradient-to-br from-[#7c3aed]/5 to-[#a855f7]/5 border border-[#7c3aed]/15 rounded-2xl p-6"
+                  className="bg-[#F5F3FF] border border-[#7c3aed]/15 rounded-2xl p-6"
                 >
                   <div className="text-3xl mb-3">{uc.icon}</div>
                   <h3 className="text-[#111827] font-semibold mb-2">{uc.title}</h3>

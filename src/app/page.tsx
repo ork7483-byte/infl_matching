@@ -1803,7 +1803,7 @@ function HomePage() {
 
                   {/* CTA Banner between card 5 and 6 */}
                   {!isAuth && results.length > 5 && (
-                    <div className="bg-gradient-to-r from-[#7c3aed]/20 to-[#e94560]/20 border border-[#7c3aed]/30 rounded-2xl p-6 text-center">
+                    <div className="bg-[#F5F3FF] border border-[#7c3aed]/30 rounded-2xl p-6 text-center">
                       <p className="text-[#111827] font-semibold mb-2">
                         나머지{" "}
                         <span className="text-[#7c3aed]">{hiddenCount.toLocaleString()}명</span>
@@ -1812,7 +1812,7 @@ function HomePage() {
                       <p className="text-sm text-[#6B7280] mb-4">무료 회원가입으로 모든 데이터에 접근하세요</p>
                       <Link
                         href="/signup"
-                        className="inline-block px-8 py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.4)]"
+                        className="inline-block px-8 py-3 rounded-xl bg-[#7c3aed] text-white font-semibold hover:opacity-90 transition-opacity"
                       >
                         무료로 시작하기 →
                       </Link>
@@ -1846,7 +1846,7 @@ function HomePage() {
                   ))}
 
                   {!isAuth && results.length > 5 && (
-                    <div className="bg-gradient-to-r from-[#7c3aed]/20 to-[#e94560]/20 border border-[#7c3aed]/30 rounded-xl p-5 text-center">
+                    <div className="bg-[#F5F3FF] border border-[#7c3aed]/30 rounded-xl p-5 text-center">
                       <p className="text-[#111827] font-semibold mb-2">
                         나머지{" "}
                         <span className="text-[#7c3aed]">{hiddenCount.toLocaleString()}명</span>
@@ -1854,7 +1854,7 @@ function HomePage() {
                       </p>
                       <Link
                         href="/signup"
-                        className="inline-block mt-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity"
+                        className="inline-block mt-2 px-6 py-2.5 rounded-xl bg-[#7c3aed] text-white font-semibold hover:opacity-90 transition-opacity"
                       >
                         무료로 시작하기 →
                       </Link>

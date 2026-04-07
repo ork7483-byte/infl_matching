@@ -204,7 +204,7 @@ function PricingInner() {
         {/* Early access banner */}
         <div
           className="rounded-xl p-4 mb-8"
-          style={{ backgroundImage: "linear-gradient(to right, #7c3aed, #e94560)" }}
+          style={{ backgroundColor: "#7c3aed" }}
         >
           <p className="text-white font-semibold text-base md:text-lg">
             🎉 얼리 액세스 기간 — 지금 가입하면 Pro 기능 무료!

@@ -122,7 +122,7 @@ function generateMockItems(page: number, category: string, type: string): Galler
 function CTABanner() {
   return (
     <div className="break-inside-avoid mb-4">
-      <div className="bg-gradient-to-br from-brand-purple/20 to-brand-pink/20 border border-brand-purple/30 rounded-2xl p-5 text-center">
+      <div className="bg-[#F5F3FF] border border-brand-purple/30 rounded-2xl p-5 text-center">
         <div className="text-2xl mb-2">🔓</div>
         <p className="text-sm font-semibold text-foreground mb-1">
           성과 데이터와 함께 콘텐츠를 분석하세요
