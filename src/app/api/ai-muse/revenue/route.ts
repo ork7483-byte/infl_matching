@@ -14,7 +14,7 @@ export async function GET() {
     const role = (session.user as { id: string; role: string }).role;
 
     if (role !== "CREATOR") {
-      return NextResponse.json({ error: "Only creators can access this endpoint" }, { status: 403 });
+      return NextResponse.json({ error: "Only creators can view revenue" }, { status: 403 });
     }
 
     const influencer = await prisma.influencer.findUnique({
@@ -25,33 +25,27 @@ export async function GET() {
       return NextResponse.json({ error: "Influencer profile not found" }, { status: 404 });
     }
 
-    const clone = await prisma.aIClone.findUnique({
+    const revenues = await prisma.museRevenue.findMany({
       where: { influencerId: influencer.id },
-      include: {
-        revenues: {
-          orderBy: { createdAt: "desc" },
-          take: 10,
-        },
-        usageLogs: {
-          orderBy: { createdAt: "desc" },
-          take: 10,
-        },
-      },
+      orderBy: { createdAt: "desc" },
     });
 
-    if (!clone) {
-      return NextResponse.json({ error: "AI clone not found" }, { status: 404 });
-    }
+    const totalEarnings = revenues.reduce((sum, r) => sum + r.creatorShare, 0);
+    const pendingAmount = revenues
+      .filter((r) => r.status === "pending" || r.status === "processing")
+      .reduce((sum, r) => sum + r.creatorShare, 0);
+    const completedAmount = revenues
+      .filter((r) => r.status === "completed")
+      .reduce((sum, r) => sum + r.creatorShare, 0);
 
     return NextResponse.json({
-      clone: {
-        ...clone,
-        totalEarnings: clone.totalEarnings,
-        totalUsageCount: clone.totalUsageCount,
-      },
+      totalEarnings,
+      pendingAmount,
+      completedAmount,
+      transactions: revenues,
     });
   } catch (error) {
-    console.error("[GET /api/ai-clone/my-clone]", error);
+    console.error("[GET /api/ai-muse/revenue]", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

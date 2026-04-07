@@ -30,6 +30,16 @@ export default function MediaKitPage() {
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF", color: "#111827" }}>
       <Navbar />
 
+      {/* Redirect notice */}
+      <div className="bg-[#7c3aed]/8 border-b border-[#7c3aed]/20 px-4 py-3 text-center">
+        <p className="text-sm text-[#7c3aed] font-medium">
+          🤖 미디어킷 기능은 AI Muse로 통합되었습니다.{" "}
+          <Link href="/dashboard/creator/ai-muse" className="underline hover:opacity-80">
+            AI Muse 페이지로 이동 →
+          </Link>
+        </p>
+      </div>
+
       {/* Hero */}
       <section className="py-24 px-4 text-center">
         <div className="max-w-4xl mx-auto">

@@ -2,8 +2,9 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { createCloneForInfluencer } from "@/lib/ai-muse";
 
-export async function GET() {
+export async function POST() {
   try {
     const session = await getServerSession(authOptions);
     if (!session) {
@@ -14,7 +15,7 @@ export async function GET() {
     const role = (session.user as { id: string; role: string }).role;
 
     if (role !== "CREATOR") {
-      return NextResponse.json({ error: "Only creators can view revenue" }, { status: 403 });
+      return NextResponse.json({ error: "Only creators can create an AI clone" }, { status: 403 });
     }
 
     const influencer = await prisma.influencer.findUnique({
@@ -25,27 +26,20 @@ export async function GET() {
       return NextResponse.json({ error: "Influencer profile not found" }, { status: 404 });
     }
 
-    const revenues = await prisma.cloneRevenue.findMany({
+    // Prevent duplicate clone
+    const existing = await prisma.aIMuse.findUnique({
       where: { influencerId: influencer.id },
-      orderBy: { createdAt: "desc" },
     });
 
-    const totalEarnings = revenues.reduce((sum, r) => sum + r.creatorShare, 0);
-    const pendingAmount = revenues
-      .filter((r) => r.status === "pending" || r.status === "processing")
-      .reduce((sum, r) => sum + r.creatorShare, 0);
-    const completedAmount = revenues
-      .filter((r) => r.status === "completed")
-      .reduce((sum, r) => sum + r.creatorShare, 0);
+    if (existing) {
+      return NextResponse.json({ error: "AI clone already exists", clone: existing }, { status: 409 });
+    }
 
-    return NextResponse.json({
-      totalEarnings,
-      pendingAmount,
-      completedAmount,
-      transactions: revenues,
-    });
+    const clone = await createCloneForInfluencer(influencer.id);
+
+    return NextResponse.json({ clone }, { status: 201 });
   } catch (error) {
-    console.error("[GET /api/ai-clone/revenue]", error);
+    console.error("[POST /api/ai-muse/create]", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

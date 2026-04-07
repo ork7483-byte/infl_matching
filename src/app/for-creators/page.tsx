@@ -18,8 +18,8 @@ const revenueCards = [
   },
   {
     icon: "🤖",
-    title: "AI 분신 수동 소득",
-    description: "내 스타일을 학습한 AI 분신이 24시간 팬과 대화하며 수익을 자동 생성합니다.",
+    title: "AI Muse 수동 소득",
+    description: "내 스타일을 학습한 AI Muse이 24시간 팬과 대화하며 수익을 자동 생성합니다.",
     tiers: [
       { label: "메시지당 수익", price: "₩800 / 사용" },
       { label: "월 예상 수익", price: "₩100,000 ~ ₩400,000" },
@@ -27,13 +27,13 @@ const revenueCards = [
     ],
   },
   {
-    icon: "📋",
-    title: "미디어킷으로 단가 올리기",
-    description: "자동 생성된 프로 미디어킷으로 브랜드 협상에서 더 높은 단가를 받아내세요.",
+    icon: "3️⃣",
+    title: "AI Muse로 수동 소득 극대화",
+    description: "Instagram 연동만 하면 AI Muse 자동 생성. 브랜드가 쓸 때마다 수익이 자동 적립됩니다.",
     tiers: [
-      { label: "단가 상승 효과", price: "평균 +23%" },
-      { label: "미디어킷 생성", price: "30초 자동 생성" },
-      { label: "PDF 다운로드", price: "무제한 무료" },
+      { label: "Instagram 연동만 하면", price: "AI Muse 자동 생성" },
+      { label: "브랜드가 쓸 때마다", price: "₩800 자동 적립" },
+      { label: "촬영 없음. 시간 없음.", price: "자는 동안에도 수익." },
     ],
   },
 ];
@@ -41,18 +41,18 @@ const revenueCards = [
 const steps = [
   {
     number: "①",
-    title: "무료 가입",
+    title: "무료 가입 (30초)",
     description: "이메일 또는 소셜 계정으로 30초 안에 가입하세요. 신용카드가 필요 없습니다.",
   },
   {
     number: "②",
-    title: "Instagram 연동",
-    description: "Instagram 계정을 연동하면 팔로워·참여율·콘텐츠 데이터가 자동으로 수집됩니다.",
+    title: "Instagram 연동 + 카테고리 선택 (1분)",
+    description: "Instagram 계정을 연동하고 내 카테고리를 선택하면 브랜드 매칭이 시작됩니다.",
   },
   {
     number: "③",
-    title: "미디어킷 + AI 분신 자동 생성",
-    description: "연동 즉시 프로 미디어킷과 AI 분신이 자동 생성됩니다. 바로 브랜드에 제안하세요.",
+    title: "AI Muse 자동 생성 → 브랜드 매칭 시작 + 수동 소득 시작",
+    description: "연동 즉시 AI Muse이 자동 생성됩니다. 브랜드가 사용할 때마다 수익이 자동으로 쌓여요.",
   },
 ];
 
@@ -63,7 +63,7 @@ const testimonials = [
     followers: "팔로워 28K",
     rating: 5,
     review:
-      "미디어킷을 직접 만들 때는 매번 2~3시간이 걸렸는데, Inflix 연동 후 30초 만에 완성됐어요. 브랜드 답장률도 눈에 띄게 올라갔습니다.",
+      "Inflix 연동 후 브랜드 답장률이 눈에 띄게 올라갔어요. AI Muse로 자는 동안에도 수익이 들어오니 정말 신기해요.",
   },
   {
     name: "이현우",
@@ -71,7 +71,7 @@ const testimonials = [
     followers: "팔로워 52K",
     rating: 5,
     review:
-      "AI 분신 기능을 켜놨더니 자는 동안에도 팬 DM에 응답이 가고 월 20만 원 이상 추가 수익이 생겼어요. 신기하면서도 너무 편해요.",
+      "AI Muse 기능을 켜놨더니 자는 동안에도 팬 DM에 응답이 가고 월 20만 원 이상 추가 수익이 생겼어요. 신기하면서도 너무 편해요.",
   },
   {
     name: "박소연",
@@ -206,7 +206,7 @@ export default function ForCreatorsPage() {
             지금 시작하기
           </h2>
           <p className="text-[#6B7280] mb-8">
-            무료로 가입하고 내 등급·미디어킷·AI 분신을 바로 확인하세요.
+            무료로 가입하고 내 등급·AI Muse을 바로 확인하세요.
             <br />
             신용카드 없이 즉시 시작 가능합니다.
           </p>

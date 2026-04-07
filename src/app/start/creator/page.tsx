@@ -60,8 +60,8 @@ export default function CreatorLandingPage() {
         <div className="flex flex-col gap-3">
           <LandingPainPoint
             emoji="😤"
-            title="미디어킷 만드는데 Canva로 3시간"
-            description="브랜드 제안 올 때마다 미디어킷 업데이트에 너무 많은 시간이 걸립니다"
+            title="브랜드 제안 받아도 어떻게 답해야 할지 모름"
+            description="브랜드 제안이 올 때마다 내 데이터를 정리하고 답변하는 데 너무 많은 시간이 걸립니다"
           />
           <LandingPainPoint
             emoji="😤"
@@ -88,8 +88,8 @@ export default function CreatorLandingPage() {
         </h2>
         <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-6">
           <LandingSolution
-            title="미디어킷 1분 만에 자동 생성 + PDF"
-            description="채널 데이터를 연동하면 전문적인 미디어킷이 자동으로 완성됩니다"
+            title="AI Muse 자동 생성 + 수동 소득"
+            description="채널 데이터를 연동하면 AI Muse이 자동으로 생성되어 브랜드가 사용할 때마다 수익이 쌓입니다"
           />
           <LandingSolution
             title="AI가 내 적정 단가 자동 산출"

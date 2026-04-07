@@ -3,13 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
-// Status progression: ready -> approved -> active
-const STATUS_NEXT: Record<string, string> = {
-  ready: "approved",
-  approved: "active",
-};
-
-export async function POST() {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions);
     if (!session) {
@@ -20,7 +14,7 @@ export async function POST() {
     const role = (session.user as { id: string; role: string }).role;
 
     if (role !== "CREATOR") {
-      return NextResponse.json({ error: "Only creators can approve their AI clone" }, { status: 403 });
+      return NextResponse.json({ error: "Only creators can access this endpoint" }, { status: 403 });
     }
 
     const influencer = await prisma.influencer.findUnique({
@@ -31,34 +25,33 @@ export async function POST() {
       return NextResponse.json({ error: "Influencer profile not found" }, { status: 404 });
     }
 
-    const clone = await prisma.aIClone.findUnique({
+    const clone = await prisma.aIMuse.findUnique({
       where: { influencerId: influencer.id },
+      include: {
+        revenues: {
+          orderBy: { createdAt: "desc" },
+          take: 10,
+        },
+        usageLogs: {
+          orderBy: { createdAt: "desc" },
+          take: 10,
+        },
+      },
     });
 
     if (!clone) {
       return NextResponse.json({ error: "AI clone not found" }, { status: 404 });
     }
 
-    const nextStatus = STATUS_NEXT[clone.status];
-    if (!nextStatus) {
-      return NextResponse.json(
-        { error: `Clone cannot be approved from status "${clone.status}"` },
-        { status: 400 }
-      );
-    }
-
-    const updatedClone = await prisma.aIClone.update({
-      where: { id: clone.id },
-      data: {
-        status: nextStatus,
-        isPublic: true,
-        ...(nextStatus === "approved" ? { approvedAt: new Date() } : {}),
+    return NextResponse.json({
+      clone: {
+        ...clone,
+        totalEarnings: clone.totalEarnings,
+        totalUsageCount: clone.totalUsageCount,
       },
     });
-
-    return NextResponse.json({ clone: updatedClone });
   } catch (error) {
-    console.error("[POST /api/ai-clone/approve]", error);
+    console.error("[GET /api/ai-muse/my-muse]", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

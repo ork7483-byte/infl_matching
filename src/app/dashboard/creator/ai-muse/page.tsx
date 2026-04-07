@@ -34,7 +34,7 @@ const MOCK_USAGE_LOGS: UsageLog[] = [
 const MOCK_PORTFOLIO = Array.from({ length: 12 }, (_, i) => `https://picsum.photos/seed/clone${i}/200/200`);
 
 const BENEFITS = [
-  { icon: "💰", title: "수익 자동 발생", desc: "내가 자는 동안에도 AI 분신이 광고를 찍어 수익을 만들어요." },
+  { icon: "💰", title: "수익 자동 발생", desc: "내가 자는 동안에도 AI Muse이 광고를 찍어 수익을 만들어요." },
   { icon: "📸", title: "촬영 불필요", desc: "한 번 등록하면 추가 촬영 없이 무제한 콘텐츠 생성 가능해요." },
   { icon: "🔒", title: "승인 전 비공개", desc: "모든 콘텐츠는 내가 승인한 것만 브랜드에 전달돼요." },
 ];
@@ -76,7 +76,7 @@ function NoCloneHero({ onCreateClick, loading }: { onCreateClick: () => void; lo
         <div className="w-20 h-20 rounded-full bg-[#7c3aed]/10 flex items-center justify-center mx-auto mb-5 text-4xl">
           🤖
         </div>
-        <h1 className="text-2xl font-bold text-[#111827] mb-2">AI 분신 만들기</h1>
+        <h1 className="text-2xl font-bold text-[#111827] mb-2">AI Muse 만들기</h1>
         <p className="text-[#6B7280] mb-8 leading-relaxed">
           내 얼굴과 스타일을 학습한 AI 모델이 대신 광고 콘텐츠를 생성해요.
           <br />
@@ -107,10 +107,10 @@ function NoCloneHero({ onCreateClick, loading }: { onCreateClick: () => void; lo
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
-              AI 분신 생성 중...
+              AI Muse 생성 중...
             </>
           ) : (
-            "AI 분신 생성하기"
+            "AI Muse 생성하기"
           )}
         </button>
       </div>
@@ -118,7 +118,7 @@ function NoCloneHero({ onCreateClick, loading }: { onCreateClick: () => void; lo
       {/* Progress animation during loading */}
       {loading && (
         <div className="bg-white rounded-2xl border border-[#E5E7EB] p-6 shadow-sm">
-          <p className="text-sm font-medium text-[#374151] mb-4">AI 분신을 학습하고 있어요...</p>
+          <p className="text-sm font-medium text-[#374151] mb-4">AI Muse을 학습하고 있어요...</p>
           <div className="space-y-3">
             {[
               "사진 데이터 분석 중",
@@ -166,8 +166,8 @@ function CloneDashboard({ clone, usageLogs }: { clone: AiClone; usageLogs: Usage
       <div className="bg-white rounded-2xl border border-[#E5E7EB] p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-lg font-bold text-[#111827]">🤖 AI 분신</h2>
-            <p className="text-sm text-[#6B7280] mt-0.5">내 AI 분신의 현재 상태예요</p>
+            <h2 className="text-lg font-bold text-[#111827]">🤖 AI Muse</h2>
+            <p className="text-sm text-[#6B7280] mt-0.5">내 AI Muse의 현재 상태예요</p>
           </div>
           <StatusBadge status={clone.status} />
         </div>
@@ -216,7 +216,7 @@ function CloneDashboard({ clone, usageLogs }: { clone: AiClone; usageLogs: Usage
             </button>
           )}
           <Link
-            href="/dashboard/creator/ai-clone/revenue"
+            href="/dashboard/creator/ai-muse/revenue"
             className="px-4 py-2 rounded-lg border border-[#7c3aed]/30 bg-[#7c3aed]/5 text-[#7c3aed] text-sm font-medium hover:bg-[#7c3aed]/10 transition-colors"
           >
             수익 내역 보기 →
@@ -285,7 +285,7 @@ export default function AiClonePage() {
   const handleCreateClone = async () => {
     setCreating(true);
     try {
-      // POST /api/ai-clone/create
+      // POST /api/ai-muse/create
       await new Promise((r) => setTimeout(r, 3000)); // mock delay
       setClone({
         status: "pending",
@@ -303,7 +303,17 @@ export default function AiClonePage() {
     <DashboardLayout role="creator">
       <div className="max-w-2xl mx-auto py-8 px-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-[#111827]">AI 분신 관리</h1>
+          <h1 className="text-2xl font-bold text-[#111827] flex items-center">
+            AI Muse 관리
+            <span className="relative group inline-flex ml-1.5 cursor-help">
+              <svg className="w-3.5 h-3.5 text-[#9CA3AF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-[#111827] text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none z-50 whitespace-nowrap">
+                나를 닮은 AI 모델이에요. 브랜드가 사용할 때마다 수익이 쌓여요.
+              </span>
+            </span>
+          </h1>
           <p className="text-sm text-[#6B7280] mt-1">내 AI 클론을 생성하고 수익을 관리하세요</p>
         </div>
 

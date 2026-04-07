@@ -82,7 +82,7 @@ function MonthlyBarChart({ data }: { data: typeof MONTHLY_DATA }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function AiCloneRevenuePage() {
+export default function AiMuseRevenuePage() {
   const [requestLoading, setRequestLoading] = useState(false);
 
   const totalAccumulated = MOCK_RECORDS.reduce((s, r) => s + r.myShare, 0);
@@ -109,7 +109,7 @@ export default function AiCloneRevenuePage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-[#111827]">AI 분신 수익</h1>
+            <h1 className="text-2xl font-bold text-[#111827]">AI Muse 수익</h1>
             <p className="text-sm text-[#6B7280] mt-1">AI 클론이 창출한 수익 내역을 확인하세요</p>
           </div>
           <button

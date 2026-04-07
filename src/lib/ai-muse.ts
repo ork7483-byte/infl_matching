@@ -74,12 +74,12 @@ function generatePortfolioImages(influencerId: string): string[] {
 }
 
 /**
- * Create an AIClone record for the given influencer.
+ * Create an AIMuse record for the given influencer.
  * Steps:
  * 1. Get influencer + media snapshots
  * 2. Select best photos (images only, sort by likes, top 12)
  * 3. Extract styles from categories + biography
- * 4. Create AIClone record with status "ready"
+ * 4. Create AIMuse record with status "ready"
  * 5. Generate portfolio images (MVP: picsum placeholders)
  * Returns the created clone record.
  */
@@ -106,7 +106,7 @@ export async function createCloneForInfluencer(influencerId: string) {
   const styles = getCloneStyles(influencer.categories, influencer.biography);
   const portfolioImages = generatePortfolioImages(influencerId);
 
-  const clone = await prisma.aIClone.create({
+  const clone = await prisma.aIMuse.create({
     data: {
       influencerId,
       status: "ready",

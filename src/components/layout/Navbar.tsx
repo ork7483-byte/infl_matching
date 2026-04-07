@@ -46,7 +46,7 @@ const brandsDropdown = [
 
 const creatorsDropdown = [
   { label: "크리에이터를 위한 솔루션", href: "/for-creators" },
-  { label: "미디어킷 자동 생성", href: "/for-creators/mediakit" },
+  { label: "AI Muse", href: "/dashboard/creator/ai-muse" },
   { label: "캠페인 마켓플레이스", href: "/for-creators/marketplace" },
   { label: "내 성장 트래커", href: "/for-creators/growth" },
   { label: "수익 & 정산 관리", href: "/for-creators/earnings" },

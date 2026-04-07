@@ -114,7 +114,7 @@ model Influencer {
   audienceDemographics AudienceDemographic[]
   aqsScores            AqsScore[]
   igrScores            IgrScore[]
-  aiClone              AIClone?
+  aiMuse              AIMuse?
   pricePredictions     PricePrediction[]
   campaignInfluencers  CampaignInfluencer[]
   campaignApplications CampaignApplication[]
@@ -800,10 +800,10 @@ model MatchRequest {
 }
 
 // ============================================
-// AI Clone (AI 분신)
+// AI Clone (AI Muse)
 // ============================================
 
-model AIClone {
+model AIMuse {
   id              String   @id @default(cuid())
   influencerId    String   @unique
   influencer      Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
@@ -818,16 +818,16 @@ model AIClone {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  revenues        CloneRevenue[]
-  usageLogs       CloneUsageLog[]
+  revenues        MuseRevenue[]
+  usageLogs       MuseUsageLog[]
 
   @@index([status])
   @@index([isPublic])
 }
 
-model CloneRevenue {
+model MuseRevenue {
   id            String   @id @default(cuid())
-  cloneId       String
+  museId       String
   influencerId  String
   brandUserId   String
   generationId  String?  // AI 생성 ID
@@ -837,23 +837,23 @@ model CloneRevenue {
   status        String   @default("pending") // pending, processing, completed
   createdAt     DateTime @default(now())
 
-  clone         AIClone  @relation(fields: [cloneId], references: [id], onDelete: Cascade)
+  clone         AIMuse  @relation(fields: [museId], references: [id], onDelete: Cascade)
 
-  @@index([cloneId])
+  @@index([museId])
   @@index([influencerId])
   @@index([status])
 }
 
-model CloneUsageLog {
+model MuseUsageLog {
   id          String   @id @default(cuid())
-  cloneId     String
+  museId     String
   brandUserId String
   contentType String   // product, lifestyle, fashion, beauty
   creditsUsed Int      @default(1)
   createdAt   DateTime @default(now())
 
-  clone       AIClone  @relation(fields: [cloneId], references: [id], onDelete: Cascade)
+  clone       AIMuse  @relation(fields: [museId], references: [id], onDelete: Cascade)
 
-  @@index([cloneId])
+  @@index([museId])
   @@index([brandUserId])
 }

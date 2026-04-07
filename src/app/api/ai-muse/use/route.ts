@@ -22,17 +22,17 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { cloneId, contentType } = body;
+    const { museId, contentType } = body;
 
-    if (!cloneId || !contentType) {
+    if (!museId || !contentType) {
       return NextResponse.json(
-        { error: "cloneId and contentType are required" },
+        { error: "museId and contentType are required" },
         { status: 400 }
       );
     }
 
-    const clone = await prisma.aIClone.findUnique({
-      where: { id: cloneId },
+    const clone = await prisma.aIMuse.findUnique({
+      where: { id: museId },
     });
 
     if (!clone) {
@@ -97,10 +97,10 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Create CloneUsageLog
-    await prisma.cloneUsageLog.create({
+    // Create MuseUsageLog
+    await prisma.museUsageLog.create({
       data: {
-        cloneId,
+        museId,
         brandUserId: userId,
         contentType,
         creditsUsed: 1,
@@ -112,10 +112,10 @@ export async function POST(request: NextRequest) {
     const creatorShare = totalAmount * CREATOR_SHARE_RATIO;
     const platformShare = totalAmount * PLATFORM_SHARE_RATIO;
 
-    // Create CloneRevenue
-    await prisma.cloneRevenue.create({
+    // Create MuseRevenue
+    await prisma.museRevenue.create({
       data: {
-        cloneId,
+        museId,
         influencerId: clone.influencerId,
         brandUserId: userId,
         totalAmount,
@@ -126,8 +126,8 @@ export async function POST(request: NextRequest) {
     });
 
     // Update clone stats
-    await prisma.aIClone.update({
-      where: { id: cloneId },
+    await prisma.aIMuse.update({
+      where: { id: museId },
       data: {
         totalUsageCount: { increment: 1 },
         totalEarnings: { increment: creatorShare },
@@ -135,7 +135,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Generate 4 mock result images
-    const seed = `${cloneId}-${userId}-${Date.now()}`;
+    const seed = `${museId}-${userId}-${Date.now()}`;
     const generatedImages = Array.from(
       { length: 4 },
       (_, i) => `https://picsum.photos/seed/${seed}-${i}/400/500`
@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
       remainingCredits: availableCredits - 1,
     });
   } catch (error) {
-    console.error("[POST /api/ai-clone/use]", error);
+    console.error("[POST /api/ai-muse/use]", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

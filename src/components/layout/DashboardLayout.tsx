@@ -88,15 +88,6 @@ const creatorNavItems: NavItem[] = [
     ),
   },
   {
-    label: "미디어킷",
-    href: "/dashboard/mediakit",
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-      </svg>
-    ),
-  },
-  {
     label: "캠페인 마켓플레이스",
     href: "/dashboard/marketplace",
     icon: (
@@ -115,8 +106,8 @@ const creatorNavItems: NavItem[] = [
     ),
   },
   {
-    label: "AI 분신",
-    href: "/dashboard/creator/ai-clone",
+    label: "AI Muse",
+    href: "/dashboard/creator/ai-muse",
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -125,7 +116,7 @@ const creatorNavItems: NavItem[] = [
   },
   {
     label: "AI 수익",
-    href: "/dashboard/creator/ai-clone/revenue",
+    href: "/dashboard/creator/ai-muse/revenue",
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />

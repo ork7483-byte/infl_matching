@@ -7,7 +7,7 @@ interface Props {
 }
 
 const BENEFITS = [
-  { icon: "🎨", title: "프리미엄 미디어킷", desc: "전문적인 미디어킷을 무료로 생성하세요." },
+  { icon: "🤖", title: "AI Muse 자동 생성", desc: "나를 닮은 AI 모델이 자동으로 수익을 만들어줘요." },
   { icon: "📊", title: "심층 참여율 분석", desc: "내 계정 ER·AQS·팔로워 추이를 한눈에 확인." },
   { icon: "💼", title: "브랜드 캠페인 매칭", desc: "딱 맞는 캠페인을 AI가 자동으로 추천해드려요." },
   { icon: "💰", title: "수익 정산 관리", desc: "캠페인 수익을 투명하게 정산 받으세요." },
@@ -39,7 +39,7 @@ export default async function InviteLandingPage({ params }: Props) {
             친구가 Inflix에 초대했어요!
           </h1>
           <p className="text-lg text-[#6B7280] mb-2">
-            지금 가입하면 둘 다 프리미엄 미디어킷을 받아요 🎁
+            지금 가입하면 둘 다 AI Muse를 바로 생성할 수 있어요 🎁
           </p>
           <p className="text-sm text-[#9CA3AF] mb-8">
             초대 코드: <span className="font-mono font-semibold text-[#7c3aed]">{displayCode}</span>
@@ -108,7 +108,7 @@ export default async function InviteLandingPage({ params }: Props) {
               ))}
             </div>
             <p className="text-[#374151] italic mb-4">
-              &ldquo;Inflix 덕분에 미디어킷 준비하는 시간이 3시간에서 5분으로 줄었어요.
+              &ldquo;Inflix AI Muse 덕분에 자는 동안에도 수익이 들어와요.
               브랜드 미팅에서 바로 공유 링크를 보내니 반응이 완전 달라졌어요!&rdquo;
             </p>
             <div className="text-sm font-medium text-[#374151]">@beauty_jinie</div>
@@ -124,7 +124,7 @@ export default async function InviteLandingPage({ params }: Props) {
             지금 바로 시작하세요
           </h2>
           <p className="text-[#6B7280] mb-6">
-            초대를 통해 가입하면 프리미엄 미디어킷 테마를 바로 사용할 수 있어요.
+            초대를 통해 가입하면 AI Muse를 바로 생성하고 수동 소득을 시작할 수 있어요.
           </p>
           <Link
             href={`/signup?ref=${encodeURIComponent(code)}`}

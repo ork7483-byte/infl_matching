@@ -19,7 +19,7 @@ export default function TermsPage() {
 
           <Section title="제2조 (정의)">
             <ol className="list-decimal pl-5 space-y-2">
-              <li><strong>&quot;서비스&quot;</strong>란 회사가 제공하는 인플루언서 검색, 프로필 분석, 오디언스 분석, AQS 점수, AI 성과 예측, 캠페인 관리, 미디어킷 생성, 갤러리 등 일체의 서비스를 말합니다.</li>
+              <li><strong>&quot;서비스&quot;</strong>란 회사가 제공하는 인플루언서 검색, 프로필 분석, 오디언스 분석, AQS 점수, AI 성과 예측, 캠페인 관리, AI Muse, 갤러리 등 일체의 서비스를 말합니다.</li>
               <li><strong>&quot;회원&quot;</strong>이란 본 약관에 동의하고 회원가입을 완료한 자로서, 브랜드 회원과 크리에이터 회원으로 구분됩니다.</li>
               <li><strong>&quot;브랜드 회원&quot;</strong>이란 인플루언서 검색, 캠페인 관리 등의 목적으로 서비스를 이용하는 회원을 말합니다.</li>
               <li><strong>&quot;크리에이터 회원&quot;</strong>이란 자신의 인플루언서 프로필을 관리하고 브랜드와 매칭되는 목적으로 서비스를 이용하는 회원을 말합니다.</li>
@@ -62,7 +62,7 @@ export default function TermsPage() {
             </ul>
             <h4 className="font-semibold text-[#111827] mt-3 mb-2">크리에이터 회원 대상</h4>
             <ul className="list-disc pl-5 space-y-1">
-              <li>미디어킷 자동 생성</li>
+              <li>AI Muse 자동 생성</li>
               <li>캠페인 마켓플레이스 탐색 및 지원</li>
               <li>성장 트래커 (팔로워/참여율 추이 분석)</li>
               <li>수익 및 정산 관리</li>

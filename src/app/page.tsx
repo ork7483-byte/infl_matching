@@ -350,7 +350,7 @@ function InfluencerGridCard({
               </span>
             )}
             {influencer.hasAiClone && (
-              <span className="px-2 py-1 bg-purple-500/90 text-white text-xs rounded-full">🤖 AI 분신</span>
+              <span className="px-2 py-1 bg-purple-500/90 text-white text-xs rounded-full">🤖 AI Muse</span>
             )}
           </div>
         )}
@@ -1971,7 +1971,7 @@ function HomePage() {
               <h3 className="text-xl font-bold text-[#111827] mb-3">크리에이터</h3>
               <p className="text-[#6B7280] text-sm mb-5">당신의 영향력을 데이터로 증명하고 브랜드와 연결되세요</p>
               <ul className="space-y-2 text-sm text-[#6B7280] mb-7">
-                {["미디어킷 자동 생성", "캠페인 마켓플레이스", "성장 트래커", "수익/정산 관리"].map((feat) => (
+                {["AI Muse 자동 생성", "캠페인 마켓플레이스", "성장 트래커", "수익/정산 관리"].map((feat) => (
                   <li key={feat} className="flex items-center gap-2">
                     <span className="text-[#e94560]">✓</span>
                     {feat}

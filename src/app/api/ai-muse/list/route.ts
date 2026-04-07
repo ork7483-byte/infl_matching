@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const limit = Math.min(50, Math.max(1, parseInt(searchParams.get("limit") ?? "20", 10)));
     const skip = (page - 1) * limit;
 
-    const clones = await prisma.aIClone.findMany({
+    const clones = await prisma.aIMuse.findMany({
       where: {
         status: "active",
         isPublic: true,
@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
       take: limit,
     });
 
-    const total = await prisma.aIClone.count({
+    const total = await prisma.aIMuse.count({
       where: {
         status: "active",
         isPublic: true,
@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("[GET /api/ai-clone/list]", error);
+    console.error("[GET /api/ai-muse/list]", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

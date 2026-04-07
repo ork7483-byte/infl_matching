@@ -272,7 +272,7 @@ export default function PriceCalculatorPage() {
               },
               {
                 q: "처음 광고를 받는 경우 협상은 어떻게 하나요?",
-                a: "초보 크리에이터는 시장 평균의 70~80% 수준에서 시작해 협업 실적을 쌓는 것이 일반적입니다. 미디어킷을 준비해두면 협상에 큰 도움이 됩니다.",
+                a: "초보 크리에이터는 시장 평균의 70~80% 수준에서 시작해 협업 실적을 쌓는 것이 일반적입니다. 내 프로필 데이터를 정리해두면 협상에 큰 도움이 됩니다.",
               },
             ].map((faq) => (
               <div key={faq.q} className="rounded-xl border border-[#E5E7EB] p-5 bg-white">
@@ -322,7 +322,7 @@ export default function PriceCalculatorPage() {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-[#111827] mb-3">더 정확한 분석이 필요하세요?</h2>
           <p className="text-[#6B7280] mb-6">
-            무료 가입하면 콘텐츠 타입별 상세 단가, CPR·CPE 분석, 나만의 미디어킷까지 모두 무료로 사용할 수 있어요.
+            무료 가입하면 콘텐츠 타입별 상세 단가, CPR·CPE 분석, AI Muse 자동 생성까지 모두 무료로 사용할 수 있어요.
           </p>
           <Link
             href="/signup"
