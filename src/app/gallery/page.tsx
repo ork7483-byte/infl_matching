@@ -545,7 +545,7 @@ function GalleryPage() {
 
           {/* CTA */}
           <div className="mt-8 text-center">
-            <Link href="/ai-studio" className="inline-block px-8 py-3 bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold rounded-xl hover:opacity-90 cursor-pointer">
+            <Link href="/ai-studio" className="inline-block px-8 py-3 bg-[#7c3aed] text-white font-semibold rounded-xl hover:opacity-90 cursor-pointer">
               AI Studio에서 직접 만들어보기 →
             </Link>
           </div>

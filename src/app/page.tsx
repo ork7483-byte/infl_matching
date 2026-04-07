@@ -284,7 +284,7 @@ function SignupModal({ onClose }: { onClose: () => void }) {
         <div className="flex flex-col gap-3">
           <Link
             href="/signup"
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity"
+            className="w-full py-3 rounded-xl bg-[#7c3aed] text-white font-semibold hover:opacity-90 transition-opacity"
           >
             무료로 시작하기
           </Link>
@@ -502,7 +502,7 @@ function InfluencerGridCard({
         <div className="mt-auto flex gap-2 pt-1">
           <Link
             href={`/influencer/${influencer.username}`}
-            className="flex-1 text-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+            className="flex-1 text-center px-4 py-2.5 rounded-lg bg-[#7c3aed] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             상세보기
           </Link>
@@ -655,7 +655,7 @@ function InfluencerListRow({
       <div className="flex items-center gap-2 flex-shrink-0">
         <Link
           href={`/influencer/${influencer.username}`}
-          className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white text-xs font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
+          className="px-3 py-1.5 rounded-lg bg-[#7c3aed] text-white text-xs font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
         >
           상세 보기
         </Link>
@@ -1090,7 +1090,7 @@ function FilterSidebar({
       <div className="space-y-2 pt-1">
         <button
           onClick={onSearch}
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(124,58,237,0.3)] min-h-[44px] cursor-pointer"
+          className="w-full py-3 rounded-xl bg-[#7c3aed] text-white font-semibold hover:opacity-90 transition-opacity min-h-[44px] cursor-pointer"
         >
           검색하기
         </button>
@@ -1205,7 +1205,7 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
             <button
               onClick={calcER}
               disabled={erLoading}
-              className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+              className="px-4 py-2 rounded-lg bg-[#7c3aed] text-white text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
             >
               {erLoading ? "..." : "계산"}
             </button>
@@ -1250,7 +1250,7 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
             <button
               onClick={checkFF}
               disabled={ffLoading}
-              className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+              className="px-4 py-2 rounded-lg bg-[#7c3aed] text-white text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
             >
               {ffLoading ? "..." : "체크"}
             </button>
@@ -1291,7 +1291,7 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
             </select>
             <button
               onClick={calcPrice}
-              className="w-full py-2 rounded-lg bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+              className="w-full py-2 rounded-lg bg-[#7c3aed] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
             >
               계산하기
             </button>
@@ -1377,7 +1377,7 @@ function AIModelTab() {
 
       {/* CTA */}
       <div className="mt-8 text-center">
-        <Link href="/ai-studio" className="inline-block px-8 py-3 bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold rounded-xl hover:opacity-90 cursor-pointer">
+        <Link href="/ai-studio" className="inline-block px-8 py-3 bg-[#7c3aed] text-white font-semibold rounded-xl hover:opacity-90 cursor-pointer">
           AI Studio에서 더 알아보기 →
         </Link>
       </div>
@@ -1957,7 +1957,7 @@ function HomePage() {
               </ul>
               <Link
                 href="/for-brands"
-                className="mt-auto block text-center py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity min-h-[44px] flex items-center justify-center cursor-pointer"
+                className="mt-auto block text-center py-3 rounded-xl bg-[#7c3aed] text-white font-semibold hover:opacity-90 transition-opacity min-h-[44px] flex items-center justify-center cursor-pointer"
               >
                 브랜드로 시작하기 →
               </Link>
@@ -1980,7 +1980,7 @@ function HomePage() {
               </ul>
               <Link
                 href="/for-creators"
-                className="mt-auto block text-center py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90 transition-opacity min-h-[44px] flex items-center justify-center cursor-pointer"
+                className="mt-auto block text-center py-3 rounded-xl bg-[#7c3aed] text-white font-semibold hover:opacity-90 transition-opacity min-h-[44px] flex items-center justify-center cursor-pointer"
               >
                 크리에이터로 시작하기 →
               </Link>

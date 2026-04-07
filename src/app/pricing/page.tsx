@@ -372,7 +372,7 @@ function PricingInner() {
                 <Link
                   href="/signup?role=brand&plan=pro"
                   className="block w-full text-center px-6 py-3 rounded-lg text-sm font-semibold text-white transition-opacity hover:opacity-90"
-                  style={{ backgroundImage: "linear-gradient(to right, #7c3aed, #e94560)" }}
+                  style={{ backgroundColor: "#7c3aed" }}
                 >
                   무료로 시작하기 🎉
                 </Link>
@@ -462,7 +462,7 @@ function PricingInner() {
                 <Link
                   href="/signup?role=creator"
                   className="block w-full text-center px-6 py-4 rounded-lg text-base font-semibold text-white transition-opacity hover:opacity-90"
-                  style={{ backgroundImage: "linear-gradient(to right, #7c3aed, #e94560)" }}
+                  style={{ backgroundColor: "#7c3aed" }}
                 >
                   크리에이터로 시작하기
                 </Link>
@@ -752,7 +752,7 @@ function PricingInner() {
           <Link
             href="/signup"
             className="block w-full sm:inline-block sm:w-auto px-10 py-4 rounded-xl text-base font-semibold text-white transition-opacity hover:opacity-90 text-center min-h-[48px] cursor-pointer"
-            style={{ backgroundImage: "linear-gradient(to right, #7c3aed, #e94560)" }}
+            style={{ backgroundColor: "#7c3aed" }}
           >
             무료로 시작하기
           </Link>

@@ -166,7 +166,7 @@ export default function ForBrandsPage() {
                   <p className="text-[#6B7280] leading-relaxed mb-8">{currentTool.description}</p>
                   <Link
                     href={`/tools/${currentTool.key}`}
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold px-6 py-3 rounded-xl text-base hover:opacity-90 transition-opacity min-h-[48px] cursor-pointer"
+                    className="inline-flex items-center gap-2 bg-[#7c3aed] text-white font-semibold px-6 py-3 rounded-xl text-base hover:opacity-90 transition-opacity min-h-[48px] cursor-pointer"
                   >
                     사용하기 →
                   </Link>
