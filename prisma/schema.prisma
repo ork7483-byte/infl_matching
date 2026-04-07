@@ -113,6 +113,7 @@ model Influencer {
   mediaSnapshots       MediaSnapshot[]
   audienceDemographics AudienceDemographic[]
   aqsScores            AqsScore[]
+  igrScores            IgrScore[]
   pricePredictions     PricePrediction[]
   campaignInfluencers  CampaignInfluencer[]
   campaignApplications CampaignApplication[]
@@ -198,19 +199,47 @@ model AudienceDemographic {
 // ============================================
 
 model AqsScore {
-  id                    String   @id @default(cuid())
-  influencerId          String
-  totalScore            Float
-  engagementQuality     Float
-  growthPattern         Float
-  ratioAnalysis         Float
-  contentConsistency    Float
-  commentAuthenticity   Float
-  signals               Json
-  modelVersion          String?
-  calculatedAt          DateTime @default(now())
+  id                      String   @id @default(cuid())
+  influencerId            String
+  totalScore              Float
+  engagementAuthenticity  Float    // 참여진정성 (35%)
+  audienceQuality         Float    // 오디언스품질 (30%)
+  contentConsistency      Float    // 성과일관성 (20%)
+  commentQuality          Float    // 댓글품질 (15%)
+  // 하위 호환 (기존 5축 → 4축 전환, 이전 필드는 nullable)
+  engagementQuality       Float?
+  growthPattern           Float?
+  ratioAnalysis           Float?
+  commentAuthenticity     Float?
+  signals                 Json
+  grade                   String?
+  label                   String?
+  modelVersion            String?
+  calculatedAt            DateTime @default(now())
 
-  influencer            Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  influencer              Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([influencerId, calculatedAt])
+}
+
+// ============================================
+// IGR Score (Instagram Grade Rating)
+// ============================================
+
+model IgrScore {
+  id                String   @id @default(cuid())
+  influencerId      String
+  totalScore        Float
+  reelsPerformance  Float
+  engagementQuality Float
+  contentStrategy   Float
+  growthMomentum    Float
+  grade             String
+  label             String
+  modelVersion      String?
+  calculatedAt      DateTime @default(now())
+
+  influencer        Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
 
   @@index([influencerId, calculatedAt])
 }

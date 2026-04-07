@@ -392,10 +392,15 @@ async function main() {
       data: {
         influencerId: inf.id,
         totalScore: Math.min(total, 100),
+        // 4-axis v2 required fields (seeded with legacy values as approximations)
+        engagementAuthenticity: engagement,
+        audienceQuality: growth,
+        contentConsistency: consistency,
+        commentQuality: authenticity,
+        // backward-compat optional fields
         engagementQuality: engagement,
         growthPattern: growth,
         ratioAnalysis: ratio,
-        contentConsistency: consistency,
         commentAuthenticity: authenticity,
         signals,
         modelVersion: "rule-v1",

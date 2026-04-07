@@ -150,13 +150,20 @@ export async function POST(request: NextRequest) {
           data: {
             influencerId: influencer.id,
             totalScore: result.totalScore,
+            // 4-axis v2 fields
+            engagementAuthenticity: result.engagementAuthenticity,
+            audienceQuality: result.audienceQuality,
+            contentConsistency: result.contentConsistency,
+            commentQuality: result.commentQuality,
+            // backward-compat fields
             engagementQuality: result.engagementQuality,
             growthPattern: result.growthPattern,
             ratioAnalysis: result.ratioAnalysis,
-            contentConsistency: result.contentConsistency,
             commentAuthenticity: result.commentAuthenticity,
             signals: result.signals,
-            modelVersion: "rule-v1",
+            grade: result.grade,
+            label: result.label,
+            modelVersion: "rule-v2",
           },
           select: { totalScore: true },
         });

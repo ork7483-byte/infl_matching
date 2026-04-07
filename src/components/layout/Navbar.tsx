@@ -12,6 +12,7 @@ const toolsDropdown = [
   { label: "가짜 팔로워 체크", href: "/tools/fake-follower-check" },
   { label: "프로필 감사 리포트", href: "/tools/instagram-audit" },
   { label: "팔로워 수 체크", href: "/tools/follower-count" },
+  { label: "Instagram 등급 확인", href: "/tools/instagram-grade" },
   // 비교/탐색
   { label: "— 비교/탐색", href: "", group: true },
   { label: "인플루언서 비교", href: "/tools/compare" },

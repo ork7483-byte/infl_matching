@@ -1,5 +1,9 @@
-// AQS (Audience Quality Score) Calculator - Rule-based MVP
-// Based on FEATURES.md specification
+// AQS (Audience Quality Score) Calculator - 4-axis v2
+// 참여진정성(35%) + 오디언스품질(30%) + 성과일관성(20%) + 댓글품질(15%)
+
+import { getTier } from "./benchmarks";
+
+// ── Input interfaces ─────────────────────────────────────────────────────────
 
 interface AqsInput {
   followersCount: number;
@@ -13,198 +17,275 @@ interface AqsInput {
   }[];
 }
 
-interface AqsOutput {
+// ── Output interfaces ────────────────────────────────────────────────────────
+
+export interface AqsOutput {
   totalScore: number;
+  engagementAuthenticity: number;
+  audienceQuality: number;
+  contentConsistency: number;
+  commentQuality: number;
+  // backward compat fields
   engagementQuality: number;
   growthPattern: number;
   ratioAnalysis: number;
-  contentConsistency: number;
   commentAuthenticity: number;
   signals: string[];
+  grade: string;
+  label: string;
 }
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
 
 function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
 }
 
-function calculateEngagementQuality(
-  avgER: number,
-  media: AqsInput["mediaSnapshots"]
+function mean(arr: number[]): number {
+  if (arr.length === 0) return 0;
+  return arr.reduce((a, b) => a + b, 0) / arr.length;
+}
+
+function stddev(arr: number[], avg?: number): number {
+  if (arr.length < 2) return 0;
+  const m = avg ?? mean(arr);
+  return Math.sqrt(arr.reduce((sum, v) => sum + Math.pow(v - m, 2), 0) / arr.length);
+}
+
+// ── Axis 1: 참여진정성 (35%) ─────────────────────────────────────────────────
+// Compares actual ER to tier benchmark ER. A healthy ratio (~1.0) scores highest.
+// Extremely low or suspiciously inflated ER is penalised.
+
+export function calcEngagementAuthenticity(
+  avgLikes: number,
+  avgComments: number,
+  followers: number
 ): { score: number; signals: string[] } {
   const signals: string[] = [];
-  let score = 10; // base
+  const tier = getTier(followers);
 
-  // ER in healthy range (1-8%)
-  if (avgER >= 1 && avgER <= 8) score += 5;
-  else if (avgER < 0.5) {
-    score -= 5;
+  const actualER =
+    followers > 0 ? ((avgLikes + avgComments) / followers) * 100 : 0;
+  const benchmarkER = tier.avgER;
+
+  // ratio of actual ER vs benchmark (1.0 = perfect)
+  const erRatio = benchmarkER > 0 ? actualER / benchmarkER : 0;
+
+  let score: number;
+  if (erRatio >= 0.7 && erRatio <= 1.8) {
+    // healthy band
+    score = 35;
+  } else if (erRatio >= 0.4 && erRatio < 0.7) {
+    score = 25;
+    signals.push("참여율이 동급 인플루언서 대비 낮습니다");
+  } else if (erRatio > 1.8 && erRatio <= 3.0) {
+    score = 28;
+    signals.push("참여율이 벤치마크보다 높습니다 (확인 필요)");
+  } else if (erRatio > 3.0) {
+    score = 15;
+    signals.push("비정상적으로 높은 참여율 감지 (구매 의심)");
+  } else {
+    score = 10;
     signals.push("참여율이 매우 낮습니다");
-  } else if (avgER > 15) {
-    score -= 3;
-    signals.push("비정상적으로 높은 참여율");
   }
 
-  // Like:Comment ratio
-  if (media.length > 0) {
-    const avgLikes = media.reduce((sum, m) => sum + m.likeCount, 0) / media.length;
-    const avgComments = media.reduce((sum, m) => sum + m.commentsCount, 0) / media.length;
-    const ratio = avgComments > 0 ? avgLikes / avgComments : 100;
-    if (ratio > 5 && ratio < 50) score += 3;
-    else if (ratio >= 50) signals.push("좋아요 대비 댓글이 매우 적음");
-  }
-
-  // ER variance
-  if (media.length >= 5) {
-    const ers = media.map(
-      (m) => ((m.likeCount + m.commentsCount) / Math.max(1, m.likeCount)) * 100
-    );
-    const mean = ers.reduce((a, b) => a + b, 0) / ers.length;
-    const variance = ers.reduce((sum, er) => sum + Math.pow(er - mean, 2), 0) / ers.length;
-    if (variance < mean * 2) score += 2;
-  }
-
-  return { score: clamp(score, 0, 20), signals };
+  return { score: clamp(score, 0, 35), signals };
 }
 
-function calculateGrowthPattern(
-  history: AqsInput["followerHistory"]
+// ── Axis 2: 오디언스품질 (30%) ───────────────────────────────────────────────
+// Follow ratio (following/followers) + comment-to-like ratio quality.
+
+export function calcAudienceQuality(
+  followers: number,
+  following: number,
+  avgComments: number,
+  avgLikes: number
 ): { score: number; signals: string[] } {
   const signals: string[] = [];
-  let score = 10;
+  let score = 30;
 
-  if (history.length < 7) return { score, signals };
-
-  // Check for sudden spikes
-  for (let i = 1; i < history.length; i++) {
-    const prev = history[i - 1].followersCount;
-    const curr = history[i].followersCount;
-    const changeRate = (curr - prev) / prev;
-
-    if (changeRate > 0.1) {
-      score -= 3;
-      signals.push("하루 10% 이상 팔로워 급증 감지");
-      break;
-    }
-    if (changeRate < -0.05) {
-      score -= 2;
-      signals.push("하루 5% 이상 팔로워 급감 감지");
-      break;
-    }
+  // Follow ratio component (max 18 pts)
+  const followRatio = following / Math.max(1, followers);
+  let followScore: number;
+  if (followRatio < 0.1) {
+    followScore = 18;
+  } else if (followRatio < 0.3) {
+    followScore = 14;
+  } else if (followRatio < 0.6) {
+    followScore = 10;
+  } else if (followRatio < 1.0) {
+    followScore = 6;
+    signals.push("팔로잉/팔로워 비율이 높습니다");
+  } else {
+    followScore = 2;
+    signals.push("팔로잉이 팔로워를 초과합니다");
   }
 
-  // Growth stability
-  const changes = [];
-  for (let i = 1; i < history.length; i++) {
-    changes.push(history[i].followersCount - history[i - 1].followersCount);
+  // Comment/like ratio component (max 12 pts)
+  const commentLikeRatio = avgLikes > 0 ? avgComments / avgLikes : 0;
+  const tier = getTier(followers);
+  const benchmarkRatio = tier.avgCommentLikeRatio / 100; // convert % to ratio
+
+  let commentScore: number;
+  if (commentLikeRatio >= benchmarkRatio * 0.6 && commentLikeRatio <= benchmarkRatio * 2.5) {
+    commentScore = 12;
+  } else if (commentLikeRatio < benchmarkRatio * 0.3) {
+    commentScore = 4;
+    signals.push("댓글/좋아요 비율이 낮습니다");
+  } else if (commentLikeRatio > benchmarkRatio * 4) {
+    commentScore = 6;
+    signals.push("댓글/좋아요 비율이 비정상적으로 높습니다");
+  } else {
+    commentScore = 8;
   }
-  const avgChange = changes.reduce((a, b) => a + b, 0) / changes.length;
-  if (avgChange > 0) score += 5;
 
-  // Consistent positive growth
-  const positiveChanges = changes.filter((c) => c >= 0).length;
-  if (positiveChanges / changes.length > 0.7) score += 5;
-
-  return { score: clamp(score, 0, 20), signals };
+  score = followScore + commentScore;
+  return { score: clamp(score, 0, 30), signals };
 }
 
-function calculateRatioAnalysis(
-  followersCount: number,
-  followingCount: number
+// ── Axis 3: 성과일관성 (20%) ─────────────────────────────────────────────────
+// Coefficient of variation (CV) of likes across posts.
+// Lower CV = more consistent performance = higher score.
+
+export function calcContentConsistency(
+  posts: AqsInput["mediaSnapshots"]
 ): { score: number; signals: string[] } {
   const signals: string[] = [];
-  let score = 10;
-  const ratio = followingCount / Math.max(1, followersCount);
 
-  if (ratio < 0.1) score += 8;
-  else if (ratio < 0.3) score += 5;
-  else if (ratio < 0.5) score += 2;
-  else if (ratio > 2) {
-    score -= 5;
-    signals.push("팔로잉이 팔로워의 2배 이상");
-  } else if (ratio > 1) {
-    score -= 2;
-    signals.push("팔로잉이 팔로워보다 많음");
+  if (posts.length < 3) {
+    return { score: 10, signals: ["게시물 데이터가 충분하지 않습니다"] };
+  }
+
+  const likes = posts.map((p) => p.likeCount);
+  const avg = mean(likes);
+
+  if (avg === 0) {
+    return { score: 5, signals: ["좋아요 데이터가 없습니다"] };
+  }
+
+  const cv = stddev(likes, avg) / avg; // coefficient of variation
+
+  let score: number;
+  if (cv < 0.4) {
+    score = 20;
+  } else if (cv < 0.7) {
+    score = 16;
+  } else if (cv < 1.0) {
+    score = 12;
+  } else if (cv < 1.5) {
+    score = 8;
+    signals.push("게시물 성과 편차가 큽니다");
+  } else {
+    score = 4;
+    signals.push("게시물 성과가 매우 불안정합니다");
   }
 
   return { score: clamp(score, 0, 20), signals };
 }
 
-function calculateContentConsistency(
-  media: AqsInput["mediaSnapshots"]
+// ── Axis 4: 댓글품질 (15%) ───────────────────────────────────────────────────
+// Comment-to-like ratio quality: authentic accounts have a healthy ratio.
+// Very high or near-zero ratios are suspicious.
+
+export function calcCommentQuality(
+  posts: AqsInput["mediaSnapshots"]
 ): { score: number; signals: string[] } {
   const signals: string[] = [];
-  let score = 10;
 
-  if (media.length < 5) return { score, signals };
-
-  // Post frequency (having regular posts)
-  if (media.length >= 20) score += 5;
-  else if (media.length >= 10) score += 3;
-
-  // Performance variance
-  const likes = media.map((m) => m.likeCount);
-  const mean = likes.reduce((a, b) => a + b, 0) / likes.length;
-  const cv = Math.sqrt(
-    likes.reduce((sum, l) => sum + Math.pow(l - mean, 2), 0) / likes.length
-  ) / Math.max(1, mean);
-
-  if (cv < 0.5) score += 5;
-  else if (cv > 1.5) {
-    score -= 3;
-    signals.push("게시물 성과 편차가 큼");
+  if (posts.length === 0) {
+    return { score: 7, signals: [] };
   }
 
-  return { score: clamp(score, 0, 20), signals };
+  const totalLikes = posts.reduce((s, p) => s + p.likeCount, 0);
+  const totalComments = posts.reduce((s, p) => s + p.commentsCount, 0);
+  const avgLikes = totalLikes / posts.length;
+  const avgComments = totalComments / posts.length;
+
+  // What fraction of posts have at least 1 comment
+  const commentedRatio =
+    posts.filter((p) => p.commentsCount > 0).length / posts.length;
+
+  if (commentedRatio < 0.2) {
+    signals.push("댓글이 거의 없는 게시물이 많습니다");
+    return { score: 4, signals };
+  }
+
+  const ratio = avgLikes > 0 ? avgComments / avgLikes : 0;
+
+  let score: number;
+  // Healthy range: 1–10% comment/like ratio
+  if (ratio >= 0.01 && ratio <= 0.1) {
+    score = 15;
+  } else if (ratio > 0.1 && ratio <= 0.2) {
+    score = 12;
+  } else if (ratio < 0.01 && ratio > 0.003) {
+    score = 9;
+    signals.push("댓글 비율이 낮습니다");
+  } else if (ratio > 0.2) {
+    score = 8;
+    signals.push("댓글 비율이 비정상적으로 높습니다");
+  } else {
+    score = 5;
+    signals.push("댓글 수가 매우 적습니다");
+  }
+
+  return { score: clamp(score, 0, 15), signals };
 }
 
-function calculateCommentAuthenticity(
-  media: AqsInput["mediaSnapshots"]
-): { score: number; signals: string[] } {
-  const signals: string[] = [];
-  let score = 12;
+// ── Grade helper ─────────────────────────────────────────────────────────────
 
-  // Simple heuristic: if comments exist relative to likes, it's a good sign
-  const withComments = media.filter((m) => m.commentsCount > 0);
-  const commentRatio = withComments.length / Math.max(1, media.length);
-
-  if (commentRatio > 0.8) score += 5;
-  else if (commentRatio > 0.5) score += 3;
-  else if (commentRatio < 0.2) {
-    score -= 3;
-    signals.push("댓글이 거의 없는 게시물이 많음");
-  }
-
-  // Average comment per post ratio
-  if (media.length > 0) {
-    const avgComments = media.reduce((s, m) => s + m.commentsCount, 0) / media.length;
-    const avgLikes = media.reduce((s, m) => s + m.likeCount, 0) / media.length;
-    const spamRatio = avgLikes > 0 ? avgComments / avgLikes : 0;
-
-    if (spamRatio > 0.02 && spamRatio < 0.15) score += 3;
-  }
-
-  return { score: clamp(score, 0, 20), signals };
+function getGrade(score: number): { grade: string; label: string } {
+  if (score >= 90) return { grade: "🟢", label: "매우건강" };
+  if (score >= 70) return { grade: "🟡", label: "양호" };
+  if (score >= 50) return { grade: "🟠", label: "보통" };
+  if (score >= 30) return { grade: "🔴", label: "미흡" };
+  return { grade: "⛔", label: "위험" };
 }
 
-export function calculateAqs(input: AqsInput): AqsOutput {
-  const { followersCount, followingCount, avgEngagementRate, followerHistory, mediaSnapshots } = input;
+// ── Main export ───────────────────────────────────────────────────────────────
 
-  const eq = calculateEngagementQuality(avgEngagementRate, mediaSnapshots);
-  const gp = calculateGrowthPattern(followerHistory);
-  const ra = calculateRatioAnalysis(followersCount, followingCount);
-  const cc = calculateContentConsistency(mediaSnapshots);
-  const ca = calculateCommentAuthenticity(mediaSnapshots);
+export function calculateAQS(input: AqsInput): AqsOutput {
+  const { followersCount, followingCount, mediaSnapshots } = input;
 
-  const totalScore = eq.score + gp.score + ra.score + cc.score + ca.score;
-  const allSignals = [...eq.signals, ...gp.signals, ...ra.signals, ...cc.signals, ...ca.signals];
+  const avgLikes =
+    mediaSnapshots.length > 0
+      ? mediaSnapshots.reduce((s, m) => s + m.likeCount, 0) / mediaSnapshots.length
+      : 0;
+  const avgComments =
+    mediaSnapshots.length > 0
+      ? mediaSnapshots.reduce((s, m) => s + m.commentsCount, 0) / mediaSnapshots.length
+      : 0;
+
+  const ea = calcEngagementAuthenticity(avgLikes, avgComments, followersCount);
+  const aq = calcAudienceQuality(followersCount, followingCount, avgComments, avgLikes);
+  const cc = calcContentConsistency(mediaSnapshots);
+  const cq = calcCommentQuality(mediaSnapshots);
+
+  const totalScore = clamp(
+    ea.score + aq.score + cc.score + cq.score,
+    0,
+    100
+  );
+
+  const { grade, label } = getGrade(totalScore);
+  const signals = [...ea.signals, ...aq.signals, ...cc.signals, ...cq.signals];
 
   return {
-    totalScore: clamp(totalScore, 0, 100),
-    engagementQuality: eq.score,
-    growthPattern: gp.score,
-    ratioAnalysis: ra.score,
+    totalScore,
+    engagementAuthenticity: ea.score,
+    audienceQuality: aq.score,
     contentConsistency: cc.score,
-    commentAuthenticity: ca.score,
-    signals: allSignals,
+    commentQuality: cq.score,
+    // backward compat
+    engagementQuality: ea.score,
+    growthPattern: aq.score,
+    ratioAnalysis: cc.score,
+    commentAuthenticity: cq.score,
+    signals,
+    grade,
+    label,
   };
 }
+
+// Backward-compat alias
+export const calculateAqs = calculateAQS;

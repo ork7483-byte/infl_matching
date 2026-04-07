@@ -35,6 +35,7 @@ interface Influencer {
   avgEngagementRate: number | null;
   isOauthConnected: boolean;
   aqsScore: AqsScore | null;
+  igrScore?: { totalScore: number; grade: string; label: string } | null;
   recentMediaThumbnails?: string[];
   estimatedPriceMin?: number;
   estimatedPriceMax?: number;
@@ -142,12 +143,14 @@ function getCategoryAvg(categories: string[]) {
   return CATEGORY_AVG[cat] || { er: 3.2, aqs: 62 };
 }
 
-function getOneLinerSummary(er: number | null, aqs: number | null): string {
+function getOneLinerSummary(er: number | null, aqs: number | null, igr?: number | null): string {
   const erHigh = (er ?? 0) >= 3;
   const aqsHigh = (aqs ?? 0) >= 70;
-  if (erHigh && aqsHigh) return "반응도 좋고 팔로워도 진짜예요 👍";
+  const igrHigh = (igr ?? 0) >= 70;
+  const igrSuffix = igrHigh ? " + 알고리즘 노출도 유리해요" : "";
+  if (erHigh && aqsHigh) return `반응도 좋고 팔로워도 진짜예요 👍${igrSuffix}`;
   if (erHigh && !aqsHigh) return "반응은 좋지만 가짜 팔로워가 의심돼요 ⚠️";
-  if (!erHigh && aqsHigh) return "팔로워는 진짜인데 반응이 적은 편이에요";
+  if (!erHigh && aqsHigh) return `팔로워는 진짜인데 반응이 적은 편이에요${igrSuffix}`;
   return "팔로워와 반응 모두 확인이 필요해요 🔍";
 }
 
@@ -459,10 +462,30 @@ function InfluencerGridCard({
           </div>
         )}
 
+        {/* IGR Score */}
+        {influencer.igrScore ? (
+          <div className="mb-2">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-xs text-[#6B7280] flex items-center">
+                IGR 등급
+                <InfoTooltip text="Instagram 알고리즘이 이 계정을 얼마나 밀어주는지 평가한 등급이에요. S등급이면 노출이 매우 유리해요." />
+              </span>
+              <span className="text-xs font-semibold">
+                {influencer.igrScore.grade} {influencer.igrScore.label}
+              </span>
+            </div>
+            <div className="h-1.5 bg-[#E5E7EB] rounded-full overflow-hidden">
+              <div className="h-full rounded-full transition-all"
+                style={{ width: `${influencer.igrScore.totalScore}%`, backgroundColor: influencer.igrScore.totalScore >= 70 ? "#7c3aed" : influencer.igrScore.totalScore >= 50 ? "#22c55e" : "#f59e0b" }}
+              />
+            </div>
+          </div>
+        ) : null}
+
         {/* One-liner summary */}
         <div className="mb-2 px-2 py-1.5 bg-[#F9FAFB] rounded-lg">
           <p className="text-[11px] text-[#6B7280] leading-relaxed">
-            💡 {getOneLinerSummary(influencer.avgEngagementRate, influencer.aqsScore?.totalScore ?? null)}
+            💡 {getOneLinerSummary(influencer.avgEngagementRate, influencer.aqsScore?.totalScore ?? null, influencer.igrScore?.totalScore ?? null)}
           </p>
         </div>
 

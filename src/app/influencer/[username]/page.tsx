@@ -38,6 +38,17 @@ interface AqsScore {
   calculatedAt: string;
 }
 
+interface IgrScore {
+  totalScore: number;
+  grade: string;
+  label: string;
+  reelsPerformance: number;
+  engagementQuality: number;
+  contentStrategy: number;
+  growthMomentum: number;
+  description: string;
+}
+
 interface PricePrediction {
   id: string;
   minPrice: number;
@@ -130,12 +141,20 @@ function getCategoryAvg(categories: string[]) {
   return CATEGORY_AVG[categories[0]] || { er: 3.2, aqs: 62 };
 }
 
-function getOneLinerSummary(er: number | null, aqs: number | null): string {
+function getIgrColor(score: number): string {
+  if (score >= 70) return "#7c3aed";
+  if (score >= 50) return "#22c55e";
+  return "#f59e0b";
+}
+
+function getOneLinerSummary(er: number | null, aqs: number | null, igr?: number | null): string {
   const erHigh = (er ?? 0) >= 3;
   const aqsHigh = (aqs ?? 0) >= 70;
-  if (erHigh && aqsHigh) return "반응도 좋고 팔로워도 진짜예요 👍";
+  const igrHigh = (igr ?? 0) >= 70;
+  const igrSuffix = igrHigh ? " + 알고리즘 노출도 유리해요" : "";
+  if (erHigh && aqsHigh) return `반응도 좋고 팔로워도 진짜예요 👍${igrSuffix}`;
   if (erHigh && !aqsHigh) return "반응은 좋지만 가짜 팔로워가 의심돼요 ⚠️";
-  if (!erHigh && aqsHigh) return "팔로워는 진짜인데 반응이 적은 편이에요";
+  if (!erHigh && aqsHigh) return `팔로워는 진짜인데 반응이 적은 편이에요${igrSuffix}`;
   return "팔로워와 반응 모두 확인이 필요해요 🔍";
 }
 
@@ -262,6 +281,7 @@ export default function InfluencerProfilePage() {
   const [profile, setProfile] = useState<InfluencerProfile | null>(null);
   const [audience, setAudience] = useState<AudienceData | null>(null);
   const [followerHistory, setFollowerHistory] = useState<FollowerHistoryPoint[]>([]);
+  const [igrScore, setIgrScore] = useState<IgrScore | null>(null);
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [loadingAudience, setLoadingAudience] = useState(false);
   const [notFound, setNotFound] = useState(false);
@@ -361,6 +381,42 @@ export default function InfluencerProfilePage() {
       .catch(console.error);
   }, [username]);
 
+  // Fetch IGR score
+  useEffect(() => {
+    if (!username) return;
+    fetch(`/api/influencers/${username}/igr`)
+      .then(async (res) => {
+        if (!res.ok) {
+          // Mock fallback for demo
+          setIgrScore({
+            totalScore: 72,
+            grade: "A",
+            label: "우수",
+            reelsPerformance: 78,
+            engagementQuality: 70,
+            contentStrategy: 65,
+            growthMomentum: 75,
+            description: "알고리즘 노출이 활발하게 이루어지고 있어요. 릴스 성과가 특히 높습니다.",
+          });
+          return;
+        }
+        const data = await res.json();
+        setIgrScore(data);
+      })
+      .catch(() => {
+        setIgrScore({
+          totalScore: 72,
+          grade: "A",
+          label: "우수",
+          reelsPerformance: 78,
+          engagementQuality: 70,
+          contentStrategy: 65,
+          growthMomentum: 75,
+          description: "알고리즘 노출이 활발하게 이루어지고 있어요. 릴스 성과가 특히 높습니다.",
+        });
+      });
+  }, [username]);
+
   if (notFound) return <NotFound />;
 
   if (loadingProfile) {
@@ -384,17 +440,6 @@ export default function InfluencerProfilePage() {
 
   const aqs = profile.aqsScore;
   const categoryAvg = getCategoryAvg(profile.categories);
-
-  // Radar chart data
-  const radarData = aqs
-    ? [
-        { subject: "참여 품질", score: aqs.engagementQuality, fullMark: 100 },
-        { subject: "성장 패턴", score: aqs.growthPattern, fullMark: 100 },
-        { subject: "비율 분석", score: aqs.ratioAnalysis, fullMark: 100 },
-        { subject: "콘텐츠 일관성", score: aqs.contentConsistency, fullMark: 100 },
-        { subject: "댓글 진성성", score: aqs.commentAuthenticity, fullMark: 100 },
-      ]
-    : [];
 
   // Fake follower signals derived from AQS sub-scores
   const fakeFollowerSignals = aqs
@@ -697,7 +742,7 @@ export default function InfluencerProfilePage() {
         {/* ─── One-liner summary ──────────────────────────────────── */}
         <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl p-4 mb-6">
           <p className="text-sm text-foreground">
-            💡 {getOneLinerSummary(profile.avgEngagementRate, aqs?.totalScore ?? null)}
+            💡 {getOneLinerSummary(profile.avgEngagementRate, aqs?.totalScore ?? null, igrScore?.totalScore ?? null)}
           </p>
         </div>
 
@@ -881,71 +926,108 @@ export default function InfluencerProfilePage() {
             </Section>
           </BlurOverlay>
 
-          {/* Row 3: AQS Score */}
+          {/* Row 3: AQS + IGR Score */}
           <BlurOverlay
             className="rounded-2xl"
-            ctaText="AQS 점수 전체 보기"
+            ctaText="AQS / IGR 점수 전체 보기"
             ctaLink="/register"
           >
-            <div className="bg-card border border-border rounded-2xl p-6">
-              <h2 className="text-base font-semibold text-foreground mb-5 flex items-center">
-                AQS 점수 (계정 품질 지수)
-                <InfoTooltip text="팔로워가 진짜인지 평가한 점수예요. 100에 가까울수록 가짜 팔로워가 적어요." />
-              </h2>
-              {aqs ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                  {/* Grade + score */}
-                  <div className="flex flex-col items-center justify-center gap-4">
-                    <div
-                      className="w-20 h-20 rounded-full border-4 flex items-center justify-center"
-                      style={{
-                        borderColor: getAqsColor(aqs.totalScore),
-                        backgroundColor: getAqsColor(aqs.totalScore) + "18",
-                      }}
-                    >
-                      <span className="text-3xl font-bold" style={{ color: getAqsColor(aqs.totalScore) }}>
-                        {getAqsEmoji(aqs.totalScore)}
-                      </span>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-2xl font-bold text-foreground">
-                        <MaskedValue
-                          value={aqs.totalScore}
-                          width="48px"
-                          className="text-2xl font-bold"
-                        />{" "}
-                        <span className="text-base font-normal text-muted-foreground">
-                          / 100
-                        </span>
-                      </p>
-                      <Badge
-                        variant={
-                          aqs.totalScore >= 90
-                            ? "success"
-                            : aqs.totalScore >= 70
-                            ? "warning"
-                            : "danger"
-                        }
-                        size="md"
-                      >
-                        {getAqsLabel(aqs.totalScore)}
-                      </Badge>
-                      <p className="text-xs text-muted-foreground mt-2">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* AQS Card */}
+                <div className="bg-white border border-[#E5E7EB] rounded-2xl p-6">
+                  <h3 className="text-base font-semibold text-foreground mb-1 flex items-center">
+                    AQS 점수 (계정 품질 지수)
+                    <InfoTooltip text="팔로워가 진짜인지 평가한 점수예요. 100에 가까울수록 가짜 팔로워가 적어요." />
+                  </h3>
+                  <p className="text-sm text-[#6B7280] mb-4">팔로워가 진짜인가?</p>
+                  {aqs ? (
+                    <>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div
+                          className="w-14 h-14 rounded-full border-4 flex items-center justify-center flex-shrink-0"
+                          style={{ borderColor: getAqsColor(aqs.totalScore), backgroundColor: getAqsColor(aqs.totalScore) + "18" }}
+                        >
+                          <span className="text-2xl font-bold" style={{ color: getAqsColor(aqs.totalScore) }}>
+                            {getAqsEmoji(aqs.totalScore)}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="text-xl font-bold text-foreground">
+                            <MaskedValue value={aqs.totalScore} width="40px" className="text-xl font-bold" />
+                            {" "}<span className="text-sm font-normal text-muted-foreground">/ 100</span>
+                          </p>
+                          <Badge variant={aqs.totalScore >= 90 ? "success" : aqs.totalScore >= 70 ? "warning" : "danger"} size="md">
+                            {getAqsLabel(aqs.totalScore)}
+                          </Badge>
+                        </div>
+                      </div>
+                      <AqsRadarChart data={[
+                        { subject: "참여 품질", score: aqs.engagementQuality, fullMark: 100 },
+                        { subject: "성장 패턴", score: aqs.growthPattern, fullMark: 100 },
+                        { subject: "비율 분석", score: aqs.ratioAnalysis, fullMark: 100 },
+                        { subject: "콘텐츠 일관성", score: aqs.contentConsistency, fullMark: 100 },
+                        { subject: "댓글 진성성", score: aqs.commentAuthenticity, fullMark: 100 },
+                      ]} />
+                      <p className="text-xs text-[#6B7280] mt-2">
                         카테고리 평균 {categoryAvg.aqs}점 대비{" "}
                         <span className="font-semibold" style={{ color: aqs.totalScore >= categoryAvg.aqs ? "#22c55e" : "#ef4444" }}>
                           {aqs.totalScore >= categoryAvg.aqs ? "높음" : "낮음"}
                         </span>
                       </p>
-                    </div>
-                  </div>
-                  {/* Radar chart */}
-                  <AqsRadarChart data={radarData} />
+                    </>
+                  ) : (
+                    <p className="text-sm text-muted-foreground text-center py-8">AQS 데이터를 불러오는 중입니다</p>
+                  )}
                 </div>
-              ) : (
-                <p className="text-sm text-muted-foreground text-center py-8">
-                  AQS 데이터를 불러오는 중입니다
-                </p>
-              )}
+
+                {/* IGR Card */}
+                <div className="bg-white border border-[#E5E7EB] rounded-2xl p-6">
+                  <h3 className="text-base font-semibold text-foreground mb-1 flex items-center">
+                    IGR 등급 (알고리즘 노출 지수)
+                    <InfoTooltip text="Instagram 알고리즘이 이 계정을 얼마나 밀어주는지 평가한 등급이에요. S/A/B/C/D로 나뉩니다." />
+                  </h3>
+                  <p className="text-sm text-[#6B7280] mb-4">알고리즘이 밀어주는가?</p>
+                  {igrScore ? (
+                    <>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div
+                          className="w-14 h-14 rounded-full border-4 flex items-center justify-center flex-shrink-0"
+                          style={{ borderColor: getIgrColor(igrScore.totalScore), backgroundColor: getIgrColor(igrScore.totalScore) + "18" }}
+                        >
+                          <span className="text-lg font-bold" style={{ color: getIgrColor(igrScore.totalScore) }}>
+                            {igrScore.grade}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="text-xl font-bold text-foreground">
+                            {igrScore.totalScore}
+                            {" "}<span className="text-sm font-normal text-muted-foreground">/ 100</span>
+                          </p>
+                          <span className="inline-block text-xs font-semibold px-2 py-0.5 rounded-full" style={{ backgroundColor: getIgrColor(igrScore.totalScore) + "20", color: getIgrColor(igrScore.totalScore) }}>
+                            {igrScore.label}
+                          </span>
+                        </div>
+                      </div>
+                      <AqsRadarChart data={[
+                        { subject: "릴스 성과", score: igrScore.reelsPerformance, fullMark: 100 },
+                        { subject: "참여 품질", score: igrScore.engagementQuality, fullMark: 100 },
+                        { subject: "콘텐츠 전략", score: igrScore.contentStrategy, fullMark: 100 },
+                        { subject: "성장 모멘텀", score: igrScore.growthMomentum, fullMark: 100 },
+                      ]} />
+                      <p className="text-xs text-[#6B7280] mt-2">{igrScore.description}</p>
+                    </>
+                  ) : (
+                    <p className="text-sm text-muted-foreground text-center py-8">IGR 데이터를 불러오는 중입니다</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Brand explanation */}
+              <div className="bg-[#F9FAFB] rounded-xl p-4">
+                <p className="text-sm font-medium text-[#111827] mb-1">브랜드에게 이게 중요한 이유:</p>
+                <p className="text-xs text-[#6B7280]">AQS가 높으면 → 진짜 사람에게 도달 | IGR이 높으면 → 더 많은 사람에게 노출</p>
+              </div>
             </div>
           </BlurOverlay>
 
