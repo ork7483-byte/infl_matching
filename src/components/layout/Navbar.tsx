@@ -5,6 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
+const toolsDropdown = [
+  { label: "참여율 계산기", href: "/tools/engagement-rate" },
+  { label: "가짜 팔로워 체크", href: "/tools/fake-follower-check" },
+  { label: "예상 단가 계산기", href: "/tools/price-calculator" },
+];
+
 const brandsDropdown = [
   { label: "브랜드를 위한 솔루션", href: "/for-brands" },
   { label: "캠페인 관리", href: "/for-brands/campaign" },
@@ -163,6 +169,18 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
+
+              <DropdownMenu
+                label="무료 도구"
+                href="/tools/engagement-rate"
+                items={toolsDropdown}
+                isOpen={openDropdown === "tools"}
+                onMouseEnter={() => handleMouseEnter("tools")}
+                onMouseLeave={handleMouseLeave}
+                onToggle={() =>
+                  setOpenDropdown(openDropdown === "tools" ? null : "tools")
+                }
+              />
 
               <DropdownMenu
                 label="For Brands"

@@ -20,6 +20,10 @@ model User {
   plan          Plan      @default(FREE)
   planStartedAt DateTime  @default(now())
   isEarlyAccess Boolean   @default(true)
+  referralCode  String?   @unique
+  referredBy    String?
+  referralCount Int       @default(0)
+  onboardingCompleted Boolean @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -473,4 +477,40 @@ model EventLog {
   @@index([userId])
   @@index([createdAt])
   @@index([utmSource])
+}
+
+// ============================================
+// Share Actions (Viral)
+// ============================================
+
+model ShareAction {
+  id          String   @id @default(cuid())
+  userId      String
+  shareType   String   // instagram_story, link_copy, referral
+  shareUrl    String?
+  verified    Boolean  @default(false)
+  rewardGiven Boolean  @default(false)
+  rewardType  String?  // premium_mediakit, premium_theme
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+}
+
+// ============================================
+// Referrals (Invite System)
+// ============================================
+
+model Referral {
+  id            String    @id @default(cuid())
+  referrerId    String
+  referredId    String?
+  referralCode  String    @unique
+  referralLink  String
+  status        String    @default("pending") // pending, completed, rewarded
+  rewardGiven   Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  completedAt   DateTime?
+
+  @@index([referrerId])
+  @@index([referralCode])
 }
