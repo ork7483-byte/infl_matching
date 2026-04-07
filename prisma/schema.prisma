@@ -1,0 +1,380 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// Users & Auth
+// ============================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  role          Role
+  name          String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  brand         Brand?
+  influencer    Influencer?
+  sessions      Session[]
+}
+
+enum Role {
+  BRAND
+  CREATOR
+  ADMIN
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ============================================
+// Brand
+// ============================================
+
+model Brand {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  companyName String
+  industry    String?
+  logoUrl     String?
+  website     String?
+  createdAt   DateTime @default(now())
+
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  campaigns   Campaign[]
+}
+
+// ============================================
+// Influencer
+// ============================================
+
+model Influencer {
+  id                  String   @id @default(cuid())
+  userId              String?  @unique
+  igUserId            String?  @unique
+  username            String   @unique
+  fullName            String?
+  biography           String?
+  profilePicUrl       String?
+  followersCount      Int      @default(0)
+  followingCount      Int      @default(0)
+  mediaCount          Int      @default(0)
+  categories          String[]
+  avgEngagementRate   Float?
+  isOauthConnected    Boolean  @default(false)
+  accessToken         String?
+  lastSyncedAt        DateTime?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  user                 User?     @relation(fields: [userId], references: [id])
+  followerHistory      FollowerHistory[]
+  mediaSnapshots       MediaSnapshot[]
+  audienceDemographics AudienceDemographic[]
+  aqsScores            AqsScore[]
+  pricePredictions     PricePrediction[]
+  campaignInfluencers  CampaignInfluencer[]
+  campaignApplications CampaignApplication[]
+  payments             Payment[]
+
+  @@index([followersCount])
+  @@index([avgEngagementRate])
+  @@index([categories])
+}
+
+// ============================================
+// Follower History (daily snapshots)
+// ============================================
+
+model FollowerHistory {
+  id              String   @id @default(cuid())
+  influencerId    String
+  followersCount  Int
+  followingCount  Int
+  mediaCount      Int
+  recordedDate    DateTime @db.Date
+
+  influencer      Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@unique([influencerId, recordedDate])
+  @@index([influencerId, recordedDate])
+}
+
+// ============================================
+// Media (Post) Snapshots
+// ============================================
+
+model MediaSnapshot {
+  id              String   @id @default(cuid())
+  influencerId    String
+  igMediaId       String
+  mediaType       MediaType
+  caption         String?
+  likeCount       Int      @default(0)
+  commentsCount   Int      @default(0)
+  reach           Int?
+  impressions     Int?
+  saved           Int?
+  shares          Int?
+  permalink       String?
+  thumbnailUrl    String?
+  postedAt        DateTime
+  collectedAt     DateTime @default(now())
+
+  influencer      Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([influencerId, postedAt])
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  CAROUSEL_ALBUM
+  REEL
+  STORY
+}
+
+// ============================================
+// Audience Demographics
+// ============================================
+
+model AudienceDemographic {
+  id              String   @id @default(cuid())
+  influencerId    String
+  breakdownType   String
+  breakdownKey    String
+  value           Float
+  collectedAt     DateTime @default(now())
+
+  influencer      Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([influencerId, breakdownType])
+}
+
+// ============================================
+// AQS Score
+// ============================================
+
+model AqsScore {
+  id                    String   @id @default(cuid())
+  influencerId          String
+  totalScore            Float
+  engagementQuality     Float
+  growthPattern         Float
+  ratioAnalysis         Float
+  contentConsistency    Float
+  commentAuthenticity   Float
+  signals               Json
+  modelVersion          String?
+  calculatedAt          DateTime @default(now())
+
+  influencer            Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([influencerId, calculatedAt])
+}
+
+// ============================================
+// AI Predictions & Ad Pricing
+// ============================================
+
+model PricePrediction {
+  id                      String   @id @default(cuid())
+  influencerId            String
+  predictedFeeMin         Float
+  predictedFeeMax         Float
+  predictedReach          Int
+  predictedLikes          Int?
+  predictedComments       Int?
+  predictedEngagementRate Float?
+  predictedCpr            Float?
+  predictedCpe            Float?
+  contentType             String?
+  modelVersion            String?
+  confidenceScore         Float?
+  calculatedAt            DateTime @default(now())
+
+  influencer              Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([influencerId, calculatedAt])
+}
+
+// ============================================
+// Campaign
+// ============================================
+
+model Campaign {
+  id          String         @id @default(cuid())
+  brandId     String
+  name        String
+  description String?
+  hashtag     String?
+  contentType String?
+  budget      Float?
+  startDate   DateTime?
+  endDate     DateTime?
+  status      CampaignStatus @default(DRAFT)
+  isPublic    Boolean        @default(false)
+  category    String?
+  rewardType  RewardType?
+  rewardAmount Float?
+  requirements String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  brand               Brand                @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  campaignInfluencers  CampaignInfluencer[]
+  campaignPosts        CampaignPost[]
+  campaignApplications CampaignApplication[]
+
+  @@index([status])
+  @@index([isPublic, status])
+}
+
+enum CampaignStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  COMPLETED
+  CANCELLED
+}
+
+enum RewardType {
+  PAID
+  PRODUCT
+  MIXED
+}
+
+// ============================================
+// Campaign-Influencer Relationship
+// ============================================
+
+model CampaignInfluencer {
+  id            String                   @id @default(cuid())
+  campaignId    String
+  influencerId  String
+  agreedFee     Float?
+  status        CampaignInfluencerStatus @default(INVITED)
+  invitedAt     DateTime                 @default(now())
+  acceptedAt    DateTime?
+  completedAt   DateTime?
+
+  campaign      Campaign   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  influencer    Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  payments      Payment[]
+
+  @@unique([campaignId, influencerId])
+}
+
+enum CampaignInfluencerStatus {
+  INVITED
+  ACCEPTED
+  CONTENT_SUBMITTED
+  COMPLETED
+  REJECTED
+  CANCELLED
+}
+
+// ============================================
+// Campaign Applications (Marketplace)
+// ============================================
+
+model CampaignApplication {
+  id            String            @id @default(cuid())
+  campaignId    String
+  influencerId  String
+  message       String?
+  expectedReach Int?
+  status        ApplicationStatus @default(PENDING)
+  appliedAt     DateTime          @default(now())
+  reviewedAt    DateTime?
+
+  campaign      Campaign   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  influencer    Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, influencerId])
+}
+
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+// ============================================
+// Campaign Posts
+// ============================================
+
+model CampaignPost {
+  id            String   @id @default(cuid())
+  campaignId    String
+  influencerId  String
+  igMediaId     String?
+  permalink     String?
+  postedAt      DateTime?
+  createdAt     DateTime @default(now())
+
+  campaign              Campaign                  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  performanceSnapshots  PostPerformanceSnapshot[]
+
+  @@index([campaignId])
+}
+
+// ============================================
+// Post Performance Snapshots (time-series)
+// ============================================
+
+model PostPerformanceSnapshot {
+  id              String   @id @default(cuid())
+  campaignPostId  String
+  likeCount       Int      @default(0)
+  commentsCount   Int      @default(0)
+  reach           Int?
+  impressions     Int?
+  saved           Int?
+  shares          Int?
+  engagementRate  Float?
+  snapshotAt      DateTime @default(now())
+
+  campaignPost    CampaignPost @relation(fields: [campaignPostId], references: [id], onDelete: Cascade)
+
+  @@index([campaignPostId, snapshotAt])
+}
+
+// ============================================
+// Payments
+// ============================================
+
+model Payment {
+  id                    String        @id @default(cuid())
+  campaignInfluencerId  String
+  influencerId          String
+  amount                Float
+  status                PaymentStatus @default(PENDING)
+  requestedAt           DateTime      @default(now())
+  processedAt           DateTime?
+  note                  String?
+
+  campaignInfluencer    CampaignInfluencer @relation(fields: [campaignInfluencerId], references: [id], onDelete: Cascade)
+  influencer            Influencer         @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([influencerId, status])
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
