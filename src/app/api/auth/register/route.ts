@@ -85,6 +85,23 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    if (role === "BRAND") {
+      try {
+        await prisma.creditBalance.create({
+          data: {
+            userId: user.id,
+            monthlyCredits: 3,
+            bonusCredits: 5,
+            usedThisMonth: 0,
+            resetDate: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1),
+          },
+        });
+      } catch (creditError) {
+        // CreditBalance may already exist; log and continue
+        console.warn("[register] creditBalance creation skipped:", creditError);
+      }
+    }
+
     return NextResponse.json(user, { status: 201 });
   } catch (error) {
     console.error("[register] error:", error);

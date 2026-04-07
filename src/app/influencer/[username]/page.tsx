@@ -257,6 +257,7 @@ export default function InfluencerProfilePage() {
   const username = params?.username ?? "";
   const { data: session } = useSession();
   const isAuthed = !!session;
+  const isBrand = (session?.user as { role?: string })?.role === "BRAND";
 
   const [profile, setProfile] = useState<InfluencerProfile | null>(null);
   const [audience, setAudience] = useState<AudienceData | null>(null);
@@ -265,6 +266,57 @@ export default function InfluencerProfilePage() {
   const [loadingAudience, setLoadingAudience] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [selectedContentType, setSelectedContentType] = useState<"FEED" | "REEL" | "STORY">("FEED");
+
+  // ─── Match Request Modal state ────────────────────────────────────────────
+  const [matchModalOpen, setMatchModalOpen] = useState(false);
+  const [matchForm, setMatchForm] = useState({
+    campaignTitle: "",
+    campaignType: "스폰서 게시물",
+    budget: "협의",
+    startDate: "",
+    endDate: "",
+    description: "",
+  });
+  const [matchSubmitting, setMatchSubmitting] = useState(false);
+  const [matchSuccess, setMatchSuccess] = useState(false);
+
+  async function handleMatchSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!profile) return;
+    setMatchSubmitting(true);
+    try {
+      const res = await fetch("/api/match/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          influencerId: profile.id,
+          campaignTitle: matchForm.campaignTitle,
+          campaignType: matchForm.campaignType,
+          budget: matchForm.budget,
+          startDate: matchForm.startDate || undefined,
+          endDate: matchForm.endDate || undefined,
+          description: matchForm.description,
+        }),
+      });
+      if (res.ok) {
+        setMatchSuccess(true);
+        setMatchModalOpen(false);
+        setMatchForm({
+          campaignTitle: "",
+          campaignType: "스폰서 게시물",
+          budget: "협의",
+          startDate: "",
+          endDate: "",
+          description: "",
+        });
+        setTimeout(() => setMatchSuccess(false), 4000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setMatchSubmitting(false);
+    }
+  }
 
   // Fetch profile
   useEffect(() => {
@@ -477,7 +529,7 @@ export default function InfluencerProfilePage() {
 
               {/* Category badges */}
               {profile.categories.length > 0 && (
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5 mb-3">
                   {profile.categories.map((cat) => (
                     <Badge key={cat} variant="purple">
                       {cat}
@@ -485,9 +537,162 @@ export default function InfluencerProfilePage() {
                   ))}
                 </div>
               )}
+
+              {/* CTA buttons */}
+              {isBrand && (
+                <div className="flex flex-wrap gap-2 mt-2">
+                  <button
+                    onClick={() => setMatchModalOpen(true)}
+                    className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+                  >
+                    매칭 요청
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
+
+        {/* ─── Success Toast ───────────────────────────────────────── */}
+        {matchSuccess && (
+          <div className="fixed top-6 right-6 z-50 bg-[#22c55e] text-white px-5 py-3 rounded-xl shadow-lg text-sm font-medium animate-fade-in">
+            매칭 요청이 성공적으로 전송되었습니다!
+          </div>
+        )}
+
+        {/* ─── Match Request Modal ─────────────────────────────────── */}
+        {matchModalOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setMatchModalOpen(false); }}
+          >
+            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto p-6">
+              <div className="flex items-center justify-between mb-5">
+                <h2 className="text-lg font-bold text-[#111827]">매칭 요청</h2>
+                <button
+                  onClick={() => setMatchModalOpen(false)}
+                  className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F3F4F6] text-[#6B7280] transition-colors"
+                  aria-label="닫기"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <form onSubmit={handleMatchSubmit} className="space-y-5">
+                {/* 캠페인명 */}
+                <div>
+                  <label className="block text-sm font-medium text-[#374151] mb-1.5">
+                    캠페인명 <span className="text-[#e94560]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={matchForm.campaignTitle}
+                    onChange={(e) => setMatchForm((f) => ({ ...f, campaignTitle: e.target.value }))}
+                    placeholder="캠페인 이름을 입력하세요"
+                    className="w-full px-3 py-2.5 border border-[#E5E7EB] rounded-lg text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/40 focus:border-[#7c3aed] transition-colors"
+                  />
+                </div>
+
+                {/* 캠페인 유형 */}
+                <div>
+                  <label className="block text-sm font-medium text-[#374151] mb-2">
+                    캠페인 유형 <span className="text-[#e94560]">*</span>
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {["스폰서 게시물", "제품 리뷰", "UGC", "스토리", "릴스"].map((type) => (
+                      <label key={type} className="flex items-center gap-1.5 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="campaignType"
+                          value={type}
+                          checked={matchForm.campaignType === type}
+                          onChange={() => setMatchForm((f) => ({ ...f, campaignType: type }))}
+                          className="accent-[#7c3aed]"
+                        />
+                        <span className="text-sm text-[#374151]">{type}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 예산 범위 */}
+                <div>
+                  <label className="block text-sm font-medium text-[#374151] mb-2">예산 범위</label>
+                  <div className="flex flex-wrap gap-2">
+                    {["10만원 이하", "10~50만원", "50~100만원", "100~300만원", "300만원+", "협의"].map((b) => (
+                      <label key={b} className="flex items-center gap-1.5 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="budget"
+                          value={b}
+                          checked={matchForm.budget === b}
+                          onChange={() => setMatchForm((f) => ({ ...f, budget: b }))}
+                          className="accent-[#7c3aed]"
+                        />
+                        <span className="text-sm text-[#374151]">{b}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 희망 기간 */}
+                <div>
+                  <label className="block text-sm font-medium text-[#374151] mb-1.5">희망 기간</label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="date"
+                      value={matchForm.startDate}
+                      onChange={(e) => setMatchForm((f) => ({ ...f, startDate: e.target.value }))}
+                      className="flex-1 px-3 py-2.5 border border-[#E5E7EB] rounded-lg text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/40 focus:border-[#7c3aed] transition-colors"
+                    />
+                    <span className="text-[#6B7280] text-sm flex-shrink-0">~</span>
+                    <input
+                      type="date"
+                      value={matchForm.endDate}
+                      onChange={(e) => setMatchForm((f) => ({ ...f, endDate: e.target.value }))}
+                      className="flex-1 px-3 py-2.5 border border-[#E5E7EB] rounded-lg text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/40 focus:border-[#7c3aed] transition-colors"
+                    />
+                  </div>
+                </div>
+
+                {/* 상세 설명 */}
+                <div>
+                  <label className="block text-sm font-medium text-[#374151] mb-1.5">
+                    상세 설명 <span className="text-[#e94560]">*</span>
+                  </label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={matchForm.description}
+                    onChange={(e) => setMatchForm((f) => ({ ...f, description: e.target.value }))}
+                    placeholder="캠페인에 대해 자세히 설명해주세요"
+                    className="w-full px-3 py-2.5 border border-[#E5E7EB] rounded-lg text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/40 focus:border-[#7c3aed] transition-colors resize-none"
+                  />
+                </div>
+
+                {/* Notice */}
+                <div className="flex items-start gap-2 bg-[#F5F3FF] border border-[#7c3aed]/20 rounded-lg px-4 py-3">
+                  <span className="text-base mt-0.5">📌</span>
+                  <p className="text-xs text-[#5B21B6] leading-relaxed">
+                    인플릭스가 연락하고 2~5일 내에 결과를 알려드릴게요
+                  </p>
+                </div>
+
+                {/* Submit */}
+                <button
+                  type="submit"
+                  disabled={matchSubmitting}
+                  className="w-full py-3 rounded-lg bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-60"
+                >
+                  {matchSubmitting ? "전송 중..." : "매칭 요청 보내기"}
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
 
         {/* ─── One-liner summary ──────────────────────────────────── */}
         <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl p-4 mb-6">

@@ -1,0 +1,10 @@
+{
+  "seeds": [
+    {"category":"뷰티","usernames":["romand_official","innisfreeofficial","etloungeme","mude_official","peripera_official"]},
+    {"category":"패션","usernames":["musinsa_official","wconcept_kr","zara","hnm","stylenanda_official"]},
+    {"category":"푸드","usernames":["baeminofficial","yogiyo_official","starbucks_korea","subway_korea","shake_shack_kr"]},
+    {"category":"여행","usernames":["visitkorea","visit_jeju","koreanair","jejuair.official","klooktravel"]},
+    {"category":"피트니스","usernames":["nike","adidaskorea","underarmourkr","xexymix_official","andar_official"]},
+    {"category":"라이프스타일","usernames":["ikea_korea","daiso_kr","oliveyoung_official","coupang_official","kurly_official"]}
+  ]
+}

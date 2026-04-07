@@ -100,6 +100,11 @@ model Influencer {
   isOauthConnected    Boolean  @default(false)
   accessToken         String?
   lastSyncedAt        DateTime?
+  source              String   @default("collected")
+  collectedAt         DateTime?
+  lastUpdatedAt       DateTime?
+  isActive            Boolean  @default(true)
+  rawData             Json?
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
@@ -700,4 +705,66 @@ model CreditPurchase {
   createdAt   DateTime @default(now())
 
   @@index([userId])
+}
+
+// ============================================
+// Collection Seeds (자동 수집 시드)
+// ============================================
+
+model CollectionSeed {
+  id             String    @id @default(cuid())
+  username       String    @unique
+  category       String?
+  source         String
+  discoveredFrom String?
+  status         String    @default("pending")
+  processedAt    DateTime?
+  failCount      Int       @default(0)
+  createdAt      DateTime  @default(now())
+
+  @@index([status])
+  @@index([category])
+}
+
+// ============================================
+// Collection Logs (수집 작업 기록)
+// ============================================
+
+model CollectionLog {
+  id            String   @id @default(cuid())
+  jobDate       DateTime
+  totalSeeds    Int
+  successCount  Int
+  failCount     Int
+  newDiscovered Int
+  apiCallsUsed  Int
+  duration      Int
+  createdAt     DateTime @default(now())
+}
+
+// ============================================
+// Match Requests (중개 매칭)
+// ============================================
+
+model MatchRequest {
+  id              String    @id @default(cuid())
+  brandId         String
+  influencerId    String
+  campaignTitle   String
+  campaignType    String
+  budget          String?
+  startDate       DateTime?
+  endDate         DateTime?
+  description     String
+  status          String    @default("pending")
+  adminNote       String?
+  contactedAt     DateTime?
+  respondedAt     DateTime?
+  rejectionReason String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([brandId])
+  @@index([influencerId])
+  @@index([status])
 }
