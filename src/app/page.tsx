@@ -396,18 +396,25 @@ function InfluencerGridCard({
         </p>
       </div>
 
-      {/* Estimated price */}
+      {/* Estimated price — 업계 기준 */}
       <div className="mb-4">
-        <p className="text-xs text-[#6B7280] mb-0.5">예상 단가</p>
+        <p className="text-xs text-[#6B7280] mb-0.5 flex items-center">예상 단가 (피드)<InfoTooltip text="이 금액은 업계 평균 기준의 추정치입니다. 실제 광고비는 카테고리, 콘텐츠 유형, 독점권, 캠페인 조건에 따라 달라질 수 있습니다." /></p>
         <MaskedValue
-          value={
-            influencer.estimatedPriceMin != null && influencer.estimatedPriceMax != null
-              ? `₩${formatPrice(influencer.estimatedPriceMin)} ~ ₩${formatPrice(influencer.estimatedPriceMax)}`
-              : "데이터 없음"
-          }
+          value={(() => {
+            const f = influencer.followersCount;
+            const base = (f / 1000) * 10000;
+            const min = Math.floor(base * 0.7);
+            const max = Math.floor(base * 1.5);
+            return `₩${formatPrice(min)} ~ ₩${formatPrice(max)}`;
+          })()}
           width="120px"
           className="text-sm font-semibold text-[#111827]"
         />
+        {isAuth && (
+          <p className="text-[10px] text-[#9CA3AF] mt-0.5">
+            {influencer.followersCount < 10000 ? "나노" : influencer.followersCount < 100000 ? "마이크로" : influencer.followersCount < 500000 ? "미드티어" : "매크로"} 등급 기준
+          </p>
+        )}
       </div>
 
       {/* Recent thumbnails */}

@@ -86,6 +86,11 @@ function formatFollowers(n: number): string {
   return String(n);
 }
 
+function formatWon(n: number): string {
+  if (n >= 10000) return `${Math.floor(n / 10000)}만`;
+  return n.toLocaleString();
+}
+
 function getAqsColor(score: number): string {
   if (score >= 90) return "#22c55e";
   if (score >= 70) return "#f59e0b";
@@ -259,6 +264,7 @@ export default function InfluencerProfilePage() {
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [loadingAudience, setLoadingAudience] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  const [selectedContentType, setSelectedContentType] = useState<"FEED" | "REEL" | "STORY">("FEED");
 
   // Fetch profile
   useEffect(() => {
@@ -325,7 +331,6 @@ export default function InfluencerProfilePage() {
   if (!profile) return null;
 
   const aqs = profile.aqsScore;
-  const price = profile.pricePrediction;
   const categoryAvg = getCategoryAvg(profile.categories);
 
   // Radar chart data
@@ -803,78 +808,91 @@ export default function InfluencerProfilePage() {
             ctaLink="/register"
           >
             <Section title="AI 단가 예측">
-              {price ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                  {/* Gauge */}
-                  <div>
-                    <GaugeChart
-                      value={(price.minPrice + price.maxPrice) / 2}
-                      min={0}
-                      max={Math.max(price.maxPrice * 1.2, 1000000)}
-                      label="예상 평균 단가"
-                      unit="원"
-                    />
-                  </div>
-                  {/* Stats */}
+              {(() => {
+                const fc = profile.followersCount;
+                const baseFee =
+                  selectedContentType === "FEED"
+                    ? (fc / 1000) * 10000
+                    : selectedContentType === "REEL"
+                    ? (fc / 1000) * 6000
+                    : (fc / 1000) * 5000;
+                const minFee = Math.round(baseFee * 0.7);
+                const maxFee = Math.round(baseFee * 1.5);
+
+                const tierLabel =
+                  fc >= 1_000_000
+                    ? { label: "메가(1M+)", feed: "800만원~", reel: "1,000만원~" }
+                    : fc >= 500_000
+                    ? { label: "매크로(500K~1M)", feed: "300~800만원", reel: "500~1,000만원" }
+                    : fc >= 100_000
+                    ? { label: "미드티어(100K~500K)", feed: "100~300만원", reel: "200~500만원" }
+                    : fc >= 10_000
+                    ? { label: "마이크로(10K~100K)", feed: "30~100만원", reel: "50~200만원" }
+                    : { label: "나노(1K~10K)", feed: "5~30만원", reel: "10~50만원" };
+
+                return (
                   <div className="space-y-4">
-                    <div className="p-4 rounded-xl bg-background border border-border">
-                      <p className="text-xs text-muted-foreground mb-1">예상 단가</p>
-                      <p className="text-lg font-bold text-foreground">
-                        <MaskedValue
-                          value={`${price.minPrice.toLocaleString()}원 ~ ${price.maxPrice.toLocaleString()}원`}
-                          width="120px"
-                          className="text-lg font-bold"
+                    {/* Content type tabs */}
+                    <div className="flex gap-2">
+                      {(["FEED", "REEL", "STORY"] as const).map((type) => {
+                        const label = type === "FEED" ? "피드" : type === "REEL" ? "릴스" : "스토리";
+                        return (
+                          <button
+                            key={type}
+                            onClick={() => setSelectedContentType(type)}
+                            className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+                              selectedContentType === type
+                                ? "bg-violet-600 text-white border-violet-600"
+                                : "bg-background text-muted-foreground border-border hover:border-violet-400"
+                            }`}
+                          >
+                            {label}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                      {/* Gauge */}
+                      <div>
+                        <GaugeChart
+                          value={baseFee}
+                          min={0}
+                          max={Math.max(maxFee * 1.2, 1000000)}
+                          label="예상 평균 단가"
+                          unit="원"
                         />
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-3 gap-3">
-                      <div className="p-3 rounded-xl bg-background border border-border text-center">
-                        <p className="text-xs text-muted-foreground mb-1">예상 도달</p>
-                        <p className="text-sm font-semibold text-foreground">
-                          <MaskedValue
-                            value={
-                              price.predictedReach != null
-                                ? formatFollowers(price.predictedReach)
-                                : null
-                            }
-                            width="40px"
-                          />
-                        </p>
                       </div>
-                      <div className="p-3 rounded-xl bg-background border border-border text-center">
-                        <p className="text-xs text-muted-foreground mb-1">CPR</p>
-                        <p className="text-sm font-semibold text-foreground">
-                          <MaskedValue
-                            value={
-                              price.cpr != null
-                                ? `${price.cpr.toFixed(1)}원`
-                                : null
-                            }
-                            width="40px"
-                          />
-                        </p>
-                      </div>
-                      <div className="p-3 rounded-xl bg-background border border-border text-center">
-                        <p className="text-xs text-muted-foreground mb-1">CPE</p>
-                        <p className="text-sm font-semibold text-foreground">
-                          <MaskedValue
-                            value={
-                              price.cpe != null
-                                ? `${price.cpe.toFixed(1)}원`
-                                : null
-                            }
-                            width="40px"
-                          />
-                        </p>
+                      {/* Stats */}
+                      <div className="space-y-4">
+                        <div className="p-4 rounded-xl bg-background border border-border">
+                          <p className="text-xs text-muted-foreground mb-1">예상 단가</p>
+                          <p className="text-lg font-bold text-foreground">
+                            <MaskedValue
+                              value={`${formatWon(minFee)}원 ~ ${formatWon(maxFee)}원`}
+                              width="120px"
+                              className="text-lg font-bold"
+                            />
+                          </p>
+                        </div>
+
+                        {/* Tier market range */}
+                        <div className="p-3 rounded-xl bg-background border border-border text-sm">
+                          <p className="text-xs text-muted-foreground mb-1">업계 시장 범위 · {tierLabel.label}</p>
+                          <p className="text-foreground font-medium">
+                            피드 {tierLabel.feed} &nbsp;/&nbsp; 릴스 {tierLabel.reel}
+                          </p>
+                        </div>
                       </div>
                     </div>
+
+                    {/* Disclaimer */}
+                    <p className="text-[11px] text-[#9CA3AF] italic mt-2">
+                      이 금액은 업계 평균 기준의 추정치입니다. 실제 광고비는 카테고리, 콘텐츠 유형, 독점권, 캠페인 조건에 따라 달라질 수 있습니다.
+                    </p>
                   </div>
-                </div>
-              ) : (
-                <p className="text-sm text-muted-foreground text-center py-8">
-                  예측 데이터를 준비 중입니다
-                </p>
-              )}
+                );
+              })()}
             </Section>
           </BlurOverlay>
 
