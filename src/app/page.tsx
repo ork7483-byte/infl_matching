@@ -131,10 +131,10 @@ function getCategoryAvg(categories: string[]) {
 function getOneLinerSummary(er: number | null, aqs: number | null): string {
   const erHigh = (er ?? 0) >= 3;
   const aqsHigh = (aqs ?? 0) >= 70;
-  if (erHigh && aqsHigh) return "팔로워 반응이 활발하고 진정성이 높은 우수한 계정이에요";
-  if (erHigh && !aqsHigh) return "반응은 활발하지만 팔로워 진정성 확인이 필요해요";
-  if (!erHigh && aqsHigh) return "팔로워는 진짜지만 콘텐츠 참여도가 낮은 편이에요";
-  return "팔로워 진정성과 참여도 모두 확인이 필요한 계정이에요";
+  if (erHigh && aqsHigh) return "반응도 좋고 팔로워도 진짜예요 👍";
+  if (erHigh && !aqsHigh) return "반응은 좋지만 가짜 팔로워가 의심돼요 ⚠️";
+  if (!erHigh && aqsHigh) return "팔로워는 진짜인데 반응이 적은 편이에요";
+  return "팔로워와 반응 모두 확인이 필요해요 🔍";
 }
 
 // ─── Tooltip Component ───────────────────────────────────────────────────────
@@ -337,7 +337,7 @@ function InfluencerGridCard({
           <p className="font-bold text-[#111827]">{formatFollowers(influencer.followersCount)}</p>
         </div>
         <div className="text-right">
-          <p className="text-xs text-[#6B7280] mb-0.5 flex items-center justify-end">참여율<InfoTooltip text="팔로워 대비 좋아요+댓글 비율이에요. 3% 이상이면 좋은 편이에요." /></p>
+          <p className="text-xs text-[#6B7280] mb-0.5 flex items-center justify-end">참여율<InfoTooltip text="게시물에 반응(좋아요+댓글)한 비율이에요. 숫자가 높을수록 팔로워와 소통이 활발해요." /></p>
           {influencer.avgEngagementRate != null ? (
             <div>
               <MaskedValue
@@ -361,7 +361,7 @@ function InfluencerGridCard({
       {influencer.aqsScore ? (
         <div className="mb-3">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-[#6B7280] flex items-center">AQS 점수<InfoTooltip text="팔로워 진정성을 0~100점으로 평가한 점수예요. 70점 이상이면 건강한 계정이에요." /></span>
+            <span className="text-xs text-[#6B7280] flex items-center">AQS 점수<InfoTooltip text="팔로워가 진짜인지 평가한 점수예요. 100에 가까울수록 가짜 팔로워가 적어요." /></span>
             <MaskedValue
               value={`${getAqsGrade(influencer.aqsScore.totalScore)} ${influencer.aqsScore.totalScore} (${getAqsLabel(influencer.aqsScore.totalScore)})`}
               width="80px"
@@ -504,7 +504,7 @@ function InfluencerListRow({
           <p className="font-semibold text-[#111827]">{formatFollowers(influencer.followersCount)}</p>
         </div>
         <div className="text-center">
-          <p className="text-xs text-[#6B7280] flex items-center justify-center">참여율<InfoTooltip text="팔로워 대비 좋아요+댓글 비율이에요. 3% 이상이면 좋은 편이에요." /></p>
+          <p className="text-xs text-[#6B7280] flex items-center justify-center">참여율<InfoTooltip text="게시물에 반응(좋아요+댓글)한 비율이에요. 숫자가 높을수록 팔로워와 소통이 활발해요." /></p>
           <MaskedValue
             value={influencer.avgEngagementRate != null ? `${influencer.avgEngagementRate.toFixed(2)}% ${getErGrade(influencer.avgEngagementRate).emoji}` : null}
             width="60px"
@@ -512,7 +512,7 @@ function InfluencerListRow({
           />
         </div>
         <div className="text-center">
-          <p className="text-xs text-[#6B7280] flex items-center justify-center">AQS<InfoTooltip text="팔로워 진정성을 0~100점으로 평가한 점수예요. 70점 이상이면 건강한 계정이에요." /></p>
+          <p className="text-xs text-[#6B7280] flex items-center justify-center">AQS<InfoTooltip text="팔로워가 진짜인지 평가한 점수예요. 100에 가까울수록 가짜 팔로워가 적어요." /></p>
           {influencer.aqsScore ? (
             <MaskedValue
               value={`${getAqsGrade(influencer.aqsScore.totalScore)} ${influencer.aqsScore.totalScore}`}

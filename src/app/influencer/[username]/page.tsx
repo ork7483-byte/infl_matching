@@ -128,10 +128,10 @@ function getCategoryAvg(categories: string[]) {
 function getOneLinerSummary(er: number | null, aqs: number | null): string {
   const erHigh = (er ?? 0) >= 3;
   const aqsHigh = (aqs ?? 0) >= 70;
-  if (erHigh && aqsHigh) return "팔로워 반응이 활발하고 진정성이 높은 우수한 계정이에요";
-  if (erHigh && !aqsHigh) return "반응은 활발하지만 팔로워 진정성 확인이 필요해요";
-  if (!erHigh && aqsHigh) return "팔로워는 진짜지만 콘텐츠 참여도가 낮은 편이에요";
-  return "팔로워 진정성과 참여도 모두 확인이 필요한 계정이에요";
+  if (erHigh && aqsHigh) return "반응도 좋고 팔로워도 진짜예요 👍";
+  if (erHigh && !aqsHigh) return "반응은 좋지만 가짜 팔로워가 의심돼요 ⚠️";
+  if (!erHigh && aqsHigh) return "팔로워는 진짜인데 반응이 적은 편이에요";
+  return "팔로워와 반응 모두 확인이 필요해요 🔍";
 }
 
 function InfoTooltip({ text }: { text: string }) {
@@ -499,7 +499,7 @@ export default function InfluencerProfilePage() {
             <div className={`bg-card border border-border rounded-2xl p-6`}>
               <h2 className="text-base font-semibold text-foreground mb-5 flex items-center">
                 참여율 (Engagement Rate)
-                <InfoTooltip text="최근 게시물의 좋아요·댓글 수를 팔로워 수로 나눈 평균값이에요. 3% 이상이면 업계 평균 이상으로 간주해요." />
+                <InfoTooltip text="게시물에 반응(좋아요+댓글)한 비율이에요. 숫자가 높을수록 팔로워와 소통이 활발해요." />
               </h2>
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-brand-purple/10 border border-brand-purple/20 flex items-center justify-center flex-shrink-0">
@@ -680,7 +680,7 @@ export default function InfluencerProfilePage() {
             <div className="bg-card border border-border rounded-2xl p-6">
               <h2 className="text-base font-semibold text-foreground mb-5 flex items-center">
                 AQS 점수 (계정 품질 지수)
-                <InfoTooltip text="Account Quality Score. 참여 품질·성장 패턴·팔로워 비율·콘텐츠 일관성·댓글 진성성을 종합한 계정 신뢰도 지표예요." />
+                <InfoTooltip text="팔로워가 진짜인지 평가한 점수예요. 100에 가까울수록 가짜 팔로워가 적어요." />
               </h2>
               {aqs ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
