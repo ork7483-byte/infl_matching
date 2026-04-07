@@ -158,6 +158,11 @@ function GalleryPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  // Tab state
+  const [galleryTab, setGalleryTab] = useState<"real" | "ai">(
+    searchParams.get("tab") === "ai" ? "ai" : "real"
+  );
+
   // Filter state from URL
   const [category, setCategory] = useState(searchParams.get("category") ?? "전체");
   const [contentType, setContentType] = useState(searchParams.get("type") ?? "all");
@@ -362,6 +367,33 @@ function GalleryPage() {
           </div>
         </section>
 
+        {/* ─── Tab Switcher ──────────────────────────────────────── */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+          <div className="flex border-b border-[#E5E7EB]">
+            <button
+              onClick={() => { setGalleryTab("real"); router.replace("/gallery?tab=real", { scroll: false }); }}
+              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+                galleryTab === "real"
+                  ? "border-[#7c3aed] text-[#7c3aed]"
+                  : "border-transparent text-[#6B7280] hover:text-[#111827]"
+              }`}
+            >
+              👤 실제 인플루언서
+            </button>
+            <button
+              onClick={() => { setGalleryTab("ai"); router.replace("/gallery?tab=ai", { scroll: false }); }}
+              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+                galleryTab === "ai"
+                  ? "border-[#7c3aed] text-[#7c3aed]"
+                  : "border-transparent text-[#6B7280] hover:text-[#111827]"
+              }`}
+            >
+              🤖 AI 콘텐츠
+            </button>
+          </div>
+        </div>
+
+        {galleryTab === "real" ? (<>
         {/* ─── Filter Bar ────────────────────────────────────────── */}
         <div className="sticky top-16 z-30 bg-background/90 backdrop-blur-xl border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -473,6 +505,52 @@ function GalleryPage() {
             </div>
           )}
         </div>
+        </>) : (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Filter */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {["전체", "제품촬영", "라이프스타일", "패션", "뷰티", "푸드"].map(cat => (
+              <button key={cat} className="px-4 py-2 rounded-full border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed] cursor-pointer">{cat}</button>
+            ))}
+          </div>
+
+          {/* AI Content Masonry */}
+          <div className="columns-2 sm:columns-3 lg:columns-4 gap-4">
+            {Array.from({length: 16}, (_, i) => {
+              const models = ["수아","하은","지유","서연","미나","예진","지호","민준","현우","태윤","준서","도윤"];
+              const types = ["제품촬영","라이프스타일","패션","뷰티","SNS","스포츠"];
+              const model = models[i % models.length];
+              const type = types[i % types.length];
+              const isReel = i % 4 === 0;
+              return (
+                <Link key={i} href={`/ai-studio/generate?model=${model}`} className="break-inside-avoid mb-4 block group cursor-pointer">
+                  <div className="relative bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden hover:shadow-md transition-all">
+                    <div className={`relative ${isReel ? "aspect-[9/16]" : "aspect-[4/5]"} bg-[#F3F4F6]`}>
+                      <img src={`https://picsum.photos/seed/ai-content-${i}/400/${isReel ? 711 : 500}`} alt="" className="w-full h-full object-cover" />
+                      <span className="absolute top-2 left-2 px-2 py-1 bg-blue-500/90 text-white text-xs rounded-full">🤖 AI Generated</span>
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="text-white text-sm font-medium">이 스타일로 만들기 →</span>
+                      </div>
+                    </div>
+                    <div className="p-2.5">
+                      <p className="text-xs font-medium text-[#111827]">🤖 {model}</p>
+                      <p className="text-[10px] text-[#6B7280]">{type}</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* CTA */}
+          <div className="mt-8 text-center">
+            <Link href="/ai-studio" className="inline-block px-8 py-3 bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold rounded-xl hover:opacity-90 cursor-pointer">
+              AI Studio에서 직접 만들어보기 →
+            </Link>
+          </div>
+        </div>
+        )}
       </main>
 
       <Footer />

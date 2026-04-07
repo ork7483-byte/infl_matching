@@ -1276,6 +1276,80 @@ function FreeTools({ isAuth }: { isAuth: boolean }) {
   );
 }
 
+// ─── AI Model Tab ────────────────────────────────────────────────────────────
+
+function AIModelTab() {
+  const AI_MODELS = [
+    { id: "sua", name: "수아", nameEn: "Sua", gender: "여성", age: "20대", styles: ["캐주얼", "라이프스타일"], portfolio: 24, image: true, video: true },
+    { id: "haeun", name: "하은", nameEn: "Haeun", gender: "여성", age: "20대", styles: ["스포티", "피트니스"], portfolio: 20, image: true, video: false },
+    { id: "jiyu", name: "지유", nameEn: "Jiyu", gender: "여성", age: "20대", styles: ["럭셔리", "패션"], portfolio: 18, image: true, video: true },
+    { id: "seoyeon", name: "서연", nameEn: "Seoyeon", gender: "여성", age: "30대", styles: ["내추럴", "뷰티"], portfolio: 22, image: true, video: false },
+    { id: "mina", name: "미나", nameEn: "Mina", gender: "여성", age: "20대", styles: ["스트릿", "힙"], portfolio: 16, image: true, video: false },
+    { id: "yejin", name: "예진", nameEn: "Yejin", gender: "여성", age: "30대", styles: ["포멀", "비즈니스"], portfolio: 14, image: true, video: false },
+    { id: "jiho", name: "지호", nameEn: "Jiho", gender: "남성", age: "30대", styles: ["비즈니스", "포멀"], portfolio: 18, image: true, video: true },
+    { id: "minjun", name: "민준", nameEn: "Minjun", gender: "남성", age: "20대", styles: ["스트릿", "캐주얼"], portfolio: 16, image: true, video: false },
+    { id: "hyunwoo", name: "현우", nameEn: "Hyunwoo", gender: "남성", age: "20대", styles: ["스포티", "피트니스"], portfolio: 20, image: true, video: true },
+    { id: "taeyun", name: "태윤", nameEn: "Taeyun", gender: "남성", age: "30대", styles: ["럭셔리", "패션"], portfolio: 15, image: true, video: false },
+    { id: "junseo", name: "준서", nameEn: "Junseo", gender: "남성", age: "20대", styles: ["내추럴", "캐주얼"], portfolio: 18, image: true, video: false },
+    { id: "doyun", name: "도윤", nameEn: "Doyun", gender: "남성", age: "30대", styles: ["아웃도어", "라이프스타일"], portfolio: 14, image: true, video: false },
+  ];
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Filter bar */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {["전체", "여성", "남성"].map(g => (
+          <button key={g} className="px-4 py-2 rounded-lg border border-[#E5E7EB] text-sm text-[#6B7280] hover:border-[#7c3aed] hover:text-[#7c3aed] cursor-pointer">
+            {g}
+          </button>
+        ))}
+      </div>
+
+      {/* Model grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {AI_MODELS.map(model => (
+          <Link key={model.id} href={`/ai-studio/models/${model.id}`} className="group cursor-pointer">
+            <div className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
+              {/* Image */}
+              <div className="relative aspect-[4/5] bg-[#F3F4F6]">
+                <img src={`https://picsum.photos/seed/ai-${model.nameEn}/400/500`} alt={model.name} className="w-full h-full object-cover" />
+                <span className="absolute top-2 left-2 px-2 py-1 bg-blue-500/90 text-white text-xs rounded-full font-medium">🤖 AI</span>
+              </div>
+              {/* Info */}
+              <div className="p-3">
+                <p className="font-semibold text-[#111827] text-sm">{model.name} ({model.nameEn})</p>
+                <p className="text-xs text-[#6B7280] mb-2">{model.age} · {model.gender}</p>
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {model.styles.map(s => (
+                    <span key={s} className="px-2 py-0.5 bg-[#F3F4F6] text-[#6B7280] text-[10px] rounded-full">{s}</span>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between text-xs text-[#6B7280]">
+                  <span>📸 {model.portfolio}장</span>
+                  <span>{model.image ? "이미지 ✅" : ""} {model.video ? "영상 ✅" : ""}</span>
+                </div>
+              </div>
+              {/* CTA */}
+              <div className="px-3 pb-3">
+                <div className="w-full py-2 text-center bg-[#7c3aed] text-white text-xs font-medium rounded-lg group-hover:bg-[#6d28d9] transition-colors">
+                  이 모델로 제작
+                </div>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* CTA */}
+      <div className="mt-8 text-center">
+        <Link href="/ai-studio" className="inline-block px-8 py-3 bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold rounded-xl hover:opacity-90 cursor-pointer">
+          AI Studio에서 더 알아보기 →
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function HomePageWrapper() {
@@ -1324,6 +1398,9 @@ function HomePage() {
     };
   };
 
+  const [searchTab, setSearchTab] = useState<"real" | "ai">(
+    searchParams.get("tab") === "ai" ? "ai" : "real"
+  );
   const [filters, setFilters] = useState<Filters>(initFilters);
   const [searchInput, setSearchInput] = useState(searchParams.get("q") ?? "");
   const [results, setResults] = useState<Influencer[]>([]);
@@ -1540,6 +1617,34 @@ function HomePage() {
           </div>
         </section>
 
+        {/* Tab switcher */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+          <div className="flex border-b border-[#E5E7EB]">
+            <button
+              onClick={() => { setSearchTab("real"); router.replace("/?tab=real", { scroll: false }); }}
+              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+                searchTab === "real"
+                  ? "border-[#7c3aed] text-[#7c3aed]"
+                  : "border-transparent text-[#6B7280] hover:text-[#111827]"
+              }`}
+            >
+              👤 실제 인플루언서
+            </button>
+            <button
+              onClick={() => { setSearchTab("ai"); router.replace("/?tab=ai", { scroll: false }); }}
+              className={`flex-1 sm:flex-none px-6 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+                searchTab === "ai"
+                  ? "border-[#7c3aed] text-[#7c3aed]"
+                  : "border-transparent text-[#6B7280] hover:text-[#111827]"
+              }`}
+            >
+              🤖 AI 모델
+            </button>
+          </div>
+        </div>
+
+        {searchTab === "real" ? (
+          <>
         {/* ─── Section 2+3: Sidebar + Results ──────────────────────────── */}
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex gap-6">
@@ -1896,6 +2001,10 @@ function HomePage() {
             ))}
           </div>
         </section>
+          </>
+        ) : (
+          <AIModelTab />
+        )}
       </main>
 
       {/* Mobile filter bottom sheet */}
