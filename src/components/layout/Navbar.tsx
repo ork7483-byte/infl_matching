@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
@@ -52,125 +52,24 @@ const creatorsDropdown = [
   { label: "수익 & 정산 관리", href: "/for-creators/earnings" },
 ];
 
-interface DropdownMenuProps {
-  label: string;
-  href: string;
-  items: { label: string; href: string }[];
-  isOpen: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-  onToggle: () => void;
-}
-
-function DropdownMenu({
-  label,
-  href,
-  items,
-  isOpen,
-  onMouseEnter,
-  onMouseLeave,
-  onToggle,
-}: DropdownMenuProps) {
-  const pathname = usePathname();
-
-  return (
-    <div
-      className="relative"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      <Link
-        href={href}
-        onClick={(e) => {
-          // On mobile (no hover), toggle dropdown instead of navigating
-          if (window.innerWidth < 768) {
-            e.preventDefault();
-            onToggle();
-          }
-        }}
-        className={`flex items-center gap-1 px-1 py-2 text-sm font-medium transition-colors duration-200 cursor-pointer ${
-          pathname.startsWith(href)
-            ? "text-brand-purple"
-            : "text-muted-foreground hover:text-foreground"
-        }`}
-      >
-        {label}
-        <svg
-          className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </Link>
-
-      <div
-        className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-52 transition-all duration-200 ${
-          isOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-2 pointer-events-none"
-        }`}
-      >
-        <div className="bg-card border border-border rounded-xl shadow-card overflow-hidden py-1 max-h-[70vh] overflow-y-auto">
-          {items.map((item, i) =>
-            (item as { group?: boolean }).group ? (
-              <div key={`group-${i}`} className="px-4 py-1.5 text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider mt-1 first:mt-0">
-                {item.label.replace("— ", "")}
-              </div>
-            ) : (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`block px-4 py-2 text-sm transition-colors duration-150 ${
-                  pathname === item.href
-                    ? "text-brand-purple bg-brand-purple/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-card-hover"
-                }`}
-              >
-                {item.label}
-              </Link>
-            )
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function Navbar() {
   const pathname = usePathname();
   const { data: session } = useSession();
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
-  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setMobileOpen(false);
     setMobileDropdown(null);
   }, [pathname]);
 
-  const handleMouseEnter = (key: string) => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    setOpenDropdown(key);
-  };
-
-  const handleMouseLeave = () => {
-    hoverTimeoutRef.current = setTimeout(() => {
-      setOpenDropdown(null);
-    }, 100);
-  };
-
   const navLinks = [
     { label: "Search", href: "/" },
     { label: "Gallery", href: "/gallery" },
     { label: "AI Studio ✨", href: "/ai-studio" },
+    { label: "For Brands", href: "/for-brands" },
+    { label: "For Creators", href: "/for-creators" },
     { label: "요금제", href: "/pricing" },
   ];
 
@@ -202,43 +101,6 @@ export default function Navbar() {
                 </Link>
               ))}
 
-              <DropdownMenu
-                label="무료 도구"
-                href="/tools/engagement-rate"
-                items={toolsDropdown}
-                isOpen={openDropdown === "tools"}
-                onMouseEnter={() => handleMouseEnter("tools")}
-                onMouseLeave={handleMouseLeave}
-                onToggle={() =>
-                  setOpenDropdown(openDropdown === "tools" ? null : "tools")
-                }
-              />
-
-              <DropdownMenu
-                label="For Brands"
-                href="/for-brands"
-                items={brandsDropdown}
-                isOpen={openDropdown === "brands"}
-                onMouseEnter={() => handleMouseEnter("brands")}
-                onMouseLeave={handleMouseLeave}
-                onToggle={() =>
-                  setOpenDropdown(openDropdown === "brands" ? null : "brands")
-                }
-              />
-
-              <DropdownMenu
-                label="For Creators"
-                href="/for-creators"
-                items={creatorsDropdown}
-                isOpen={openDropdown === "creators"}
-                onMouseEnter={() => handleMouseEnter("creators")}
-                onMouseLeave={handleMouseLeave}
-                onToggle={() =>
-                  setOpenDropdown(
-                    openDropdown === "creators" ? null : "creators"
-                  )
-                }
-              />
             </div>
 
             {/* Desktop Auth */}
