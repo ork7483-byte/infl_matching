@@ -143,7 +143,7 @@ export default function CRMPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="이름 또는 @유저네임 검색"
-                className="pl-9 pr-4 py-2 text-sm border border-[#E5E7EB] rounded-lg bg-white text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed] w-56"
+                className="pl-9 pr-4 py-2 text-base border border-[#E5E7EB] rounded-lg bg-white text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed] w-full sm:w-56"
               />
             </div>
             <div className="relative">
@@ -245,7 +245,7 @@ export default function CRMPage() {
             onClick={() => setSelectedId(null)}
           />
           {/* Panel */}
-          <aside className="fixed right-0 top-0 h-full w-80 bg-white border-l border-[#E5E7EB] shadow-2xl z-50 flex flex-col overflow-y-auto">
+          <aside className="fixed right-0 top-0 h-full w-full sm:w-80 bg-white border-l border-[#E5E7EB] shadow-2xl z-50 flex flex-col overflow-y-auto">
             {/* Panel Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-[#E5E7EB]">
               <h2 className="text-sm font-semibold text-[#111827]">인플루언서 상세</h2>
@@ -344,7 +344,7 @@ export default function CRMPage() {
                   onChange={(e) => setPanelNotes(e.target.value)}
                   rows={4}
                   placeholder="협업 관련 메모를 입력하세요..."
-                  className="w-full px-3 py-2 text-sm border border-[#E5E7EB] rounded-lg bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed] resize-none"
+                  className="w-full px-3 py-2 text-base border border-[#E5E7EB] rounded-lg bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed] resize-none"
                 />
               </div>
 

@@ -103,7 +103,7 @@ function CreatePageForm({ onCreated }: { onCreated: (page: AmbassadorPage) => vo
           value={form.title}
           onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
           placeholder="예) 우리 브랜드 앰배서더 모집"
-          className="w-full px-3 py-2.5 rounded-lg text-sm text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30"
+          className="w-full px-3 py-2.5 rounded-lg text-base text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30"
           style={{ border: "1px solid #E5E7EB", backgroundColor: "#F9FAFB" }}
         />
       </div>
@@ -114,7 +114,7 @@ function CreatePageForm({ onCreated }: { onCreated: (page: AmbassadorPage) => vo
           value={form.description}
           onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))}
           placeholder="앰배서더 프로그램에 대해 소개해주세요."
-          className="w-full px-3 py-2.5 rounded-lg text-sm text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30 resize-none"
+          className="w-full px-3 py-2.5 rounded-lg text-base text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30 resize-none"
           style={{ border: "1px solid #E5E7EB", backgroundColor: "#F9FAFB" }}
         />
       </div>
@@ -125,7 +125,7 @@ function CreatePageForm({ onCreated }: { onCreated: (page: AmbassadorPage) => vo
           value={form.requirements}
           onChange={(e) => setForm((p) => ({ ...p, requirements: e.target.value }))}
           placeholder={"팔로워 1,000명 이상\n뷰티 관련 콘텐츠 제작 가능"}
-          className="w-full px-3 py-2.5 rounded-lg text-sm text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30 resize-none"
+          className="w-full px-3 py-2.5 rounded-lg text-base text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30 resize-none"
           style={{ border: "1px solid #E5E7EB", backgroundColor: "#F9FAFB" }}
         />
       </div>
@@ -136,7 +136,7 @@ function CreatePageForm({ onCreated }: { onCreated: (page: AmbassadorPage) => vo
           value={form.benefits}
           onChange={(e) => setForm((p) => ({ ...p, benefits: e.target.value }))}
           placeholder={"월 제품 지원\n독점 할인 코드 제공"}
-          className="w-full px-3 py-2.5 rounded-lg text-sm text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30 resize-none"
+          className="w-full px-3 py-2.5 rounded-lg text-base text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30 resize-none"
           style={{ border: "1px solid #E5E7EB", backgroundColor: "#F9FAFB" }}
         />
       </div>

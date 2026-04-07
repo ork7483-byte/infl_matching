@@ -112,7 +112,7 @@ export default function NewCampaignPage() {
     }
   }
 
-  const inputClass = "w-full bg-background border border-border rounded-lg px-3 py-2.5 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-brand-purple transition-colors";
+  const inputClass = "w-full bg-background border border-border rounded-lg px-3 py-2.5 text-base text-foreground placeholder-muted-foreground focus:outline-none focus:border-brand-purple transition-colors";
   const labelClass = "block text-sm font-medium text-foreground mb-1.5";
   const errorClass = "text-xs text-red-400 mt-1";
 

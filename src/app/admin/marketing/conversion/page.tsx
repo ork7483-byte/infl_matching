@@ -139,7 +139,7 @@ export default function ConversionPage() {
         <h2 style={{ fontSize: 16, fontWeight: 600, color: "#111827", marginTop: 0, marginBottom: 16 }}>
           역할별 전환율
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {ROLE_CARDS.map((card) => (
             <div
               key={card.role}
@@ -185,7 +185,8 @@ export default function ConversionPage() {
         {loading ? (
           <div style={{ height: 140, background: "#F3F4F6", borderRadius: 8 }} />
         ) : (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 360 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid #E5E7EB" }}>
                 {["페이지", "이탈수", "이탈률"].map((h) => (
@@ -232,6 +233,7 @@ export default function ConversionPage() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </section>
     </div>

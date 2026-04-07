@@ -411,7 +411,8 @@ export default function AdminMarketing() {
         {loading ? (
           <div style={{ height: 200, background: "#E5E7EB", borderRadius: 8 }} />
         ) : (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 360 }}>
             <thead>
               <tr style={{ borderBottom: "1px solid #E5E7EB" }}>
                 {["소스", "방문수", "가입수", "전환율"].map((h) => (
@@ -461,6 +462,7 @@ export default function AdminMarketing() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </section>
 

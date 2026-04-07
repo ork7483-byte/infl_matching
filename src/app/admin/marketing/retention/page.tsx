@@ -64,7 +64,7 @@ export default function RetentionPage() {
       </h1>
 
       {/* ── DAU/WAU/MAU Cards ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         {METRICS.map((m) => (
           <div
             key={m.label}

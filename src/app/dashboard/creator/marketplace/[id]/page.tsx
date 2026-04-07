@@ -256,7 +256,7 @@ export default function CampaignDetailPage() {
                   value={intro}
                   onChange={(e) => setIntro(e.target.value)}
                   placeholder="나를 한 문장으로 소개해 주세요"
-                  className="w-full bg-background border border-border rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand-pink transition-colors"
+                  className="w-full bg-background border border-border rounded-lg px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand-pink transition-colors"
                   maxLength={100}
                 />
                 <p className="text-xs text-muted-foreground mt-1 text-right">{intro.length}/100</p>
@@ -272,7 +272,7 @@ export default function CampaignDetailPage() {
                   onChange={(e) => setExpectedReach(e.target.value)}
                   placeholder="예: 50000"
                   min={0}
-                  className="w-full bg-background border border-border rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand-pink transition-colors"
+                  className="w-full bg-background border border-border rounded-lg px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand-pink transition-colors"
                 />
                 <p className="text-xs text-muted-foreground mt-1">게시물의 예상 노출 수를 입력해 주세요.</p>
               </div>

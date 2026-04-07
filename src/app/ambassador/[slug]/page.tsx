@@ -178,7 +178,7 @@ export default async function AmbassadorPublicPage({ params, searchParams }: Pag
                           name="username"
                           type="text"
                           placeholder="your_instagram"
-                          className="w-full pl-7 pr-3 py-2.5 rounded-lg text-sm text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30"
+                          className="w-full pl-7 pr-3 py-2.5 rounded-lg text-base text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30"
                           style={{ border: "1px solid #E5E7EB", backgroundColor: "#F9FAFB" }}
                         />
                       </div>
@@ -191,7 +191,7 @@ export default async function AmbassadorPublicPage({ params, searchParams }: Pag
                         name="name"
                         type="text"
                         placeholder="홍길동"
-                        className="w-full px-3 py-2.5 rounded-lg text-sm text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30"
+                        className="w-full px-3 py-2.5 rounded-lg text-base text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30"
                         style={{ border: "1px solid #E5E7EB", backgroundColor: "#F9FAFB" }}
                       />
                     </div>
@@ -203,7 +203,7 @@ export default async function AmbassadorPublicPage({ params, searchParams }: Pag
                         name="email"
                         type="email"
                         placeholder="you@email.com"
-                        className="w-full px-3 py-2.5 rounded-lg text-sm text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30"
+                        className="w-full px-3 py-2.5 rounded-lg text-base text-[#111827] outline-none focus:ring-2 focus:ring-[#7c3aed]/30"
                         style={{ border: "1px solid #E5E7EB", backgroundColor: "#F9FAFB" }}
                       />
                     </div>

@@ -185,14 +185,14 @@ export default function MediaPlanPage() {
           {/* Budget */}
           <div>
             <label className="block text-sm font-semibold text-[#374151] mb-2">총 예산</label>
-            <div className="relative w-64">
+            <div className="relative w-full sm:w-64">
               <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-medium text-[#6B7280]">₩</span>
               <input
                 type="number"
                 value={budget}
                 onChange={(e) => setBudget(e.target.value)}
                 placeholder="예: 5000000"
-                className="w-full pl-8 pr-4 py-2.5 text-sm border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
+                className="w-full pl-8 pr-4 py-2.5 text-base border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
               />
             </div>
             {budget && parseInt(budget, 10) > 0 && (
@@ -232,7 +232,7 @@ export default function MediaPlanPage() {
             <select
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              className="px-4 py-2.5 text-sm border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed] w-48"
+              className="px-4 py-2.5 text-base border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed] w-full sm:w-48"
             >
               {REGIONS.map((r) => (
                 <option key={r} value={r}>{r}</option>
@@ -248,14 +248,14 @@ export default function MediaPlanPage() {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="px-3 py-2.5 text-sm border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
+                className="px-3 py-2.5 text-base border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
               />
               <span className="text-sm text-[#6B7280]">~</span>
               <input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="px-3 py-2.5 text-sm border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
+                className="px-3 py-2.5 text-base border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/30 focus:border-[#7c3aed]"
               />
             </div>
           </div>
