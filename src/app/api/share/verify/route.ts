@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
       data: {
         verified: true,
         rewardGiven: true,
-        rewardType: "premium_mediakit",
+        rewardType: "premium_ai-muse",
       },
     });
 

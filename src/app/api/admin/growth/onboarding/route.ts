@@ -18,14 +18,14 @@ export async function GET() {
     const [
       totalSignups,
       igConnected,
-      mediakitCreators,
+      aiMuseCreators,
       shareUsers,
     ] = await Promise.all([
       // Step 1: all users who signed up (any role)
       prisma.user.count(),
       // Step 2: creators who connected Instagram
       prisma.influencer.count({ where: { isOauthConnected: true } }),
-      // Step 3: creators who have at least one portfolio item (mediakit built)
+      // Step 3: creators who have at least one portfolio item (AI Muse built)
       prisma.influencer.count({
         where: { portfolioItems: { some: {} } },
       }),
@@ -55,10 +55,10 @@ export async function GET() {
           percentage: pct(igConnected),
         },
         {
-          step: "mediakit",
+          step: "ai_muse",
           label: "Built Media Kit",
-          count: mediakitCreators,
-          percentage: pct(mediakitCreators),
+          count: aiMuseCreators,
+          percentage: pct(aiMuseCreators),
         },
         {
           step: "share",

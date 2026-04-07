@@ -1,6 +1,6 @@
 "use client";
 
-// 미디어킷 기능은 AI Muse로 통합되었습니다.
+// AI Muse 기능은 AI Muse로 통합되었습니다.
 // This page is kept for backward compatibility with existing links.
 // New entry point: /dashboard/creator/ai-muse
 
@@ -72,7 +72,7 @@ export default function MediaKitPage() {
   const style = THEME_STYLES[selectedTheme];
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`https://inflsync.com/mediakit/${MOCK_PROFILE.handle}`);
+    navigator.clipboard.writeText(`https://inflsync.com/ai-muse/${MOCK_PROFILE.handle}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -88,7 +88,7 @@ export default function MediaKitPage() {
         <div className="bg-[#7c3aed]/8 border border-[#7c3aed]/20 rounded-xl px-4 py-3 flex items-center gap-3">
           <span className="text-lg">🤖</span>
           <p className="text-sm text-[#7c3aed] font-medium">
-            미디어킷 기능은 AI Muse로 통합되었습니다.{" "}
+            AI Muse 기능은 AI Muse로 통합되었습니다.{" "}
             <a href="/dashboard/creator/ai-muse" className="underline hover:opacity-80">
               AI Muse 페이지로 이동 →
             </a>
@@ -97,8 +97,8 @@ export default function MediaKitPage() {
 
         {/* Header */}
         <div>
-          <h1 className="text-2xl font-bold text-foreground">미디어킷 생성</h1>
-          <p className="text-muted-foreground mt-1 text-sm">브랜드에 보낼 나만의 미디어킷을 만드세요.</p>
+          <h1 className="text-2xl font-bold text-foreground">AI Muse 생성</h1>
+          <p className="text-muted-foreground mt-1 text-sm">브랜드에 보낼 나만의 AI Muse을 만드세요.</p>
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">

@@ -126,7 +126,7 @@ export async function GET(
       aqsScore: latestAqs,
     });
   } catch (error) {
-    console.error("[GET /api/mediakit/[influencerId]]", error);
+    console.error("[GET /api/ai-muse/[influencerId]]", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

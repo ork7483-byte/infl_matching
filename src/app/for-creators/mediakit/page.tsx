@@ -11,17 +11,17 @@ const subFeatures = [
   {
     icon: "🎨",
     title: "디자인 템플릿",
-    description: "전문 디자이너가 제작한 다양한 템플릿 중 원하는 스타일을 선택해 브랜드 정체성에 맞는 미디어킷을 완성하세요.",
+    description: "전문 디자이너가 제작한 다양한 템플릿 중 원하는 스타일을 선택해 브랜드 정체성에 맞는 AI Muse을 완성하세요.",
   },
   {
     icon: "📥",
     title: "PDF 다운로드",
-    description: "완성된 미디어킷을 고화질 PDF로 즉시 다운로드해 브랜드 담당자에게 전달할 수 있습니다.",
+    description: "완성된 AI Muse을 고화질 PDF로 즉시 다운로드해 브랜드 담당자에게 전달할 수 있습니다.",
   },
   {
     icon: "🔗",
     title: "공유 링크 생성",
-    description: "링크 하나로 항상 최신 데이터가 반영된 온라인 미디어킷을 공유하세요. 조회 통계도 확인 가능합니다.",
+    description: "링크 하나로 항상 최신 데이터가 반영된 온라인 AI Muse을 공유하세요. 조회 통계도 확인 가능합니다.",
   },
 ];
 
@@ -33,7 +33,7 @@ export default function MediaKitPage() {
       {/* Redirect notice */}
       <div className="bg-[#7c3aed]/8 border-b border-[#7c3aed]/20 px-4 py-3 text-center">
         <p className="text-sm text-[#7c3aed] font-medium">
-          🤖 미디어킷 기능은 AI Muse로 통합되었습니다.{" "}
+          🤖 AI Muse 기능은 AI Muse로 통합되었습니다.{" "}
           <Link href="/dashboard/creator/ai-muse" className="underline hover:opacity-80">
             AI Muse 페이지로 이동 →
           </Link>
@@ -47,16 +47,16 @@ export default function MediaKitPage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6"
             style={{ backgroundColor: "#e9456015", color: "#e94560", border: "1px solid #e9456030" }}
           >
-            📋 미디어킷 자동 생성
+            📋 AI Muse 자동 생성
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight">
             원클릭으로 만드는
             <br />
-            <span style={{ color: "#e94560" }}>프로페셔널 미디어킷</span>
+            <span style={{ color: "#e94560" }}>프로페셔널 AI Muse</span>
           </h1>
           <p className="text-lg md:text-xl mb-10" style={{ color: "#6B7280" }}>
             SNS 채널을 연동하면 팔로워 수, 참여율, 콘텐츠 성과가 담긴<br className="hidden md:block" />
-            세련된 미디어킷이 자동으로 완성됩니다.
+            세련된 AI Muse이 자동으로 완성됩니다.
           </p>
           <Link
             href="/signup?role=creator"
@@ -93,8 +93,8 @@ export default function MediaKitPage() {
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-3">이런 미디어킷이 완성됩니다</h2>
-            <p style={{ color: "#6B7280" }}>가입 후 내 계정으로 생성된 실제 미디어킷을 확인하세요.</p>
+            <h2 className="text-3xl font-bold mb-3">이런 AI Muse이 완성됩니다</h2>
+            <p style={{ color: "#6B7280" }}>가입 후 내 계정으로 생성된 실제 AI Muse을 확인하세요.</p>
           </div>
 
           {/* Preview card with blur effect on bottom */}
@@ -206,7 +206,7 @@ export default function MediaKitPage() {
                 className="px-6 py-3 rounded-xl font-semibold text-sm text-white"
                 style={{ backgroundColor: "#e94560" }}
               >
-                전체 미디어킷 보기 →
+                전체 AI Muse 보기 →
               </Link>
             </div>
           </div>
@@ -220,10 +220,10 @@ export default function MediaKitPage() {
           style={{ backgroundColor: "#FFFFFF", border: "1px solid #E5E7EB" }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-            지금 바로 나만의 미디어킷을 만들어보세요
+            지금 바로 나만의 AI Muse을 만들어보세요
           </h2>
           <p className="mb-8" style={{ color: "#6B7280" }}>
-            5분 안에 프로페셔널 미디어킷을 완성할 수 있습니다.
+            5분 안에 프로페셔널 AI Muse을 완성할 수 있습니다.
           </p>
           <Link
             href="/signup?role=creator"

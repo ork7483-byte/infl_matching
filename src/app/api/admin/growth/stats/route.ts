@@ -22,7 +22,7 @@ export async function GET() {
     const [
       totalCreators,
       igConnectedCreators,
-      mediakitCount,
+      aiMuseCount,
       shareCount,
       referralCount,
       // Trend: previous 30-day window
@@ -32,7 +32,7 @@ export async function GET() {
     ] = await Promise.all([
       prisma.influencer.count(),
       prisma.influencer.count({ where: { isOauthConnected: true } }),
-      // mediakit = influencers with portfolio items
+      // AI Muse = influencers with portfolio items
       prisma.portfolioItem.count(),
       prisma.shareAction.count(),
       prisma.referral.count(),
@@ -72,7 +72,7 @@ export async function GET() {
       igConnectionRate,
       igConnectedCreators,
       totalCreators,
-      mediakitCount,
+      aiMuseCount,
       shareCount,
       referralCount,
       trends: {
