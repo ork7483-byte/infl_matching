@@ -102,6 +102,57 @@ function getAqsLabel(score: number): string {
   return "미흡";
 }
 
+// ─── ER Grade Helpers ────────────────────────────────────────────────────────
+
+function getErGrade(er: number): { emoji: string; label: string; color: string } {
+  if (er >= 6) return { emoji: "🟢", label: "매우 높음", color: "#22c55e" };
+  if (er >= 3) return { emoji: "🟡", label: "높음", color: "#f59e0b" };
+  if (er >= 1) return { emoji: "🟠", label: "보통", color: "#f97316" };
+  return { emoji: "🔴", label: "낮음", color: "#ef4444" };
+}
+
+// 카테고리 평균값 (시드 데이터 기반 대략치)
+const CATEGORY_AVG: Record<string, { er: number; aqs: number }> = {
+  "뷰티": { er: 3.8, aqs: 65 },
+  "패션": { er: 3.2, aqs: 62 },
+  "푸드": { er: 4.1, aqs: 60 },
+  "여행": { er: 3.5, aqs: 58 },
+  "테크": { er: 2.8, aqs: 64 },
+  "라이프스타일": { er: 3.0, aqs: 59 },
+  "피트니스": { er: 4.5, aqs: 67 },
+  "육아": { er: 3.6, aqs: 61 },
+};
+
+function getCategoryAvg(categories: string[]) {
+  const cat = categories[0];
+  return CATEGORY_AVG[cat] || { er: 3.2, aqs: 62 };
+}
+
+function getOneLinerSummary(er: number | null, aqs: number | null): string {
+  const erHigh = (er ?? 0) >= 3;
+  const aqsHigh = (aqs ?? 0) >= 70;
+  if (erHigh && aqsHigh) return "팔로워 반응이 활발하고 진정성이 높은 우수한 계정이에요";
+  if (erHigh && !aqsHigh) return "반응은 활발하지만 팔로워 진정성 확인이 필요해요";
+  if (!erHigh && aqsHigh) return "팔로워는 진짜지만 콘텐츠 참여도가 낮은 편이에요";
+  return "팔로워 진정성과 참여도 모두 확인이 필요한 계정이에요";
+}
+
+// ─── Tooltip Component ───────────────────────────────────────────────────────
+
+function InfoTooltip({ text }: { text: string }) {
+  return (
+    <span className="relative group inline-flex ml-1 cursor-help">
+      <svg className="w-3.5 h-3.5 text-[#9CA3AF] hover:text-[#7c3aed] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-[#111827] text-white text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 max-w-[220px] whitespace-normal text-center leading-relaxed shadow-lg">
+        {text}
+        <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#111827]" />
+      </span>
+    </span>
+  );
+}
+
 function defaultFilters(): Filters {
   return {
     query: "",
@@ -286,12 +337,23 @@ function InfluencerGridCard({
           <p className="font-bold text-[#111827]">{formatFollowers(influencer.followersCount)}</p>
         </div>
         <div className="text-right">
-          <p className="text-xs text-[#6B7280] mb-0.5">참여율</p>
-          <MaskedValue
-            value={influencer.avgEngagementRate != null ? `${influencer.avgEngagementRate.toFixed(2)}%` : null}
-            width="48px"
-            className="font-bold text-[#111827]"
-          />
+          <p className="text-xs text-[#6B7280] mb-0.5 flex items-center justify-end">참여율<InfoTooltip text="팔로워 대비 좋아요+댓글 비율이에요. 3% 이상이면 좋은 편이에요." /></p>
+          {influencer.avgEngagementRate != null ? (
+            <div>
+              <MaskedValue
+                value={`${influencer.avgEngagementRate.toFixed(2)}% ${getErGrade(influencer.avgEngagementRate).emoji} ${getErGrade(influencer.avgEngagementRate).label}`}
+                width="100px"
+                className="font-bold text-[#111827] text-xs"
+              />
+              {isAuth && (
+                <p className="text-[10px] text-[#9CA3AF] mt-0.5">
+                  카테고리 평균 {getCategoryAvg(influencer.categories).er}% 대비 {(influencer.avgEngagementRate / getCategoryAvg(influencer.categories).er).toFixed(1)}배
+                </p>
+              )}
+            </div>
+          ) : (
+            <MaskedValue value={null} width="48px" className="font-bold text-[#111827]" />
+          )}
         </div>
       </div>
 
@@ -299,7 +361,7 @@ function InfluencerGridCard({
       {influencer.aqsScore ? (
         <div className="mb-3">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-[#6B7280]">AQS 점수</span>
+            <span className="text-xs text-[#6B7280] flex items-center">AQS 점수<InfoTooltip text="팔로워 진정성을 0~100점으로 평가한 점수예요. 70점 이상이면 건강한 계정이에요." /></span>
             <MaskedValue
               value={`${getAqsGrade(influencer.aqsScore.totalScore)} ${influencer.aqsScore.totalScore} (${getAqsLabel(influencer.aqsScore.totalScore)})`}
               width="80px"
@@ -315,12 +377,24 @@ function InfluencerGridCard({
               }}
             />
           </div>
+          {isAuth && (
+            <p className="text-[10px] text-[#9CA3AF] mt-1">
+              카테고리 평균 {getCategoryAvg(influencer.categories).aqs}점 대비 {influencer.aqsScore.totalScore >= getCategoryAvg(influencer.categories).aqs ? "높음" : "낮음"}
+            </p>
+          )}
         </div>
       ) : (
         <div className="mb-3">
           <p className="text-xs text-[#6B7280]">AQS 점수 없음</p>
         </div>
       )}
+
+      {/* One-liner summary */}
+      <div className="mb-3 px-2 py-1.5 bg-[#F9FAFB] rounded-lg">
+        <p className="text-[11px] text-[#6B7280] leading-relaxed">
+          💡 {getOneLinerSummary(influencer.avgEngagementRate, influencer.aqsScore?.totalScore ?? null)}
+        </p>
+      </div>
 
       {/* Estimated price */}
       <div className="mb-4">
@@ -430,15 +504,15 @@ function InfluencerListRow({
           <p className="font-semibold text-[#111827]">{formatFollowers(influencer.followersCount)}</p>
         </div>
         <div className="text-center">
-          <p className="text-xs text-[#6B7280]">참여율</p>
+          <p className="text-xs text-[#6B7280] flex items-center justify-center">참여율<InfoTooltip text="팔로워 대비 좋아요+댓글 비율이에요. 3% 이상이면 좋은 편이에요." /></p>
           <MaskedValue
-            value={influencer.avgEngagementRate != null ? `${influencer.avgEngagementRate.toFixed(2)}%` : null}
-            width="40px"
+            value={influencer.avgEngagementRate != null ? `${influencer.avgEngagementRate.toFixed(2)}% ${getErGrade(influencer.avgEngagementRate).emoji}` : null}
+            width="60px"
             className="font-semibold text-[#111827]"
           />
         </div>
         <div className="text-center">
-          <p className="text-xs text-[#6B7280]">AQS</p>
+          <p className="text-xs text-[#6B7280] flex items-center justify-center">AQS<InfoTooltip text="팔로워 진정성을 0~100점으로 평가한 점수예요. 70점 이상이면 건강한 계정이에요." /></p>
           {influencer.aqsScore ? (
             <MaskedValue
               value={`${getAqsGrade(influencer.aqsScore.totalScore)} ${influencer.aqsScore.totalScore}`}

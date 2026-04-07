@@ -107,6 +107,47 @@ function getAqsLabel(score: number): string {
   return "위험";
 }
 
+function getErGrade(er: number): { emoji: string; label: string; color: string } {
+  if (er >= 6) return { emoji: "🟢", label: "매우 높음", color: "#22c55e" };
+  if (er >= 3) return { emoji: "🟡", label: "높음", color: "#f59e0b" };
+  if (er >= 1) return { emoji: "🟠", label: "보통", color: "#f97316" };
+  return { emoji: "🔴", label: "낮음", color: "#ef4444" };
+}
+
+const CATEGORY_AVG: Record<string, { er: number; aqs: number }> = {
+  "뷰티": { er: 3.8, aqs: 65 }, "패션": { er: 3.2, aqs: 62 },
+  "푸드": { er: 4.1, aqs: 60 }, "여행": { er: 3.5, aqs: 58 },
+  "테크": { er: 2.8, aqs: 64 }, "라이프스타일": { er: 3.0, aqs: 59 },
+  "피트니스": { er: 4.5, aqs: 67 }, "육아": { er: 3.6, aqs: 61 },
+};
+
+function getCategoryAvg(categories: string[]) {
+  return CATEGORY_AVG[categories[0]] || { er: 3.2, aqs: 62 };
+}
+
+function getOneLinerSummary(er: number | null, aqs: number | null): string {
+  const erHigh = (er ?? 0) >= 3;
+  const aqsHigh = (aqs ?? 0) >= 70;
+  if (erHigh && aqsHigh) return "팔로워 반응이 활발하고 진정성이 높은 우수한 계정이에요";
+  if (erHigh && !aqsHigh) return "반응은 활발하지만 팔로워 진정성 확인이 필요해요";
+  if (!erHigh && aqsHigh) return "팔로워는 진짜지만 콘텐츠 참여도가 낮은 편이에요";
+  return "팔로워 진정성과 참여도 모두 확인이 필요한 계정이에요";
+}
+
+function InfoTooltip({ text }: { text: string }) {
+  return (
+    <span className="relative group inline-flex ml-1 cursor-help">
+      <svg className="w-3.5 h-3.5 text-[#9CA3AF] hover:text-[#7c3aed] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-[#111827] text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 max-w-[220px] whitespace-normal text-center leading-relaxed shadow-lg">
+        {text}
+        <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#111827]" />
+      </span>
+    </span>
+  );
+}
+
 // ─── Skeletons ────────────────────────────────────────────────────────────────
 
 function ProfileHeaderSkeleton() {
@@ -285,6 +326,7 @@ export default function InfluencerProfilePage() {
 
   const aqs = profile.aqsScore;
   const price = profile.pricePrediction;
+  const categoryAvg = getCategoryAvg(profile.categories);
 
   // Radar chart data
   const radarData = aqs
@@ -442,12 +484,23 @@ export default function InfluencerProfilePage() {
           </div>
         </div>
 
+        {/* ─── One-liner summary ──────────────────────────────────── */}
+        <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl p-4 mb-6">
+          <p className="text-sm text-foreground">
+            💡 {getOneLinerSummary(profile.avgEngagementRate, aqs?.totalScore ?? null)}
+          </p>
+        </div>
+
         {/* ─── Grid layout ────────────────────────────────────────── */}
         <div className="space-y-6">
           {/* Row 1: Engagement + Recent Posts */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Engagement Rate */}
-            <Section title="참여율 (Engagement Rate)">
+            <div className={`bg-card border border-border rounded-2xl p-6`}>
+              <h2 className="text-base font-semibold text-foreground mb-5 flex items-center">
+                참여율 (Engagement Rate)
+                <InfoTooltip text="최근 게시물의 좋아요·댓글 수를 팔로워 수로 나눈 평균값이에요. 3% 이상이면 업계 평균 이상으로 간주해요." />
+              </h2>
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-brand-purple/10 border border-brand-purple/20 flex items-center justify-center flex-shrink-0">
                   <svg
@@ -465,20 +518,34 @@ export default function InfluencerProfilePage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-foreground">
-                    <MaskedValue
-                      value={
-                        profile.avgEngagementRate != null
-                          ? `${profile.avgEngagementRate.toFixed(2)}%`
-                          : null
-                      }
-                      width="72px"
-                      className="text-3xl font-bold"
-                    />
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-0.5">
-                    평균 참여율
-                  </p>
+                  {profile.avgEngagementRate != null ? (
+                    <>
+                      <p className="text-3xl font-bold text-foreground">
+                        {profile.avgEngagementRate.toFixed(2)}%{" "}
+                        <span className="text-base font-normal" style={{ color: getErGrade(profile.avgEngagementRate).color }}>
+                          {getErGrade(profile.avgEngagementRate).emoji} {getErGrade(profile.avgEngagementRate).label}
+                        </span>
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        평균 참여율
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        카테고리 평균 {categoryAvg.er.toFixed(1)}% 대비{" "}
+                        <span className="font-semibold text-foreground">
+                          {(profile.avgEngagementRate / categoryAvg.er).toFixed(1)}배
+                        </span>
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-3xl font-bold text-foreground">
+                        <MaskedValue value={null} width="72px" className="text-3xl font-bold" />
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        평균 참여율
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
               {!isAuthed && (
@@ -486,7 +553,7 @@ export default function InfluencerProfilePage() {
                   실제 참여율 데이터는 로그인 후 확인 가능합니다
                 </p>
               )}
-            </Section>
+            </div>
 
             {/* Recent Posts */}
             <Section title="최근 게시물">
@@ -610,7 +677,11 @@ export default function InfluencerProfilePage() {
             ctaText="AQS 점수 전체 보기"
             ctaLink="/register"
           >
-            <Section title="AQS 점수 (계정 품질 지수)">
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <h2 className="text-base font-semibold text-foreground mb-5 flex items-center">
+                AQS 점수 (계정 품질 지수)
+                <InfoTooltip text="Account Quality Score. 참여 품질·성장 패턴·팔로워 비율·콘텐츠 일관성·댓글 진성성을 종합한 계정 신뢰도 지표예요." />
+              </h2>
               {aqs ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                   {/* Grade + score */}
@@ -649,6 +720,12 @@ export default function InfluencerProfilePage() {
                       >
                         {getAqsLabel(aqs.totalScore)}
                       </Badge>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        카테고리 평균 {categoryAvg.aqs}점 대비{" "}
+                        <span className="font-semibold" style={{ color: aqs.totalScore >= categoryAvg.aqs ? "#22c55e" : "#ef4444" }}>
+                          {aqs.totalScore >= categoryAvg.aqs ? "높음" : "낮음"}
+                        </span>
+                      </p>
                     </div>
                   </div>
                   {/* Radar chart */}
@@ -659,7 +736,7 @@ export default function InfluencerProfilePage() {
                   AQS 데이터를 불러오는 중입니다
                 </p>
               )}
-            </Section>
+            </div>
           </BlurOverlay>
 
           {/* Row 4: Fake Follower Detection */}
