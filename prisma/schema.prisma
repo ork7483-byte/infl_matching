@@ -433,3 +433,22 @@ model ApiToken {
   refreshedAt DateTime @default(now())
   createdAt   DateTime @default(now())
 }
+
+// ============================================
+// Page Visits (UTM Tracking)
+// ============================================
+
+model PageVisit {
+  id          String   @id @default(cuid())
+  path        String
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmContent  String?
+  referrer    String?
+  visitedAt   DateTime @default(now())
+
+  @@index([path])
+  @@index([utmSource])
+  @@index([visitedAt])
+}

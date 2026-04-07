@@ -198,6 +198,14 @@ export default function Navbar() {
                   <span className="text-sm text-muted-foreground">
                     {session.user?.name ?? session.user?.email}
                   </span>
+                  {(session.user as { role?: string })?.role === "ADMIN" && (
+                    <Link
+                      href="/admin"
+                      className="px-3 py-1.5 text-xs font-medium rounded-md bg-amber-100 text-amber-800 hover:bg-amber-200 transition-colors cursor-pointer"
+                    >
+                      관리자
+                    </Link>
+                  )}
                   <Link
                     href="/dashboard"
                     className="px-4 py-2 text-sm font-medium rounded-lg bg-[#7c3aed] text-white hover:bg-[#6d28d9] transition-colors duration-200"

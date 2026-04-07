@@ -6,6 +6,15 @@ export default withAuth(
     const { pathname } = req.nextUrl;
     const role = req.nextauth.token?.role as string | undefined;
 
+    // Admin routes — ADMIN role only
+    if (pathname.startsWith("/admin")) {
+      if (role !== "ADMIN") {
+        return NextResponse.redirect(new URL("/", req.url));
+      }
+      return NextResponse.next();
+    }
+
+    // Dashboard role routing
     if (role === "BRAND" && pathname.startsWith("/dashboard/creator")) {
       return NextResponse.redirect(new URL("/dashboard/brand", req.url));
     }
@@ -24,5 +33,5 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/dashboard/:path*", "/admin/:path*"],
 };

@@ -142,10 +142,25 @@ async function main() {
   await prisma.followerHistory.deleteMany();
   await prisma.influencer.deleteMany();
   await prisma.brand.deleteMany();
+  await prisma.pageVisit.deleteMany();
   await prisma.session.deleteMany();
   await prisma.user.deleteMany();
 
   const hashedPassword = await bcrypt.hash("password123", 12);
+
+  // ============================================
+  // Create Admin User
+  // ============================================
+  await prisma.user.create({
+    data: {
+      email: "ork7483@gmail.com",
+      password: hashedPassword,
+      role: "ADMIN",
+      name: "관리자",
+      plan: "PRO",
+    },
+  });
+  console.log("✅ Created admin user (ork7483@gmail.com)");
 
   // ============================================
   // Create Brand Users & Brands
