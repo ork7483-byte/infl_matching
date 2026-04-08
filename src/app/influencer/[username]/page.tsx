@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Component, type ErrorInfo, type ReactNode } from "react";
 import { useParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Navbar from "@/components/layout/Navbar";
@@ -13,6 +13,45 @@ import BarChartComponent from "@/components/charts/BarChartComponent";
 import AqsRadarChart from "@/components/charts/AqsRadarChart";
 import GaugeChart from "@/components/charts/GaugeChart";
 import LineChartComponent from "@/components/charts/LineChartComponent";
+
+// ─── Error Boundary ─────────────────────────────────────────────────────────
+class ProfileErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean; errorMsg: string }
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false, errorMsg: "" };
+  }
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, errorMsg: error.message };
+  }
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    console.error("[ProfileErrorBoundary]", error, info.componentStack);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-white flex flex-col">
+          <Navbar />
+          <main className="flex-1 flex flex-col items-center justify-center px-4 text-center">
+            <div className="w-20 h-20 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mb-6">
+              <span className="text-3xl">⚠️</span>
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">페이지 로드 오류</h1>
+            <p className="text-gray-500 mb-2">프로필을 불러오는 중 문제가 발생했습니다</p>
+            <p className="text-xs text-gray-400 mb-6 max-w-md">{this.state.errorMsg}</p>
+            <a href="/" className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#e94560] text-white font-semibold hover:opacity-90">
+              검색으로 돌아가기
+            </a>
+          </main>
+          <Footer />
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -271,7 +310,15 @@ function NotFound() {
 
 // ─── Page ────────────────────────────────────────────────────────────────────
 
-export default function InfluencerProfilePage() {
+export default function InfluencerProfilePageWrapper() {
+  return (
+    <ProfileErrorBoundary>
+      <InfluencerProfilePage />
+    </ProfileErrorBoundary>
+  );
+}
+
+function InfluencerProfilePage() {
   const params = useParams<{ username: string }>();
   const username = params?.username ?? "";
   const { data: session } = useSession();
@@ -373,8 +420,13 @@ export default function InfluencerProfilePage() {
     fetch(`/api/influencers/${username}/audience`)
       .then(async (res) => {
         if (!res.ok) return;
-        const data = await res.json();
-        setAudience(data);
+        const json = await res.json();
+        // API may return { data: ..., _blurred } or direct audience object
+        const d = json.data ?? json;
+        if (d && d.genderData) {
+          setAudience(d);
+        }
+        // If no genderData, leave audience as null → defaults will be used
       })
       .catch(console.error)
       .finally(() => setLoadingAudience(false));
