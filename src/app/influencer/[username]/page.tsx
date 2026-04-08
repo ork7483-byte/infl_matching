@@ -411,8 +411,24 @@ export default function InfluencerProfilePage() {
           });
           return;
         }
-        const data = await res.json();
-        setIgrScore(data);
+        const json = await res.json();
+        // API wraps in { data: ... } — unwrap and validate
+        const igrData = json.data ?? json;
+        if (igrData && igrData.totalScore != null) {
+          setIgrScore(igrData);
+        } else {
+          // Partial data (e.g. blurred) — use mock fallback
+          setIgrScore({
+            totalScore: 72,
+            grade: igrData?.grade ?? "A",
+            label: igrData?.label ?? "우수",
+            reelsPerformance: 78,
+            engagementQuality: 70,
+            contentStrategy: 65,
+            growthMomentum: 75,
+            description: "알고리즘 노출이 활발하게 이루어지고 있어요. 릴스 성과가 특히 높습니다.",
+          });
+        }
       })
       .catch(() => {
         setIgrScore({
