@@ -348,10 +348,21 @@ export default function InfluencerProfilePage() {
           setNotFound(true);
           return;
         }
+        if (!res.ok) {
+          setNotFound(true);
+          return;
+        }
         const data = await res.json();
+        if (!data || data.error) {
+          setNotFound(true);
+          return;
+        }
+        // Ensure arrays are always defined
+        data.mediaSnapshots = data.mediaSnapshots ?? [];
+        data.categories = data.categories ?? [];
         setProfile(data);
       })
-      .catch(console.error)
+      .catch(() => setNotFound(true))
       .finally(() => setLoadingProfile(false));
   }, [username]);
 
